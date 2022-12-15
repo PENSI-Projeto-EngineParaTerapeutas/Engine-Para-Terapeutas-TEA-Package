@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <engine:Toggle name="input-habilitado" class="input-padrao" label="Habilitado" tooltip="Define se o ator deve ter um colisor ou não"/>
+    <engine:Toggle name="input-ocupa-espaco" class="input-padrao" label="Ocupa espaço" tooltip="Define se o ator ocupa espaço em relação aos outros ou não"/>
+
+    <engine:VisualElement name="grupo-tamanho" class="container-horizontal">
+        <engine:Label name="label-tamanho" class="label-padrao" text="Tamanho"/>
+
+        <engine:VisualElement name="gupro-inputs-tamanho" class="container-horizontal">
+            <editor:FloatField name="input-largura" class="input-padrao" label="Largura" tooltip="Altera a largura da região detecção de colisão"/>
+            <editor:FloatField name="input-altura" class="input-padrao" label="Altura" tooltip="Altera a altura da região detecção de colisão"/>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

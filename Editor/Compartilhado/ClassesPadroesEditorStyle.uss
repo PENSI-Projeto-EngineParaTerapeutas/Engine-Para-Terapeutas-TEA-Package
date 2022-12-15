@@ -1,0 +1,24 @@
+.container-horizontal {
+    flex-direction: row;
+}
+
+.label-input-padrao {
+    padding: 0 0 0 0;
+    margin: 0 3% 0 0;
+	min-width: 0%;
+}
+
+.input-padrao {
+    flex: 1;
+    margin: 1% 0 1% 0;
+    padding: 0 0 0 0;
+}
+
+.label-padrao {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+.display-none {
+    display: none;
+}

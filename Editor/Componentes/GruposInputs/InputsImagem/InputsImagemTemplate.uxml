@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <editor:ObjectField name="input-imagem" class="input-padrao" label="Imagem" tooltip="Imagem que será exibida no ator"/>
+    <editor:ColorField name="input-cor" class="input-padrao" label="Cor" tooltip="Cor que sobrepõem a imagem do ator"/>
+
+    <engine:VisualElement name="grupo-input-espelhar">
+        <engine:Label name="label-espelhar" class="label-padrao" text="Espelhar"/>
+
+        <engine:VisualElement>
+            <engine:Toggle label="Horizontal" class="input-padrao" name="input-espelhar-horizontal" tooltip="Inverte a imagem do ator horizontalmente"/>
+            <engine:Toggle label="Vertical" class="input-padrao" name="input-espelhar-vertical" tooltip="Inverte a imagem do ator verticalmente"/>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

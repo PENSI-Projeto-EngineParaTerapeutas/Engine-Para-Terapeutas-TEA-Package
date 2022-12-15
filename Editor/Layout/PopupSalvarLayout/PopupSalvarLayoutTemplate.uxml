@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
+>
+    <engine:VisualElement name="grupo-principal-popup">
+        <engine:Label name="label-titulo" class="label-padrao" text="Salvar Layout"/>
+        <engine:TextField name="input-nome-layout" class="input-padrao" label="Nome Layout" tooltip="Nome do arquivo de layout (wls) gerado"/>
+
+        <engine:VisualElement name="grupo-botoes-confirmacao">
+            <engine:Button name="botao-salvar" text="Salvar"/>
+            <engine:Button name="botao-cancelar" text="Cancelar"/>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

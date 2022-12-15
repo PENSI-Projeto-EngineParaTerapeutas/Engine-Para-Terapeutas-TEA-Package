@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <engine:VisualElement name="gupro-secoes-carregaveis" class="container-horizontal">
+        <engine:Button name="botao-carregar-secao-cenario" text="Cenário"/>
+        <engine:Button name="botao-carregar-secao-personagem" text="Personagem"/>
+        <engine:Button name="botao-carregar-secao-apoio" text="Apoio"/>
+        <engine:Button name="botao-carregar-secao-reforco" text="Reforço"/>
+    </engine:VisualElement>
+
+    <engine:VisualElement name="regiao-carregamento-criadores">
+    </engine:VisualElement>
+
+    <engine:VisualElement name="grupo-botoes-confirmacao" class="container-horizontal">
+        <engine:Button name="confimar-criacao" text="Confirmar"/>
+        <engine:Button name="cancelar-criacao" text="Cancelar"/>
+    </engine:VisualElement>
+</engine:UXML>

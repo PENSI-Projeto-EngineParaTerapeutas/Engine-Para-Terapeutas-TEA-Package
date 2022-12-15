@@ -1,0 +1,23 @@
+{
+    "name": "com.pensi.engine-para-terapeutas-tea",
+    "version": "1.0.0",
+    "displayName": "Engine Para Terapeutas TEA",
+    "description": "Motor para criação de jogos voltados ao atendimento de crianças com TEA",
+    "unity": "2021.3",
+    "dependencies": {
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.imgui": "1.0.0",
+        "com.unity.modules.ui": "1.0.0",
+        "com.unity.modules.uielements": "1.0.0"
+    },
+    "keywords": [
+        "Terapeutas TEA",
+        "Jogos sérios",
+        "UFMG",
+        "PENSI"
+    ],
+    "author": {
+        "name": "Ana Paula Carvalho",
+        "url": "http://www.pensi.dcc.ufmg.br/"
+    }
+}

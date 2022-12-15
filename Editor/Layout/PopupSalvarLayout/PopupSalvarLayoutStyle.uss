@@ -1,0 +1,39 @@
+:root {
+	justify-content: center;
+}
+
+#grupo-principal-popup {
+	flex-direction: column;
+	justify-content: center;
+}
+
+#label-titulo {
+	font-size: 16px;
+	-unity-text-align: middle-center;
+	-unity-font-style: bold;
+	margin-top: 9px;
+}
+
+#input-nome-layout {
+	margin: 12px 12px;
+}
+
+#grupo-botoes-confirmacao {
+	flex-direction: row;
+	justify-content: center;
+}
+
+#input-nome-layout {
+	flex-direction: column;
+}
+
+#label-nome-layout {
+	margin-bottom: 6px;
+	font-size: 12px;
+}
+
+#botao-salvar, #botao-cancelar {
+	width: 90px;
+	height: 30px;
+	font-size: 13px;
+}

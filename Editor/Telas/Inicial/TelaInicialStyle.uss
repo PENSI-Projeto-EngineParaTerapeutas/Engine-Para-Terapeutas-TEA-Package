@@ -1,0 +1,10 @@
+:root {
+    justify-content: center;
+    align-items: center;
+}
+
+Label {
+    font-size: 120px;
+    -unity-font-style: bold;
+    color: orange;
+}

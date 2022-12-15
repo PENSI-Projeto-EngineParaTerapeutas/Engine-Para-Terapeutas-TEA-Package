@@ -1,0 +1,7 @@
+.container-horizontal {
+    flex-direction: row;
+}
+
+.display-none {
+    display: none;
+}
