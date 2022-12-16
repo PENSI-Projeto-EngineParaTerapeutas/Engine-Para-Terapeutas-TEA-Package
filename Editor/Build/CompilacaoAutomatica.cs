@@ -13,7 +13,7 @@ namespace EngineParaTerapeutas.Build {
 
             PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.WebGL, PlayerSettings.productName);
 
-            BuildPlayerOptions playerOptions = new BuildPlayerOptions() {
+            BuildPlayerOptions playerOptions = new() {
                 scenes = new string[] { CAMINHO_NOME_CENA_PADRAO },
                 locationPathName = "Build/WebGL/",
                 target = BuildTarget.WebGL,

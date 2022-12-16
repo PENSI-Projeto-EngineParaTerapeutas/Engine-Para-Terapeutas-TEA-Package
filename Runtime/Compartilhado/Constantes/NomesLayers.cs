@@ -1,5 +1,5 @@
 namespace EngineParaTerapeutas.Constantes {
-    public class NomesLayers {
+    public static class NomesLayers {
         public static int Default { get => 0; }
 
         public static int IgnoreRaycast { get => 2; }

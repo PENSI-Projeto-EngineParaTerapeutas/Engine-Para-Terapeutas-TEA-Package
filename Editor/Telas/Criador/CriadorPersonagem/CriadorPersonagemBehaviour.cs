@@ -35,7 +35,7 @@ namespace EngineParaTerapeutas.Criadores {
             grupoInputsFisica = new InputsFisica();
             grupoInputsColisor = new InputsColisor();
 
-            ImportarPrefab("Prefabs/Personagem.prefab");
+            ImportarPrefab("Prefabs/Personagens/Personagem.prefab");
 
             ImportarTemplate("Telas/Criador/CriadorPersonagem/CriadorPersonagemTemplate.uxml");
             ImportarStyle("Telas/Criador/CriadorPersonagem/CriadorPersonagemStyle.uss");

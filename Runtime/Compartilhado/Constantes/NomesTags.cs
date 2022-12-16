@@ -1,5 +1,5 @@
 namespace EngineParaTerapeutas.Constantes {
-    public class NomesTags {
+    public static class NomesTags {
         public static string Untagged { get => "Untagged"; }
 
         public static string EditorOnly { get => "EditorOnly"; }

@@ -29,7 +29,7 @@ namespace EngineParaTerapeutas.Criadores {
             grupoInputsImagem = new InputsImagem();
             grupoInputsAudio = new InputsAudio();
 
-            ImportarPrefab("Prefabs/Reforco.prefab");
+            ImportarPrefab("Prefabs/Reforcos/Reforco.prefab");
 
             ImportarTemplate("Telas/Criador/CriadorReforco/CriadorReforcoTemplate.uxml");
             ImportarStyle("Telas/Criador/CriadorReforco/CriadorReforcoStyle.uss");

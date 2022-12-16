@@ -9,6 +9,6 @@
     </engine:VisualElement>
 
     <engine:VisualElement name="tela-vazia">
-        <engine:Label name="label-tela-vazia" text="Não há nenhum reforço presente no jogo"/>
+        <engine:Label name="label-tela-vazia" text="Não há nenhum apoio presente no jogo"/>
     </engine:VisualElement>
 </engine:UXML>

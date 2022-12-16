@@ -23,7 +23,7 @@ namespace EngineParaTerapeutas.Criadores {
         public CriadorCenarioBehaviour() {
             grupoInputsImagem = new InputsImagem();
 
-            ImportarPrefab("Prefabs/Cenario.prefab");
+            ImportarPrefab("Prefabs/Cenarios/Cenario.prefab");
 
             ImportarTemplate("Telas/Criador/CriadorCenario/CriadorCenarioTemplate.uxml");
             ImportarStyle("Telas/Criador/CriadorCenario/CriadorCenarioStyle.uss");

@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using EngineParaTerapeutas.Constantes;
@@ -29,7 +28,7 @@ namespace EngineParaTerapeutas.Criadores {
             grupoInputsImagem = new InputsImagem();
             grupoInputsAudio = new InputsAudio();
 
-            ImportarPrefab("Prefabs/Apoio.prefab");
+            ImportarPrefab("Prefabs/Apoios/Apoio.prefab");
 
             ImportarTemplate("Telas/Criador/CriadorApoio/CriadorApoioTemplate.uxml");
             ImportarStyle("Telas/Criador/CriadorApoio/CriadorApoioStyle.uss");

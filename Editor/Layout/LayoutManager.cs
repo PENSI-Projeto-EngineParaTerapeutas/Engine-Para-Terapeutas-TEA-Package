@@ -64,11 +64,5 @@ namespace EngineParaTerapeutas.UI {
             SalvarLayout(Path.Combine(GetCaminhoDiretorioAtual, ConstantesProjeto.PastaLayouts) + nomeLayout + ConstantesLayouts.ExtensaoArquivoLayout);
             return;
         }
-
-        [MenuItem("Engine Para Terapeutas/Test")]
-        public static void Test() {
-            Debug.Log("Caminho: " + GetCaminhoDiretorioAtual);
-            return;
-        }
     }
 }
