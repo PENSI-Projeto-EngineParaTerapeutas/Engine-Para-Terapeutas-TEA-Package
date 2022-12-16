@@ -6,6 +6,6 @@ namespace EngineParaTerapeutas.Constantes {
         public static string PastaRaizEditor { get => "Packages/com.pensi.engine-para-terapeutas-tea/Editor/"; }
         public static string PastaRaizRuntime { get => "Packages/com.pensi.engine-para-terapeutas-tea/Runtime/"; }
         public static string PastaResources { get => "Packages/com.pensi.engine-para-terapeutas-tea/Resources/"; }
-        public static string PastaLayouts { get => "Packages/Engine-Para-Terapeutas-TEA/Editor/Layouts/"; } // TODO: Verificar se caminho de import funciona para outros pcs
+        public static string PastaLayouts { get => "Layouts/"; } // TODO: Verificar se caminho de import funciona para outros pcs
     }
 }

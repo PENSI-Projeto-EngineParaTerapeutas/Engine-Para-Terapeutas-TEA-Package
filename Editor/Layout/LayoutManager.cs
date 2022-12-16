@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEditor;
 using System.IO;
 using System.Reflection;
 using Type = System.Type;
@@ -8,8 +9,17 @@ namespace EngineParaTerapeutas.UI {
     public static class LayoutManager {
         private enum TipoMetodo { Salvar, Carregar };
 
+        private static string GetCaminhoDiretorioAtual {
+            get {
+                string[] assets  = AssetDatabase.FindAssets($"t:Script {nameof(LayoutManager)}");
+                string caminhoLayoutManager = AssetDatabase.GUIDToAssetPath(assets[0]);
+
+                return Path.GetDirectoryName(Path.GetFullPath(caminhoLayoutManager));
+            }
+        }
+
         public static void SalvarLayout(string path) {
-            path = Path.Combine(Directory.GetCurrentDirectory(), path);
+            path = Path.Combine(GetCaminhoDiretorioAtual, path);
             CarregarMetodo(TipoMetodo.Salvar).Invoke(null, new object[] { path });
 
             return;
@@ -44,14 +54,20 @@ namespace EngineParaTerapeutas.UI {
         }
 
         public static void CarregarLayout(string path) {
-            path = Path.Combine(Directory.GetCurrentDirectory(), path);
+            path = Path.Combine(GetCaminhoDiretorioAtual, path);
             CarregarMetodo(TipoMetodo.Carregar).Invoke(null, new object[] { path, false });
 
             return;
         }
 
         public static void SalvarLayoutAtual(string nomeLayout) {
-            SalvarLayout(ConstantesProjeto.PastaLayouts + nomeLayout + ConstantesLayouts.ExtensaoArquivoLayout);
+            SalvarLayout(Path.Combine(GetCaminhoDiretorioAtual, ConstantesProjeto.PastaLayouts) + nomeLayout + ConstantesLayouts.ExtensaoArquivoLayout);
+            return;
+        }
+
+        [MenuItem("Engine Para Terapeutas/Test")]
+        public static void Test() {
+            Debug.Log("Caminho: " + GetCaminhoDiretorioAtual);
             return;
         }
     }
