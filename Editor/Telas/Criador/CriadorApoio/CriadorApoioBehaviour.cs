@@ -63,6 +63,7 @@ namespace EngineParaTerapeutas.Criadores {
 
         protected override void VincularCamposAoNovoObjeto() {
             sprite = novoObjeto.GetComponent<SpriteRenderer>();
+            sprite.sortingOrder = OrdemRenderizacao.EmCriacao;
             grupoInputsImagem.VincularDados(sprite);
 
             audioSource = novoObjeto.GetComponent<AudioSource>();
@@ -86,7 +87,8 @@ namespace EngineParaTerapeutas.Criadores {
 
         public override void FinalizarCriacao() {
             novoObjeto.tag = NomesTags.Apoios;
-            novoObjeto.layer = NomesLayers.Default;
+            novoObjeto.layer = LayersProjeto.Default.Index;
+            sprite.sortingOrder = OrdemRenderizacao.Apoio;
             novoObjeto = null;
 
             ReiniciarPropriedadesNovoObjeto();

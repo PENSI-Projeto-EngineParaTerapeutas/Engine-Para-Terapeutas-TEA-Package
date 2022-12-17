@@ -28,7 +28,7 @@ namespace EngineParaTerapeutas.Criadores {
             novoObjeto = GameObject.Instantiate(prefab, new Vector3(), Quaternion.identity);
             //novoObjeto.hideFlags = HideFlags.HideInHierarchy;
             novoObjeto.tag = NomesTags.EditorOnly;
-            novoObjeto.layer = NomesLayers.EditorOnly;
+            novoObjeto.layer = LayersProjeto.EditorOnly.Index;
 
             header.VincularDados(novoObjeto);
 
@@ -54,18 +54,7 @@ namespace EngineParaTerapeutas.Criadores {
             return;
         }
 
-        public virtual void FinalizarCriacao() {
-            novoObjeto.tag = NomesTags.Untagged;
-            novoObjeto.layer = NomesLayers.Default;
-
-            novoObjeto = null;
-            ReiniciarPropriedadesNovoObjeto();
-
-            header.ReiniciarCampos();
-            ReiniciarCampos();
-
-            return;
-        }
+        public abstract void FinalizarCriacao();
 
         protected abstract void ReiniciarPropriedadesNovoObjeto();
 

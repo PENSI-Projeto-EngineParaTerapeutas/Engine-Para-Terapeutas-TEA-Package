@@ -41,8 +41,8 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
 
             AlterarVisibilidadeComponenteOriginal(HideFlags.HideInInspector);
 
-            ImportarTemplate("Packages/com.pensi.engine-para-terapeutas-tea/Editor/CustomEditor/CustomEditorCamera/CustomEditorCameraTemplate.uxml");
-            ImportarStyle("Packages/com.pensi.engine-para-terapeutas-tea/Editor/CustomEditor/CustomEditorCamera/CustomEditorCameraStyle.uss");
+            ImportarTemplate("/CustomEditor/CustomEditorCamera/CustomEditorCameraTemplate.uxml");
+            ImportarStyle("/CustomEditor/CustomEditorCamera/CustomEditorCameraStyle.uss");
             ConfigurarInputs();
 
             return;

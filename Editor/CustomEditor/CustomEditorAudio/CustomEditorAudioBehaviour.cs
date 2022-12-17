@@ -20,8 +20,8 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
             base.OnEnable();
             grupoInputsAudio = new InputsAudio();
 
-            ImportarTemplate("Packages/com.pensi.engine-para-terapeutas-tea/Editor/CustomEditor/CustomEditorAudio/CustomEditorAudioTemplate.uxml");
-            ImportarStyle("Packages/com.pensi.engine-para-terapeutas-tea/Editor/CustomEditor/CustomEditorAudio/CustomEditorAudioStyle.uss");
+            ImportarTemplate("/CustomEditor/CustomEditorAudio/CustomEditorAudioTemplate.uxml");
+            ImportarStyle("/CustomEditor/CustomEditorAudio/CustomEditorAudioStyle.uss");
             ConfigurarInputs();
 
             return;

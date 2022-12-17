@@ -1,12 +1,13 @@
 using UnityEditor;
+using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.Build {
-    public class CompilacaoAutomatica {
-        private const string CAMINHO_NOME_CENA_PADRAO = "Assets/Cenas/Teste.unity"; // TODO: Pegar dinamicamente
+    public static class CompilacaoAutomatica {
+        private static string NomeCompania { get => (ConstantesProjeto.NomeOrganizacao + " - " + ConstantesProjeto.NomeProjeto); }
 
         [MenuItem("Engine Para Terapeutas/Criar jogo")]
         public static void Compilar() {
-            PlayerSettings.companyName = "EngineParaTerapeutas"; // TODO: Pegar dinamicamente
+            PlayerSettings.companyName = NomeCompania;
             PlayerSettings.productName = "Teste"; // TODO: Pegar dinamicamente
 
             PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Gzip;
@@ -14,8 +15,8 @@ namespace EngineParaTerapeutas.Build {
             PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.WebGL, PlayerSettings.productName);
 
             BuildPlayerOptions playerOptions = new() {
-                scenes = new string[] { CAMINHO_NOME_CENA_PADRAO },
-                locationPathName = "Build/WebGL/",
+                scenes = new string[] { ConstantesProjeto.PastaCenasAssets + "/Fase1.unity" }, // TODO: Pegar dinamicamente
+                locationPathName = ConstantesProjeto.PastaBuild,
                 target = BuildTarget.WebGL,
                 options = BuildOptions.None,
             };

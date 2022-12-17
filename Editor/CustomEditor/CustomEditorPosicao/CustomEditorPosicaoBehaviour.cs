@@ -20,8 +20,8 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
             base.OnEnable();
             grupoInputsPosicao = new InputsPosicao();
 
-            ImportarTemplate("Packages/com.pensi.engine-para-terapeutas-tea/Editor/CustomEditor/CustomEditorPosicao/CustomEditorPosicaoTemplate.uxml");
-            ImportarStyle("Packages/com.pensi.engine-para-terapeutas-tea/Editor/CustomEditor/CustomEditorPosicao/CustomEditorPosicaoStyle.uss");
+            ImportarTemplate("/CustomEditor/CustomEditorPosicao/CustomEditorPosicaoTemplate.uxml");
+            ImportarStyle("/CustomEditor/CustomEditorPosicao/CustomEditorPosicaoStyle.uss");
 
             ConfigurarInputs();
 

@@ -1,7 +1,11 @@
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using System.Linq;
+using UnityEditor.SceneManagement;
 using EngineParaTerapeutas.Constantes;
+using EngineParaTerapeutas.DTOs;
+using EngineParaTerapeutas.UI;
 
 namespace EngineParaTerapeutas {
     [InitializeOnLoad]
@@ -15,7 +19,7 @@ namespace EngineParaTerapeutas {
         public static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths) {
             string caminhoArquivoConfiguracaoPacote = Path.Combine(ConstantesProjeto.PastaRaizProjeto, NOME_ARQUIVO_CONFIGURACAO_PACOTE);
 
-            foreach (string caminho in importedAssets) {
+            foreach(string caminho in importedAssets) {
                 if(caminhoArquivoConfiguracaoPacote == caminho) {
                     ConfigurarPacote();
                 }
@@ -25,25 +29,62 @@ namespace EngineParaTerapeutas {
         }
 
         private static void ConfigurarPacote() {
-            Debug.Log("[LOG] Iniciar configuração");
             CopiarCenaPadrao();
-            ConfigurarTags();
-            ConfigurarLayers();
+            ConfigurarProjectSettings();
+
+            LayoutLoader.CarregarTelaInicial();
             return;
         }
 
         private static void CopiarCenaPadrao() {
-            Debug.Log("[TODO] Copiar cena padrão para pasta de cenas");
+            if(!AssetDatabase.IsValidFolder(ConstantesProjeto.PastaCenasAssets)) {
+                AssetDatabase.CreateFolder("Assets", "Cenas");
+            }
+
+            AssetDatabase.CopyAsset(ConstantesProjeto.PastaRaizEditor + ConstantesProjeto.PastaCenas + "CenaBasePadrao.unity", ConstantesProjeto.PastaCenasAssets + "Fase1.unity");
+            EditorSceneManager.OpenScene(ConstantesProjeto.PastaCenasAssets + "Fase1.unity");
             return;
         }
 
-        private static void ConfigurarTags() {
-            Debug.Log("[TODO] Criar layers de Editor, apoio, reforço, etc...");
+        private static void ConfigurarProjectSettings() {
+            SerializedObject tagManager = new(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset").First());
+            SerializedProperty tagsProperty = tagManager.FindProperty("tags");
+
+            AdicionarTag(tagsProperty, NomesTags.Apoios);
+            AdicionarTag(tagsProperty, NomesTags.Reforcos);
+
+            SerializedProperty layersProperty = tagManager.FindProperty("layers");
+
+            AdicionarLayer(layersProperty, LayersProjeto.EditorOnly);
+
+            tagManager.ApplyModifiedProperties();
             return;
         }
 
-        private static void ConfigurarLayers() {
-            Debug.Log("[TODO] Criar layers de Editor, etc...");
+        private static void AdicionarTag(SerializedProperty tagsProperty, string novaTag) {
+            for(int i = 0; i < tagsProperty.arraySize; i++) {
+                SerializedProperty tag = tagsProperty.GetArrayElementAtIndex(i);
+
+                if(tag.stringValue == novaTag) {
+                    return;
+                }
+            }
+
+            tagsProperty.InsertArrayElementAtIndex(0);
+            SerializedProperty novaTagProperty = tagsProperty.GetArrayElementAtIndex(0);
+            novaTagProperty.stringValue = novaTag;
+
+            return;
+        }
+
+        private static void AdicionarLayer(SerializedProperty layersProperty, LayerInfo layer) {
+            SerializedProperty layerAlvo = layersProperty.GetArrayElementAtIndex(layer.Index);
+            if(layerAlvo == null) {
+                Debug.Log("[ERRO] Não foi possível inserir a layer: " + layer.Nome);
+                return;
+            }
+
+            layerAlvo.stringValue = layer.Nome;
             return;
         }
     }

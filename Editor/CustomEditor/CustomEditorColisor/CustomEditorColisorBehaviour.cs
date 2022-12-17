@@ -20,8 +20,8 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
             base.OnEnable();
             grupoInputsColisor = new InputsColisor();
 
-            ImportarTemplate("Packages/com.pensi.engine-para-terapeutas-tea/Editor/CustomEditor/CustomEditorColisor/CustomEditorColisorTemplate.uxml");
-            ImportarStyle("Packages/com.pensi.engine-para-terapeutas-tea/Editor/CustomEditor/CustomEditorColisor/CustomEditorColisorStyle.uss");
+            ImportarTemplate("/CustomEditor/CustomEditorColisor/CustomEditorColisorTemplate.uxml");
+            ImportarStyle("/CustomEditor/CustomEditorColisor/CustomEditorColisorStyle.uss");
             ConfigurarInputs();
 
             return;

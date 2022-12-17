@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using EngineParaTerapeutas.UI;
@@ -50,6 +49,7 @@ namespace EngineParaTerapeutas.Criadores {
 
         protected override void VincularCamposAoNovoObjeto() {
             spriteCenario = novoObjeto.GetComponent<SpriteRenderer>();
+            spriteCenario.sortingOrder = OrdemRenderizacao.EmCriacao;
             grupoInputsImagem.VincularDados(spriteCenario);
 
             return;
@@ -63,6 +63,20 @@ namespace EngineParaTerapeutas.Criadores {
 
         public override void ReiniciarCampos() {
             grupoInputsImagem.ReiniciarCampos();
+
+            return;
+        }
+
+        public override void FinalizarCriacao() {
+            novoObjeto.tag = NomesTags.Untagged;
+            novoObjeto.layer = LayersProjeto.Default.Index;
+            spriteCenario.sortingOrder = OrdemRenderizacao.Cenario;
+            novoObjeto = null;
+
+            ReiniciarPropriedadesNovoObjeto();
+
+            header.ReiniciarCampos();
+            ReiniciarCampos();
 
             return;
         }

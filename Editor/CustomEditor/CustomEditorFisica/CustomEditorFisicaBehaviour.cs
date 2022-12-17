@@ -20,8 +20,8 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
             base.OnEnable();
             grupoInputFisica = new InputsFisica();
 
-            ImportarTemplate("Packages/com.pensi.engine-para-terapeutas-tea/Editor/CustomEditor/CustomEditorFisica/CustomEditorFisicaTemplate.uxml");
-            ImportarStyle("Packages/com.pensi.engine-para-terapeutas-tea/Editor/CustomEditor/CustomEditorFisica/CustomEditorFisicaStyle.uss");
+            ImportarTemplate("/CustomEditor/CustomEditorFisica/CustomEditorFisicaTemplate.uxml");
+            ImportarStyle("/CustomEditor/CustomEditorFisica/CustomEditorFisicaStyle.uss");
             ConfigurarInputs();
 
             return;

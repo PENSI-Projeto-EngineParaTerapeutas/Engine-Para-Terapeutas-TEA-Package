@@ -78,6 +78,7 @@ namespace EngineParaTerapeutas.Criadores {
 
         protected override void VincularCamposAoNovoObjeto() {
             sprite = novoObjeto.GetComponent<SpriteRenderer>();
+            sprite.sortingOrder = OrdemRenderizacao.EmCriacao;
             grupoInputsImagem.VincularDados(sprite);
 
             rigidbody2D = novoObjeto.GetComponent<Rigidbody2D>();
@@ -101,6 +102,20 @@ namespace EngineParaTerapeutas.Criadores {
             grupoInputsImagem.ReiniciarCampos();
             grupoInputsFisica.ReiniciarCampos();
             grupoInputsColisor.ReiniciarCampos();
+
+            return;
+        }
+
+        public override void FinalizarCriacao() {
+            novoObjeto.tag = NomesTags.Untagged;
+            novoObjeto.layer = LayersProjeto.Default.Index;
+            sprite.sortingOrder = OrdemRenderizacao.Personagem;
+            novoObjeto = null;
+
+            ReiniciarPropriedadesNovoObjeto();
+
+            header.ReiniciarCampos();
+            ReiniciarCampos();
 
             return;
         }
