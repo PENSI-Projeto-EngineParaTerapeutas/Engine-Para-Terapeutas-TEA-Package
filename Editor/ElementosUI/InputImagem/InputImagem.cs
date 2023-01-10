@@ -7,8 +7,7 @@ using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {
     public class InputImagem : ElementoInterfaceEditor, IReiniciavel {
-        private const string PASTA_IMAGENS = "Assets/Imagens";
-        private string CaminhoCompletoPastaImagens { get => Path.Combine(ConstantesProjeto.PastaResourcesRuntime, PASTA_IMAGENS); }
+        private string CaminhoCompletoPastaImagens { get => "Assets/Resources/Imagens"; }
 
         #region .: Elementos :.
         public ObjectField CampoImagem { get => campoImagem; }
@@ -52,7 +51,7 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void HandleBotaoBuscarImagemClick() {
-            string caminhoAqruivoSelecionado = EditorUtility.OpenFilePanel("Procurar Imagem", CaminhoCompletoPastaImagens, ConstantesEditor.ExtensoesImagem);
+            string caminhoAqruivoSelecionado = EditorUtility.OpenFilePanel("Procurar Imagem", "", ConstantesEditor.ExtensoesImagem);
 
             if(string.IsNullOrWhiteSpace(caminhoAqruivoSelecionado)) {
                 Debug.Log("[LOG]: Nenhum arquivo selecionado");
@@ -61,8 +60,8 @@ namespace EngineParaTerapeutas.UI {
 
             CopiarArquivoSeNaoExistir(caminhoAqruivoSelecionado);
 
-            string nomeArquivo = Path.GetFileNameWithoutExtension(caminhoAqruivoSelecionado);
-            Sprite imagemCarregada = Resources.Load<Sprite>(Path.Combine(PASTA_IMAGENS, nomeArquivo));
+            string nomeArquivo = Path.GetFileName(caminhoAqruivoSelecionado);
+            Sprite imagemCarregada = AssetDatabase.LoadAssetAtPath<Sprite>(Path.Combine(CaminhoCompletoPastaImagens, nomeArquivo));
 
             CampoImagem.value = imagemCarregada;
             CampoImagem.SendEvent(new ChangeEvent<Object>());
@@ -70,9 +69,13 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void CopiarArquivoSeNaoExistir(string caminho) {
+            if(!Directory.Exists(CaminhoCompletoPastaImagens)) {
+                Directory.CreateDirectory(CaminhoCompletoPastaImagens);
+            }
+
             string[] arquivos = Directory.GetFiles(CaminhoCompletoPastaImagens);
             string nomeArquivo = Path.GetFileName(caminho);
-            
+
             foreach(string arquivo in arquivos) {
                 if(Path.GetFileName(arquivo) == nomeArquivo) {
                     return;

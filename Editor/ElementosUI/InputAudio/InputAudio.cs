@@ -7,8 +7,7 @@ using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {
     public class InputAudio : ElementoInterfaceEditor, IReiniciavel {
-        private const string PastaSons = "Assets/Sons";
-        private string CaminhoCompletoPastaSons { get => Path.Combine(ConstantesProjeto.PastaResourcesRuntime, PastaSons); }
+        private string CaminhoCompletoPastaSons { get => "Assets/Resources/Sons"; }
 
         #region .: Elementos :.
         public ObjectField CampoAudio { get => campoAudio; }
@@ -52,7 +51,7 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void HandleBotaoBuscarAudioClick() {
-            string caminhoAqruivoSelecionado = EditorUtility.OpenFilePanel("Procurar Audio", CaminhoCompletoPastaSons, ConstantesEditor.ExtensoesAudio);
+            string caminhoAqruivoSelecionado = EditorUtility.OpenFilePanel("Procurar Audio", "", ConstantesEditor.ExtensoesAudio);
 
             if(string.IsNullOrWhiteSpace(caminhoAqruivoSelecionado)) {
                 Debug.Log("[LOG]: Nenhum arquivo selecionado");
@@ -61,8 +60,8 @@ namespace EngineParaTerapeutas.UI {
 
             CopiarArquivoSeNaoExistir(caminhoAqruivoSelecionado);
 
-            string nomeArquivo = Path.GetFileNameWithoutExtension(caminhoAqruivoSelecionado);
-            AudioClip audioCarregado = Resources.Load<AudioClip>(Path.Combine(PastaSons, nomeArquivo));
+            string nomeArquivo = Path.GetFileName(caminhoAqruivoSelecionado);
+            AudioClip audioCarregado = AssetDatabase.LoadAssetAtPath<AudioClip>(Path.Combine(CaminhoCompletoPastaSons, nomeArquivo));
 
             CampoAudio.value = audioCarregado;
             CampoAudio.SendEvent(new ChangeEvent<Object>());
@@ -70,6 +69,10 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void CopiarArquivoSeNaoExistir(string caminho) {
+            if(!Directory.Exists(CaminhoCompletoPastaSons)) {
+                Directory.CreateDirectory(CaminhoCompletoPastaSons);
+            }
+
             string[] arquivos = Directory.GetFiles(CaminhoCompletoPastaSons);
             string nomeArquivo = Path.GetFileName(caminho);
 
