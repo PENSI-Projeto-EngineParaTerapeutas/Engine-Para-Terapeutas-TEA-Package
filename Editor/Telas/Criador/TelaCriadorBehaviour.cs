@@ -1,7 +1,6 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEditor.SceneManagement;
 using EngineParaTerapeutas.Constantes;
 using EngineParaTerapeutas.Criadores;
 
@@ -11,7 +10,7 @@ namespace EngineParaTerapeutas.Telas {
 
         #region .: Elementos :.
 
-        private const string NOME_REGIAO_BOTOES_CARREGAM_SECOES = "gupro-secoes-carregaveis";
+        private const string NOME_REGIAO_BOTOES_CARREGAM_SECOES = "grupo-secoes-carregaveis";
         private VisualElement grupoBotoesCarregamSecoes;
 
         private const string NOME_BOTAO_CARREGAR_SECAO_CENARIO = "botao-carregar-secao-cenario";
@@ -176,8 +175,7 @@ namespace EngineParaTerapeutas.Telas {
         }
 
         private void HandleConfimarCricaoClick() {
-            EditorSceneManager.MarkAllScenesDirty();
-            EditorSceneManager.SaveOpenScenes();
+            EngineParaTerapeutas.Utils.Utils.SalvarCenas();
 
             criadorAtual.FinalizarCriacao();
             ReiniciarEstado();

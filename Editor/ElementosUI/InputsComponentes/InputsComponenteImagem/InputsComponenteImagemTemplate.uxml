@@ -5,7 +5,8 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <editor:ObjectField name="input-imagem" class="input-padrao" label="Imagem" tooltip="Imagem que será exibida no ator"/>
+    <engine:VisualElement name="regiao-input-imagem">
+    </engine:VisualElement>
     <editor:ColorField name="input-cor" class="input-padrao" label="Cor" tooltip="Cor que sobrepõem a imagem do ator"/>
 
     <engine:VisualElement name="grupo-input-espelhar">

@@ -26,7 +26,7 @@ namespace EngineParaTerapeutas.Criadores {
 
         public virtual void IniciarCriacao() {
             novoObjeto = GameObject.Instantiate(prefab, new Vector3(), Quaternion.identity);
-            //novoObjeto.hideFlags = HideFlags.HideInHierarchy;
+            //TODO: novoObjeto.hideFlags = HideFlags.HideInHierarchy;
             novoObjeto.tag = NomesTags.EditorOnly;
             novoObjeto.layer = LayersProjeto.EditorOnly.Index;
 
@@ -41,7 +41,7 @@ namespace EngineParaTerapeutas.Criadores {
         protected abstract void VincularCamposAoNovoObjeto();
 
         public virtual void CancelarCriacao() {
-            if (novoObjeto != null) {
+            if(novoObjeto != null) {
                 GameObject.DestroyImmediate(novoObjeto);
             }
 

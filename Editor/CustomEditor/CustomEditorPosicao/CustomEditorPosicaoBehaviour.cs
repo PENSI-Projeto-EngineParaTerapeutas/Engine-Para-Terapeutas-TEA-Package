@@ -12,13 +12,13 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
         private const string REGIAO_CARREGAMENTO_INPUTS_PADROES_POSICAO = "regiao-carregamento-inputs-padroes-posicao";
         private VisualElement regiaoCarregamentosInputsPadroesPosicao;
 
-        private InputsPosicao grupoInputsPosicao;
+        private InputsComponentePosicao grupoInputsPosicao;
 
         #endregion
 
         public override void OnEnable() {
             base.OnEnable();
-            grupoInputsPosicao = new InputsPosicao();
+            grupoInputsPosicao = new InputsComponentePosicao();
 
             ImportarTemplate("/CustomEditor/CustomEditorPosicao/CustomEditorPosicaoTemplate.uxml");
             ImportarStyle("/CustomEditor/CustomEditorPosicao/CustomEditorPosicaoStyle.uss");

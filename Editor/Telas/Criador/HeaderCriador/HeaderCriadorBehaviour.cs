@@ -16,7 +16,7 @@ namespace EngineParaTerapeutas.Criadores {
         private const string NOME_REGIAO_CARREGAMENTO_INPUTS_POSICAO = "regiao-carregamento-inputs-posicao";
         private VisualElement regiaoCarregamentoInputsPosicao;
 
-        private readonly InputsPosicao grupoInputsPosicao;
+        private readonly InputsComponentePosicao grupoInputsPosicao;
 
         #endregion
 
@@ -24,7 +24,7 @@ namespace EngineParaTerapeutas.Criadores {
         private string nomeAtor = NOME_PADRAO_NOVO_ATOR;
 
         public HeaderCriadorBehaviour() {
-            grupoInputsPosicao = new InputsPosicao();
+            grupoInputsPosicao = new InputsComponentePosicao();
 
             ImportarTemplate("Telas/Criador/HeaderCriador/HeaderCriadorTemplate.uxml");
             ImportarStyle("Telas/Criador/HeaderCriador/HeaderCriadorStyle.uss");
@@ -49,7 +49,7 @@ namespace EngineParaTerapeutas.Criadores {
 
             campoNomeObjeto.SetValueWithoutNotify(string.Empty);
             campoNomeObjeto.RegisterCallback<ChangeEvent<string>>(evt => {
-                nomeAtor = evt.newValue;
+                nomeAtor = campoNomeObjeto.value;
 
                 if(novoAtor != null) {
                     novoAtor.name = nomeAtor;

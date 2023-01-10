@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using System.Collections.Generic;
 using EngineParaTerapeutas.ComponentesGameObjects;
 using EngineParaTerapeutas.UI;
 
@@ -15,13 +15,13 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
         private const string NOME_REGIAO_CARREGAMENTO_INPUTS_PADROES_IMAGEM = "regiao-carregamento-inputs-padroes-imagem";
         private VisualElement regiaoCarregamentoInputsPadroesImagem;
 
-        private InputsImagem grupoInputsImagem;
+        private InputsComponenteImagem grupoInputsImagem;
 
         #endregion
 
         public override void OnEnable() {
             base.OnEnable();
-            grupoInputsImagem = new InputsImagem();
+            grupoInputsImagem = new InputsComponenteImagem();
 
             componenteOriginal.GetSharedMaterials(componenteOriginalMaterial);
             AlterarVisibilidadeComponenteOriginal(HideFlags.HideInInspector);

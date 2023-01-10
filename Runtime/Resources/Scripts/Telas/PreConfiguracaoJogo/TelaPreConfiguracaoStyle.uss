@@ -3,6 +3,6 @@
 	background-color: rgba(46, 46, 46, 0.5);
 }
 
-#gupro-secoes-carregaveis {
+#grupo-secoes-carregaveis {
 	flex-direction: row;
 }

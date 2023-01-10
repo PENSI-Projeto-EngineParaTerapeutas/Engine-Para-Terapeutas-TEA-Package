@@ -4,40 +4,40 @@ using UnityEditor.UIElements;
 using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {
-    public class InputsColisor : ElementoInterfaceEditor, IVinculavel<BoxCollider2D>, IReiniciavel {
+    public class InputsComponenteColisor : ElementoInterfaceEditor, IVinculavel<BoxCollider2D>, IReiniciavel {
         #region .: Elementos :.
+        public Toggle CampoHabilitado { get => campoHabilitado; }
+        public Toggle CampoOcupaEspaco { get => campoOcupaEspaco; }
+        public Label LabelTamanho { get => labelTamanho; }
+        public FloatField CampoAltura { get => campoAltura; }
+        public FloatField CampoLargura { get => campoLargura; }
 
         private const string NOME_LABEL_HABILITADO = "label-habilitado";
         private const string NOME_INPUT_HABILITADO = "input-habilitado";
-        public Toggle CampoHabilitado { get => campoHabilitado; }
         private readonly Toggle campoHabilitado;
 
         private const string NOME_LABEL_OCUPA_ESPACO = "label-ocupa-espaco";
         private const string NOME_INPUT_OCUPA_ESPACO = "input-ocupa-espaco";
-        public Toggle CampoOcupaEspaco { get => campoOcupaEspaco; }
         private readonly Toggle campoOcupaEspaco;
 
         private const string NOME_LABEL_TAMANHO = "label-tamanho";
-        public Label LabelTamanho { get => labelTamanho; }
         private readonly Label labelTamanho;
 
         private const string NOME_LABEL_ALTURA = "label-altura";
         private const string NOME_INPUT_ALTURA = "input-altura";
-        public FloatField CampoAltura { get => campoAltura; }
         private readonly FloatField campoAltura;
 
         private const string NOME_LABEL_LARGURA = "label-largura";
         private const string NOME_INPUT_LARGURA = "input-largura";
-        public FloatField CampoLargura { get => campoLargura; }
         private readonly FloatField campoLargura;
 
         #endregion
 
         private BoxCollider2D colisorVinculado;
 
-        public InputsColisor() {
-            ImportarTemplate("Componentes/GruposInputs/InputsColisor/InputsColisorTemplate.uxml");
-            ImportarStyle("Componentes/GruposInputs/InputsColisor/InputsColisorStyle.uss");
+        public InputsComponenteColisor() {
+            ImportarTemplate("ElementosUI/InputsComponentes/InputsComponenteColisor/InputsComponenteColisorTemplate.uxml");
+            ImportarStyle("ElementosUI/InputsComponentes/InputsComponenteColisor/InputsComponenteColisorStyle.uss");
 
             campoHabilitado = Root.Query<Toggle>(NOME_INPUT_HABILITADO);
             campoOcupaEspaco = Root.Query<Toggle>(NOME_INPUT_OCUPA_ESPACO);
@@ -66,12 +66,13 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void AlterarVisibilidadeCamposDependentes(bool deveExibir) {
-            if (deveExibir) {
+            if(deveExibir) {
                 CampoOcupaEspaco.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
                 CampoLargura.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
                 CampoAltura.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
                 LabelTamanho.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-            } else {
+            }
+            else {
                 CampoOcupaEspaco.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
                 CampoLargura.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
                 CampoAltura.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
@@ -96,7 +97,7 @@ namespace EngineParaTerapeutas.UI {
 
             CampoLargura.SetValueWithoutNotify(0);
             CampoLargura.RegisterCallback<ChangeEvent<float>>(evt => {
-                if (evt.newValue < 0) {
+                if(evt.newValue < 0) {
                     CampoLargura.value = 0;
                 }
             });
@@ -110,7 +111,7 @@ namespace EngineParaTerapeutas.UI {
 
             CampoAltura.SetValueWithoutNotify(0);
             CampoAltura.RegisterCallback<ChangeEvent<float>>(evt => {
-                if (evt.newValue < 0) {
+                if(evt.newValue < 0) {
                     CampoAltura.value = 0;
                 }
             });

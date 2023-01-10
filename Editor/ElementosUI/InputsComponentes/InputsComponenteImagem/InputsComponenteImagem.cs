@@ -4,41 +4,45 @@ using UnityEditor.UIElements;
 using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {
-    public class InputsImagem : ElementoInterfaceEditor, IVinculavel<SpriteRenderer>, IReiniciavel {
+    public class InputsComponenteImagem : ElementoInterfaceEditor, IVinculavel<SpriteRenderer>, IReiniciavel {
         #region .: Elementos :.
+        public VisualElement RegiaoInputImagem { get => regiaoInputImagem; }
+        public ColorField CampoCor { get => campoCor; }
+        public Toggle CampoEspelharHorizontal { get => campoEspelharHorizontal; }
+        public Toggle CampoEspelharVertical { get => campoEspelharVertical; }
+        public InputImagem InputImagem { get => inputImagem; }
 
-        private const string NOME_LABEL_IMAGEM = "label-imagem";
-        private const string NOME_INPUT_IMAGEM = "input-imagem";
-        public ObjectField CampoImagem { get => campoImagem; }
-        private readonly ObjectField campoImagem;
+        private const string NOME_REGIAO_INPUT_IMAGEM = "regiao-input-imagem";
+        private readonly VisualElement regiaoInputImagem;
 
         private const string NOME_LABEL_COR = "label-cor";
         private const string NOME_INPUT_COR = "input-cor";
-        public ColorField CampoCor { get => campoCor; }
         private readonly ColorField campoCor;
 
         private const string NOME_LABEL_ESPELHAR_HORIZONTAL = "label-espelhar-horizontal";
         private const string NOME_INPUT_ESPELHAR_HORIZONTAL = "input-espelhar-horizontal";
-        public Toggle CampoEspelharHorizontal { get => campoEspelharHorizontal; }
         private readonly Toggle campoEspelharHorizontal;
 
         private const string NOME_LABEL_ESPELHAR_VERTICAL = "label-espelhar-vertical";
         private const string NOME_INPUT_ESPELHAR_VERTICAL = "input-espelhar-vertical";
-        public Toggle CampoEspelharVertical { get => campoEspelharVertical; }
         private readonly Toggle campoEspelharVertical;
+
+        private readonly InputImagem inputImagem;
 
         #endregion
 
         private SpriteRenderer spriteRendererVinculado;
 
-        public InputsImagem() {
-            ImportarTemplate("Componentes/GruposInputs/InputsImagem/InputsImagemTemplate.uxml");
-            ImportarStyle("Componentes/GruposInputs/InputsImagem/InputsImagemStyle.uss");
+        public InputsComponenteImagem() {
+            ImportarTemplate("ElementosUI/InputsComponentes/InputsComponenteImagem/InputsComponenteImagemTemplate.uxml");
+            ImportarStyle("ElementosUI/InputsComponentes/InputsComponenteImagem/InputsComponenteImagemStyle.uss");
 
-            campoImagem = Root.Query<ObjectField>(NOME_INPUT_IMAGEM);
+            regiaoInputImagem = Root.Query<VisualElement>(NOME_REGIAO_INPUT_IMAGEM);
             campoCor = Root.Query<ColorField>(NOME_INPUT_COR);
             campoEspelharHorizontal = Root.Query<Toggle>(NOME_INPUT_ESPELHAR_HORIZONTAL);
             campoEspelharVertical = Root.Query<Toggle>(NOME_INPUT_ESPELHAR_VERTICAL);
+
+            inputImagem = new InputImagem();
 
             ConfigurarInputImagem();
             ConfigurarInputCor();
@@ -49,11 +53,7 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void ConfigurarInputImagem() {
-            CampoImagem.labelElement.name = NOME_LABEL_IMAGEM;
-            CampoImagem.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
-
-            CampoImagem.objectType = typeof(Sprite);
-
+            regiaoInputImagem.Add(inputImagem.Root);
             return;
         }
 
@@ -83,13 +83,13 @@ namespace EngineParaTerapeutas.UI {
         public void VincularDados(SpriteRenderer componente) {
             spriteRendererVinculado = componente;
 
-            CampoImagem.SetValueWithoutNotify(spriteRendererVinculado.sprite);
+            InputImagem.CampoImagem.SetValueWithoutNotify(spriteRendererVinculado.sprite);
             CampoCor.SetValueWithoutNotify(spriteRendererVinculado.color);
             CampoEspelharHorizontal.SetValueWithoutNotify(spriteRendererVinculado.flipX);
             CampoEspelharVertical.SetValueWithoutNotify(spriteRendererVinculado.flipY);
 
-            CampoImagem.RegisterCallback<ChangeEvent<Object>>(evt => {
-                spriteRendererVinculado.sprite = CampoImagem.value as Sprite;
+            InputImagem.CampoImagem.RegisterCallback<ChangeEvent<Object>>(evt => {
+                spriteRendererVinculado.sprite = InputImagem.CampoImagem.value as Sprite;
             });
 
             CampoCor.RegisterCallback<ChangeEvent<Color>>(evt => {
@@ -108,11 +108,12 @@ namespace EngineParaTerapeutas.UI {
         }
 
         public void ReiniciarCampos() {
-            CampoImagem.SetValueWithoutNotify(null);
+            InputImagem.CampoImagem.SetValueWithoutNotify(null);
             CampoCor.SetValueWithoutNotify(Color.white);
 
             CampoEspelharHorizontal.SetValueWithoutNotify(false);
             CampoEspelharVertical.SetValueWithoutNotify(false);
+
             return;
         }
     }

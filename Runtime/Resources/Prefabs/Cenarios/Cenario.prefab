@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8275662527808138518}
   m_Layer: 2
   m_Name: Cenario
-  m_TagString: Untagged
+  m_TagString: Cenario
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

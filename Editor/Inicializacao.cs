@@ -1,7 +1,7 @@
-using UnityEngine;
-using UnityEditor;
 using System.IO;
 using System.Linq;
+using UnityEngine;
+using UnityEditor;
 using UnityEditor.SceneManagement;
 using EngineParaTerapeutas.Constantes;
 using EngineParaTerapeutas.DTOs;
@@ -52,6 +52,7 @@ namespace EngineParaTerapeutas {
 
             AdicionarTag(tagsProperty, NomesTags.Apoios);
             AdicionarTag(tagsProperty, NomesTags.Reforcos);
+            AdicionarTag(tagsProperty, NomesTags.Cenario);
 
             SerializedProperty layersProperty = tagManager.FindProperty("layers");
 
@@ -80,7 +81,7 @@ namespace EngineParaTerapeutas {
         private static void AdicionarLayer(SerializedProperty layersProperty, LayerInfo layer) {
             SerializedProperty layerAlvo = layersProperty.GetArrayElementAtIndex(layer.Index);
             if(layerAlvo == null) {
-                Debug.Log("[ERRO] Não foi possível inserir a layer: " + layer.Nome);
+                Debug.LogError("[ERRO]: Não foi possível inserir a layer: " + layer.Nome);
                 return;
             }
 

@@ -1,11 +1,11 @@
-#gupro-secoes-carregaveis {
+#grupo-secoes-carregaveis {
 	flex: 1;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
 
-#gupro-secoes-carregaveis > Button {
+#grupo-secoes-carregaveis > Button {
 	width: 100px;
 	height: 30px;
 	margin-top: 12px;

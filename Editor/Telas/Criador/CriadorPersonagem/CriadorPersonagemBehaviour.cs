@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using EngineParaTerapeutas.UI;
@@ -20,9 +19,9 @@ namespace EngineParaTerapeutas.Criadores {
         private const string NOME_REGIAO_CARREGAMENTO_INPUTS_COLISOR = "regiao-carregamento-inputs-colisor";
         private VisualElement regiaoCarregamentoInputsColisor;
 
-        private readonly InputsImagem grupoInputsImagem;
-        private readonly InputsFisica grupoInputsFisica;
-        private readonly InputsColisor grupoInputsColisor;
+        private readonly InputsComponenteImagem grupoInputsImagem;
+        private readonly InputsComponenteFisica grupoInputsFisica;
+        private readonly InputsComponenteColisor grupoInputsColisor;
 
         #endregion
 
@@ -31,9 +30,9 @@ namespace EngineParaTerapeutas.Criadores {
         private BoxCollider2D colisor;
 
         public CriadorPersonagemBehaviour() {
-            grupoInputsImagem = new InputsImagem();
-            grupoInputsFisica = new InputsFisica();
-            grupoInputsColisor = new InputsColisor();
+            grupoInputsImagem = new InputsComponenteImagem();
+            grupoInputsFisica = new InputsComponenteFisica();
+            grupoInputsColisor = new InputsComponenteColisor();
 
             ImportarPrefab("Prefabs/Personagens/Personagem.prefab");
 

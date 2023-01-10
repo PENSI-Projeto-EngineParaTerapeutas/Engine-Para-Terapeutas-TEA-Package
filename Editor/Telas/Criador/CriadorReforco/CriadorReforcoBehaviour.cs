@@ -16,8 +16,8 @@ namespace EngineParaTerapeutas.Criadores {
         private const string NOME_REGIAO_CARREGAMENTO_INPUTS_AUDIO = "regiao-carregamento-inputs-audio";
         private VisualElement regiaoCarregamentoInputsAudio;
 
-        private readonly InputsImagem grupoInputsImagem;
-        private readonly InputsAudio grupoInputsAudio;
+        private readonly InputsComponenteImagem grupoInputsImagem;
+        private readonly InputsComponenteAudio grupoInputsAudio;
 
         #endregion
 
@@ -25,8 +25,8 @@ namespace EngineParaTerapeutas.Criadores {
         private AudioSource audioSource;
 
         public CriadorReforcoBehaviour() {
-            grupoInputsImagem = new InputsImagem();
-            grupoInputsAudio = new InputsAudio();
+            grupoInputsImagem = new InputsComponenteImagem();
+            grupoInputsAudio = new InputsComponenteAudio();
 
             ImportarPrefab("Prefabs/Reforcos/Reforco.prefab");
 

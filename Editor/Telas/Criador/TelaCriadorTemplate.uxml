@@ -5,7 +5,7 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:VisualElement name="gupro-secoes-carregaveis" class="container-horizontal">
+    <engine:VisualElement name="grupo-secoes-carregaveis" class="container-horizontal">
         <engine:Button name="botao-carregar-secao-cenario" text="Cenário"/>
         <engine:Button name="botao-carregar-secao-personagem" text="Personagem"/>
         <engine:Button name="botao-carregar-secao-apoio" text="Apoio"/>

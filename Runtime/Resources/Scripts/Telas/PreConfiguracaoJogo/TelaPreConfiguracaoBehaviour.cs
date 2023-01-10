@@ -19,7 +19,7 @@ namespace EngineParaTerapeutas.Telas {
         private VisualElement root;
         private StyleSheet style;
 
-        private const string NOME_REGIAO_BOTOES_CARREGAM_SECOES_CONFIGURACAO = "gupro-secoes-carregaveis";
+        private const string NOME_REGIAO_BOTOES_CARREGAM_SECOES_CONFIGURACAO = "grupo-secoes-carregaveis";
         private VisualElement grupoBotoesCarregamSecoes;
 
         private const string NOME_BOTAO_CARREGAR_SECAO_CONFIGURACAO_CENARIO = "botao-carregar-secao-configuracao-cenario";
@@ -40,6 +40,7 @@ namespace EngineParaTerapeutas.Telas {
         private const string NOME_BOTAO_INICIAR_JOGO = "botao-iniciar-jogo";
         private Button botaoIniciarJogo;
 
+        private ConfiguracaoCenarioBehaviour secaoConfiguracaoCenario;
         private ConfiguracaoApoioBehaviour secaoConfiguracaoApoios;
         private ConfiguracaoReforcoBehaviour secaoConfiguracaoReforcos;
 
@@ -51,6 +52,7 @@ namespace EngineParaTerapeutas.Telas {
             ImportarTemplate();
             ImportarStyle();
 
+            secaoConfiguracaoCenario = new();
             secaoConfiguracaoApoios = new();
             secaoConfiguracaoReforcos = new();
 
@@ -120,8 +122,7 @@ namespace EngineParaTerapeutas.Telas {
             }
 
             abaAtual = AbasTelaPreConfiguracao.ConfigurarCenario;
-            regiaoCarregamento.Clear();
-            Debug.Log("[LOG]: Carregar configurações do cenário");
+            CarregarSecaoConfiguracao(secaoConfiguracaoCenario);
 
             return;
         }

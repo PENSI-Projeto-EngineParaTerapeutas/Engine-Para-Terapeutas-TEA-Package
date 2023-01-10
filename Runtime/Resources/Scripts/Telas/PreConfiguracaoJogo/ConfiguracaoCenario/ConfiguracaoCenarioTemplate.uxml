@@ -7,4 +7,5 @@
 >
     <engine:Label name="label-preview-cenario" text="Imagem do Cenário"/>
     <engine:Image name="preview-cenario"/>
+    <engine:Button name="botao-selecionar-cenario" text="Selecionar Imagem"/>
 </engine:UXML>

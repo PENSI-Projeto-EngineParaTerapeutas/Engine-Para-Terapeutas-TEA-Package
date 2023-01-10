@@ -4,31 +4,31 @@ using UnityEditor.UIElements;
 using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {
-    public class InputsFisica : ElementoInterfaceEditor, IVinculavel<Rigidbody2D>, IReiniciavel {
+    public class InputsComponenteFisica : ElementoInterfaceEditor, IVinculavel<Rigidbody2D>, IReiniciavel {
         #region .: Elementos :.
+        public Toggle CampoPodeMover { get => campoPodeMover; }
+        public FloatField CampoGravidade { get => campoGravidade; }
+        public FloatField CampoMassa { get => campoMassa; }
 
         private const string NOME_LABEL_PODE_MOVER = "label-pode-mover";
         private const string NOME_INPUT_PODE_MOVER = "input-pode-mover";
-        public Toggle CampoPodeMover { get => campoPodeMover; }
         private readonly Toggle campoPodeMover;
 
         private const string NOME_LABEL_GRAVIDADE = "label-gravidade";
         private const string NOME_INPUT_GRAVIDADE = "input-gravidade";
-        public FloatField CampoGravidade { get => campoGravidade; }
         private readonly FloatField campoGravidade;
 
         private const string NOME_LABEL_MASSA = "label-massa";
         private const string NOME_INPUT_MASSA = "input-massa";
-        public FloatField CampoMassa { get => campoMassa; }
         private readonly FloatField campoMassa;
 
         #endregion
 
         private Rigidbody2D rigidbody2DVinculado;
 
-        public InputsFisica() {
-            ImportarTemplate("Componentes/GruposInputs/InputsFisica/InputsFisicaTemplate.uxml");
-            ImportarStyle("Componentes/GruposInputs/InputsFisica/InputsFisicaStyle.uss");
+        public InputsComponenteFisica() {
+            ImportarTemplate("ElementosUI/InputsComponentes/InputsComponenteFisica/InputsComponenteFisicaTemplate.uxml");
+            ImportarStyle("ElementosUI/InputsComponentes/InputsComponenteFisica/InputsComponenteFisicaStyle.uss");
 
             campoPodeMover = Root.Query<Toggle>(NOME_INPUT_PODE_MOVER);
             campoGravidade = Root.Query<FloatField>(NOME_INPUT_GRAVIDADE);
@@ -54,10 +54,11 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void AlterarVisibilidadeCamposDependentes(bool deveExibir) {
-            if (deveExibir) {
+            if(deveExibir) {
                 CampoGravidade.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
                 CampoMassa.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-            } else {
+            }
+            else {
                 CampoGravidade.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
                 CampoMassa.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
             }
@@ -70,7 +71,7 @@ namespace EngineParaTerapeutas.UI {
             CampoGravidade.SetValueWithoutNotify(0);
 
             campoGravidade.RegisterCallback<ChangeEvent<float>>(evt => {
-                if (evt.newValue < 0) {
+                if(evt.newValue < 0) {
                     campoGravidade.value = 0;
                 }
             });
@@ -85,7 +86,7 @@ namespace EngineParaTerapeutas.UI {
             CampoMassa.SetValueWithoutNotify(0);
 
             campoMassa.RegisterCallback<ChangeEvent<float>>(evt => {
-                if (evt.newValue < 0) {
+                if(evt.newValue < 0) {
                     campoMassa.value = 0;
                 }
             });
@@ -101,9 +102,10 @@ namespace EngineParaTerapeutas.UI {
             CampoMassa.SetValueWithoutNotify(rigidbody2DVinculado.mass);
 
             campoPodeMover.RegisterCallback<ChangeEvent<bool>>(evt => {
-                if (CampoPodeMover.value) {
+                if(CampoPodeMover.value) {
                     rigidbody2DVinculado.bodyType = RigidbodyType2D.Dynamic;
-                } else {
+                }
+                else {
                     rigidbody2DVinculado.bodyType = RigidbodyType2D.Static;
                 }
             });

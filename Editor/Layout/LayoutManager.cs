@@ -1,8 +1,8 @@
-using UnityEngine;
-using UnityEditor;
 using System.IO;
 using System.Reflection;
 using Type = System.Type;
+using UnityEngine;
+using UnityEditor;
 using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {

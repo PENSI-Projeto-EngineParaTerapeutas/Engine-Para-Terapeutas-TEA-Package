@@ -12,13 +12,13 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
         private const string NOME_REGIAO_CARREGAMENTO_INPUTS_PADROES_FISICA = "regiao-carregamento-inputs-padroes-fisica";
         private VisualElement regiaoCarregamentoInputsPadroesFisica;
 
-        private InputsFisica grupoInputFisica;
+        private InputsComponenteFisica grupoInputFisica;
 
         #endregion
 
         public override void OnEnable() {
             base.OnEnable();
-            grupoInputFisica = new InputsFisica();
+            grupoInputFisica = new InputsComponenteFisica();
 
             ImportarTemplate("/CustomEditor/CustomEditorFisica/CustomEditorFisicaTemplate.uxml");
             ImportarStyle("/CustomEditor/CustomEditorFisica/CustomEditorFisicaStyle.uss");

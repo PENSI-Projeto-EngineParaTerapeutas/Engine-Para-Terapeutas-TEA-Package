@@ -12,13 +12,13 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
         private const string NOME_REGIAO_CARREGAMENTO_INPUTS_PADROES_COLISOR = "regiao-carregamento-inputs-padroes-colisor";
         private VisualElement regiaoCarregamentoInputsPadroesColisor;
 
-        private InputsColisor grupoInputsColisor;
+        private InputsComponenteColisor grupoInputsColisor;
 
         #endregion
 
         public override void OnEnable() {
             base.OnEnable();
-            grupoInputsColisor = new InputsColisor();
+            grupoInputsColisor = new InputsComponenteColisor();
 
             ImportarTemplate("/CustomEditor/CustomEditorColisor/CustomEditorColisorTemplate.uxml");
             ImportarStyle("/CustomEditor/CustomEditorColisor/CustomEditorColisorStyle.uss");

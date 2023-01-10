@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using EngineParaTerapeutas.UI;
 using EngineParaTerapeutas.Constantes;
+using UnityEditor;
 
 namespace EngineParaTerapeutas.Criadores {
     public class CriadorCenarioBehaviour : Criador {
@@ -13,14 +14,14 @@ namespace EngineParaTerapeutas.Criadores {
         private const string NOME_REGIAO_CARREGAMENTO_INPUTS_IMAGEM = "regiao-carregamento-inputs-imagem";
         private VisualElement regiaoCarregamentoInputsImagem;
 
-        private readonly InputsImagem grupoInputsImagem;
+        private readonly InputsComponenteImagem grupoInputsImagem;
 
         #endregion
 
         private SpriteRenderer spriteCenario;
 
         public CriadorCenarioBehaviour() {
-            grupoInputsImagem = new InputsImagem();
+            grupoInputsImagem = new InputsComponenteImagem();
 
             ImportarPrefab("Prefabs/Cenarios/Cenario.prefab");
 
@@ -30,6 +31,12 @@ namespace EngineParaTerapeutas.Criadores {
             CarregarRegiaoHeader();
             CarregarRegiaoInputsImagem();
 
+            return;
+        }
+
+        public override void IniciarCriacao() {
+            base.IniciarCriacao();
+            // TODO: Ajustar camera ou sprite para cobrir tudo
             return;
         }
 
@@ -68,7 +75,7 @@ namespace EngineParaTerapeutas.Criadores {
         }
 
         public override void FinalizarCriacao() {
-            novoObjeto.tag = NomesTags.Untagged;
+            novoObjeto.tag = NomesTags.Cenario;
             novoObjeto.layer = LayersProjeto.Default.Index;
             spriteCenario.sortingOrder = OrdemRenderizacao.Cenario;
             novoObjeto = null;

@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.Build {
@@ -7,6 +8,8 @@ namespace EngineParaTerapeutas.Build {
 
         [MenuItem("Engine Para Terapeutas/Criar jogo")]
         public static void Compilar() {
+            EngineParaTerapeutas.Utils.Utils.SalvarProjeto();
+
             PlayerSettings.companyName = NomeCompania;
             PlayerSettings.productName = "Teste"; // TODO: Pegar dinamicamente
 

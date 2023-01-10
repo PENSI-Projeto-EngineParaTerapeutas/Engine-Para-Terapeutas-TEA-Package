@@ -12,13 +12,13 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
         private const string NOME_REGIAO_CARREGAMENTO_INPUTS_PADROES_AUDIO = "regiao-carregamento-inputs-padroes-audio";
         private VisualElement regiaoCarregamentoInputsPadroesAudio;
 
-        private InputsAudio grupoInputsAudio;
+        private InputsComponenteAudio grupoInputsAudio;
 
         #endregion
 
         public override void OnEnable() {
             base.OnEnable();
-            grupoInputsAudio = new InputsAudio();
+            grupoInputsAudio = new();
 
             ImportarTemplate("/CustomEditor/CustomEditorAudio/CustomEditorAudioTemplate.uxml");
             ImportarStyle("/CustomEditor/CustomEditorAudio/CustomEditorAudioStyle.uss");

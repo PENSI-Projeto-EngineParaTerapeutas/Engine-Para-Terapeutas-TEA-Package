@@ -7,5 +7,6 @@ namespace EngineParaTerapeutas.Constantes {
         public static string Apoios { get => "Apoios"; }
 
         public static string Reforcos { get => "Reforcos"; }
+        public static string Cenario { get => "Cenario"; }
     }
 }

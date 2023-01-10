@@ -1,7 +1,7 @@
-using UnityEngine;
-using UnityEngine.UIElements;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UIElements;
 using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {

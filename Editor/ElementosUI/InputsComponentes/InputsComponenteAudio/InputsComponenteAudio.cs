@@ -4,41 +4,45 @@ using UnityEditor.UIElements;
 using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {
-    public class InputsAudio : ElementoInterfaceEditor, IVinculavel<AudioSource>, IReiniciavel {
+    public class InputsComponenteAudio : ElementoInterfaceEditor, IVinculavel<AudioSource>, IReiniciavel {
         #region .: Elementos :.
+        public VisualElement RegiaoInputImagem { get => regiaoInputAudio; }
+        public FloatField CampoVolume { get => campoVolume; }
+        public Toggle CampoMudo { get => campoMudo; }
+        public Toggle CampoTocarAoIniciar { get => campoTocarAoIniciar; }
+        public InputAudio InputAudio { get => inputAudio; }
 
-        private const string NOME_LABEL_ARQUIVO_AUDIO = "label-arquivo-som";
-        private const string NOME_INPUT_ARQUIVO_AUDIO = "input-arquivo-som";
-        public ObjectField CampoArquivoAudio { get => campoArquivoAudio; }
-        private readonly ObjectField campoArquivoAudio;
+        private const string NOME_REGIAO_INPUT_AUDIO = "regiao-input-audio";
+        private readonly VisualElement regiaoInputAudio;
 
         private const string NOME_LABEL_VOLUME = "label-volume";
         private const string NOME_INPUT_VOLUME = "input-volume";
-        public FloatField CampoVolume { get => campoVolume; }
         private readonly FloatField campoVolume;
 
         private const string NOME_LABEL_MUDO = "label-mudo";
         private const string NOME_INPUT_MUDO = "input-mudo";
-        public Toggle CampoMudo { get => campoMudo; }
         private readonly Toggle campoMudo;
 
         private const string NOME_LABEL_TOCAR_AO_INICIAR = "label-tocar-iniciar";
         private const string NOME_INPUT_TOCAR_AO_INICIAR = "input-tocar-iniciar";
-        public Toggle CampoTocarAoIniciar { get => campoTocarAoIniciar; }
         private readonly Toggle campoTocarAoIniciar;
+
+        private readonly InputAudio inputAudio;
 
         #endregion
 
         private AudioSource audioSourceVinculado;
 
-        public InputsAudio() {
-            ImportarTemplate("Componentes/GruposInputs/InputsAudio/InputsAudioTemplate.uxml");
-            ImportarStyle("Componentes/GruposInputs/InputsAudio/InputsAudioStyle.uss");
+        public InputsComponenteAudio() {
+            ImportarTemplate("ElementosUI/InputsComponentes/InputsComponenteAudio/InputsComponenteAudioTemplate.uxml");
+            ImportarStyle("ElementosUI/InputsComponentes/InputsComponenteAudio/InputsComponenteAudioStyle.uss");
 
-            campoArquivoAudio = Root.Query<ObjectField>(NOME_INPUT_ARQUIVO_AUDIO);
+            regiaoInputAudio = Root.Query<VisualElement>(NOME_REGIAO_INPUT_AUDIO);
             campoVolume = Root.Query<FloatField>(NOME_INPUT_VOLUME);
             campoMudo = Root.Query<Toggle>(NOME_INPUT_MUDO);
             campoTocarAoIniciar = Root.Query<Toggle>(NOME_INPUT_TOCAR_AO_INICIAR);
+
+            inputAudio = new InputAudio();
 
             ConfigurarCampoArquivoSom();
             ConfigurarCampoMudo();
@@ -49,12 +53,7 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void ConfigurarCampoArquivoSom() {
-            CampoArquivoAudio.labelElement.name = NOME_LABEL_ARQUIVO_AUDIO;
-            CampoArquivoAudio.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
-
-            CampoArquivoAudio.objectType = typeof(AudioClip);
-            CampoArquivoAudio.SetValueWithoutNotify(null);
-
+            regiaoInputAudio.Add(InputAudio.Root);
             return;
         }
 
@@ -86,13 +85,14 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void AlterarVisibilidadeCamposDependentes(bool deveExibir) {
-            if (deveExibir) {
+            if(deveExibir) {
                 CampoTocarAoIniciar.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-                CampoArquivoAudio.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+                InputAudio.CampoAudio.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
                 CampoVolume.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-            } else {
+            }
+            else {
                 CampoTocarAoIniciar.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-                CampoArquivoAudio.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+                InputAudio.CampoAudio.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
                 CampoVolume.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
             }
 
@@ -109,7 +109,7 @@ namespace EngineParaTerapeutas.UI {
         }
 
         public void ReiniciarCampos() {
-            CampoArquivoAudio.SetValueWithoutNotify(null);
+            InputAudio.CampoAudio.SetValueWithoutNotify(null);
             CampoMudo.SetValueWithoutNotify(false);
             CampoTocarAoIniciar.SetValueWithoutNotify(false);
             CampoVolume.SetValueWithoutNotify(0);
@@ -120,13 +120,13 @@ namespace EngineParaTerapeutas.UI {
         public void VincularDados(AudioSource componente) {
             audioSourceVinculado = componente;
 
-            CampoArquivoAudio.SetValueWithoutNotify(audioSourceVinculado.clip);
+            InputAudio.CampoAudio.SetValueWithoutNotify(audioSourceVinculado.clip);
             CampoMudo.SetValueWithoutNotify(audioSourceVinculado.mute);
             CampoTocarAoIniciar.SetValueWithoutNotify(audioSourceVinculado.playOnAwake);
             CampoVolume.SetValueWithoutNotify(audioSourceVinculado.volume);
 
-            CampoArquivoAudio.RegisterCallback<ChangeEvent<Object>>(evt => {
-                audioSourceVinculado.clip = CampoArquivoAudio.value as AudioClip;
+            InputAudio.CampoAudio.RegisterCallback<ChangeEvent<Object>>(evt => {
+                audioSourceVinculado.clip = InputAudio.CampoAudio.value as AudioClip;
             });
 
             CampoMudo.RegisterCallback<ChangeEvent<bool>>(evt => {

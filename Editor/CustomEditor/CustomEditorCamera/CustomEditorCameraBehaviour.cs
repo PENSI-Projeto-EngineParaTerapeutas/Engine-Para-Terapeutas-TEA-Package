@@ -3,8 +3,6 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.ComponentesGameObjects;
-using EngineParaTerapeutas.UI;
 
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(ComponentesGameObjects.Camera))]

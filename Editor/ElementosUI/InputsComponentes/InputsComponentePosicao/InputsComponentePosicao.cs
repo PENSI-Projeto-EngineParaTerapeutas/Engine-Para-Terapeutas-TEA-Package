@@ -4,41 +4,41 @@ using UnityEditor.UIElements;
 using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {
-    public class InputsPosicao : ElementoInterfaceEditor, IVinculavel<Transform>, IReiniciavel {
+    public class InputsComponentePosicao : ElementoInterfaceEditor, IVinculavel<Transform>, IReiniciavel {
         #region .: Elementos :.
+        public FloatField CampoPosicaoX { get => campoPosicaoX; }
+        public FloatField CampoPosicaoY { get => campoPosicaoY; }
+        public FloatField CampoTamanhoX { get => campoTamanhoX; }
+        public FloatField CampoTamanhoY { get => campoTamanhoY; }
+        public FloatField CampoRotacao { get => campoRotacao; }
 
         private const string NOME_LABEL_POSICAO_X = "label-posicao-x";
         private const string NOME_INPUT_POSICAO_X = "input-posicao-x";
-        public FloatField CampoPosicaoX { get => campoPosicaoX; }
         private readonly FloatField campoPosicaoX;
 
         private const string NOME_LABEL_POSICAO_Y = "label-posicao-y";
         private const string NOME_INPUT_POSICAO_Y = "input-posicao-y";
-        public FloatField CampoPosicaoY { get => campoPosicaoY; }
         private readonly FloatField campoPosicaoY;
 
         private const string NOME_LABEL_TAMANHO_X = "label-tamanho-x";
         private const string NOME_INPUT_TAMANHO_X = "input-tamanho-x";
-        public FloatField CampoTamanhoX { get => campoTamanhoX; }
         private readonly FloatField campoTamanhoX;
 
         private const string NOME_LABEL_TAMANHO_Y = "label-tamanho-y";
         private const string NOME_INPUT_TAMANHO_Y = "input-tamanho-y";
-        public FloatField CampoTamanhoY { get => campoTamanhoY; }
         private readonly FloatField campoTamanhoY;
 
         private const string NOME_LABEL_ROTACAO = "label-rotacao";
         private const string NOME_INPUT_ROTACAO = "input-rotacao";
-        public FloatField CampoRotacao { get => campoRotacao; }
         private readonly FloatField campoRotacao;
 
         #endregion
 
         private Transform transformVinculado;
 
-        public InputsPosicao() {
-            ImportarTemplate("Componentes/GruposInputs/InputsPosicao/InputsPosicaoTemplate.uxml");
-            ImportarStyle("Componentes/GruposInputs/InputsPosicao/InputsPosicaoStyle.uss");
+        public InputsComponentePosicao() {
+            ImportarTemplate("ElementosUI/InputsComponentes/InputsComponentePosicao/InputsComponentePosicaoTemplate.uxml");
+            ImportarStyle("ElementosUI/InputsComponentes/InputsComponentePosicao/InputsComponentePosicaoStyle.uss");
 
             campoPosicaoX = Root.Query<FloatField>(NOME_INPUT_POSICAO_X);
             campoPosicaoY = Root.Query<FloatField>(NOME_INPUT_POSICAO_Y);
