@@ -1,0 +1,33 @@
+:root, TemplateContainer {
+	flex: 1;
+	flex-direction: row;
+	align-items: center;
+	margin-left: 12px;
+	margin-top: 9px;
+	margin-bottom: 9px;
+}
+
+#informacoes-cenas {
+	flex-direction: column;
+}
+
+#nome-cena {
+	font-size: 12px;
+	margin-bottom: 3px;
+}
+
+#informacoes-extras {
+	flex-direction: row;
+}
+
+#nivel-dificuldade, #faixa-etaria {
+	font-size: 9px;
+}
+
+#nivel-dificuldade {
+	margin-right: 6px;
+}
+
+#botoes-controle-cena {
+	flex-direction: row;
+}

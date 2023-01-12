@@ -1,10 +1,27 @@
 :root {
-    justify-content: center;
+    flex: 1;
+}
+
+#titulo {
+    font-size: 18px;
+}
+
+#lista-cenas {
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
 }
 
-Label {
-    font-size: 120px;
-    -unity-font-style: bold;
-    color: orange;
+#aviso-lista-cenas-vazia {
+    align-items: center;
+}
+
+#label-sem-cenas-criadas {
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+#label-descricao-lista-cenas-vazia {
+    font-size: 12px;
 }

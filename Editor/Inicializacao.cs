@@ -2,7 +2,6 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using EngineParaTerapeutas.Constantes;
 using EngineParaTerapeutas.DTOs;
 using EngineParaTerapeutas.UI;
@@ -11,10 +10,6 @@ namespace EngineParaTerapeutas {
     [InitializeOnLoad]
     public class Inicializacao : AssetPostprocessor {
         private const string NOME_ARQUIVO_CONFIGURACAO_PACOTE = "package.json";
-
-        static Inicializacao() {
-            return;
-        }
 
         public static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths) {
             string caminhoArquivoConfiguracaoPacote = Path.Combine(ConstantesProjeto.PastaRaizProjeto, NOME_ARQUIVO_CONFIGURACAO_PACOTE);
@@ -29,20 +24,29 @@ namespace EngineParaTerapeutas {
         }
 
         private static void ConfigurarPacote() {
-            CopiarCenaPadrao();
+            CriarPastasProjeto();
             ConfigurarProjectSettings();
 
             LayoutLoader.CarregarTelaInicial();
             return;
         }
 
-        private static void CopiarCenaPadrao() {
+        private static void CriarPastasProjeto() {
             if(!AssetDatabase.IsValidFolder(ConstantesProjeto.PastaCenasAssets)) {
                 AssetDatabase.CreateFolder("Assets", "Cenas");
             }
 
-            AssetDatabase.CopyAsset(ConstantesProjeto.PastaRaizEditor + ConstantesProjeto.PastaCenas + "CenaBasePadrao.unity", ConstantesProjeto.PastaCenasAssets + "Fase1.unity");
-            EditorSceneManager.OpenScene(ConstantesProjeto.PastaCenasAssets + "Fase1.unity");
+            if(!Directory.Exists("Assets/Resources/Imagens")) {
+                Directory.CreateDirectory("Assets/Resources/Imagens");
+            }
+
+            if(!Directory.Exists("Assets/Resources/Sons")) {
+                Directory.CreateDirectory("Assets/Resources/Sons");
+            }
+
+            if(!Directory.Exists("Assets/Resources/Videos")) {
+                Directory.CreateDirectory("Assets/Resources/Videos");
+            }
             return;
         }
 

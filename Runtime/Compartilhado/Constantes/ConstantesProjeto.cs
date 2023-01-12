@@ -12,5 +12,6 @@ namespace EngineParaTerapeutas.Constantes {
         public static string PastaCenasAssets { get => "Assets/Cenas/"; }
         public static string PastaCenas { get => "Cenas/"; }
         public static string PastaBuild { get => "Build/WebGL/"; }
+        public static string NomeCenaPadrao { get => "CenaBasePadrao.unity"; }
     }
 }

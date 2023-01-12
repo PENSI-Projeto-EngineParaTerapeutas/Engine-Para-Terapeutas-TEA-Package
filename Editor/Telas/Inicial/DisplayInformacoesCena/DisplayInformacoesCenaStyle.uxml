@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <engine:VisualElement name="informacoes-cenas">
+        <engine:Label name="nome-cena"/>
+
+        <engine:VisualElement name="informacoes-extras">
+            <engine:Label name="nivel-dificuldade"/>
+            <engine:Label name="faixa-etaria"/>
+        </engine:VisualElement>
+    </engine:VisualElement>
+
+    <engine:VisualElement name="botoes-controle-cena">
+        <engine:Button name="botao-abrir-cena" text="Abrir"/>
+        <engine:Button name="botao-editar-cena" text="Editar"/>
+        <engine:Button name="botao-excluir-cena" text="Excluir"/>
+    </engine:VisualElement>
+</engine:UXML>

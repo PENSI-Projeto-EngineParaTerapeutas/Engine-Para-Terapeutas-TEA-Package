@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using EngineParaTerapeutas.UI;
 using EngineParaTerapeutas.Constantes;
-using UnityEditor;
 
 namespace EngineParaTerapeutas.Criadores {
     public class CriadorCenarioBehaviour : Criador {
@@ -31,12 +30,6 @@ namespace EngineParaTerapeutas.Criadores {
             CarregarRegiaoHeader();
             CarregarRegiaoInputsImagem();
 
-            return;
-        }
-
-        public override void IniciarCriacao() {
-            base.IniciarCriacao();
-            // TODO: Ajustar camera ou sprite para cobrir tudo
             return;
         }
 
