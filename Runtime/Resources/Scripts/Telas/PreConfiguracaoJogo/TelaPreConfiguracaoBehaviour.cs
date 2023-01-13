@@ -52,9 +52,9 @@ namespace EngineParaTerapeutas.Telas {
             ImportarTemplate();
             ImportarStyle();
 
-            secaoConfiguracaoCenario = new();
-            secaoConfiguracaoApoios = new();
-            secaoConfiguracaoReforcos = new();
+            secaoConfiguracaoCenario = new ConfiguracaoCenarioBehaviour();
+            secaoConfiguracaoApoios = new ConfiguracaoApoioBehaviour();
+            secaoConfiguracaoReforcos = new ConfiguracaoReforcoBehaviour();
 
             return;
         }
@@ -157,6 +157,7 @@ namespace EngineParaTerapeutas.Telas {
         }
 
         private void HandleBotaoIniciarJogo() {
+            // TODO: Implementar
             return;
         }
 

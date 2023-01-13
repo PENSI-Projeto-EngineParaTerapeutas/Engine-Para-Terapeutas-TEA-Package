@@ -36,9 +36,8 @@ namespace EngineParaTerapeutas.UI {
                 regiaoSelecaoReforcos.AddToClassList(NomesClassesPadroesStyle.DisplayNone);
                 return;
             }
-            else {
-                regiaoTelaViza.AddToClassList(NomesClassesPadroesStyle.DisplayNone);
-            }
+            
+            regiaoTelaViza.AddToClassList(NomesClassesPadroesStyle.DisplayNone);
 
             int contadorGameObjects = 0;
             foreach(GameObject reforco in reforcos) {

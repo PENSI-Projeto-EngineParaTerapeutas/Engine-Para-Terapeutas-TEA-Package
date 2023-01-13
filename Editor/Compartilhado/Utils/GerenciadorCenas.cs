@@ -13,11 +13,11 @@ namespace EngineParaTerapeutas.Utils {
             get {
                 int quantidadeCenas = 0;
 
-                if(!AssetDatabase.IsValidFolder(ConstantesProjeto.PastaCenasAssets)) {
-                    AssetDatabase.CreateFolder("Assets", "Cenas");
+                if(!Directory.Exists(ConstantesRuntime.CaminhoPastaCenas)) {
+                    Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaCenas);
                 }
-                string[] arquivos = Directory.GetFiles(ConstantesProjeto.PastaCenasAssets);
 
+                string[] arquivos = Directory.GetFiles(ConstantesRuntime.CaminhoPastaCenas);
                 foreach(string arquivo in arquivos) {
                     if(Path.GetExtension(arquivo) == Extensoes.Cena) {
                         quantidadeCenas++;
@@ -30,30 +30,27 @@ namespace EngineParaTerapeutas.Utils {
 
         public static Cena CriarCena() {
             int numeroFase = QuantidadeCenas + 1;
-            string caminhoCenaPadrao = Path.Combine(ConstantesProjeto.PastaRaizEditor, ConstantesProjeto.PastaCenas, ConstantesProjeto.NomeCenaPadrao);
-            string caminhoNovaCena = Path.Combine(ConstantesProjeto.PastaCenasAssets, "Fase" + numeroFase + Extensoes.Cena);
+            string caminhoCenaPadrao = Path.Combine(ConstantesEditor.PastaRaiz, ConstantesRuntime.NomePastaCenas, ConstantesEditor.NomeCenaPadrao);
+            string caminhoNovaCena = Path.Combine(ConstantesRuntime.CaminhoPastaCenas, "Fase" + numeroFase + Extensoes.Cena);
 
             AssetDatabase.CopyAsset(caminhoCenaPadrao, caminhoNovaCena);
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
+            Salvamento.SalvarAssets();
 
             EditorSceneManager.OpenScene(caminhoNovaCena);
             Scene arquivoCena = EditorSceneManager.GetSceneByPath(caminhoNovaCena);
 
             Cena novaCena = ScriptableObject.CreateInstance<Cena>();
-            novaCena.Arquivo = arquivoCena;
-            novaCena.Nome = arquivoCena.name;
+            novaCena.AssociarValores(arquivoCena);
 
-            AssetDatabase.CreateAsset(novaCena, Path.Combine(ConstantesProjeto.PastaCenasAssets, novaCena.Nome + Extensoes.ScriptableObject));
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
+            AssetDatabase.CreateAsset(novaCena, Path.Combine(ConstantesRuntime.CaminhoPastaCenas, novaCena.Nome + Extensoes.ScriptableObject));
+            Salvamento.SalvarAssets();
 
             return novaCena;
         }
 
         public static void DeletarCena(Cena cena) {
-            string caminhoScriptableObjectCenaAlvo = Path.Combine(ConstantesProjeto.PastaCenasAssets, cena.Nome + Extensoes.ScriptableObject);
-            string caminhoArquivoCenaAlvo = Path.Combine(ConstantesProjeto.PastaCenasAssets, cena.Nome + Extensoes.Cena);
+            string caminhoScriptableObjectCenaAlvo = Path.Combine(ConstantesRuntime.CaminhoPastaCenas, cena.Nome + Extensoes.ScriptableObject);
+            string caminhoArquivoCenaAlvo = Path.Combine(ConstantesRuntime.CaminhoPastaCenas, cena.Nome + Extensoes.Cena);
 
             AssetDatabase.DeleteAsset(caminhoScriptableObjectCenaAlvo);
             AssetDatabase.DeleteAsset(caminhoArquivoCenaAlvo);
@@ -63,12 +60,12 @@ namespace EngineParaTerapeutas.Utils {
         }
 
         public static List<Cena> GetTodasCenasCriadas() {
-            if(!AssetDatabase.IsValidFolder(ConstantesProjeto.PastaCenasAssets)) {
+            if(!AssetDatabase.IsValidFolder(ConstantesRuntime.CaminhoPastaCenas)) {
                 AssetDatabase.CreateFolder("Assets", "Cenas");
                 return new List<Cena>();
             }
 
-            string[] arquivos = Directory.GetFiles(ConstantesProjeto.PastaCenasAssets);
+            string[] arquivos = Directory.GetFiles(ConstantesRuntime.CaminhoPastaCenas);
             List<Cena> cenas = new();
 
             foreach(string arquivo in arquivos) {

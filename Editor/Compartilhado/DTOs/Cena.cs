@@ -9,6 +9,12 @@ namespace EngineParaTerapeutas.ScriptableObjects {
         [SerializeField]
         private string nome = "";
 
+        public string Caminho { get => caminho; set { caminho = value; } }
+        private string caminho = "";
+
+        public int BuildIndex { get => buildIndex; set { buildIndex = value; } }
+        private int buildIndex = -1;
+
         public int FaixaEtaria { get => faixaEtaria; set { faixaEtaria = (value <= 0) ? 0 : value; } }
         [Min(0)]
         [SerializeField]
@@ -18,7 +24,12 @@ namespace EngineParaTerapeutas.ScriptableObjects {
         [SerializeField]
         private NiveisDificuldade nivelDificuldade = NiveisDificuldade.Facil;
 
-        public Scene Arquivo { get => arquivo; set { arquivo = value; } }
-        private Scene arquivo;
+        public void AssociarValores(Scene arquivo) {
+            nome = arquivo.name;
+            caminho = arquivo.path;
+            buildIndex = arquivo.buildIndex;
+            
+            return;
+        }
     }
 }

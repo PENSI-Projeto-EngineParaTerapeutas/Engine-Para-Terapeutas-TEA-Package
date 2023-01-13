@@ -20,7 +20,7 @@ namespace EngineParaTerapeutas.Criadores {
         }
 
         protected virtual void ImportarPrefab(string caminho) {
-            prefab = AssetDatabase.LoadAssetAtPath<GameObject>(ConstantesProjeto.PastaResourcesRuntime + caminho);
+            prefab = AssetDatabase.LoadAssetAtPath<GameObject>(ConstantesRuntime.CaminhoCompletoPastaResources + caminho); // TODO: Usar path
             return;
         }
 

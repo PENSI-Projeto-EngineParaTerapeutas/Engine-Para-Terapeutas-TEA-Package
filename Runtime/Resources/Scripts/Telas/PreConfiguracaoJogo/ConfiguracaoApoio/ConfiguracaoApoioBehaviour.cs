@@ -26,6 +26,7 @@ namespace EngineParaTerapeutas.UI {
 
             regiaoSelecaoApoios = Root.Query<VisualElement>(NOME_REGIAO_SELECAO_APOIOS);
             regiaoTelaViza = Root.Query<VisualElement>(NOME_REGIAO_TELA_VAZIA);
+
             PreencherSecaoSelecionarApoios();
 
             return;
@@ -35,10 +36,9 @@ namespace EngineParaTerapeutas.UI {
             if(apoios.Count <= 0) {
                 regiaoSelecaoApoios.AddToClassList(NomesClassesPadroesStyle.DisplayNone);
                 return;
-            } 
-            else {
-                regiaoTelaViza.AddToClassList(NomesClassesPadroesStyle.DisplayNone);
             }
+
+            regiaoTelaViza.AddToClassList(NomesClassesPadroesStyle.DisplayNone);
 
             int contadorGameObjects = 0;
             foreach(GameObject apoio in apoios) {

@@ -7,8 +7,6 @@ using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {
     public class InputImagem : ElementoInterfaceEditor, IReiniciavel {
-        private string CaminhoCompletoPastaImagens { get => "Assets/Resources/Imagens"; }
-
         #region .: Elementos :.
         public ObjectField CampoImagem { get => campoImagem; }
         public Label LabelCampoImagem { get => campoImagem.labelElement; }
@@ -61,7 +59,7 @@ namespace EngineParaTerapeutas.UI {
             CopiarArquivoSeNaoExistir(caminhoAqruivoSelecionado);
 
             string nomeArquivo = Path.GetFileName(caminhoAqruivoSelecionado);
-            Sprite imagemCarregada = AssetDatabase.LoadAssetAtPath<Sprite>(Path.Combine(CaminhoCompletoPastaImagens, nomeArquivo));
+            Sprite imagemCarregada = AssetDatabase.LoadAssetAtPath<Sprite>(Path.Combine(ConstantesRuntime.CaminhoPastaImagens, nomeArquivo));
 
             CampoImagem.value = imagemCarregada;
             CampoImagem.SendEvent(new ChangeEvent<Object>());
@@ -69,11 +67,11 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void CopiarArquivoSeNaoExistir(string caminho) {
-            if(!Directory.Exists(CaminhoCompletoPastaImagens)) {
-                Directory.CreateDirectory(CaminhoCompletoPastaImagens);
+            if(!Directory.Exists(ConstantesRuntime.CaminhoPastaImagens)) {
+                Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaImagens);
             }
 
-            string[] arquivos = Directory.GetFiles(CaminhoCompletoPastaImagens);
+            string[] arquivos = Directory.GetFiles(ConstantesRuntime.CaminhoPastaImagens);
             string nomeArquivo = Path.GetFileName(caminho);
 
             foreach(string arquivo in arquivos) {
@@ -82,7 +80,7 @@ namespace EngineParaTerapeutas.UI {
                 }
             }
 
-            FileUtil.CopyFileOrDirectory(caminho, Path.Combine(CaminhoCompletoPastaImagens, nomeArquivo));
+            FileUtil.CopyFileOrDirectory(caminho, Path.Combine(ConstantesRuntime.CaminhoPastaImagens, nomeArquivo));
             AssetDatabase.Refresh();
             return;
         }

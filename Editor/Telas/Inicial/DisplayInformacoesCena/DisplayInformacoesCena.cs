@@ -80,13 +80,24 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void HandleClickBotaoAbrirCena() {
-            EditorSceneManager.OpenScene(Path.Combine(ConstantesProjeto.PastaCenasAssets, informacoesCena.Nome + Extensoes.Cena));
+            // TODO: Remover
+            Debug.Log("---- Abrir cena: " + informacoesCena.Nome);
+            Debug.Log("Nome: " + informacoesCena.Nome);
+            Debug.Log("BuildIndex: " + informacoesCena.BuildIndex);
+            Debug.Log("Caminho: " + informacoesCena.Caminho);
+
+            EditorSceneManager.OpenScene(Path.Combine(ConstantesRuntime.CaminhoPastaCenas, informacoesCena.Nome + Extensoes.Cena));
             LayoutLoader.CarregarTelaEditor();
             return;
         }
 
         private void HandleClickBotaoEditarCena() {
-            Debug.Log("Editar cena: " + informacoesCena.Nome);
+            // TODO: Remover
+            Debug.Log("---- Editar cena: " + informacoesCena.Nome);
+            Debug.Log("Nome: " + informacoesCena.Nome);
+            Debug.Log("BuildIndex: " + informacoesCena.BuildIndex);
+            Debug.Log("Caminho: " + informacoesCena.Caminho);
+
             return;
         }
 

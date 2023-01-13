@@ -7,8 +7,6 @@ using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {
     public class InputAudio : ElementoInterfaceEditor, IReiniciavel {
-        private string CaminhoCompletoPastaSons { get => "Assets/Resources/Sons"; }
-
         #region .: Elementos :.
         public ObjectField CampoAudio { get => campoAudio; }
         public Label LabelCampoAudio { get => campoAudio.labelElement; }
@@ -61,7 +59,7 @@ namespace EngineParaTerapeutas.UI {
             CopiarArquivoSeNaoExistir(caminhoAqruivoSelecionado);
 
             string nomeArquivo = Path.GetFileName(caminhoAqruivoSelecionado);
-            AudioClip audioCarregado = AssetDatabase.LoadAssetAtPath<AudioClip>(Path.Combine(CaminhoCompletoPastaSons, nomeArquivo));
+            AudioClip audioCarregado = AssetDatabase.LoadAssetAtPath<AudioClip>(Path.Combine(ConstantesRuntime.CaminhoPastaSons, nomeArquivo));
 
             CampoAudio.value = audioCarregado;
             CampoAudio.SendEvent(new ChangeEvent<Object>());
@@ -69,11 +67,11 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void CopiarArquivoSeNaoExistir(string caminho) {
-            if(!Directory.Exists(CaminhoCompletoPastaSons)) {
-                Directory.CreateDirectory(CaminhoCompletoPastaSons);
+            if(!Directory.Exists(ConstantesRuntime.CaminhoPastaSons)) {
+                Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaSons);
             }
 
-            string[] arquivos = Directory.GetFiles(CaminhoCompletoPastaSons);
+            string[] arquivos = Directory.GetFiles(ConstantesRuntime.CaminhoPastaSons);
             string nomeArquivo = Path.GetFileName(caminho);
 
             foreach(string arquivo in arquivos) {
@@ -82,7 +80,7 @@ namespace EngineParaTerapeutas.UI {
                 }
             }
 
-            FileUtil.CopyFileOrDirectory(caminho, Path.Combine(CaminhoCompletoPastaSons, nomeArquivo));
+            FileUtil.CopyFileOrDirectory(caminho, Path.Combine(ConstantesRuntime.CaminhoPastaSons, nomeArquivo));
             AssetDatabase.Refresh();
             return;
         }

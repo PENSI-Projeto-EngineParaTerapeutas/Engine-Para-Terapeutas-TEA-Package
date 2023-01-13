@@ -2,19 +2,24 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 
 namespace EngineParaTerapeutas.Utils {
-    public static class Utils {
-        public static void SalvarCenas() {
-            EditorSceneManager.MarkAllScenesDirty();
-            EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene());
-            EditorSceneManager.SaveOpenScenes();
+    public static class Salvamento {
+        public static void SalvarProjeto() {
+            SalvarAssets();
+            SalvarCenas();
+
+            EditorApplication.ExecuteMenuItem("File/Save Project");
 
             return;
         }
 
-        public static void SalvarProjeto() {
+        public static void SalvarAssets() {
             AssetDatabase.SaveAssets();
-            EditorApplication.ExecuteMenuItem("File/Save Project");
+            AssetDatabase.Refresh();
 
+            return;
+        }
+
+        public static void SalvarCenas() {
             EditorSceneManager.MarkAllScenesDirty();
             EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene());
             EditorSceneManager.SaveOpenScenes();

@@ -27,7 +27,7 @@ namespace EngineParaTerapeutas.UI {
         private readonly SpriteRenderer spriteCenario;
 
         public ConfiguracaoCenarioBehaviour() {
-            cenario = GameObject.FindGameObjectWithTag(NomesTags.Cenario);
+            cenario = GameObject.FindGameObjectWithTag(NomesTags.Cenario); // TODO: Garantir que um cenário sempre exista
             spriteCenario = cenario.GetComponent<SpriteRenderer>();
 
             ImportarTemplate("Scripts/Telas/PreConfiguracaoJogo/ConfiguracaoCenario/ConfiguracaoCenarioTemplate");
@@ -56,7 +56,7 @@ namespace EngineParaTerapeutas.UI {
 
         #if UNITY_EDITOR
         private void HandleSelecionarCenarioClickEditor() {
-            string caminhoAqruivoSelecionado = EditorUtility.OpenFilePanel("Procurar Imagem", Path.Combine(ConstantesProjeto.PastaResourcesRuntime, "Assets/Imagens"), "png,jpg,jpeg");
+            string caminhoAqruivoSelecionado = EditorUtility.OpenFilePanel("Procurar Imagem", "", "png,jpg,jpeg");
             if (string.IsNullOrWhiteSpace(caminhoAqruivoSelecionado)) {
                 Debug.Log("[LOG]: Nenhum arquivo selecionado");
                 return;

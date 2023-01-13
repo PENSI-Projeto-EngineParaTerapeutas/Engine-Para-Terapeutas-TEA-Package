@@ -114,6 +114,12 @@ namespace EngineParaTerapeutas.Telas {
 
         private void HandleClickBotaoCriarCena() {
             Cena novaCena = GerenciadorCenas.CriarCena();
+            // TODO: Remover
+            Debug.Log("---- Criar cena: " + novaCena.Nome);
+            Debug.Log("Nome: " + novaCena.Nome);
+            Debug.Log("BuildIndex: " + novaCena.BuildIndex);
+            Debug.Log("Caminho: " + novaCena.Caminho);
+
             cenas.Add(novaCena);
 
             AdicionarDisplayCena(novaCena);

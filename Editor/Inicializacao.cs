@@ -32,21 +32,22 @@ namespace EngineParaTerapeutas {
         }
 
         private static void CriarPastasProjeto() {
-            if(!AssetDatabase.IsValidFolder(ConstantesProjeto.PastaCenasAssets)) {
-                AssetDatabase.CreateFolder("Assets", "Cenas");
+            if(!Directory.Exists(ConstantesRuntime.CaminhoPastaCenas)) {
+                Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaCenas);
             }
 
-            if(!Directory.Exists("Assets/Resources/Imagens")) {
-                Directory.CreateDirectory("Assets/Resources/Imagens");
+            if(!Directory.Exists(ConstantesRuntime.CaminhoPastaImagens)) {
+                Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaImagens);
             }
 
-            if(!Directory.Exists("Assets/Resources/Sons")) {
-                Directory.CreateDirectory("Assets/Resources/Sons");
+            if(!Directory.Exists(ConstantesRuntime.CaminhoPastaSons)) {
+                Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaSons);
             }
 
-            if(!Directory.Exists("Assets/Resources/Videos")) {
-                Directory.CreateDirectory("Assets/Resources/Videos");
+            if(!Directory.Exists(ConstantesRuntime.CaminhoPastaVideos)) {
+                Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaVideos);
             }
+
             return;
         }
 

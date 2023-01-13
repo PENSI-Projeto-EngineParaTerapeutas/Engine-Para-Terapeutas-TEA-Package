@@ -18,21 +18,21 @@ namespace EngineParaTerapeutas.Telas {
         }
 
         protected virtual void ImportarDefaultStyle() {
-            defaultStyle = AssetDatabase.LoadAssetAtPath<StyleSheet>(ConstantesProjeto.PastaRaizEditor + "Compartilhado/ClassesPadroesEditorStyle.uss");
+            defaultStyle = AssetDatabase.LoadAssetAtPath<StyleSheet>(ConstantesEditor.PastaRaiz + "Compartilhado/ClassesPadroesEditorStyle.uss"); // TODO: Utilizar path
             root.styleSheets.Add(defaultStyle);
 
             return;
         }
 
         protected virtual void ImportarTemplate(string caminho) {
-            template = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(ConstantesProjeto.PastaRaizEditor + caminho);
+            template = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(ConstantesEditor.PastaRaiz + caminho);
             root.Add(template.Instantiate());
 
             return;
         }
 
         protected virtual void ImportarStyle(string caminho) {
-            style = AssetDatabase.LoadAssetAtPath<StyleSheet>(ConstantesProjeto.PastaRaizEditor + caminho);
+            style = AssetDatabase.LoadAssetAtPath<StyleSheet>(ConstantesEditor.PastaRaiz + caminho);
             root.styleSheets.Add(style);
 
             return;

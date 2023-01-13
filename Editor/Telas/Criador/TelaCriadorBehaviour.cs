@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using EngineParaTerapeutas.Constantes;
 using EngineParaTerapeutas.Criadores;
+using EngineParaTerapeutas.Utils;
 
 namespace EngineParaTerapeutas.Telas {
     public class TelaCriadorBehaviour : TelaEditor {
@@ -175,7 +176,7 @@ namespace EngineParaTerapeutas.Telas {
         }
 
         private void HandleConfimarCricaoClick() {
-            EngineParaTerapeutas.Utils.Utils.SalvarCenas();
+            Salvamento.SalvarCenas();
 
             criadorAtual.FinalizarCriacao();
             ReiniciarEstado();

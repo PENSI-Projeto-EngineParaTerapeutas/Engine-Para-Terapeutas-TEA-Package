@@ -1,6 +1,6 @@
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using EngineParaTerapeutas.Constantes;
+using EngineParaTerapeutas.Utils;
 
 namespace EngineParaTerapeutas.Build {
     public static class CompilacaoAutomatica {
@@ -8,7 +8,7 @@ namespace EngineParaTerapeutas.Build {
 
         [MenuItem("Engine Para Terapeutas/Criar jogo")]
         public static void Compilar() {
-            EngineParaTerapeutas.Utils.Utils.SalvarProjeto();
+            Salvamento.SalvarProjeto();
 
             PlayerSettings.companyName = NomeCompania;
             PlayerSettings.productName = "Teste"; // TODO: Pegar dinamicamente
@@ -18,8 +18,8 @@ namespace EngineParaTerapeutas.Build {
             PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.WebGL, PlayerSettings.productName);
 
             BuildPlayerOptions playerOptions = new() {
-                scenes = new string[] { ConstantesProjeto.PastaCenasAssets + "/Fase1.unity" }, // TODO: Pegar dinamicamente
-                locationPathName = ConstantesProjeto.PastaBuild,
+                scenes = new string[] { ConstantesRuntime.CaminhoPastaCenas + "/Fase1.unity" }, // TODO: Pegar dinamicamente
+                locationPathName = ConstantesEditor.CaminhoPastaBuild,
                 target = BuildTarget.WebGL,
                 options = BuildOptions.None,
             };
