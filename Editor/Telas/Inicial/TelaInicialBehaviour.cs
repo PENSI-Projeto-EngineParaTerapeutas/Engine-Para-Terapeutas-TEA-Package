@@ -46,7 +46,7 @@ namespace EngineParaTerapeutas.Telas {
             return;
         }
 
-        public void OnInspectorUpdate() {
+        public void Update() {
             if(GerenciadorCenas.QuantidadeCenas <= 0) {
                 grupoListaCenas.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
                 regiaoAvisoListaCenasVazia.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
