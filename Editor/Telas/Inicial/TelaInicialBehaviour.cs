@@ -42,19 +42,7 @@ namespace EngineParaTerapeutas.Telas {
             ImportarStyle("Telas/Inicial/TelaInicialStyle.uss");
 
             ConfigurarElementos();
-
-            return;
-        }
-
-        public void Update() {
-            if(GerenciadorCenas.QuantidadeCenas <= 0) {
-                grupoListaCenas.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-                regiaoAvisoListaCenasVazia.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-            }
-            else {
-                grupoListaCenas.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-                regiaoAvisoListaCenasVazia.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-            }
+            AlterarVisibilidadeListaCenas();
 
             return;
         }
@@ -62,6 +50,19 @@ namespace EngineParaTerapeutas.Telas {
         private void ConfigurarElementos() {
             ConfigurarListaCenas();
             ConfigurarBotaoCriarCena();
+
+            return;
+        }
+
+        private void AlterarVisibilidadeListaCenas() {
+            if(cenas.Count <= 0) {
+                grupoListaCenas.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+                regiaoAvisoListaCenasVazia.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            } 
+            else {
+                grupoListaCenas.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+                regiaoAvisoListaCenasVazia.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            }
 
             return;
         }
@@ -102,6 +103,7 @@ namespace EngineParaTerapeutas.Telas {
                 }
             }
 
+            AlterarVisibilidadeListaCenas();
             return;
         }
 
@@ -123,6 +125,7 @@ namespace EngineParaTerapeutas.Telas {
             cenas.Add(novaCena);
 
             AdicionarDisplayCena(novaCena);
+            AlterarVisibilidadeListaCenas();
 
             return;
         }
