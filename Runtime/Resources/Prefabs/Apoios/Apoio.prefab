@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 4178855567349007828}
   - component: {fileID: 4850734111157839499}
   - component: {fileID: 30567144701543323}
+  - component: {fileID: 901651200943502508}
+  - component: {fileID: 8380783369106418242}
   m_Layer: 0
   m_Name: Apoio
   m_TagString: Apoios
@@ -218,5 +220,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3835e6ce07430849aadd04a5e668ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &901651200943502508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6021541277730531408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08ff5071c3e732141a4a30cda51e8381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipoAcionamento: 0
+--- !u!114 &8380783369106418242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6021541277730531408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0360b6d4ba0a51447b8f29e6576185d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using EngineParaTerapeutas.Constantes;
 using EngineParaTerapeutas.UI;
+using EngineParaTerapeutas.ComponentesGameObjects;
 
 namespace EngineParaTerapeutas.Criadores {
     public class CriadorReforcoBehaviour : Criador {
@@ -16,17 +17,23 @@ namespace EngineParaTerapeutas.Criadores {
         private const string NOME_REGIAO_CARREGAMENTO_INPUTS_AUDIO = "regiao-carregamento-inputs-audio";
         private VisualElement regiaoCarregamentoInputsAudio;
 
+        private const string NOME_REGIAO_CARREGAMENTO_INPUTS_TEXTO = "regiao-carregamento-inputs-texto";
+        private VisualElement regiaoCarregamentoInputsTexto;
+
         private readonly InputsComponenteImagem grupoInputsImagem;
         private readonly InputsComponenteAudio grupoInputsAudio;
+        private readonly InputsComponenteTexto grupoInputsTexto;
 
         #endregion
 
         private SpriteRenderer sprite;
         private AudioSource audioSource;
+        private Texto texto;
 
         public CriadorReforcoBehaviour() {
             grupoInputsImagem = new InputsComponenteImagem();
             grupoInputsAudio = new InputsComponenteAudio();
+            grupoInputsTexto = new InputsComponenteTexto();
 
             ImportarPrefab("Prefabs/Reforcos/Reforco.prefab");
 
@@ -36,6 +43,7 @@ namespace EngineParaTerapeutas.Criadores {
             CarregarRegiaoHeader();
             CarregarRegiaoInputsImagem();
             CarregarRegiaoInputsAudio();
+            CarregarRegiaoInputsTexto();
 
             return;
         }
@@ -61,6 +69,13 @@ namespace EngineParaTerapeutas.Criadores {
             return;
         }
 
+        private void CarregarRegiaoInputsTexto() {
+            regiaoCarregamentoInputsTexto = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_TEXTO);
+            regiaoCarregamentoInputsTexto.Add(grupoInputsTexto.Root);
+
+            return;
+        }
+
         protected override void VincularCamposAoNovoObjeto() {
             sprite = novoObjeto.GetComponent<SpriteRenderer>();
             sprite.sortingOrder = OrdemRenderizacao.EmCriacao;
@@ -68,12 +83,16 @@ namespace EngineParaTerapeutas.Criadores {
 
             audioSource = novoObjeto.GetComponent<AudioSource>();
             grupoInputsAudio.VincularDados(audioSource);
+
+            texto = novoObjeto.GetComponent<Texto>();
+            grupoInputsTexto.VincularDados(texto);
             return;
         }
 
         protected override void ReiniciarPropriedadesNovoObjeto() {
             sprite = null;
             audioSource = null;
+            texto = null;
 
             return;
         }
@@ -81,6 +100,7 @@ namespace EngineParaTerapeutas.Criadores {
         public override void ReiniciarCampos() {
             grupoInputsImagem.ReiniciarCampos();
             grupoInputsAudio.ReiniciarCampos();
+            grupoInputsTexto.ReiniciarCampos();
 
             return;
         }
