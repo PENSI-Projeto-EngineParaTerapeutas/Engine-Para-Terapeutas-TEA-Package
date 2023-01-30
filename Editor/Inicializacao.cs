@@ -44,8 +44,12 @@ namespace EngineParaTerapeutas {
                 Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaSons);
             }
 
-            if(!Directory.Exists(ConstantesRuntime.CaminhoPastaVideos)) {
-                Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaVideos);
+            if(!Directory.Exists(ConstantesRuntime.CaminhoPastaScriptableObjectsCenas)) {
+                Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaScriptableObjectsCenas);
+            }
+
+            if(!Directory.Exists(ConstantesRuntime.CaminhoPastaStreamingAssets)) {
+                Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaStreamingAssets);
             }
 
             return;
@@ -58,6 +62,7 @@ namespace EngineParaTerapeutas {
             AdicionarTag(tagsProperty, NomesTags.Apoios);
             AdicionarTag(tagsProperty, NomesTags.Reforcos);
             AdicionarTag(tagsProperty, NomesTags.Cenario);
+            AdicionarTag(tagsProperty, NomesTags.Contexto);
 
             SerializedProperty layersProperty = tagManager.FindProperty("layers");
 

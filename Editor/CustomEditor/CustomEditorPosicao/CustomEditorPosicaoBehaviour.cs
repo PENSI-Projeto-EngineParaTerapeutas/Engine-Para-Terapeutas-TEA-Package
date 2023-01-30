@@ -6,7 +6,7 @@ using EngineParaTerapeutas.UI;
 
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(Posicao))]
-    public class CustomEditorPosicaoBehaviour : CustomEditor<Posicao, Transform> {
+    public class CustomEditorPosicaoBehaviour : CustomEditorComponentes<Posicao, Transform> {
         #region .: Elementos :.
 
         private const string REGIAO_CARREGAMENTO_INPUTS_PADROES_POSICAO = "regiao-carregamento-inputs-padroes-posicao";

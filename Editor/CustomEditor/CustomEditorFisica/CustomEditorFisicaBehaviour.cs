@@ -6,7 +6,7 @@ using EngineParaTerapeutas.UI;
 
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(Fisica))]
-    public class CustomEditorFisicaBehaviour : CustomEditor<Fisica, Rigidbody2D> {
+    public class CustomEditorFisicaBehaviour : CustomEditorComponentes<Fisica, Rigidbody2D> {
         #region .: Elementos :.
 
         private const string NOME_REGIAO_CARREGAMENTO_INPUTS_PADROES_FISICA = "regiao-carregamento-inputs-padroes-fisica";

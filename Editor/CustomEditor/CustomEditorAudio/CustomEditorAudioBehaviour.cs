@@ -6,7 +6,7 @@ using EngineParaTerapeutas.UI;
 
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(Audio))]
-    public class CustomEditorAudioBehaviour : CustomEditor<Audio, AudioSource> {
+    public class CustomEditorAudioBehaviour : CustomEditorComponentes<Audio, AudioSource> {
         #region .: Elementos :.
 
         private const string NOME_REGIAO_CARREGAMENTO_INPUTS_PADROES_AUDIO = "regiao-carregamento-inputs-padroes-audio";

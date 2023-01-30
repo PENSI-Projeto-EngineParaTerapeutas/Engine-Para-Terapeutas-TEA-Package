@@ -159,27 +159,27 @@ namespace EngineParaTerapeutas.UI {
                 componenteTextMesh.fontSize = CampoTamanhoTexto.value;
             });
 
-            CampoNegrito.RegisterCallback<ChangeEvent<bool>>(evt => { // TODO: Arrumar funcionamento
+            CampoNegrito.RegisterCallback<ChangeEvent<bool>>(evt => {
                 if(CampoNegrito.value) {
-                    componenteTextMesh.fontStyle = FontStyles.Bold;
+                    componenteTextMesh.fontStyle |= FontStyles.Bold;
                 }
                 else {
                     componenteTextMesh.fontStyle ^= FontStyles.Bold;
                 }
             });
 
-            CampoItalico.RegisterCallback<ChangeEvent<bool>>(evt => { // TODO: Arrumar funcionamento
+            CampoItalico.RegisterCallback<ChangeEvent<bool>>(evt => {
                 if(CampoItalico.value) {
-                    componenteTextMesh.fontStyle = FontStyles.Italic;
+                    componenteTextMesh.fontStyle |= FontStyles.Italic;
                 } 
                 else {
                     componenteTextMesh.fontStyle ^= FontStyles.Italic;
                 }
             });
 
-            CampoSublinhado.RegisterCallback<ChangeEvent<bool>>(evt => { // TODO: Arrumar funcionamento
+            CampoSublinhado.RegisterCallback<ChangeEvent<bool>>(evt => {
                 if(CampoSublinhado.value) {
-                    componenteTextMesh.fontStyle = FontStyles.Underline;
+                    componenteTextMesh.fontStyle |= FontStyles.Underline;
                 } 
                 else {
                     componenteTextMesh.fontStyle ^= FontStyles.Underline;

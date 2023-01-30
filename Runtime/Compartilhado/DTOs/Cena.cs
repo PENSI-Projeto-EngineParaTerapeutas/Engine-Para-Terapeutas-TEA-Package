@@ -5,9 +5,13 @@ using EngineParaTerapeutas.DTOs;
 namespace EngineParaTerapeutas.ScriptableObjects {
     [CreateAssetMenu(fileName = "Cena", menuName = "Engine Para Terapeutas/Scriptable Object/Cena")]
     public class Cena : ScriptableObject {
-        public string Nome { get => nome; set { nome = value; } }
+
+        public string NomeExibicao { get => nomeExibicao; set { nomeExibicao = value; } }
         [SerializeField]
-        private string nome = "";
+        private string nomeExibicao = "";
+
+        public string NomeArquivo { get => nomeArquivo; set { nomeArquivo = value; } }
+        private string nomeArquivo = "";
 
         public string Caminho { get => caminho; set { caminho = value; } }
         private string caminho = "";
@@ -24,8 +28,11 @@ namespace EngineParaTerapeutas.ScriptableObjects {
         [SerializeField]
         private NiveisDificuldade nivelDificuldade = NiveisDificuldade.Facil;
 
+        public string NomeArquivoVideoContexto { get => nomeArquivoVideoContexto; set { nomeArquivoVideoContexto = value; } }
+        private string nomeArquivoVideoContexto = "";
+
         public void AssociarValores(Scene arquivo) {
-            nome = arquivo.name;
+            nomeExibicao = arquivo.name;
             caminho = arquivo.path;
             buildIndex = arquivo.buildIndex;
             

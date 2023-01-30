@@ -85,7 +85,7 @@ namespace EngineParaTerapeutas.Telas {
 
         private void AdicionarDisplayCena(Cena cena) {
             DisplayInformacoesCena informacoes = new(cena);
-            informacoes.Root.name = cena.Nome;
+            informacoes.Root.name = cena.NomeExibicao;
             informacoes.CallbackExcluirCena = HandleExclusaoCena;
 
             grupoListaCenas.Add(informacoes.Root);
@@ -116,12 +116,6 @@ namespace EngineParaTerapeutas.Telas {
 
         private void HandleClickBotaoCriarCena() {
             Cena novaCena = GerenciadorCenas.CriarCena();
-            // TODO: Remover
-            Debug.Log("---- Criar cena: " + novaCena.Nome);
-            Debug.Log("Nome: " + novaCena.Nome);
-            Debug.Log("BuildIndex: " + novaCena.BuildIndex);
-            Debug.Log("Caminho: " + novaCena.Caminho);
-
             cenas.Add(novaCena);
 
             AdicionarDisplayCena(novaCena);

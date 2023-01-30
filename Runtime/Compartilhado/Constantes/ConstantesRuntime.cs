@@ -7,7 +7,8 @@ namespace EngineParaTerapeutas.Constantes {
         public static string CaminhoPastaCenas { get => "Assets/Cenas/"; }
         public static string CaminhoPastaImagens { get => "Assets/Resources/Imagens/"; }
         public static string CaminhoPastaSons { get => "Assets/Resources/Sons/"; }
-        public static string CaminhoPastaVideos { get => "Assets/Resources/Videos/"; }
+        public static string CaminhoPastaScriptableObjectsCenas { get => "Assets/Resources/Cenas/"; }
+        public static string CaminhoPastaStreamingAssets { get => "Assets/StreamingAssets/"; }
 
         public static string NomePastaCenas { get => "Cenas/"; }
 

@@ -20,20 +20,26 @@ namespace EngineParaTerapeutas.Criadores {
         private const string NOME_REGIAO_CARREGAMENTO_INPUTS_TEXTO = "regiao-carregamento-inputs-texto";
         private VisualElement regiaoCarregamentoInputsTexto;
 
+        private const string NOME_REGIAO_CARREGAMENTO_INPUTS_VIDEO = "regiao-carregamento-inputs-video";
+        private VisualElement regiaoCarregamentoInputsVideo;
+
         private readonly InputsComponenteImagem grupoInputsImagem;
         private readonly InputsComponenteAudio grupoInputsAudio;
         private readonly InputsComponenteTexto grupoInputsTexto;
+        private readonly InputsComponenteVideo grupoInputsVideo;
 
         #endregion
 
         private SpriteRenderer sprite;
         private AudioSource audioSource;
         private Texto texto;
+        private Video video;
 
         public CriadorReforcoBehaviour() {
             grupoInputsImagem = new InputsComponenteImagem();
             grupoInputsAudio = new InputsComponenteAudio();
             grupoInputsTexto = new InputsComponenteTexto();
+            grupoInputsVideo = new InputsComponenteVideo();
 
             ImportarPrefab("Prefabs/Reforcos/Reforco.prefab");
 
@@ -44,6 +50,7 @@ namespace EngineParaTerapeutas.Criadores {
             CarregarRegiaoInputsImagem();
             CarregarRegiaoInputsAudio();
             CarregarRegiaoInputsTexto();
+            CarregarRegiaoInputsVideo();
 
             return;
         }
@@ -76,6 +83,13 @@ namespace EngineParaTerapeutas.Criadores {
             return;
         }
 
+        private void CarregarRegiaoInputsVideo() {
+            regiaoCarregamentoInputsVideo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_VIDEO);
+            regiaoCarregamentoInputsVideo.Add(grupoInputsVideo.Root);
+
+            return;
+        }
+
         protected override void VincularCamposAoNovoObjeto() {
             sprite = novoObjeto.GetComponent<SpriteRenderer>();
             sprite.sortingOrder = OrdemRenderizacao.EmCriacao;
@@ -86,6 +100,9 @@ namespace EngineParaTerapeutas.Criadores {
 
             texto = novoObjeto.GetComponent<Texto>();
             grupoInputsTexto.VincularDados(texto);
+
+            video = novoObjeto.GetComponent<Video>();
+            grupoInputsVideo.VincularDados(video);
             return;
         }
 
@@ -93,6 +110,7 @@ namespace EngineParaTerapeutas.Criadores {
             sprite = null;
             audioSource = null;
             texto = null;
+            video = null;
 
             return;
         }
@@ -101,6 +119,7 @@ namespace EngineParaTerapeutas.Criadores {
             grupoInputsImagem.ReiniciarCampos();
             grupoInputsAudio.ReiniciarCampos();
             grupoInputsTexto.ReiniciarCampos();
+            grupoInputsVideo.ReiniciarCampos();
 
             return;
         }

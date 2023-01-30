@@ -26,6 +26,12 @@ namespace EngineParaTerapeutas.Telas {
         private const string NOME_BOTAO_CARREGAR_SECAO_REFORCO = "botao-carregar-secao-reforco";
         private Button botaoCarregarSecaoReforco;
 
+        private const string NOME_BOTAO_CARREGAR_SECAO_OBJETO_INTERACAO = "botao-carregar-secao-objeto-interacao";
+        private Button botaoCarregarSecaoObjetoIteracao;
+
+        private const string NOME_BOTAO_CARREGAR_SECAO_INSTRUCAO = "botao-carregar-secao-instrucao";
+        private Button botaoCarregarSecaoInstrucao;
+
         private const string NOME_REGIAO_CARREGAMENTO = "regiao-carregamento-criadores";
         private VisualElement regiaoCarregamento;
 
@@ -42,6 +48,7 @@ namespace EngineParaTerapeutas.Telas {
         private CriadorPersonagemBehaviour criadorPersonagem;
         private CriadorApoioBehaviour criadorApoio;
         private CriadorReforcoBehaviour criadorReforco;
+        private CriadorInstrucoesBehaviour criadorInstrucoes;
 
         #endregion
 
@@ -65,6 +72,7 @@ namespace EngineParaTerapeutas.Telas {
             criadorPersonagem = new CriadorPersonagemBehaviour();
             criadorApoio = new CriadorApoioBehaviour();
             criadorReforco = new CriadorReforcoBehaviour();
+            criadorInstrucoes = new CriadorInstrucoesBehaviour();
 
             return;
         }
@@ -102,6 +110,12 @@ namespace EngineParaTerapeutas.Telas {
 
             botaoCarregarSecaoApoio = root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_APOIO);
             botaoCarregarSecaoApoio.clicked += HandleBotaoCarregarSecaoApoioClick;
+
+            botaoCarregarSecaoObjetoIteracao = root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_OBJETO_INTERACAO);
+            botaoCarregarSecaoObjetoIteracao.clicked += HandleBotaoCarregarSecaoObjetoInteracaoClick;
+
+            botaoCarregarSecaoInstrucao = root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_INSTRUCAO);
+            botaoCarregarSecaoInstrucao.clicked += HandleBotaoCarregarSecaoInstrucaoClick;
 
             return;
         }
@@ -154,6 +168,27 @@ namespace EngineParaTerapeutas.Telas {
 
             criadorAtual = criadorApoio;
             CarregarCriador(criadorApoio);
+            return;
+        }
+
+        private void HandleBotaoCarregarSecaoObjetoInteracaoClick() {
+            Debug.Log("[TODO]: Criar Objeto Interação");
+            /*if (criadorAtual != null) {
+                return;
+            }
+
+            criadorAtual = ;
+            CarregarCriador();*/
+            return;
+        }
+
+        private void HandleBotaoCarregarSecaoInstrucaoClick() {
+            if (criadorAtual != null) {
+                return;
+            }
+
+            criadorAtual = criadorInstrucoes;
+            CarregarCriador(criadorInstrucoes);
             return;
         }
 

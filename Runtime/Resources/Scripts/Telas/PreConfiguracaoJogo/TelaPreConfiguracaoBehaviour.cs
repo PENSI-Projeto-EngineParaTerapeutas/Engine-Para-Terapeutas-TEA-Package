@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using EngineParaTerapeutas.UI;
+using EngineParaTerapeutas.Eventos;
 
 namespace EngineParaTerapeutas.Telas {
     public class TelaPreConfiguracaoBehaviour : MonoBehaviour {
@@ -48,9 +49,13 @@ namespace EngineParaTerapeutas.Telas {
 
         AbasTelaPreConfiguracao abaAtual = AbasTelaPreConfiguracao.Nenhuma;
 
+        private EventoJogo eventoExibirContextualizacao;
+
         public void Awake() {
             ImportarTemplate();
             ImportarStyle();
+
+            eventoExibirContextualizacao = Resources.Load<EventoJogo>("ScriptableObjects/EventoApresentarContexto");
 
             secaoConfiguracaoCenario = new ConfiguracaoCenarioBehaviour();
             secaoConfiguracaoApoios = new ConfiguracaoApoioBehaviour();
@@ -157,7 +162,9 @@ namespace EngineParaTerapeutas.Telas {
         }
 
         private void HandleBotaoIniciarJogo() {
-            // TODO: Implementar
+            eventoExibirContextualizacao.AcionarCallbacks();
+            gameObject.SetActive(false);
+            
             return;
         }
 

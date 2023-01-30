@@ -13,4 +13,7 @@
 
     <engine:VisualElement name="regiao-carregamento-inputs-audio">
     </engine:VisualElement>
+
+    <engine:VisualElement name="regiao-carregamento-inputs-video">
+    </engine:VisualElement>
 </engine:UXML>

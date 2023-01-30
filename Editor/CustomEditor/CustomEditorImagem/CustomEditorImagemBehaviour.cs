@@ -7,7 +7,7 @@ using EngineParaTerapeutas.UI;
 
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(Imagem))]
-    public class CustomEditorImagemBehaviour : CustomEditor<Imagem, SpriteRenderer> {
+    public class CustomEditorImagemBehaviour : CustomEditorComponentes<Imagem, SpriteRenderer> {
         private readonly List<Material> componenteOriginalMaterial = new();
 
         #region .: Elementos :.

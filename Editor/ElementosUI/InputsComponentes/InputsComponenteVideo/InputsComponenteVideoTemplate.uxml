@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <engine:Toggle name="input-habilitado" class="input-padrao" label="Habilitado" tooltip="Define se o ator deve exibir um texto ou não"/>
+
+    <engine:VisualElement name="regiao-input-video">
+    </engine:VisualElement>
+
+    <engine:Toggle name="input-reproduzir-ao-iniciar" class="input-padrao" label="Reproduzir vídeo ao iniciar o jogo"  tooltip="Determina se o vídeo iniciará assim que a fase começar"/>
+    <engine:Toggle name="input-reproduzir-em-loop" class="input-padrao" label="Reproduzir vídeo em loop"  tooltip="Determina se o vídeo deverá reproduzir novamente ao terminar"/>
+    <engine:Toggle name="input-reproduzir-som" class="input-padrao" label="Reproduzir som do vídeo"  tooltip="Determina sé deverá reproduzir o som do vídeo ao iniciá-lo ou não"/>
+
+    <editor:FloatField name="input-velocidade" class="input-padrao" label="Velocidade" tooltip="Determina a velocidade de reprodução do vídeo"/>
+</engine:UXML>

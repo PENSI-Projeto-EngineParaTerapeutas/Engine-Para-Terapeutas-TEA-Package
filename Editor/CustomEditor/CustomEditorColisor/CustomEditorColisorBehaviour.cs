@@ -6,7 +6,7 @@ using EngineParaTerapeutas.UI;
 
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(Colisor))]
-    public class CustomEditorColisorBehaviour : CustomEditor<Colisor, BoxCollider2D> {
+    public class CustomEditorColisorBehaviour : CustomEditorComponentes<Colisor, BoxCollider2D> {
         #region .: Elementos :.
 
         private const string NOME_REGIAO_CARREGAMENTO_INPUTS_PADROES_COLISOR = "regiao-carregamento-inputs-padroes-colisor";

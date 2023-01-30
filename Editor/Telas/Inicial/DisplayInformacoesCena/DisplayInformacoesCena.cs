@@ -64,7 +64,7 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void ConfigurarLabels() {
-            labelNome.text = informacoesCena.Nome;
+            labelNome.text = informacoesCena.NomeExibicao;
             labelDificuldade.text = informacoesCena.NivelDificuldade.ToString();
             labelFaixaEtaria.text = informacoesCena.FaixaEtaria.ToString();
 
@@ -80,21 +80,15 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void HandleClickBotaoAbrirCena() {
-            // TODO: Remover
-            Debug.Log("---- Abrir cena: " + informacoesCena.Nome);
-            Debug.Log("Nome: " + informacoesCena.Nome);
-            Debug.Log("BuildIndex: " + informacoesCena.BuildIndex);
-            Debug.Log("Caminho: " + informacoesCena.Caminho);
-
-            EditorSceneManager.OpenScene(Path.Combine(ConstantesRuntime.CaminhoPastaCenas, informacoesCena.Nome + Extensoes.Cena));
+            EditorSceneManager.OpenScene(Path.Combine(ConstantesRuntime.CaminhoPastaCenas, informacoesCena.NomeArquivo + Extensoes.Cena));
             LayoutLoader.CarregarTelaEditor();
             return;
         }
 
         private void HandleClickBotaoEditarCena() {
             // TODO: Remover
-            Debug.Log("---- Editar cena: " + informacoesCena.Nome);
-            Debug.Log("Nome: " + informacoesCena.Nome);
+            Debug.Log("---- Editar cena: " + informacoesCena.NomeExibicao);
+            Debug.Log("Nome: " + informacoesCena.NomeExibicao);
             Debug.Log("BuildIndex: " + informacoesCena.BuildIndex);
             Debug.Log("Caminho: " + informacoesCena.Caminho);
 

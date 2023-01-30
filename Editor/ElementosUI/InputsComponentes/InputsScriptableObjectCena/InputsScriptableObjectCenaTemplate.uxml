@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <engine:TextField name="input-nome" class="input-padrao" label="Nome cena" tooltip="Define o nome da cena"/>
+    
+    <editor:EnumField name="input-dificuldade" class="input-padrao" label="Dificuldade" tooltip="Define o nível de dificuldade da cena"/>
+    
+    <editor:IntegerField name="input-faixa-etaria" class="input-padrao" label="Faixa etária" tooltip="Define a idade recomendada para a cena"/>
+    
+    <engine:VisualElement name="regiao-input-video">
+    </engine:VisualElement>
+</engine:UXML>

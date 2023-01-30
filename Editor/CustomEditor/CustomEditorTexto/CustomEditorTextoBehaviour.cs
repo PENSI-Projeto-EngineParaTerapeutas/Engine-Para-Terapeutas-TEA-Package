@@ -7,7 +7,7 @@ using EngineParaTerapeutas.ComponentesGameObjects;
 
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(Texto))]
-    public class CustomEditorTextoBehaviour : CustomEditor<Texto, TextMeshProUGUI> {
+    public class CustomEditorTextoBehaviour : CustomEditorComponentes<Texto, TextMeshProUGUI> {
         #region .: Elementos :.
 
         private const string REGIAO_CARREGAMENTO_INPUTS_PADROES_TEXTO = "regiao-carregamento-inputs-padroes-texto";

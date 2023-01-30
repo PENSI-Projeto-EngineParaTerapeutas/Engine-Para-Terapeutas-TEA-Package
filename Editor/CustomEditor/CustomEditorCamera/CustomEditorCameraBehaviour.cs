@@ -6,7 +6,7 @@ using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(ComponentesGameObjects.Camera))]
-    public class CustomEditorCameraBehaviour : CustomEditor<ComponentesGameObjects.Camera, UnityEngine.Camera> {
+    public class CustomEditorCameraBehaviour : CustomEditorComponentes<ComponentesGameObjects.Camera, UnityEngine.Camera> {
         private const int POSICAO_PADRAO_EIXO_Z = -10;
 
         #region .: Elementos :.
