@@ -2,7 +2,11 @@ using UnityEngine.UIElements;
 
 namespace EngineParaTerapeutas.UI {
     public abstract class ElementoInterface {
-        public VisualElement Root { get; }
+        protected abstract string CaminhoTemplate { get; }
+        protected abstract string CaminhoStyle { get; }
+
+        public VisualElement Root { get => root; }
+        protected VisualElement root;
 
         protected StyleSheet defaultStyle;
 
@@ -10,7 +14,10 @@ namespace EngineParaTerapeutas.UI {
         protected StyleSheet style;
 
         protected ElementoInterface() {
-            Root = new VisualElement();
+            ImportarTemplate(CaminhoTemplate);
+            root = template.Instantiate();
+
+            ImportarStyle(CaminhoStyle);
             ImportarDefaultStyle();
 
             return;

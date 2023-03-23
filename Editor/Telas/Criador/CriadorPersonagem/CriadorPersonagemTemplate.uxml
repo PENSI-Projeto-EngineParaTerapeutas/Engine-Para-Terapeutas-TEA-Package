@@ -5,15 +5,29 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:VisualElement name="regiao-carregamento-header">
+    <engine:VisualElement name="regiao-titulo">
+        <engine:Label name="label-titulo" class="label-padrao" text="Defina o personagem"/>
+        <engine:VisualElement name="regiao-tooltip-titulo"/>
     </engine:VisualElement>
 
-    <engine:VisualElement name="regiao-carregamento-inputs-imagem">
-    </engine:VisualElement>
+    <engine:VisualElement name="regiao-carregamento-header"/>
+    <editor:EnumField name="input-tipo-objeto-interacao" class="input-padrao" label="Tipo de personagem" tooltip="Define o tipo de Personagem"/>
 
-    <engine:VisualElement name="regiao-carregamento-inputs-fisica">
-    </engine:VisualElement>
+    <engine:Image name="imagem-personagem"/>
+    <engine:Button name="botao-personalizar-personagem" text="Personalizar personagem"/>
 
-    <engine:VisualElement name="regiao-carregamento-inputs-colisor">
+    <engine:VisualElement name="regiao-label-selecao-controle">
+        <engine:Label name="label-titulo" class="label-padrao" text="Forma de controle"/>
+        <engine:VisualElement name="regiao-tooltip-forma-controle"/>
     </engine:VisualElement>
+    <engine:RadioButtonGroup name="grupo-radio-button">
+        <engine:RadioButton class="input-padrao opcao-radio-button" label="Direto" name="radio-opcao-controle-direto"/>
+
+        <engine:VisualElement name="regiao-opcao-controle-indireto">
+            <engine:RadioButton class="input-padrao opcao-radio-button" label="Indireto" name="radio-opcao-controle-indireto"/>
+            <engine:Button name="botao-configurar-controle-indireto" text="Configurar controle indireto"/>
+        </engine:VisualElement>
+    </engine:RadioButtonGroup>
+
+    <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>
 </engine:UXML>

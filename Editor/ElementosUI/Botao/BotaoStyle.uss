@@ -1,0 +1,21 @@
+#botao-original {
+	font-size: 20px;
+	-unity-font-style: bold;
+	padding-left: 37px;
+	padding-right: 37px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-width: 0px;
+}
+
+.botao-habilitado {
+	border-radius: 20px;
+	background-color: #1976D2;
+	color: white;
+}
+
+.botao-desabilitado {
+	border-radius: 6px;
+	background-color: #E4E4E4;
+	color: #989899;
+}

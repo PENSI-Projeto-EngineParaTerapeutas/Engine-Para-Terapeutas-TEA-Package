@@ -1,0 +1,24 @@
+#grupo-radio-button {
+	flex-direction: column;
+}
+
+#regiao-opcao-sim {
+	flex-direction: row;
+}
+
+.opcao-radio-button {
+	flex-direction: row-reverse;
+	align-items: center;
+	justify-content: flex-end;
+	flex-grow: 0.5;
+	height: 20px;
+}
+
+.opcao-radio-button > VisualElement {
+	flex-grow: 0;
+	margin-right: 3px;
+}
+
+.opcao-radio-button > Label {
+	margin-right: 3px;
+}

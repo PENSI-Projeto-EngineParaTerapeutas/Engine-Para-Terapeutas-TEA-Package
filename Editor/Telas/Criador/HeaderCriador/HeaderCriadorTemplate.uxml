@@ -7,6 +7,5 @@
 >
     <engine:TextField name="input-nome-ator" class="input-padrao" label="Nome"/>
 
-    <engine:VisualElement name="regiao-carregamento-inputs-posicao">
-    </engine:VisualElement>
+    <engine:VisualElement name="regiao-carregamento-inputs-posicao"/>
 </engine:UXML>

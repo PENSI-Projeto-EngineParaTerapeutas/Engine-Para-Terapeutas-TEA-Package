@@ -7,6 +7,9 @@ using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {
     public class InputImagem : ElementoInterfaceEditor, IReiniciavel {
+        protected override string CaminhoTemplate => "ElementosUI/InputImagem/InputImagemTemplate.uxml";
+        protected override string CaminhoStyle => "ElementosUI/InputImagem/InputImagemStyle.uss";
+
         #region .: Elementos :.
         public ObjectField CampoImagem { get => campoImagem; }
         public Label LabelCampoImagem { get => campoImagem.labelElement; }
@@ -22,9 +25,6 @@ namespace EngineParaTerapeutas.UI {
         #endregion
 
         public InputImagem() {
-            ImportarTemplate("ElementosUI/InputImagem/InputImagemTemplate.uxml");
-            ImportarStyle("ElementosUI/InputImagem/InputImagemStyle.uss");
-
             campoImagem = Root.Query<ObjectField>(NOME_INPUT_IMAGEM);
             botaoBuscarImagem = Root.Query<Button>(NOME_BOTAO_BUSCAR_IMAGEM);
 

@@ -1,24 +1,22 @@
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
+using UnityEngine.Video;
 using EngineParaTerapeutas.ComponentesGameObjects;
 using EngineParaTerapeutas.Constantes;
-using UnityEngine.Video;
 using EngineParaTerapeutas.Utils;
 
 namespace EngineParaTerapeutas.UI {
     public class InputsComponenteVideo : ElementoInterfaceEditor, IVinculavel<Video>, IReiniciavel {
+        protected override string CaminhoTemplate => "ElementosUI/InputsComponentes/InputsComponenteVideo/InputsComponenteVideoTemplate.uxml";
+        protected override string CaminhoStyle => "ElementosUI/InputsComponentes/InputsComponenteVideo/InputsComponenteVideoStyle.uss";
+
         #region .: Elementos :.
-        public Toggle CampoHabilitado { get => campoHabilitado; }
         public VisualElement RegiaoInputVideo { get => regiaoInputVideo; }
         public Toggle CampoReproduzirIniciar { get => campoReproduzirIniciar; }
         public Toggle CampoReproduzirLoop { get => campoReproduzirLoop; }
         public Toggle CampoReproduzirSom { get => campoReproduzirSom; }
         public FloatField CampoVelocidade { get => campoVelocidade; }
         public InputVideo InputVideo { get => inputVideo; }
-
-        private const string NOME_LABEL_HABILITADO = "label-habilitado";
-        private const string NOME_INPUT_HABILITADO = "input-habilitado";
-        private readonly Toggle campoHabilitado;
 
         private const string NOME_REGIAO_INPUT_VIDEO = "regiao-input-video";
         private readonly VisualElement regiaoInputVideo;
@@ -47,10 +45,6 @@ namespace EngineParaTerapeutas.UI {
         private VideoPlayer componentePlayer;
 
         public InputsComponenteVideo() {
-            ImportarTemplate("ElementosUI/InputsComponentes/InputsComponenteVideo/InputsComponenteVideoTemplate.uxml");
-            ImportarStyle("ElementosUI/InputsComponentes/InputsComponenteVideo/InputsComponenteVideoStyle.uss");
-
-            campoHabilitado = Root.Query<Toggle>(NOME_INPUT_HABILITADO);
             regiaoInputVideo = Root.Query<VisualElement>(NOME_REGIAO_INPUT_VIDEO);
             campoReproduzirIniciar = Root.Query<Toggle>(NOME_INPUT_REPRODUZIR_INICIAR);
             campoReproduzirLoop = Root.Query<Toggle>(NOME_INPUT_REPRODUZIR_LOOP);
@@ -59,20 +53,11 @@ namespace EngineParaTerapeutas.UI {
 
             inputVideo = new InputVideo();
 
-            ConfigurarCampoHabilitado();
             ConfigurarInputVideo();
             ConfigurarCampoReproduzirIniciar();
             ConfigurarCampoReproduzirLoop();
             ConfigurarCampoReproduzirSom();
             ConfigurarCampoVelocidade();
-
-            return;
-        }
-
-        private void ConfigurarCampoHabilitado() {
-            CampoHabilitado.labelElement.name = NOME_LABEL_HABILITADO;
-            CampoHabilitado.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
-            CampoHabilitado.SetValueWithoutNotify(false);
 
             return;
         }
@@ -118,17 +103,11 @@ namespace EngineParaTerapeutas.UI {
             componenteVideo = componente;
             componentePlayer = componenteVideo.Player;
 
-            CampoHabilitado.SetValueWithoutNotify(componenteVideo.Player.enabled);
             InputVideo.CampoVideo.SetValueWithoutNotify(componenteVideo.nomeArquivoVideo);
             CampoReproduzirIniciar.SetValueWithoutNotify(componentePlayer.playOnAwake);
             CampoReproduzirLoop.SetValueWithoutNotify(componentePlayer.isLooping);
             CampoReproduzirSom.SetValueWithoutNotify(!componenteVideo.PlayerAudio.mute);
             CampoVelocidade.SetValueWithoutNotify(componentePlayer.playbackSpeed);
-
-            CampoHabilitado.RegisterCallback<ChangeEvent<bool>>(evt => {
-                componenteVideo.Player.enabled = CampoHabilitado.value;
-                // TODO: Exibir ou ocultar campos
-            });
 
             InputVideo.CampoVideo.RegisterCallback<ChangeEvent<string>>(evt => {
                 componenteVideo.nomeArquivoVideo = InputVideo.CampoVideo.value; 
@@ -165,7 +144,6 @@ namespace EngineParaTerapeutas.UI {
             componenteVideo = null;
             componentePlayer = null;
 
-            CampoHabilitado.SetValueWithoutNotify(false);
             InputVideo.ReiniciarCampos();
             CampoReproduzirIniciar.SetValueWithoutNotify(false);
             CampoReproduzirLoop.SetValueWithoutNotify(false);

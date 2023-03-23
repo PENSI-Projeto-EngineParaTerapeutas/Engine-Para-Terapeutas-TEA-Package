@@ -5,6 +5,9 @@ using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {
     public class InputsComponenteFisica : ElementoInterfaceEditor, IVinculavel<Rigidbody2D>, IReiniciavel {
+        protected override string CaminhoTemplate => "ElementosUI/InputsComponentes/InputsComponenteFisica/InputsComponenteFisicaTemplate.uxml";
+        protected override string CaminhoStyle => "ElementosUI/InputsComponentes/InputsComponenteFisica/InputsComponenteFisicaStyle.uss";
+
         #region .: Elementos :.
         public Toggle CampoPodeMover { get => campoPodeMover; }
         public FloatField CampoGravidade { get => campoGravidade; }
@@ -27,9 +30,6 @@ namespace EngineParaTerapeutas.UI {
         private Rigidbody2D rigidbody2DVinculado;
 
         public InputsComponenteFisica() {
-            ImportarTemplate("ElementosUI/InputsComponentes/InputsComponenteFisica/InputsComponenteFisicaTemplate.uxml");
-            ImportarStyle("ElementosUI/InputsComponentes/InputsComponenteFisica/InputsComponenteFisicaStyle.uss");
-
             campoPodeMover = Root.Query<Toggle>(NOME_INPUT_PODE_MOVER);
             campoGravidade = Root.Query<FloatField>(NOME_INPUT_GRAVIDADE);
             campoMassa = Root.Query<FloatField>(NOME_INPUT_MASSA);

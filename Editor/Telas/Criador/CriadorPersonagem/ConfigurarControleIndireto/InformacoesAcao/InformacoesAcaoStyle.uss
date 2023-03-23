@@ -1,0 +1,11 @@
+:root {
+	flex-direction: row;
+}
+
+#imagem-icone-animacao {
+	margin-right: 15px;
+}
+
+#imagem-icone-lixeira {
+	align-self: end;
+}

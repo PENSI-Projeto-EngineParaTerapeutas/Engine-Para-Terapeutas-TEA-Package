@@ -5,8 +5,11 @@ using EngineParaTerapeutas.Constantes;
 using EngineParaTerapeutas.UI;
 
 namespace EngineParaTerapeutas.Telas {
-    public class PopupSalvarLayoutBehaviour : TelaEditor {
+    public class PopupSalvarLayoutBehaviour : JanelaEditor {
         private const string TITULO = "Salvar Layout";
+
+        protected override string CaminhoTemplate => "Layout/PopupSalvarLayout/PopupSalvarLayoutTemplate.uxml";
+        protected override string CaminhoStyle => "Layout/PopupSalvarLayout/PopupSalvarLayoutStyle.uss";
 
         #region .: Elementos :.
 
@@ -22,7 +25,7 @@ namespace EngineParaTerapeutas.Telas {
 
         #endregion
 
-        string nomeArquivo = "";
+        string nomeArquivo = string.Empty;
 
         [MenuItem("Desenvolvimento/Salvar Layout Atual")]
         public static void ShowPopupSalvarLayout() {
@@ -36,18 +39,7 @@ namespace EngineParaTerapeutas.Telas {
             return;
         }
 
-        public override void CreateGUI() {
-            base.CreateGUI();
-
-            ImportarTemplate("Layout/PopupSalvarLayout/PopupSalvarLayoutTemplate.uxml");
-            ImportarStyle("Layout/PopupSalvarLayout/PopupSalvarLayoutStyle.uss");
-
-            ConfigurarElementos();
-
-            return;
-        }
-
-        private void ConfigurarElementos() {
+        protected override void OnRenderizarInterface() {
             ConfigurarCampoNomeArquivo();
             ConfigurarBotaoSalvar();
             ConfigurarBotaoCancelar();
@@ -60,7 +52,7 @@ namespace EngineParaTerapeutas.Telas {
             campoNomeArquivo.labelElement.name = NOME_LABEL_NOME_ARQUIVO;
             campoNomeArquivo.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
 
-            campoNomeArquivo.SetValueWithoutNotify("");
+            campoNomeArquivo.SetValueWithoutNotify(string.Empty);
             campoNomeArquivo.RegisterCallback<ChangeEvent<string>>(evt => {
                 nomeArquivo = evt.newValue;
             });
@@ -90,7 +82,7 @@ namespace EngineParaTerapeutas.Telas {
         }
 
         private void HandleBotaoCancelar() {
-            nomeArquivo = "";
+            nomeArquivo = string.Empty;
             Close();
 
             return;

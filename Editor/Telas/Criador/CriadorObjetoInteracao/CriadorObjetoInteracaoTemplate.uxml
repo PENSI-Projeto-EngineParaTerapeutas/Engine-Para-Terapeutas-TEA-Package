@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <engine:VisualElement name="regiao-carregamento-header"/>
+
+    <editor:EnumField name="input-tipo-obejto-interacao" class="input-padrao" label="Tipo" tooltip="Define o tipo do Ator"/>
+    
+    <engine:VisualElement name="regiao-carregamento-inputs-imagem"/>
+    <engine:VisualElement name="regiao-carregamento-inputs-texto"/>
+    <engine:VisualElement name="regiao-carregamento-inputs-tipo-acao"/>
+
+    <engine:RadioButtonGroup label="Deseja criar um apoio para este objeto? (opcional)" name="grupo-radio-button" value="-1">
+        <engine:VisualElement name="regiao-opcao-sim">
+            <engine:RadioButton class="input-padrao opcao-radio-button" label="Sim" name="radio-opcao-sim"/>
+            <engine:Button name="botao-configurar-apoio" text="Configurar apoio para o objeto"/>
+        </engine:VisualElement>
+        <engine:RadioButton class="input-padrao opcao-radio-button" label="Não" name="radio-opcao-nao"/>
+    </engine:RadioButtonGroup>
+
+    <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>
+</engine:UXML>

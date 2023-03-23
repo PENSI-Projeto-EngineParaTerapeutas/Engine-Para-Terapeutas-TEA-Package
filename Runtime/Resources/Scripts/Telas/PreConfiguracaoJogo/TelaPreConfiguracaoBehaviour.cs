@@ -4,21 +4,18 @@ using EngineParaTerapeutas.UI;
 using EngineParaTerapeutas.Eventos;
 
 namespace EngineParaTerapeutas.Telas {
-    public class TelaPreConfiguracaoBehaviour : MonoBehaviour {
+    public class TelaPreConfiguracaoBehaviour : TelaJogo {
         private enum AbasTelaPreConfiguracao {
             Nenhuma,
             ConfigurarCenario,
             ConfigurarPersonagem,
             ConfigurarApoios,
             ConfigurarReforcos,
+            ConfigurarObjetosInteracao,
+            ConfigurarInstrucoes,
         }
 
-        private UIDocument template;
-
         #region .: Elementos :.
-
-        private VisualElement root;
-        private StyleSheet style;
 
         private const string NOME_REGIAO_BOTOES_CARREGAM_SECOES_CONFIGURACAO = "grupo-secoes-carregaveis";
         private VisualElement grupoBotoesCarregamSecoes;
@@ -35,6 +32,12 @@ namespace EngineParaTerapeutas.Telas {
         private const string NOME_BOTAO_CARREGAR_SECAO_CONFIGURACAO_REFORCO = "botao-carregar-secao-configuracao-reforco";
         private Button botaoCarregarSecaoReforco;
 
+        private const string NOME_BOTAO_CARREGAR_SECAO_CONFIGURACAO_OBJETO_INTERACAO = "botao-carregar-secao-configuracao-objeto-interacao";
+        private Button botaoCarregarSecaoObjetoInteracao;
+
+        private const string NOME_BOTAO_CARREGAR_SECAO_CONFIGURACAO_INSTRUCOES = "botao-carregar-secao-configuracao-instrucoes";
+        private Button botaoCarregarSecaoInstrucoes;
+
         private const string NOME_REGIAO_CARREGAMENTO = "regiao-configuracao-atual";
         private VisualElement regiaoCarregamento;
 
@@ -44,6 +47,8 @@ namespace EngineParaTerapeutas.Telas {
         private ConfiguracaoCenarioBehaviour secaoConfiguracaoCenario;
         private ConfiguracaoApoioBehaviour secaoConfiguracaoApoios;
         private ConfiguracaoReforcoBehaviour secaoConfiguracaoReforcos;
+        private ConfiguracaoInstrucao secaoConfiguracaoInstrucoes;
+        private ConfiguracaoObjetoInteracao secaoConfiguracaoObjetoInteracao;
 
         #endregion
 
@@ -51,36 +56,28 @@ namespace EngineParaTerapeutas.Telas {
 
         private EventoJogo eventoExibirContextualizacao;
 
-        public void Awake() {
-            ImportarTemplate();
-            ImportarStyle();
+        private void Awake() {
+            Root.styleSheets.Add(style);
 
             eventoExibirContextualizacao = Resources.Load<EventoJogo>("ScriptableObjects/EventoApresentarContexto");
 
             secaoConfiguracaoCenario = new ConfiguracaoCenarioBehaviour();
             secaoConfiguracaoApoios = new ConfiguracaoApoioBehaviour();
             secaoConfiguracaoReforcos = new ConfiguracaoReforcoBehaviour();
+            secaoConfiguracaoInstrucoes = new ConfiguracaoInstrucao();
+            secaoConfiguracaoObjetoInteracao = new ConfiguracaoObjetoInteracao();
 
             return;
         }
 
-        private void ImportarTemplate() {
-            template = GetComponent<UIDocument>();
-            root = template.rootVisualElement;
-
-            return;
-        }
-
-        private void ImportarStyle() {
-            style = Resources.Load<StyleSheet>("Scripts/Telas/PreConfiguracaoJogo/TelaPreConfiguracaoStyle");
-            root.styleSheets.Add(style);
-
+        private void Start() {
+            CarregarElementos();
             return;
         }
 
         private void CarregarElementos() {
-            grupoBotoesCarregamSecoes = root.Query<VisualElement>(NOME_REGIAO_BOTOES_CARREGAM_SECOES_CONFIGURACAO);
-            regiaoCarregamento = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO);
+            grupoBotoesCarregamSecoes = Root.Query<VisualElement>(NOME_REGIAO_BOTOES_CARREGAM_SECOES_CONFIGURACAO);
+            regiaoCarregamento = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO);
 
             ConfigurarBotaoCarregaregamento();
             ConfigurarBotaoIniciarJogo();
@@ -89,17 +86,23 @@ namespace EngineParaTerapeutas.Telas {
         }
 
         private void ConfigurarBotaoCarregaregamento() {
-            botaoCarregarSecaoApoio = root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_CONFIGURACAO_APOIO);
+            botaoCarregarSecaoApoio = Root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_CONFIGURACAO_APOIO);
             botaoCarregarSecaoApoio.clicked += HandleBotaoCarregarSecaoApoio;
 
-            botaoCarregarSecaoCenario = root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_CONFIGURACAO_CENARIO);
+            botaoCarregarSecaoCenario = Root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_CONFIGURACAO_CENARIO);
             botaoCarregarSecaoCenario.clicked += HandleBotaoCarregarSecaoCenario;
 
-            botaoCarregarSecaoPersonagem = root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_CONFIGURACAO_PERSONAGEM);
+            botaoCarregarSecaoPersonagem = Root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_CONFIGURACAO_PERSONAGEM);
             botaoCarregarSecaoPersonagem.clicked += HandleBotaoCarregarSecaoPersonagem;
         
-            botaoCarregarSecaoReforco = root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_CONFIGURACAO_REFORCO);
+            botaoCarregarSecaoReforco = Root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_CONFIGURACAO_REFORCO);
             botaoCarregarSecaoReforco.clicked += HandleBotaoCarregarSecaoReforco;
+
+            botaoCarregarSecaoObjetoInteracao = Root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_CONFIGURACAO_OBJETO_INTERACAO);
+            botaoCarregarSecaoObjetoInteracao.clicked += HandleBotaoCarregarSecaoObjetoInteracao;
+
+            botaoCarregarSecaoInstrucoes = Root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_CONFIGURACAO_INSTRUCOES);
+            botaoCarregarSecaoInstrucoes.clicked += HandleBotaoCarregarSecaoInstrucoes;
             return;
         }
 
@@ -155,8 +158,30 @@ namespace EngineParaTerapeutas.Telas {
             return;
         }
 
+        private void HandleBotaoCarregarSecaoObjetoInteracao() {
+            if(abaAtual == AbasTelaPreConfiguracao.ConfigurarObjetosInteracao) {
+                return;
+            }
+
+            abaAtual = AbasTelaPreConfiguracao.ConfigurarObjetosInteracao;
+            CarregarSecaoConfiguracao(secaoConfiguracaoObjetoInteracao);
+
+            return;
+        }
+
+        private void HandleBotaoCarregarSecaoInstrucoes() {
+            if(abaAtual == AbasTelaPreConfiguracao.ConfigurarInstrucoes) {
+                return;
+            }
+
+            abaAtual = AbasTelaPreConfiguracao.ConfigurarInstrucoes;
+            CarregarSecaoConfiguracao(secaoConfiguracaoInstrucoes);
+
+            return;
+        }
+
         private void ConfigurarBotaoIniciarJogo() {
-            botaoIniciarJogo = root.Query<Button>(NOME_BOTAO_INICIAR_JOGO);
+            botaoIniciarJogo = Root.Query<Button>(NOME_BOTAO_INICIAR_JOGO);
             botaoIniciarJogo.clicked += HandleBotaoIniciarJogo;
             return;
         }
@@ -165,11 +190,6 @@ namespace EngineParaTerapeutas.Telas {
             eventoExibirContextualizacao.AcionarCallbacks();
             gameObject.SetActive(false);
             
-            return;
-        }
-
-        public void Start() {
-            CarregarElementos();
             return;
         }
     }

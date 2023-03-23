@@ -5,6 +5,6 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:VisualElement name="regiao-carregamento-inputs-cena">
-    </engine:VisualElement>
+    <engine:VisualElement name="regiao-carregamento-inputs-cena"/>
+    <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>
 </engine:UXML>

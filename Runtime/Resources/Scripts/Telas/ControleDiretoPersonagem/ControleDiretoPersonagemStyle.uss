@@ -1,0 +1,8 @@
+#regiao-botoes-selecao-parte > Button {
+	width: 200px;
+	height: 30px;
+}
+
+#regiao-botoes-rotacao {
+	flex-direction: row;
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <engine:VisualElement name="grupo-botoes-criadores">
+        <engine:Label name="label-espelhar" class="label-padrao" text="Defina os elementos da fase"/>
+
+        <engine:Button name="botao-carregar-secao-cenario" text="Cenário"/>
+        <engine:Button name="botao-carregar-secao-instrucao" text="Instrução"/>
+        <engine:Button name="botao-carregar-secao-personagem" text="Personagem"/>
+        <engine:Button name="botao-carregar-secao-objeto-interacao" text="Objeto interação"/>
+        <engine:Button name="botao-carregar-secao-reforco" text="Reforço"/>
+        <engine:Button name="botao-carregar-secao-apoio" text="Apoio"/>
+    </engine:VisualElement>
+
+    <engine:VisualElement name="grupo-botoes-informacoes-fase">
+        <engine:Label name="label-espelhar" class="label-padrao" text="Estruture a fase, de acordo com os elementos definidos"/>
+        <engine:Button name="botao-carregar-secao-informacoes-fase" text="Estrutura da fase"/>
+    </engine:VisualElement>
+</engine:UXML>

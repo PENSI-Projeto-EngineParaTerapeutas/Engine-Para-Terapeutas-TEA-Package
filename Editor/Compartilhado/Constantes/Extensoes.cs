@@ -4,5 +4,6 @@ namespace EngineParaTerapeutas.Utils {
         public static string ScriptableObject { get => ".asset"; }
         public static string Prefab { get => ".prefab"; }
         public static string Layout { get => ".wlt"; }
+        public static string ClipAnimacao { get => ".anim"; }
     }
 }

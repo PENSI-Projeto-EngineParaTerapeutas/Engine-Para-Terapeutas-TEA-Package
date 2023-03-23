@@ -5,10 +5,11 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:VisualElement name="regiao-selecao-reforcos">
-    </engine:VisualElement>
+    <engine:ScrollView>
+        <engine:VisualElement name="regiao-selecao-reforcos"/>
 
-    <engine:VisualElement name="tela-vazia">
-        <engine:Label name="label-tela-vazia" text="Não há nenhum reforço presente no jogo"/>
-    </engine:VisualElement>
+        <engine:VisualElement name="tela-vazia">
+            <engine:Label name="label-tela-vazia" text="Não há nenhum reforço presente no jogo"/>
+        </engine:VisualElement>
+    </engine:ScrollView>
 </engine:UXML>

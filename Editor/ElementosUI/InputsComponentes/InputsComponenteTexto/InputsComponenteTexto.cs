@@ -7,20 +7,16 @@ using EngineParaTerapeutas.ComponentesGameObjects;
 
 namespace EngineParaTerapeutas.UI {
     public class InputsComponenteTexto : ElementoInterfaceEditor, IVinculavel<Texto>, IReiniciavel {
+        protected override string CaminhoTemplate => "ElementosUI/InputsComponentes/InputsComponenteTexto/InputsComponenteTextoTemplate.uxml";
+        protected override string CaminhoStyle => "ElementosUI/InputsComponentes/InputsComponenteTexto/InputsComponenteTextoStyle.uss";
 
-        #region
-
-        public Toggle CampoHabilitado { get => campoHabilitado; }
+        #region .: Elementos :.
         public TextField CampoConteudoTexto { get => campoConteudoTexto; }
         public FloatField CampoTamanhoTexto { get => campoTamanhoTexto; }
         public Toggle CampoNegrito { get => campoNegrito; }
         public Toggle CampoItalico { get => campoItalico; }
         public Toggle CampoSublinhado { get => campoSublinhado; }
         public ColorField CampoCor { get => campoCor; }
-
-        private const string NOME_LABEL_HABILITADO = "label-habilitado";
-        private const string NOME_INPUT_HABILITADO = "input-habilitado";
-        private readonly Toggle campoHabilitado;
 
         private const string NOME_LABEL_CONTEUDO_TEXTO = "label-texto";
         private const string NOME_INPUT_CONTEUDO_TEXTO = "input-texto";
@@ -52,10 +48,6 @@ namespace EngineParaTerapeutas.UI {
         private TextMeshProUGUI componenteTextMesh;
 
         public InputsComponenteTexto() {
-            ImportarTemplate("ElementosUI/InputsComponentes/InputsComponenteTexto/InputsComponenteTextoTemplate.uxml");
-            ImportarStyle("ElementosUI/InputsComponentes/InputsComponenteTexto/InputsComponenteTextoStyle.uss");
-
-            campoHabilitado = Root.Query<Toggle>(NOME_INPUT_HABILITADO);
             campoConteudoTexto = Root.Query<TextField>(NOME_INPUT_CONTEUDO_TEXTO);
             campoTamanhoTexto = Root.Query<FloatField>(NOME_INPUT_TAMANHO_TEXTO);
             campoNegrito = Root.Query<Toggle>(NOME_INPUT_NEGRITO);
@@ -63,21 +55,12 @@ namespace EngineParaTerapeutas.UI {
             campoSublinhado = Root.Query<Toggle>(NOME_INPUT_SUBLINHADO);
             campoCor = Root.Query<ColorField>(NOME_INPUT_COR);
 
-            ConfigurarHabilitado();
             ConfigurarConteudoTexto();
             ConfigurarTamanhoTexto();
             ConfigurarNegrito();
             ConfigurarItalico();
             ConfigurarSublinhado();
             ConfigurarCor();
-
-            return;
-        }
-
-        private void ConfigurarHabilitado() {
-            CampoHabilitado.labelElement.name = NOME_LABEL_HABILITADO;
-            CampoHabilitado.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
-            CampoHabilitado.SetValueWithoutNotify(false);
 
             return;
         }
@@ -134,18 +117,12 @@ namespace EngineParaTerapeutas.UI {
             componenteTexto = componente;
             componenteTextMesh = componenteTexto.TextMesh;
 
-            CampoHabilitado.SetValueWithoutNotify(componenteTexto.Canvas.gameObject.activeInHierarchy);
             CampoConteudoTexto.SetValueWithoutNotify(componenteTextMesh.text);
             CampoTamanhoTexto.SetValueWithoutNotify(componenteTextMesh.fontSize);
             CampoNegrito.SetValueWithoutNotify((componenteTextMesh.fontStyle & FontStyles.Bold) != 0);
             CampoItalico.SetValueWithoutNotify((componenteTextMesh.fontStyle & FontStyles.Italic) != 0);
             CampoSublinhado.SetValueWithoutNotify((componenteTextMesh.fontStyle & FontStyles.Underline) != 0);
             CampoCor.SetValueWithoutNotify(componenteTextMesh.color);
-
-            CampoHabilitado.RegisterCallback<ChangeEvent<bool>>(evt => {
-                componenteTexto.Canvas.gameObject.SetActive(CampoHabilitado.value);
-                // TODO: Ocultar/exibir outros campos
-            });
 
             CampoConteudoTexto.RegisterCallback<ChangeEvent<string>>(evt => {
                 componenteTextMesh.text = CampoConteudoTexto.value;
@@ -196,7 +173,6 @@ namespace EngineParaTerapeutas.UI {
         public void ReiniciarCampos() {
             componenteTexto = null;
 
-            CampoHabilitado.SetValueWithoutNotify(false);
             CampoConteudoTexto.SetValueWithoutNotify("Texto");
             CampoTamanhoTexto.SetValueWithoutNotify(1f);
             CampoNegrito.SetValueWithoutNotify(false);

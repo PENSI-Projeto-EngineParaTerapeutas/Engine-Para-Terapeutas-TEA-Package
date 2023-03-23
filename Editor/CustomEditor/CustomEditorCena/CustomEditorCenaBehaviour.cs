@@ -17,7 +17,7 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
 
         private Cena cena;
 
-        public override void OnEnable() {
+        protected override void OnEnable() {
             base.OnEnable();
             cena = target as Cena;
 

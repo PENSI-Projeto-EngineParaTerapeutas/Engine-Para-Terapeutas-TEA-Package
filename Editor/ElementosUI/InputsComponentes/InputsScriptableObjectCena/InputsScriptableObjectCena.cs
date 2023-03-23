@@ -7,6 +7,9 @@ using EngineParaTerapeutas.DTOs;
 
 namespace EngineParaTerapeutas.UI {
     public class InputsScriptableObjectCena : ElementoInterfaceEditor, IVinculavel<Cena>, IReiniciavel {
+        protected override string CaminhoTemplate => "ElementosUI/InputsComponentes/InputsScriptableObjectCena/InputsScriptableObjectCenaTemplate.uxml";
+        protected override string CaminhoStyle => "ElementosUI/InputsComponentes/InputsScriptableObjectCena/InputsScriptableObjectCenaStyle.uss";
+
         #region .: Elementos :.
         public TextField CampoNome { get => campoNome; }
         public EnumField CampoDificuldade { get => campoDificuldade; }
@@ -36,9 +39,6 @@ namespace EngineParaTerapeutas.UI {
         private Cena cena;
 
         public InputsScriptableObjectCena() {
-            ImportarTemplate("ElementosUI/InputsComponentes/InputsScriptableObjectCena/InputsScriptableObjectCenaTemplate.uxml");
-            ImportarStyle("ElementosUI/InputsComponentes/InputsScriptableObjectCena/InputsScriptableObjectCenaStyle.uss");
-
             campoNome = Root.Query<TextField>(NOME_INPUT_NOME);
             campoDificuldade = Root.Query<EnumField>(NOME_INPUT_DIFICULDADE);
             campoFaixaEtaria = Root.Query<IntegerField>(NOME_INPUT_FAIXA_ETARIA);

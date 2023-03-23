@@ -5,6 +5,9 @@ using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.Criadores {
     public class CriadorCenarioBehaviour : Criador {
+        protected override string CaminhoTemplate => "Telas/Criador/CriadorCenario/CriadorCenarioTemplate.uxml";
+        protected override string CaminhoStyle => "Telas/Criador/CriadorCenario/CriadorCenarioStyle.uss";
+
         #region .: Elementos :.
 
         private const string NOME_REGIAO_CARREGAMENTO_HEADER = "regiao-carregamento-header";
@@ -12,6 +15,9 @@ namespace EngineParaTerapeutas.Criadores {
 
         private const string NOME_REGIAO_CARREGAMENTO_INPUTS_IMAGEM = "regiao-carregamento-inputs-imagem";
         private VisualElement regiaoCarregamentoInputsImagem;
+
+        private const string NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO = "regiao-carregamento-botoes-confirmacao";
+        private VisualElement regiaoCarregamentoBotoesConfirmacao;
 
         private readonly InputsComponenteImagem grupoInputsImagem;
 
@@ -24,11 +30,12 @@ namespace EngineParaTerapeutas.Criadores {
 
             ImportarPrefab("Prefabs/Cenarios/Cenario.prefab");
 
-            ImportarTemplate("Telas/Criador/CriadorCenario/CriadorCenarioTemplate.uxml");
-            ImportarStyle("Telas/Criador/CriadorCenario/CriadorCenarioStyle.uss");
-
             CarregarRegiaoHeader();
             CarregarRegiaoInputsImagem();
+
+            ConfigurarBotoesConfirmacao();
+
+            IniciarCriacao();
 
             return;
         }
@@ -43,6 +50,16 @@ namespace EngineParaTerapeutas.Criadores {
         private void CarregarRegiaoInputsImagem() {
             regiaoCarregamentoInputsImagem = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_IMAGEM);
             regiaoCarregamentoInputsImagem.Add(grupoInputsImagem.Root);
+
+            return;
+        }
+
+        private void ConfigurarBotoesConfirmacao() {
+            regiaoCarregamentoBotoesConfirmacao = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO);
+            regiaoCarregamentoBotoesConfirmacao.Add(botoesConfirmacao.Root);
+
+            botoesConfirmacao.BotaoConfirmar.clicked += HandleBotaoConfirmarClick;
+            botoesConfirmacao.BotaoCancelar.clicked += HandleBotaoCancelarClick;
 
             return;
         }
@@ -71,12 +88,8 @@ namespace EngineParaTerapeutas.Criadores {
             novoObjeto.tag = NomesTags.Cenario;
             novoObjeto.layer = LayersProjeto.Default.Index;
             spriteCenario.sortingOrder = OrdemRenderizacao.Cenario;
-            novoObjeto = null;
 
-            ReiniciarPropriedadesNovoObjeto();
-
-            header.ReiniciarCampos();
-            ReiniciarCampos();
+            base.FinalizarCriacao();
 
             return;
         }

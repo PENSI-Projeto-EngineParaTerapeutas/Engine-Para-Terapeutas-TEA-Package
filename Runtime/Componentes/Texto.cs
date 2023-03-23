@@ -33,5 +33,19 @@ namespace EngineParaTerapeutas.ComponentesGameObjects {
             }
         }
         private Transform canvas = null;
+
+        public void Habilitar() {
+            Canvas.gameObject.SetActive(true);
+            TextMesh.enabled = true;
+
+            return;
+        }
+
+        public void Desabilitar() {
+            Canvas.gameObject.SetActive(false);
+            TextMesh.enabled = false;
+
+            return;
+        }
     }
 }

@@ -2,12 +2,14 @@ using UnityEditor;
 using UnityEngine;
 using EngineParaTerapeutas.Constantes;
 using EngineParaTerapeutas.UI;
+using EngineParaTerapeutas.Telas;
 
 namespace EngineParaTerapeutas.Criadores {
-    public abstract class Criador : ElementoInterfaceEditor, IReiniciavel {
+    public abstract class Criador : Tela, IReiniciavel, ICamposAtualizaveis {
         #region .: Elementos :.
 
         protected readonly HeaderCriadorBehaviour header;
+        protected readonly BotoesConfirmacao botoesConfirmacao;
 
         #endregion
 
@@ -16,6 +18,8 @@ namespace EngineParaTerapeutas.Criadores {
 
         protected Criador() {
             header = new HeaderCriadorBehaviour();
+            botoesConfirmacao = new BotoesConfirmacao();
+
             return;
         }
 
@@ -26,7 +30,6 @@ namespace EngineParaTerapeutas.Criadores {
 
         public virtual void IniciarCriacao() {
             novoObjeto = GameObject.Instantiate(prefab, new Vector3(), Quaternion.identity);
-            //TODO: novoObjeto.hideFlags = HideFlags.HideInHierarchy;
             novoObjeto.tag = NomesTags.EditorOnly;
             novoObjeto.layer = LayersProjeto.EditorOnly.Index;
 
@@ -34,11 +37,30 @@ namespace EngineParaTerapeutas.Criadores {
 
             VincularCamposAoNovoObjeto();
 
-            Selection.activeObject = novoObjeto;
+            Selection.activeObject = novoObjeto; // TODO: Failed creating toolbar element from ID "Tools/Builtin Tools".
             return;
         }
 
-        protected abstract void VincularCamposAoNovoObjeto();
+        protected virtual void HandleBotaoConfirmarClick() {
+            FinalizarCriacao();
+            return;
+        }
+
+        public virtual void FinalizarCriacao() {
+            novoObjeto = null;
+
+            ReiniciarPropriedadesNovoObjeto();
+
+            header.ReiniciarCampos();
+            ReiniciarCampos();
+
+            return;
+        }
+
+        protected virtual void HandleBotaoCancelarClick() {
+            CancelarCriacao();
+            return;
+        }
 
         public virtual void CancelarCriacao() {
             if(novoObjeto != null) {
@@ -54,7 +76,26 @@ namespace EngineParaTerapeutas.Criadores {
             return;
         }
 
-        public abstract void FinalizarCriacao();
+        public override void OnEditorUpdate() {
+            AtualizarCampos();
+            return;
+        }
+
+        public virtual void AtualizarCampos() {
+            header.AtualizarCampos();
+            return;
+        }
+
+        public override void OnEditorPlay() {
+            if(novoObjeto == null) {
+                return;
+            }
+
+            CancelarCriacao();
+            return;
+        }
+
+        protected abstract void VincularCamposAoNovoObjeto();
 
         protected abstract void ReiniciarPropriedadesNovoObjeto();
 

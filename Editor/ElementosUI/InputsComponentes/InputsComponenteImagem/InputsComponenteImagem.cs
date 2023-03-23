@@ -5,6 +5,9 @@ using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {
     public class InputsComponenteImagem : ElementoInterfaceEditor, IVinculavel<SpriteRenderer>, IReiniciavel {
+        protected override string CaminhoTemplate => "ElementosUI/InputsComponentes/InputsComponenteImagem/InputsComponenteImagemTemplate.uxml";
+        protected override string CaminhoStyle => "ElementosUI/InputsComponentes/InputsComponenteImagem/InputsComponenteImagemStyle.uss";
+
         #region .: Elementos :.
         public VisualElement RegiaoInputImagem { get => regiaoInputImagem; }
         public ColorField CampoCor { get => campoCor; }
@@ -34,9 +37,6 @@ namespace EngineParaTerapeutas.UI {
         private SpriteRenderer spriteRendererVinculado;
 
         public InputsComponenteImagem() {
-            ImportarTemplate("ElementosUI/InputsComponentes/InputsComponenteImagem/InputsComponenteImagemTemplate.uxml");
-            ImportarStyle("ElementosUI/InputsComponentes/InputsComponenteImagem/InputsComponenteImagemStyle.uss");
-
             regiaoInputImagem = Root.Query<VisualElement>(NOME_REGIAO_INPUT_IMAGEM);
             campoCor = Root.Query<ColorField>(NOME_INPUT_COR);
             campoEspelharHorizontal = Root.Query<Toggle>(NOME_INPUT_ESPELHAR_HORIZONTAL);

@@ -4,7 +4,10 @@ using UnityEditor.UIElements;
 using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {
-    public class InputsComponentePosicao : ElementoInterfaceEditor, IVinculavel<Transform>, IReiniciavel {
+    public class InputsComponentePosicao : ElementoInterfaceEditor, IVinculavel<Transform>, IReiniciavel, ICamposAtualizaveis {
+        protected override string CaminhoTemplate => "ElementosUI/InputsComponentes/InputsComponentePosicao/InputsComponentePosicaoTemplate.uxml";
+        protected override string CaminhoStyle => "ElementosUI/InputsComponentes/InputsComponentePosicao/InputsComponentePosicaoStyle.uss";
+
         #region .: Elementos :.
         public FloatField CampoPosicaoX { get => campoPosicaoX; }
         public FloatField CampoPosicaoY { get => campoPosicaoY; }
@@ -37,9 +40,6 @@ namespace EngineParaTerapeutas.UI {
         private Transform transformVinculado;
 
         public InputsComponentePosicao() {
-            ImportarTemplate("ElementosUI/InputsComponentes/InputsComponentePosicao/InputsComponentePosicaoTemplate.uxml");
-            ImportarStyle("ElementosUI/InputsComponentes/InputsComponentePosicao/InputsComponentePosicaoStyle.uss");
-
             campoPosicaoX = Root.Query<FloatField>(NOME_INPUT_POSICAO_X);
             campoPosicaoY = Root.Query<FloatField>(NOME_INPUT_POSICAO_Y);
 
@@ -129,6 +129,22 @@ namespace EngineParaTerapeutas.UI {
             CampoTamanhoY.SetValueWithoutNotify(0);
 
             CampoRotacao.SetValueWithoutNotify(0);
+
+            return;
+        }
+
+        public void AtualizarCampos() {
+            if(transformVinculado == null) {
+                return;
+            }
+
+            CampoPosicaoX?.SetValueWithoutNotify(transformVinculado.position.x);
+            CampoPosicaoY?.SetValueWithoutNotify(transformVinculado.position.y);
+
+            CampoTamanhoX?.SetValueWithoutNotify(transformVinculado.localScale.x);
+            CampoTamanhoY?.SetValueWithoutNotify(transformVinculado.localScale.y);
+
+            CampoRotacao?.SetValueWithoutNotify(transformVinculado.rotation.z);
 
             return;
         }

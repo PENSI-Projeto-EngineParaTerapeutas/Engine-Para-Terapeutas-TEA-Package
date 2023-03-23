@@ -5,10 +5,7 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:Toggle name="input-habilitado" class="input-padrao" label="Habilitado" tooltip="Define se o ator deve exibir um texto ou não"/>
-    
-    <engine:TextField name="input-texto" class="input-padrao" label="Conteúdo texto" tooltip="Define o conteúdo do texto que será exibido no ator"/>
-    
+    <engine:TextField name="input-texto" class="input-padrao" label="Conteúdo texto" tooltip="Define o conteúdo do texto que será exibido no ator"/>   
     <editor:FloatField name="input-tamanho-texto" class="input-padrao" label="Tamanho texto" tooltip="Define o tamanho do texto"/>
     
     <engine:VisualElement name="formatacao-texto">

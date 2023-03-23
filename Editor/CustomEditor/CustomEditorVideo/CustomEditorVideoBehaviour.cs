@@ -1,13 +1,11 @@
 using UnityEditor;
-using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.Video;
 using EngineParaTerapeutas.ComponentesGameObjects;
 using EngineParaTerapeutas.UI;
 
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(Video))]
-    public class CustomEditorVideoBehaviour : CustomEditorComponentes<Video, VideoPlayer> {
+    public class CustomEditorVideoBehaviour : CustomEditorBase {
         #region .: Elementos :.
 
         private const string REGIAO_CARREGAMENTO_INPUTS_PADROES_VIDEO = "regiao-carregamento-inputs-padroes-video";
@@ -17,14 +15,13 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
 
         #endregion
 
-        public override void OnEnable() {
+        private Video componente;
+
+        protected override void OnEnable() {
+            base.OnEnable();
+
             componente = target as Video;
-            componenteOriginal = componente.Player;
             root = new VisualElement();
-
-            ImportarDefaultStyle();
-            AlterarVisibilidadeComponenteOriginal(HideFlags.HideInInspector);
-
             grupoInputsVideo = new InputsComponenteVideo();
 
             ImportarTemplate("/CustomEditor/CustomEditorVideo/CustomEditorVideoTemplate.uxml");

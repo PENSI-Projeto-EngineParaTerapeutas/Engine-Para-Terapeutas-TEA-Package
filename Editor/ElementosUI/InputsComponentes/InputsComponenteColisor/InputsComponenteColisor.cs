@@ -5,6 +5,9 @@ using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {
     public class InputsComponenteColisor : ElementoInterfaceEditor, IVinculavel<BoxCollider2D>, IReiniciavel {
+        protected override string CaminhoTemplate => "ElementosUI/InputsComponentes/InputsComponenteColisor/InputsComponenteColisorTemplate.uxml";
+        protected override string CaminhoStyle => "ElementosUI/InputsComponentes/InputsComponenteColisor/InputsComponenteColisorStyle.uss";
+
         #region .: Elementos :.
         public Toggle CampoHabilitado { get => campoHabilitado; }
         public Toggle CampoOcupaEspaco { get => campoOcupaEspaco; }
@@ -36,9 +39,6 @@ namespace EngineParaTerapeutas.UI {
         private BoxCollider2D colisorVinculado;
 
         public InputsComponenteColisor() {
-            ImportarTemplate("ElementosUI/InputsComponentes/InputsComponenteColisor/InputsComponenteColisorTemplate.uxml");
-            ImportarStyle("ElementosUI/InputsComponentes/InputsComponenteColisor/InputsComponenteColisorStyle.uss");
-
             campoHabilitado = Root.Query<Toggle>(NOME_INPUT_HABILITADO);
             campoOcupaEspaco = Root.Query<Toggle>(NOME_INPUT_OCUPA_ESPACO);
             labelTamanho = Root.Query<Label>(NOME_LABEL_TAMANHO);

@@ -1,0 +1,7 @@
+#regiao-botoes-principais {
+	flex-direction: row;
+}
+
+#regiao-botoes-principais > Button {
+	flex: 1;
+}

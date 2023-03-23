@@ -1,15 +1,25 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEditor.UIElements;
 using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.UI;
 using EngineParaTerapeutas.ComponentesGameObjects;
+using EngineParaTerapeutas.DTOs;
+using EngineParaTerapeutas.UI;
 
 namespace EngineParaTerapeutas.Criadores {
     public class CriadorApoioBehaviour : Criador {
+        protected override string CaminhoTemplate => "Telas/Criador/CriadorApoio/CriadorApoioTemplate.uxml";
+        protected override string CaminhoStyle => "Telas/Criador/CriadorApoio/CriadorApoioStyle.uss";
+
         #region .: Elementos :.
 
         private const string NOME_REGIAO_CARREGAMENTO_HEADER = "regiao-carregamento-header";
         private VisualElement regiaoCarregamentoHeader;
+
+        private const string NOME_LABEL_TIPO_APOIO = "label-tipo-apoio";
+        private const string NOME_INPUT_TIPO_APOIO = "input-tipo-apoio";
+        private EnumField campoTipoApoio;
 
         private const string NOME_REGIAO_CARREGAMENTO_INPUTS_IMAGEM = "regiao-carregamento-inputs-imagem";
         private VisualElement regiaoCarregamentoInputsImagem;
@@ -19,6 +29,9 @@ namespace EngineParaTerapeutas.Criadores {
 
         private const string NOME_REGIAO_CARREGAMENTO_INPUTS_VIDEO = "regiao-carregamento-inputs-video";
         private VisualElement regiaoCarregamentoInputsVideo;
+
+        private const string NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO = "regiao-carregamento-botoes-confirmacao";
+        private VisualElement regiaoCarregamentoBotoesConfirmacao;
 
         private readonly InputsComponenteImagem grupoInputsImagem;
         private readonly InputsComponenteAudio grupoInputsAudio;
@@ -30,6 +43,9 @@ namespace EngineParaTerapeutas.Criadores {
         private AudioSource audioSource;
         private Video video;
 
+        private readonly TiposApoios tipoPadrao = TiposApoios.Imagem;
+
+
         public CriadorApoioBehaviour() {
             grupoInputsImagem = new InputsComponenteImagem();
             grupoInputsAudio = new InputsComponenteAudio();
@@ -37,13 +53,17 @@ namespace EngineParaTerapeutas.Criadores {
 
             ImportarPrefab("Prefabs/Apoios/Apoio.prefab");
 
-            ImportarTemplate("Telas/Criador/CriadorApoio/CriadorApoioTemplate.uxml");
-            ImportarStyle("Telas/Criador/CriadorApoio/CriadorApoioStyle.uss");
-
             CarregarRegiaoHeader();
             CarregarRegiaoInputsImagem();
             CarregarRegiaoInputsAudio();
             CarregarRegiaoInputsVideo();
+
+            ConfigurarCampoTipoApoio();
+            AlterarVisibilidadeCamposComBaseTipo(tipoPadrao);
+
+            ConfigurarBotoesConfirmacao();
+
+            IniciarCriacao();
 
             return;
         }
@@ -76,6 +96,59 @@ namespace EngineParaTerapeutas.Criadores {
             return;
         }
 
+        private void ConfigurarCampoTipoApoio() {
+            campoTipoApoio = Root.Query<EnumField>(NOME_INPUT_TIPO_APOIO);
+
+            campoTipoApoio.labelElement.name = NOME_LABEL_TIPO_APOIO;
+            campoTipoApoio.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
+
+            campoTipoApoio.Init(tipoPadrao);
+            campoTipoApoio.SetValueWithoutNotify(tipoPadrao);
+
+            campoTipoApoio.RegisterCallback<ChangeEvent<Enum>>(evt => {
+                TiposApoios novoTipo = Enum.Parse<TiposApoios>(campoTipoApoio.value.ToString());
+                IdentificadorTipoApoio tipoNovoObjeto = novoObjeto.GetComponent<IdentificadorTipoApoio>();
+
+                tipoNovoObjeto.AlterarTipo(novoTipo);
+                AlterarVisibilidadeCamposComBaseTipo(novoTipo);
+            });
+
+            return;
+        }
+
+        private void AlterarVisibilidadeCamposComBaseTipo(TiposApoios tipo) {
+            regiaoCarregamentoInputsAudio.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            regiaoCarregamentoInputsImagem.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            regiaoCarregamentoInputsVideo.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+
+            switch(tipo) {
+                case(TiposApoios.Audio): {
+                    regiaoCarregamentoInputsAudio.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+                    break;
+                }
+                case(TiposApoios.Imagem): {
+                    regiaoCarregamentoInputsImagem.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+                    break;
+                }
+                case(TiposApoios.Video): {
+                    regiaoCarregamentoInputsVideo.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+                    break;
+                }
+            }
+
+            return;
+        }
+
+        private void ConfigurarBotoesConfirmacao() {
+            regiaoCarregamentoBotoesConfirmacao = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO);
+            regiaoCarregamentoBotoesConfirmacao.Add(botoesConfirmacao.Root);
+
+            botoesConfirmacao.BotaoConfirmar.clicked += HandleBotaoConfirmarClick;
+            botoesConfirmacao.BotaoCancelar.clicked += HandleBotaoCancelarClick;
+
+            return;
+        }
+
         protected override void VincularCamposAoNovoObjeto() {
             sprite = novoObjeto.GetComponent<SpriteRenderer>();
             sprite.sortingOrder = OrdemRenderizacao.EmCriacao;
@@ -86,6 +159,20 @@ namespace EngineParaTerapeutas.Criadores {
 
             video = novoObjeto.GetComponent<Video>();
             grupoInputsVideo.VincularDados(video);
+
+            IdentificadorTipoApoio tipo = novoObjeto.GetComponent<IdentificadorTipoApoio>();
+            tipo.AlterarTipo(tipoPadrao);
+
+            return;
+        }
+
+        public override void FinalizarCriacao() {
+            novoObjeto.tag = NomesTags.Apoios;
+            novoObjeto.layer = LayersProjeto.Default.Index;
+            sprite.sortingOrder = OrdemRenderizacao.Apoio;
+            
+            base.FinalizarCriacao();
+
             return;
         }
 
@@ -102,19 +189,8 @@ namespace EngineParaTerapeutas.Criadores {
             grupoInputsAudio.ReiniciarCampos();
             grupoInputsVideo.ReiniciarCampos();
 
-            return;
-        }
-
-        public override void FinalizarCriacao() {
-            novoObjeto.tag = NomesTags.Apoios;
-            novoObjeto.layer = LayersProjeto.Default.Index;
-            sprite.sortingOrder = OrdemRenderizacao.Apoio;
-            novoObjeto = null;
-
-            ReiniciarPropriedadesNovoObjeto();
-
-            header.ReiniciarCampos();
-            ReiniciarCampos();
+            campoTipoApoio.SetValueWithoutNotify(tipoPadrao);
+            AlterarVisibilidadeCamposComBaseTipo(tipoPadrao);
 
             return;
         }

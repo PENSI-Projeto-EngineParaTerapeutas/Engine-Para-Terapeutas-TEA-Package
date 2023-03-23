@@ -11,7 +11,9 @@ namespace EngineParaTerapeutas {
     public class Inicializacao : AssetPostprocessor {
         private const string NOME_ARQUIVO_CONFIGURACAO_PACOTE = "package.json";
 
-        public static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths) {
+        static Inicializacao() {}
+
+        private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths) {
             string caminhoArquivoConfiguracaoPacote = Path.Combine(ConstantesProjeto.PastaRaizProjeto, NOME_ARQUIVO_CONFIGURACAO_PACOTE);
 
             foreach(string caminho in importedAssets) {
@@ -32,40 +34,45 @@ namespace EngineParaTerapeutas {
         }
 
         private static void CriarPastasProjeto() {
-            if(!Directory.Exists(ConstantesRuntime.CaminhoPastaCenas)) {
-                Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaCenas);
-            }
+            string[] CAMINHO_PASTAS = {
+                ConstantesRuntime.CaminhoPastaCenas,
+                ConstantesRuntime.CaminhoPastaImagens,
+                ConstantesRuntime.CaminhoPastaSons,
+                ConstantesRuntime.CaminhoPastaScriptableObjectsCenas,
+                ConstantesRuntime.CaminhoPastaStreamingAssets,
+                ConstantesRuntime.CaminhoPastaAnimacoes,
+            };
 
-            if(!Directory.Exists(ConstantesRuntime.CaminhoPastaImagens)) {
-                Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaImagens);
-            }
+            foreach(string pasta in CAMINHO_PASTAS) {
+                if(Directory.Exists(pasta)) {
+                    continue;
+                }
 
-            if(!Directory.Exists(ConstantesRuntime.CaminhoPastaSons)) {
-                Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaSons);
-            }
-
-            if(!Directory.Exists(ConstantesRuntime.CaminhoPastaScriptableObjectsCenas)) {
-                Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaScriptableObjectsCenas);
-            }
-
-            if(!Directory.Exists(ConstantesRuntime.CaminhoPastaStreamingAssets)) {
-                Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaStreamingAssets);
+                Directory.CreateDirectory(pasta);
             }
 
             return;
         }
 
         private static void ConfigurarProjectSettings() {
+            string[] TAGS_ENGINE = {
+                NomesTags.Apoios,
+                NomesTags.Reforcos,
+                NomesTags.Cenario,
+                NomesTags.Contexto,
+                NomesTags.Instrucoes,
+                NomesTags.ObjetosInteracao,
+                NomesTags.Personagem,
+            };
+
             SerializedObject tagManager = new(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset").First());
             SerializedProperty tagsProperty = tagManager.FindProperty("tags");
 
-            AdicionarTag(tagsProperty, NomesTags.Apoios);
-            AdicionarTag(tagsProperty, NomesTags.Reforcos);
-            AdicionarTag(tagsProperty, NomesTags.Cenario);
-            AdicionarTag(tagsProperty, NomesTags.Contexto);
+            foreach(string tag in TAGS_ENGINE) {
+                AdicionarTag(tagsProperty, tag);
+            }
 
             SerializedProperty layersProperty = tagManager.FindProperty("layers");
-
             AdicionarLayer(layersProperty, LayersProjeto.EditorOnly);
 
             tagManager.ApplyModifiedProperties();

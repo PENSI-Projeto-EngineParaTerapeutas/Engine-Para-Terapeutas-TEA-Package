@@ -5,11 +5,9 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:VisualElement name="criador-cenario">
-        <engine:VisualElement name="regiao-carregamento-header">
-        </engine:VisualElement>
+    <engine:VisualElement name="regiao-carregamento-header"/>
 
-        <engine:VisualElement name="regiao-carregamento-inputs-imagem">
-        </engine:VisualElement>
-    </engine:VisualElement>
+    <engine:VisualElement name="regiao-carregamento-inputs-imagem"/>
+
+    <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>
 </engine:UXML>

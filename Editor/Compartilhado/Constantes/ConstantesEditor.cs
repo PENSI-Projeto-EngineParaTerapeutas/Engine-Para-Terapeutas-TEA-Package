@@ -4,6 +4,7 @@ namespace EngineParaTerapeutas.Constantes {
     public static class ConstantesEditor {
         public static string PastaRaiz { get => Path.Combine(ConstantesProjeto.PastaRaizProjeto, "Editor/"); }
         public static string CaminhoCompletoPastaResources { get => Path.Combine(PastaRaiz, "Resources/"); }
+        public static string CaminhoCompletoPastaImagens { get => Path.Combine(CaminhoCompletoPastaResources, "Imagens/"); }
         public static string CaminhoPastaBuild { get => "Build/WebGL/"; }
 
         public static string NomePastaLayouts { get => "Layouts/";  }

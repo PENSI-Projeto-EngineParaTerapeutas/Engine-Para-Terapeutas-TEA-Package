@@ -4,10 +4,17 @@ using EngineParaTerapeutas.Constantes;
 using EngineParaTerapeutas.UI;
 
 namespace EngineParaTerapeutas.Criadores {
-    public class HeaderCriadorBehaviour : ElementoInterfaceEditor, IVinculavel<GameObject>, IReiniciavel {
+    public class HeaderCriadorBehaviour : ElementoInterfaceEditor, IVinculavel<GameObject>, IReiniciavel, ICamposAtualizaveis {
         private const string NOME_PADRAO_NOVO_ATOR = "Ator";
 
+        protected override string CaminhoTemplate => "Telas/Criador/HeaderCriador/HeaderCriadorTemplate.uxml";
+        protected override string CaminhoStyle => "Telas/Criador/HeaderCriador/HeaderCriadorStyle.uss";
+
         #region .: Elementos :.
+
+        public TextField CampoNomeObjeto { get => campoNomeObjeto; }
+        public VisualElement RegiaoCarregamentoInputsPosicao { get => regiaoCarregamentoInputsPosicao; }
+        public InputsComponentePosicao GrupoInputsPosicao { get => grupoInputsPosicao; }
 
         private const string NOME_LABEL_TEXTO_NOME_OBJETO = "label-nome-ator";
         private const string NOME_CAMPO_TEXTO_NOME_OBJETO = "input-nome-ator";
@@ -25,10 +32,6 @@ namespace EngineParaTerapeutas.Criadores {
 
         public HeaderCriadorBehaviour() {
             grupoInputsPosicao = new InputsComponentePosicao();
-
-            ImportarTemplate("Telas/Criador/HeaderCriador/HeaderCriadorTemplate.uxml");
-            ImportarStyle("Telas/Criador/HeaderCriador/HeaderCriadorStyle.uss");
-
             ConfigurarInputs();
 
             return;
@@ -79,6 +82,11 @@ namespace EngineParaTerapeutas.Criadores {
             campoNomeObjeto.SetValueWithoutNotify(string.Empty);
             grupoInputsPosicao.ReiniciarCampos();
 
+            return;
+        }
+
+        public void AtualizarCampos() {
+            grupoInputsPosicao.AtualizarCampos();
             return;
         }
     }

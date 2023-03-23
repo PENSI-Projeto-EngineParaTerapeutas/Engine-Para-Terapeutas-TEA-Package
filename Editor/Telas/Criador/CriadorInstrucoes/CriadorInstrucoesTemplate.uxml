@@ -5,15 +5,13 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:VisualElement name="regiao-carregamento-header">
-    </engine:VisualElement>
+    <engine:VisualElement name="regiao-carregamento-header"/>
 
-    <engine:VisualElement name="regiao-carregamento-inputs-video">
-    </engine:VisualElement>
+    <editor:EnumField name="input-tipo-instrucao" class="input-padrao" label="Tipo" tooltip="Define o tipo do Ator"/>
 
-    <engine:VisualElement name="regiao-carregamento-inputs-audio">
-    </engine:VisualElement>
+    <engine:VisualElement name="regiao-carregamento-inputs-video"/>
+    <engine:VisualElement name="regiao-carregamento-inputs-audio"/>
+    <engine:VisualElement name="regiao-carregamento-inputs-texto"/>
 
-    <engine:VisualElement name="regiao-carregamento-inputs-texto">
-    </engine:VisualElement>
+    <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>
 </engine:UXML>

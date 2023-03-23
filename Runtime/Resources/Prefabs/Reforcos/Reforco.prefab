@@ -58,7 +58,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &6199939673951238588
 MonoBehaviour:
@@ -92,15 +92,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8069636705134886088}
-  - component: {fileID: 4438016696633610812}
   - component: {fileID: 89450288396031107}
-  - component: {fileID: 5749666610586936617}
   - component: {fileID: 2176119945438411782}
-  - component: {fileID: 7037901413716903790}
-  - component: {fileID: 8864905834554081564}
-  - component: {fileID: 2566303402222274743}
+  - component: {fileID: 5749666610586936617}
+  - component: {fileID: 556029354542043278}
   - component: {fileID: 975175251642519992}
-  - component: {fileID: 9047386785868523316}
+  - component: {fileID: 7513838881914282887}
+  - component: {fileID: 4836362651639558203}
   m_Layer: 0
   m_Name: Reforco
   m_TagString: Reforcos
@@ -124,18 +122,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4438016696633610812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5448587993972732098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2396690e16d968d4ebdd1c15f5ee5851, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &89450288396031107
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -143,7 +129,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5448587993972732098}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -176,7 +162,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -188,41 +174,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!328 &5749666610586936617
-VideoPlayer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5448587993972732098}
-  m_Enabled: 1
-  m_VideoClip: {fileID: 0}
-  m_TargetCameraAlpha: 1
-  m_TargetCamera3DLayout: 0
-  m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 0}
-  m_TimeReference: 0
-  m_TargetMaterialRenderer: {fileID: 89450288396031107}
-  m_TargetMaterialProperty: <noninit>
-  m_RenderMode: 3
-  m_AspectRatio: 2
-  m_DataSource: 1
-  m_PlaybackSpeed: 1
-  m_AudioOutputMode: 1
-  m_TargetAudioSources:
-  - {fileID: 2176119945438411782}
-  m_DirectAudioVolumes:
-  - 1
-  m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 0
-  m_SkipOnDrop: 1
-  m_Looping: 0
-  m_WaitForFirstFrame: 1
-  m_FrameReadyEventEnabled: 0
-  m_VideoShaders: []
 --- !u!82 &2176119945438411782
 AudioSource:
   m_ObjectHideFlags: 0
@@ -230,7 +181,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5448587993972732098}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -319,19 +270,42 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7037901413716903790
-MonoBehaviour:
+--- !u!328 &5749666610586936617
+VideoPlayer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5448587993972732098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec1a89f22e8c2654d9de3ce40be742be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8864905834554081564
+  m_Enabled: 0
+  m_VideoClip: {fileID: 0}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 0}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 89450288396031107}
+  m_TargetMaterialProperty: <noninit>
+  m_RenderMode: 3
+  m_AspectRatio: 2
+  m_DataSource: 1
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 1
+  m_TargetAudioSources:
+  - {fileID: 2176119945438411782}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 0
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
+--- !u!114 &556029354542043278
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -344,18 +318,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nomeArquivoVideo: 
---- !u!114 &2566303402222274743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5448587993972732098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3835e6ce07430849aadd04a5e668ab3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &975175251642519992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,7 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291ef4b6549f26547b0d5ca37672b1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &9047386785868523316
+--- !u!114 &7513838881914282887
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -377,7 +339,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 5448587993972732098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0360b6d4ba0a51447b8f29e6576185d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 564ffc403f043874abeaca404da7ced9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipo: 0
+--- !u!114 &4836362651639558203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5448587993972732098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505303506e22e9c448d2988beab2f758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tipoAcionamento: 0

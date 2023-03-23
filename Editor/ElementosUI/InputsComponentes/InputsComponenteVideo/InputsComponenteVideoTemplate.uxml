@@ -5,8 +5,6 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:Toggle name="input-habilitado" class="input-padrao" label="Habilitado" tooltip="Define se o ator deve exibir um texto ou não"/>
-
     <engine:VisualElement name="regiao-input-video">
     </engine:VisualElement>
 

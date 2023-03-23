@@ -1,13 +1,13 @@
+using System;
 using System.IO;
+using System.Globalization;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
 using EngineParaTerapeutas.Constantes;
 using EngineParaTerapeutas.ScriptableObjects;
-using System.Collections.Generic;
-using System.Globalization;
-using System;
 
 namespace EngineParaTerapeutas.Utils {
     public static class GerenciadorCenas {

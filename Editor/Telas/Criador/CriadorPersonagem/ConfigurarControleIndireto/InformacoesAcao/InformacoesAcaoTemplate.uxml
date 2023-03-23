@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <engine:Image name="imagem-icone-animacao"/>
+    <engine:Label name="label-associacao-objeto-animacao" text="-"/>
+    <engine:Image name="imagem-icone-lixeira"/>   
+</engine:UXML>

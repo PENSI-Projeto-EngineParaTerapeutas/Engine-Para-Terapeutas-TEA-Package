@@ -1,27 +1,23 @@
-using UnityEditor;
-using UnityEngine.UIElements;
-using EngineParaTerapeutas.Constantes;
+using EngineParaTerapeutas.Utils;
 
 namespace EngineParaTerapeutas.UI {
     public abstract class ElementoInterfaceEditor : ElementoInterface {
-        protected ElementoInterfaceEditor() {}
+        private const string CAMINHO_CLASSES_PADROES_USS = "Compartilhado/ClassesPadroesEditorStyle.uss";
 
         protected override void ImportarDefaultStyle() {
-            defaultStyle = AssetDatabase.LoadAssetAtPath<StyleSheet>(ConstantesEditor.PastaRaiz + "Compartilhado/ClassesPadroesEditorStyle.uss");
+            defaultStyle = Importador.ImportarUSS(CAMINHO_CLASSES_PADROES_USS);
             Root.styleSheets.Add(defaultStyle);
 
             return;
         }
 
         protected override void ImportarTemplate(string caminho) {
-            template = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(ConstantesEditor.PastaRaiz + caminho);
-            Root.Add(template.Instantiate());
-
+            template = Importador.ImportarUXML(caminho);
             return;
         }
 
         protected override void ImportarStyle(string caminho) {
-            style = AssetDatabase.LoadAssetAtPath<StyleSheet>(ConstantesEditor.PastaRaiz + caminho); // TODO: Utilizar path
+            style = Importador.ImportarUSS(caminho);
             Root.styleSheets.Add(style);
 
             return;

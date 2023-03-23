@@ -7,6 +7,9 @@ using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {
     public class InputAudio : ElementoInterfaceEditor, IReiniciavel {
+        protected override string CaminhoTemplate => "ElementosUI/InputAudio/InputAudioTemplate.uxml";
+        protected override string CaminhoStyle => "ElementosUI/InputAudio/InputAudioStyle.uss";
+
         #region .: Elementos :.
         public ObjectField CampoAudio { get => campoAudio; }
         public Label LabelCampoAudio { get => campoAudio.labelElement; }
@@ -22,9 +25,6 @@ namespace EngineParaTerapeutas.UI {
         #endregion
 
         public InputAudio() {
-            ImportarTemplate("ElementosUI/InputAudio/InputAudioTemplate.uxml");
-            ImportarStyle("ElementosUI/InputAudio/InputAudioStyle.uss");
-
             campoAudio = Root.Query<ObjectField>(NOME_INPUT_AUDIO);
             botaoBuscarAudio = Root.Query<Button>(NOME_BOTAO_BUSCAR_AUDIO);
 

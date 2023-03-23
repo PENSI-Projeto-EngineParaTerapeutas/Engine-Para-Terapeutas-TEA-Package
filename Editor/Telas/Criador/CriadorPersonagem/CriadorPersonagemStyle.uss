@@ -1,0 +1,39 @@
+#regiao-titulo {
+	flex-direction: row;
+}
+
+#grupo-radio-button {
+	flex-direction: column;
+}
+
+#regiao-opcao-controle-indireto {
+	flex-direction: row;
+}
+
+#regiao-label-selecao-controle {
+	flex-direction: row;
+}
+
+#regiao-label-selecao-controle > Label {
+	margin-right: 3px;
+}
+
+.opcao-radio-button {
+	flex: 5;
+	flex-direction: row-reverse;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+#radio-opcao-controle-indireto {
+	flex-grow: 0.5;
+}
+
+.opcao-radio-button > VisualElement {
+	flex-grow: 0;
+	margin-right: 3px;
+}
+
+.opcao-radio-button > Label {
+	margin-right: 3px;
+}

@@ -6,6 +6,9 @@ using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {
     public class ConfiguracaoReforcoBehaviour : ElementoInterfaceJogo {
+        protected override string CaminhoTemplate => "Scripts/Telas/PreConfiguracaoJogo/ConfiguracaoReforco/ConfiguracaoReforcoTemplate";
+        protected override string CaminhoStyle => "Scripts/Telas/PreConfiguracaoJogo/ConfiguracaoReforco/ConfiguracaoReforcoStyle";
+
         #region .: Elementos :.
 
         private const string NOME_REGIAO_SELECAO_REFORCOS = "regiao-selecao-reforcos";
@@ -20,9 +23,6 @@ namespace EngineParaTerapeutas.UI {
 
         public ConfiguracaoReforcoBehaviour() {
             reforcos = GameObject.FindGameObjectsWithTag(NomesTags.Reforcos).ToList();
-
-            ImportarTemplate("Scripts/Telas/PreConfiguracaoJogo/ConfiguracaoReforco/ConfiguracaoReforcoTemplate");
-            ImportarStyle("Scripts/Telas/PreConfiguracaoJogo/ConfiguracaoReforco/ConfiguracaoReforcoStyle");
 
             regiaoSelecaoReforcos = Root.Query<VisualElement>(NOME_REGIAO_SELECAO_REFORCOS);
             regiaoTelaViza = Root.Query<VisualElement>(NOME_REGIAO_TELA_VAZIA);
@@ -41,21 +41,9 @@ namespace EngineParaTerapeutas.UI {
 
             int contadorGameObjects = 0;
             foreach(GameObject reforco in reforcos) {
-                Toggle selecionarAtivo = new() {
-                    name = ("selecionar-reforco-" + contadorGameObjects),
-                    label = reforco.name,
-                };
-                selecionarAtivo.AddToClassList("input-selecionar-reforcos");
+                HabilitadorAtoresDinamico habilitadorAtoresDinamico = new(reforco);
+                regiaoSelecaoReforcos.Add(habilitadorAtoresDinamico.Root);
 
-                selecionarAtivo.labelElement.name = ("label-selecionar-reforcos-" + contadorGameObjects);
-                selecionarAtivo.labelElement.AddToClassList("label-selecionar-reforcos");
-
-                selecionarAtivo.SetValueWithoutNotify(reforco.activeInHierarchy);
-                selecionarAtivo.RegisterCallback<ChangeEvent<bool>>(evt => {
-                    reforco.SetActive(evt.newValue);
-                });
-
-                regiaoSelecaoReforcos.Add(selecionarAtivo);
                 contadorGameObjects++;
             }
 

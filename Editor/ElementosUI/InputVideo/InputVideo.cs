@@ -6,6 +6,9 @@ using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {
     public class InputVideo : ElementoInterfaceEditor, IReiniciavel {
+        protected override string CaminhoTemplate => "ElementosUI/InputVideo/InputVideoTemplate.uxml";
+        protected override string CaminhoStyle => "ElementosUI/InputVideo/InputVideoStyle.uss";
+
         #region .: Elementos :.
         public TextField CampoVideo { get => campoVideo; }
         public Label LabelCampoVideo { get => campoVideo.labelElement; }
@@ -21,9 +24,6 @@ namespace EngineParaTerapeutas.UI {
         #endregion
 
         public InputVideo() {
-            ImportarTemplate("ElementosUI/InputVideo/InputVideoTemplate.uxml");
-            ImportarStyle("ElementosUI/InputVideo/InputVideoStyle.uss");
-
             campoVideo = Root.Query<TextField>(NOME_INPUT_VIDEO);
             botaoBuscarVideo = Root.Query<Button>(NOME_BOTAO_BUSCAR_VIDEO);
 

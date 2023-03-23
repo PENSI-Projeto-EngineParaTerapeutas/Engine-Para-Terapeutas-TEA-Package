@@ -1,0 +1,7 @@
+#regiao-botoes-confirmacao {
+	flex-direction: row;
+}
+
+#regiao-botoes-confirmacao > Button {
+	flex: 1;
+}

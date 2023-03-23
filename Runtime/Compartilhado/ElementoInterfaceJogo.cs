@@ -3,10 +3,10 @@ using UnityEngine.UIElements;
 
 namespace EngineParaTerapeutas.UI {
     public abstract class ElementoInterfaceJogo : ElementoInterface {
-        protected ElementoInterfaceJogo() {}
+        private const string CAMINHO_CLASS_PADROES_USS = "Scripts/Compartilhado/ClassesPadroesStyle";
 
         protected override void ImportarDefaultStyle() {
-            defaultStyle = Resources.Load<StyleSheet>("Scripts/Compartilhado/ClassesPadroesStyle");
+            defaultStyle = Resources.Load<StyleSheet>(CAMINHO_CLASS_PADROES_USS);
             Root.styleSheets.Add(defaultStyle);
 
             return;
@@ -14,8 +14,6 @@ namespace EngineParaTerapeutas.UI {
 
         protected override void ImportarTemplate(string caminho) {
             template = Resources.Load<VisualTreeAsset>(caminho);
-            Root.Add(template.Instantiate());
-
             return;
         }
 

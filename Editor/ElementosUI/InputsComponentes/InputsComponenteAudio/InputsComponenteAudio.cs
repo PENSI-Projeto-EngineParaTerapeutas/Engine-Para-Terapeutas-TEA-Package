@@ -5,6 +5,9 @@ using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {
     public class InputsComponenteAudio : ElementoInterfaceEditor, IVinculavel<AudioSource>, IReiniciavel {
+        protected override string CaminhoTemplate => "ElementosUI/InputsComponentes/InputsComponenteAudio/InputsComponenteAudioTemplate.uxml";
+        protected override string CaminhoStyle => "ElementosUI/InputsComponentes/InputsComponenteAudio/InputsComponenteAudioStyle.uss";
+
         #region .: Elementos :.
         public VisualElement RegiaoInputImagem { get => regiaoInputAudio; }
         public FloatField CampoVolume { get => campoVolume; }
@@ -34,9 +37,6 @@ namespace EngineParaTerapeutas.UI {
         private AudioSource audioSourceVinculado;
 
         public InputsComponenteAudio() {
-            ImportarTemplate("ElementosUI/InputsComponentes/InputsComponenteAudio/InputsComponenteAudioTemplate.uxml");
-            ImportarStyle("ElementosUI/InputsComponentes/InputsComponenteAudio/InputsComponenteAudioStyle.uss");
-
             regiaoInputAudio = Root.Query<VisualElement>(NOME_REGIAO_INPUT_AUDIO);
             campoVolume = Root.Query<FloatField>(NOME_INPUT_VOLUME);
             campoMudo = Root.Query<Toggle>(NOME_INPUT_MUDO);
