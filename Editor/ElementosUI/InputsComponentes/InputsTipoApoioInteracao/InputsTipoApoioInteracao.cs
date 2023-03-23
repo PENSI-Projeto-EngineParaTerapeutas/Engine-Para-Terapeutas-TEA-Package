@@ -7,9 +7,9 @@ using EngineParaTerapeutas.Constantes;
 using EngineParaTerapeutas.ComponentesGameObjects;
 
 namespace EngineParaTerapeutas.UI {
-    public class InputsIdentificadorTipoApoioInteracao : ElementoInterfaceEditor, IVinculavel<IdentificadorTipoApoioObjetoInteracao>, IReiniciavel {
-        protected override string CaminhoTemplate => "ElementosUI/InputsComponentes/InputsIdentificadorTipoApoioInteracao/InputsIdentificadorTipoApoioInteracaoTemplate.uxml";
-        protected override string CaminhoStyle => "ElementosUI/InputsComponentes/InputsIdentificadorTipoApoioInteracao/InputsIdentificadorTipoApoioInteracaoStyle.uss";
+    public class InputsTipoApoioInteracao : ElementoInterfaceEditor, IVinculavel<IdentificadorTipoApoioObjetoInteracao>, IReiniciavel {
+        protected override string CaminhoTemplate => "ElementosUI/InputsComponentes/InputsTipoApoioInteracao/InputsTipoApoioInteracaoTemplate.uxml";
+        protected override string CaminhoStyle => "ElementosUI/InputsComponentes/InputsTipoApoioInteracao/InputsTipoApoioInteracaoStyle.uss";
 
         #region .: Elementos :.
 
@@ -40,7 +40,7 @@ namespace EngineParaTerapeutas.UI {
         private AudioSource audioSource;
         private SpriteRenderer spriteRenderer;
 
-        public InputsIdentificadorTipoApoioInteracao() {
+        public InputsTipoApoioInteracao() {
             grupoInputsAudio = new InputsComponenteAudio();
             grupoInputsImagem = new InputsComponenteImagem();
             grupoInputsTexto = new InputsComponenteTexto();

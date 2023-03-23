@@ -8,7 +8,7 @@ using EngineParaTerapeutas.DTOs;
 
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(IdentificadorTipoReforco))]
-    public class CustomEditorIdentificadorTipoReforcoBehaviour : CustomEditorBase {
+    public class CustomEditorTipoReforcoBehaviour : CustomEditorBase {
 
         #region .: Elementos :.
 
@@ -25,8 +25,8 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
 
             componente = target as IdentificadorTipoReforco;
 
-            ImportarTemplate("/CustomEditor/CustomEditorIdentificadorTipoReforco/CustomEditorIdentificadorTipoReforcoTemplate.uxml");
-            ImportarStyle("/CustomEditor/CustomEditorIdentificadorTipoReforco/CustomEditorIdentificadorTipoReforcoStyle.uss");
+            ImportarTemplate("/CustomEditor/CustomEditorTipoReforco/CustomEditorTipoReforcoTemplate.uxml");
+            ImportarStyle("/CustomEditor/CustomEditorTipoReforco/CustomEditorTipoReforcoStyle.uss");
 
             ConfigurarInputs();
 

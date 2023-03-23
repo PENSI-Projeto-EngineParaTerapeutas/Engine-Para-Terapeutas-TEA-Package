@@ -8,7 +8,7 @@ using EngineParaTerapeutas.ComponentesGameObjects;
 
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(IdentificadorTipoObjetoInteracao))]
-    public class CustomEditorIdentificadorTipoObjetoInteracaoBehaviour : CustomEditorBase {
+    public class CustomEditorTipoObjetoInteracaoBehaviour : CustomEditorBase {
 
         #region .: Elementos :.
 
@@ -25,8 +25,8 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
 
             componente = target as IdentificadorTipoObjetoInteracao;
 
-            ImportarTemplate("/CustomEditor/CustomEditorIdentificadorTipoObjetoInteracao/CustomEditorIdentificadorTipoObjetoInteracaoTemplate.uxml");
-            ImportarStyle("/CustomEditor/CustomEditorIdentificadorTipoObjetoInteracao/CustomEditorIdentificadorTipoObjetoInteracaoStyle.uss");
+            ImportarTemplate("/CustomEditor/CustomEditorTipoObjetoInteracao/CustomEditorTipoObjetoInteracaoTemplate.uxml");
+            ImportarStyle("/CustomEditor/CustomEditorTipoObjetoInteracao/CustomEditorTipoObjetoInteracaoStyle.uss");
 
             ConfigurarInputs();
 

@@ -22,7 +22,7 @@ namespace EngineParaTerapeutas.Criadores {
         private const string NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO = "regiao-carregamento-botoes-confirmacao";
         private VisualElement regiaoCarregamentoBotoesConfirmacao;
 
-        private readonly InputsIdentificadorTipoApoioInteracao inputsTipoApoioInteracao;
+        private readonly InputsTipoApoioInteracao inputsTipoApoioInteracao;
 
         #endregion
 
@@ -31,7 +31,7 @@ namespace EngineParaTerapeutas.Criadores {
 
         public CriadorApoioObjetoInteracaoBehaviour(GameObject objetoInteracaoOrigem) {
             this.objetoInteracaoOrigem = objetoInteracaoOrigem;
-            inputsTipoApoioInteracao = new InputsIdentificadorTipoApoioInteracao();
+            inputsTipoApoioInteracao = new InputsTipoApoioInteracao();
 
             ImportarPrefab("Prefabs/ObjetosInteracao/ApoioObjetoInteracao.prefab");
 

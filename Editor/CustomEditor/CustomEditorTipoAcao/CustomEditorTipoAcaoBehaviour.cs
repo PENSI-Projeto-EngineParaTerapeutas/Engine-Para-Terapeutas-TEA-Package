@@ -5,7 +5,7 @@ using EngineParaTerapeutas.UI;
 
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(IdentificadorTipoAcao))]
-    public class CustomEditorIdentificadorTipoAcaoBehaviour : CustomEditorBase {
+    public class CustomEditorTipoAcaoBehaviour : CustomEditorBase {
         #region .: Elementos :.
 
         private const string NOME_REGIAO_CARREGAMENTO_INPUTS_TIPO_ACAO = "regiao-carregamento-inputs-tipo-acao";
@@ -22,8 +22,8 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
 
             componente = target as IdentificadorTipoAcao;
 
-            ImportarTemplate("/CustomEditor/CustomEditorIdentificadorTipoAcao/CustomEditorIdentificadorTipoAcaoTemplate.uxml");
-            ImportarStyle("/CustomEditor/CustomEditorIdentificadorTipoAcao/CustomEditorIdentificadorTipoAcaoStyle.uss");
+            ImportarTemplate("/CustomEditor/CustomEditorTipoAcao/CustomEditorTipoAcaoTemplate.uxml");
+            ImportarStyle("/CustomEditor/CustomEditorTipoAcao/CustomEditorTipoAcaoStyle.uss");
 
             grupoInputsIdentificaadorTipoAcao = new InputsIdentificadorTipoAcao();
 
