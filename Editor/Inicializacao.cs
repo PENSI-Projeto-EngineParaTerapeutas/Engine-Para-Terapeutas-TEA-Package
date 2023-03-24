@@ -76,9 +76,9 @@ namespace EngineParaTerapeutas {
             Debug.Log("Directory.GetCurrentDirectory(): " + Directory.GetCurrentDirectory());
             Debug.Log("Directory.GetParent(GetCaminhoDiretorioAtual): " + Directory.GetParent(GetCaminhoDiretorioAtual));
 
-            Debug.Log("Copiando de: " + Path.Combine(Directory.GetParent(GetCaminhoDiretorioAtual).FullName, "Resources/Assets/Animacoes"));
+            Debug.Log("Copiando de: " + Path.Combine(GetCaminhoDiretorioAtual, "Resources/Assets/Animacoes"));
             Debug.Log("Destino da cópia: " + ConstantesProjetoUnity.CaminhoUnityAssets);
-            bool funfou = AssetDatabase.CopyAsset(ConstantesRuntime.CaminhoPastaAnimacoes, ConstantesProjetoUnity.CaminhoUnityAssets);
+            bool funfou = AssetDatabase.CopyAsset(Path.Combine(GetCaminhoDiretorioAtual, "Resources/Assets/Animacoes"), ConstantesProjetoUnity.CaminhoUnityAssets);
             Debug.Log("Funfou? " + funfou);
             return;
         }
