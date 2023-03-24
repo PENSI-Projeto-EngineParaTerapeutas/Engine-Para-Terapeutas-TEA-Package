@@ -5,5 +5,6 @@ namespace EngineParaTerapeutas.Utils {
         public static string Prefab { get => ".prefab"; }
         public static string Layout { get => ".wlt"; }
         public static string ClipAnimacao { get => ".anim"; }
+        public static string Meta { get => ".meta"; }
     }
 }

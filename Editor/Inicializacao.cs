@@ -6,6 +6,7 @@ using EngineParaTerapeutas.Constantes;
 using EngineParaTerapeutas.DTOs;
 using EngineParaTerapeutas.UI;
 using Codice.CM.Client.Differences;
+using EngineParaTerapeutas.Utils;
 
 namespace EngineParaTerapeutas {
     [InitializeOnLoad]
@@ -90,53 +91,33 @@ namespace EngineParaTerapeutas {
             };
 
             foreach(string pasta in SUBPASTAS_ANIMACAO) {
-                Debug.Log(pasta);
                 if(Directory.Exists(pasta)) {
                     continue;
                 }
 
                 Directory.CreateDirectory(pasta);
             }
-            // To copy all the files in one directory to another directory.
-            // Get the files in the source folder. (To recursively iterate through
-            // all subfolders under the current directory, see
-            // "How to: Iterate Through a Directory Tree.")
-            // Note: Check for target path was performed previously
-            //       in this code example.
-            /*string[] pastasAnimacoesPorTipoPersonagem = Directory.GetDirectories(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoes);
-
-            foreach(string pastaAnimacao in pastasAnimacoesPorTipoPersonagem) {
-                string[] animacoes = Directory.GetFiles(pastaAnimacao);
-
-                foreach(string arquivoAnimacao in animacoes) {
-                    string nomeArquivo = Path.GetFileName(arquivoAnimacao);
-
-                    AssetDatabase.CopyAsset(arquivoAnimacao, );
-                }
-            }
-            if (System.IO.Directory.Exists(sourcePath)) {
-                string[] files = System.IO.Directory.GetFiles(sourcePath);
-
-                // Copy the files and overwrite destination files if they already exist.
-                foreach (string s in files) {
-                    // Use static Path methods to extract only the file name from the path.
-                    fileName = System.IO.Path.GetFileName(s);
-                    destFile = System.IO.Path.Combine(targetPath, fileName);
-                    System.IO.File.Copy(s, destFile, true);
-                }
-            }*/
 
             string caminhoCompletoProjetoUnity = Directory.GetParent(Application.dataPath).FullName;
             string caminhoCompletoPacoteEngine = Directory.GetParent(GetCaminhoDiretorioAtual).FullName;
             string caminhoRelativoProjeto = Path.GetRelativePath(caminhoCompletoProjetoUnity, caminhoCompletoPacoteEngine);
 
-            string[] animacoes = Directory.GetFiles(Path.Combine(caminhoRelativoProjeto, "Runtime/Resources/Assets/Animacoes/BonecoPalito"));
-            foreach(string animacao in animacoes) {
-                Debug.Log(animacao);
-                string nomeArquivo = Path.GetFileName(animacao);
-                Debug.Log(nomeArquivo);
-                FileUtil.CopyFileOrDirectory(animacao, Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesPersonagemLudico, nomeArquivo));
+            //string[] pastasTiposAnimacaoPorPersonagem = Directory.GetDirectories(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoes);
+            string[] pastasTiposAnimacaoPorPersonagem = Directory.GetFiles(Path.Combine(caminhoRelativoProjeto, "Runtime/Resources/Assets/Animacoes/BonecoPalito"));
+            foreach (string pasta in pastasTiposAnimacaoPorPersonagem) {
+                string nomePasta = Path.GetDirectoryName(pasta);
+                string[] arquivos = Directory.GetFiles(pasta);
+
+                foreach(string arquivo in arquivos) {
+                    if(Path.GetExtension(arquivo) == Extensoes.Meta) {
+                        continue;
+                    }
+
+                    string nomeArquivo = Path.GetFileName(arquivo);
+                    FileUtil.CopyFileOrDirectory(arquivo, Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoes, nomePasta, nomeArquivo));
+                }
             }
+
             return;
         }
 
