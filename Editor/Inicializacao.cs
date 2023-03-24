@@ -133,7 +133,9 @@ namespace EngineParaTerapeutas {
             string[] animacoes = Directory.GetFiles(Path.Combine(caminhoRelativoProjeto, "Runtime/Resources/Assets/Animacoes/BonecoPalito"));
             foreach(string animacao in animacoes) {
                 Debug.Log(animacao);
-                FileUtil.CopyFileOrDirectory(animacao, ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesPersonagemLudico);
+                string nomeArquivo = Path.GetFileName(animacao);
+                Debug.Log(nomeArquivo);
+                FileUtil.CopyFileOrDirectory(animacao, Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesPersonagemLudico, nomeArquivo));
             }
             return;
         }
