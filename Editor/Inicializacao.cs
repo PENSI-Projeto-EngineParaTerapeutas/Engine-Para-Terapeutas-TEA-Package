@@ -13,9 +13,10 @@ namespace EngineParaTerapeutas {
 
         [MenuItem("Engine Para Terapeutas/Teste")]
         public static void Teste() {
-            Debug.Log("Application.dataPath: " + Application.dataPath);
-            Debug.Log("Path.GetRelativePath(Application.dataPath, GetCaminhoDiretorioAtual): " + Path.GetRelativePath(Directory.GetParent(Application.dataPath).FullName, GetCaminhoDiretorioAtual));
+            string caminhoCompletoProjetoUnity = Directory.GetParent(Application.dataPath).FullName;
+            string caminhoPacoteEngine = Directory.GetParent(GetCaminhoDiretorioAtual).FullName;
 
+            Debug.Log(Path.GetRelativePath(caminhoCompletoProjetoUnity, caminhoPacoteEngine));
             return;
         }
 
@@ -66,9 +67,13 @@ namespace EngineParaTerapeutas {
                 Directory.CreateDirectory(pasta);
             }
 
-            Debug.Log("Copiando de: " + Path.Combine(Path.GetRelativePath(Directory.GetParent(Application.dataPath).FullName, GetCaminhoDiretorioAtual), "Resources/Assets/Animacoes"));
+            string caminhoCompletoProjetoUnity = Directory.GetParent(Application.dataPath).FullName;
+            string caminhoCompletoPacoteEngine = Directory.GetParent(GetCaminhoDiretorioAtual).FullName;
+            string caminhoRelativoProjeto = Path.GetRelativePath(caminhoCompletoProjetoUnity, caminhoCompletoPacoteEngine);
+
+            Debug.Log("Copiando de: " + Path.Combine(caminhoRelativoProjeto, "Runtime/Resources/Assets/Animacoes"));
             Debug.Log("Destino da cópia: " + ConstantesProjetoUnity.CaminhoUnityAssets);
-            bool funfou = AssetDatabase.CopyAsset(Path.Combine(Path.GetRelativePath(Directory.GetParent(Application.dataPath).FullName, GetCaminhoDiretorioAtual), "Resources/Assets/Animacoes"), ConstantesProjetoUnity.CaminhoUnityAssets);
+            bool funfou = AssetDatabase.CopyAsset(Path.Combine(caminhoRelativoProjeto, "Runtime/Resources/Assets/Animacoes"), ConstantesProjetoUnity.CaminhoUnityAssets);
             Debug.Log("Funfou? " + funfou);
             return;
         }
