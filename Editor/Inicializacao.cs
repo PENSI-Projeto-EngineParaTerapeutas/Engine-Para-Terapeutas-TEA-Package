@@ -72,9 +72,9 @@ namespace EngineParaTerapeutas {
             string caminhoRelativoProjeto = Path.GetRelativePath(caminhoCompletoProjetoUnity, caminhoCompletoPacoteEngine);
 
             Debug.Log("Copiando de: " + Path.Combine(caminhoRelativoProjeto, "Runtime/Resources/Assets/Animacoes"));
-            Debug.Log("Destino da cópia: " + ConstantesProjetoUnity.CaminhoUnityAssets);
+            Debug.Log("Destino da cópia: " + ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoes);
 
-            FileUtil.CopyFileOrDirectory(Path.Combine(caminhoRelativoProjeto, "Runtime/Resources/Assets/Animacoes"), ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoes);
+            AssetDatabase.CopyAsset(Path.Combine(caminhoRelativoProjeto, "Runtime/Resources/Assets/Animacoes"), ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoes);
             
             return;
         }
