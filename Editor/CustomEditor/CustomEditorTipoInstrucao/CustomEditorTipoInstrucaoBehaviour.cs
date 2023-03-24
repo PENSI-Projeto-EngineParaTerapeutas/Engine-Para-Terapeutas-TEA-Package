@@ -9,6 +9,8 @@ using EngineParaTerapeutas.ComponentesGameObjects;
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(IdentificadorTipoInstrucao))]
     public class CustomEditorTipoInstrucaoBehaviour : CustomEditorBase {
+        protected override string CaminhoTemplate => "CustomEditor/CustomEditorTipoInstrucao/CustomEditorTipoInstrucaoTemplate.uxml";
+        protected override string CaminhoStyle => "CustomEditor/CustomEditorTipoInstrucao/CustomEditorTipoInstrucaoStyle.uss";
 
         #region .: Elementos :.
 
@@ -20,20 +22,15 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
 
         private IdentificadorTipoInstrucao componente;
 
-        protected override void OnEnable() {
-            base.OnEnable();
-
+        protected override void OnRenderizarInterface() {
             componente = target as IdentificadorTipoInstrucao;
 
-            ImportarTemplate("/CustomEditor/CustomEditorTipoInstrucao/CustomEditorTipoInstrucaoTemplate.uxml");
-            ImportarStyle("/CustomEditor/CustomEditorTipoInstrucao/CustomEditorTipoInstrucaoStyle.uss");
-
-            ConfigurarInputs();
+            ConfigurarInputTipoInstrucao();
 
             return;
         }
 
-        protected override void ConfigurarInputs() {
+        private void ConfigurarInputTipoInstrucao() {
             campoTipoInstrucao = root.Query<EnumField>(NOME_INPUT_TIPO_INSTRUCAO);
 
             campoTipoInstrucao.labelElement.name = NOME_LABEL_TIPO_INSTRUCAO;

@@ -10,8 +10,6 @@ using EngineParaTerapeutas.UI;
 
 namespace EngineParaTerapeutas.Telas {
     public class JanelaInicialBehaviour : JanelaEditor {
-        private const string TITULO = "Janela Inicial";
-
         protected override string CaminhoTemplate => "Janelas/JanelaInicial/JanelaInicialTemplate.uxml";
         protected override string CaminhoStyle => "Janelas/JanelaInicial/JanelaInicialStyle.uss";
 
@@ -32,6 +30,8 @@ namespace EngineParaTerapeutas.Telas {
 
         [MenuItem("Engine Para Terapeutas/Janela Inicial")]
         public static void ShowJanelaInicial() {
+            const string TITULO = "Janela Inicial";
+
             JanelaInicialBehaviour janela = GetWindow<JanelaInicialBehaviour>();
             janela.titleContent = new GUIContent(TITULO);
 

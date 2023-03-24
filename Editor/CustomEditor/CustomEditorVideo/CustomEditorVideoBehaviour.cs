@@ -6,6 +6,9 @@ using EngineParaTerapeutas.UI;
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(Video))]
     public class CustomEditorVideoBehaviour : CustomEditorBase {
+        protected override string CaminhoTemplate => "CustomEditor/CustomEditorVideo/CustomEditorVideoTemplate.uxml";
+        protected override string CaminhoStyle => "CustomEditor/CustomEditorVideo/CustomEditorVideoStyle.uss";
+
         #region .: Elementos :.
 
         private const string REGIAO_CARREGAMENTO_INPUTS_PADROES_VIDEO = "regiao-carregamento-inputs-padroes-video";
@@ -17,22 +20,16 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
 
         private Video componente;
 
-        protected override void OnEnable() {
-            base.OnEnable();
-
+        protected override void OnRenderizarInterface() {
             componente = target as Video;
-            root = new VisualElement();
+
             grupoInputsVideo = new InputsComponenteVideo();
-
-            ImportarTemplate("/CustomEditor/CustomEditorVideo/CustomEditorVideoTemplate.uxml");
-            ImportarStyle("/CustomEditor/CustomEditorVideo/CustomEditorVideoStyle.uss");
-
-            ConfigurarInputs();
+            ConfigurarInputVideo();
 
             return;
         }
 
-        protected override void ConfigurarInputs() {
+        private void ConfigurarInputVideo() {
             regiaoCarregamentosInputsPadroesVideo = root.Query<VisualElement>(REGIAO_CARREGAMENTO_INPUTS_PADROES_VIDEO);
             regiaoCarregamentosInputsPadroesVideo.Add(grupoInputsVideo.Root);
 

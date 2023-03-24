@@ -6,6 +6,9 @@ using EngineParaTerapeutas.UI;
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(Cena))]
     public class CustomEditorCenaBehaviour : CustomEditorBase {
+        protected override string CaminhoTemplate => "CustomEditor/CustomEditorCena/CustomEditorCenaTemplate.uxml";
+        protected override string CaminhoStyle => "CustomEditor/CustomEditorCena/CustomEditorCenaStyle.uss";
+
         #region .: Elementos :.
 
         private const string NOME_REGIAO_CARREGAMENTO_INPUTS_PADROES_CENA = "regiao-carregamento-inputs-padroes-cena";
@@ -17,21 +20,16 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
 
         private Cena cena;
 
-        protected override void OnEnable() {
-            base.OnEnable();
+        protected override void OnRenderizarInterface() {
             cena = target as Cena;
 
-            ImportarTemplate("CustomEditor/CustomEditorCena/CustomEditorCenaTemplate.uxml");
-            ImportarStyle("CustomEditor/CustomEditorCena/CustomEditorCenaStyle.uss");
-
             grupoInputsCena = new InputsScriptableObjectCena();
-
-            ConfigurarInputs();
+            ConfigurarInputsCena();
 
             return;
         }
 
-        protected override void ConfigurarInputs() {
+        private void ConfigurarInputsCena() {
             regiaoCarregamentoInputsPadroesCena = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_PADROES_CENA);
             regiaoCarregamentoInputsPadroesCena.Add(grupoInputsCena.Root);
 

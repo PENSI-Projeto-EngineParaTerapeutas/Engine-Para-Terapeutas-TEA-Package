@@ -9,6 +9,8 @@ using EngineParaTerapeutas.DTOs;
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(IdentificadorTipoReforco))]
     public class CustomEditorTipoReforcoBehaviour : CustomEditorBase {
+        protected override string CaminhoTemplate => "CustomEditor/CustomEditorTipoReforco/CustomEditorTipoReforcoTemplate.uxml";
+        protected override string CaminhoStyle => "CustomEditor/CustomEditorTipoReforco/CustomEditorTipoReforcoStyle.uss";
 
         #region .: Elementos :.
 
@@ -20,20 +22,15 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
 
         private IdentificadorTipoReforco componente;
 
-        protected override void OnEnable() {
-            base.OnEnable();
-
+        protected override void OnRenderizarInterface() {
             componente = target as IdentificadorTipoReforco;
 
-            ImportarTemplate("/CustomEditor/CustomEditorTipoReforco/CustomEditorTipoReforcoTemplate.uxml");
-            ImportarStyle("/CustomEditor/CustomEditorTipoReforco/CustomEditorTipoReforcoStyle.uss");
-
-            ConfigurarInputs();
+            ConfigurarInputTipoReforco();
 
             return;
         }
 
-        protected override void ConfigurarInputs() {
+        private void ConfigurarInputTipoReforco() {
             campoTipoReforco = root.Query<EnumField>(NOME_INPUT_TIPO_REFORCO);
             
             campoTipoReforco.labelElement.name = NOME_LABEL_TIPO_REFORCO;

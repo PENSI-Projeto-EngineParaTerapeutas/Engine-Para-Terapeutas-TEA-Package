@@ -1,9 +1,13 @@
 using UnityEditor;
 using UnityEngine.UIElements;
 using EngineParaTerapeutas.Constantes;
+using EngineParaTerapeutas.Utils;
 
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     public abstract class CustomEditorBase : Editor {
+        protected abstract string CaminhoTemplate { get; }
+        protected abstract string CaminhoStyle { get; }
+
         protected VisualElement root;
         protected VisualTreeAsset template;
 
@@ -11,28 +15,33 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
         protected StyleSheet defaultStyle;
 
         protected virtual void OnEnable() {
-            root = new VisualElement();
+            ImportarTemplate(CaminhoTemplate);
+            root = template.Instantiate();
+
             ImportarDefaultStyle();
+            ImportarStyle(CaminhoStyle);
+
+            OnRenderizarInterface();
 
             return;
         }
 
+        protected abstract void OnRenderizarInterface();
+
+        protected virtual void ImportarTemplate(string caminho) {
+            template = Importador.ImportarUXML(caminho);
+            return;
+        }
+
         protected virtual void ImportarDefaultStyle() {
-            defaultStyle = AssetDatabase.LoadAssetAtPath<StyleSheet>(ConstantesEditor.PastaRaiz + "/Compartilhado/ClassesPadroesEditorStyle.uss"); // TODO: Utilizar path
+            defaultStyle = Importador.ImportarUSS(ConstantesEditor.CaminhoArquivoClassesPadroesUSS);
             root.styleSheets.Add(defaultStyle);
 
             return;
         }
 
-        protected virtual void ImportarTemplate(string caminho) {
-            template = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(ConstantesEditor.PastaRaiz + caminho); // TODO: Utilizar path
-            root.Add(template.Instantiate());
-
-            return;
-        }
-
         protected virtual void ImportarStyle(string caminho) {
-            style = AssetDatabase.LoadAssetAtPath<StyleSheet>(ConstantesEditor.PastaRaiz + caminho); // TODO: Utilizar path
+            style = Importador.ImportarUSS(caminho);
             root.styleSheets.Add(style);
 
             return;
@@ -41,7 +50,5 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
         public override VisualElement CreateInspectorGUI() {
             return root;
         }
-
-        protected abstract void ConfigurarInputs();
     }
 }

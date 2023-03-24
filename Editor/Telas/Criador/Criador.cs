@@ -3,6 +3,7 @@ using UnityEngine;
 using EngineParaTerapeutas.Constantes;
 using EngineParaTerapeutas.UI;
 using EngineParaTerapeutas.Telas;
+using EngineParaTerapeutas.Utils;
 
 namespace EngineParaTerapeutas.Criadores {
     public abstract class Criador : Tela, IReiniciavel, ICamposAtualizaveis {
@@ -24,7 +25,7 @@ namespace EngineParaTerapeutas.Criadores {
         }
 
         protected virtual void ImportarPrefab(string caminho) {
-            prefab = AssetDatabase.LoadAssetAtPath<GameObject>(ConstantesRuntime.CaminhoCompletoPastaResources + caminho); // TODO: Usar path
+            prefab = Importador.ImportarPrefab(caminho);
             return;
         }
 

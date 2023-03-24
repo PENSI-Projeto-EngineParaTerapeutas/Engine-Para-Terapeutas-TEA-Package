@@ -6,8 +6,6 @@ using EngineParaTerapeutas.UI;
 
 namespace EngineParaTerapeutas.Telas {
     public class PopupSalvarLayoutBehaviour : JanelaEditor {
-        private const string TITULO = "Salvar Layout";
-
         protected override string CaminhoTemplate => "Layout/PopupSalvarLayout/PopupSalvarLayoutTemplate.uxml";
         protected override string CaminhoStyle => "Layout/PopupSalvarLayout/PopupSalvarLayoutStyle.uss";
 
@@ -29,6 +27,8 @@ namespace EngineParaTerapeutas.Telas {
 
         [MenuItem("Desenvolvimento/Salvar Layout Atual")]
         public static void ShowPopupSalvarLayout() {
+            const string TITULO = "Salvar Layout";
+
             PopupSalvarLayoutBehaviour janela = GetWindow<PopupSalvarLayoutBehaviour>();
 
             janela.titleContent = new GUIContent(TITULO);

@@ -7,6 +7,8 @@ namespace EngineParaTerapeutas.Constantes {
         public static string CaminhoCompletoPastaImagens { get => Path.Combine(CaminhoCompletoPastaResources, "Imagens/"); }
         public static string CaminhoPastaBuild { get => "Build/WebGL/"; }
 
+        public static string CaminhoArquivoClassesPadroesUSS { get => "Compartilhado/ClassesPadroesEditorStyle.uss"; }
+
         public static string NomePastaLayouts { get => "Layouts/";  }
         public static string NomeCenaPadrao { get => "CenaBasePadrao.unity"; }
 

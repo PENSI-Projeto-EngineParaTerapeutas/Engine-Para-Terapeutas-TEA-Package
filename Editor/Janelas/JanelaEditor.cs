@@ -1,11 +1,10 @@
 using UnityEditor;
 using UnityEngine.UIElements;
 using EngineParaTerapeutas.Utils;
+using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.Telas {
     public abstract class JanelaEditor : EditorWindow {
-        private const string CAMINHO_CLASSES_USS_PADRAO = "Compartilhado/ClassesPadroesEditorStyle.uss"; 
-
         protected abstract string CaminhoTemplate { get; }
         protected abstract string CaminhoStyle { get; }
 
@@ -18,8 +17,9 @@ namespace EngineParaTerapeutas.Telas {
         protected virtual void CreateGUI() {
             root = rootVisualElement;
             ImportarTemplate(CaminhoTemplate);
-            ImportarStyle(CaminhoStyle);
+
             ImportarDefaultStyle();
+            ImportarStyle(CaminhoStyle);
 
             OnRenderizarInterface();
 
@@ -29,7 +29,7 @@ namespace EngineParaTerapeutas.Telas {
         protected abstract void OnRenderizarInterface();
 
         protected virtual void ImportarDefaultStyle() {
-            defaultStyle = Importador.ImportarUSS(CAMINHO_CLASSES_USS_PADRAO);
+            defaultStyle = Importador.ImportarUSS(ConstantesEditor.CaminhoArquivoClassesPadroesUSS);
             root.styleSheets.Add(defaultStyle);
 
             return;

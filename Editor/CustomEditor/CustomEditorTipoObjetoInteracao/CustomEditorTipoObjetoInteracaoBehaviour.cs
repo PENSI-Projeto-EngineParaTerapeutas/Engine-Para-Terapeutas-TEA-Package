@@ -9,6 +9,8 @@ using EngineParaTerapeutas.ComponentesGameObjects;
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(IdentificadorTipoObjetoInteracao))]
     public class CustomEditorTipoObjetoInteracaoBehaviour : CustomEditorBase {
+        protected override string CaminhoTemplate => "CustomEditor/CustomEditorTipoObjetoInteracao/CustomEditorTipoObjetoInteracaoTemplate.uxml";
+        protected override string CaminhoStyle => "CustomEditor/CustomEditorTipoObjetoInteracao/CustomEditorTipoObjetoInteracaoStyle.uss";
 
         #region .: Elementos :.
 
@@ -20,20 +22,15 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
 
         private IdentificadorTipoObjetoInteracao componente;
 
-        protected override void OnEnable() {
-            base.OnEnable();
-
+        protected override void OnRenderizarInterface() {
             componente = target as IdentificadorTipoObjetoInteracao;
 
-            ImportarTemplate("/CustomEditor/CustomEditorTipoObjetoInteracao/CustomEditorTipoObjetoInteracaoTemplate.uxml");
-            ImportarStyle("/CustomEditor/CustomEditorTipoObjetoInteracao/CustomEditorTipoObjetoInteracaoStyle.uss");
-
-            ConfigurarInputs();
+            ConfigurarInputTipoObjetoInteracao();
 
             return;
         }
 
-        protected override void ConfigurarInputs() {
+        private void ConfigurarInputTipoObjetoInteracao() {
             campoTipoObjetoInteracao = root.Query<EnumField>(NOME_INPUT_TIPO_OBJETO_INTERACAO);
 
             campoTipoObjetoInteracao.labelElement.name = NOME_LABEL_TIPO_OBJETO_INTERACAO;

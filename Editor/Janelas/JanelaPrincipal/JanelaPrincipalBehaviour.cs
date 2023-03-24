@@ -5,8 +5,6 @@ using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.Telas {
     public class JanelaPrincipalBehaviour : JanelaEditor {
-        private readonly static string TITULO = ConstantesProjeto.NomeProjeto;
-
         protected override string CaminhoTemplate => "Janelas/JanelaPrincipal/JanelaPrincipalTemplate.uxml";
         protected override string CaminhoStyle => "Janelas/JanelaPrincipal/JanelaPrincipalStyle.uss";
 
@@ -27,8 +25,10 @@ namespace EngineParaTerapeutas.Telas {
 
         [MenuItem("Engine Para Terapeutas/Janela Principal")]
         public static void ShowJanelaPrincipal() {
+            string titulo = ConstantesProjeto.NomeProjeto;
+
             JanelaPrincipalBehaviour janela = GetWindow<JanelaPrincipalBehaviour>();
-            janela.titleContent = new GUIContent(TITULO);
+            janela.titleContent = new GUIContent(titulo);
 
             return;
         }

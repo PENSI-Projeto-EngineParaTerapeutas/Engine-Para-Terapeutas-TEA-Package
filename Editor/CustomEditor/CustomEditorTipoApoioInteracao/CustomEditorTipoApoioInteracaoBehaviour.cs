@@ -6,6 +6,9 @@ using EngineParaTerapeutas.UI;
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(IdentificadorTipoApoioObjetoInteracao))]
     public class CustomEditorTipoApoioInteracaoBehaviour : CustomEditorBase {
+        protected override string CaminhoTemplate => "CustomEditor/CustomEditorTipoApoioInteracao/CustomEditorTipoApoioInteracaoTemplate.uxml";
+        protected override string CaminhoStyle => "CustomEditor/CustomEditorTipoApoioInteracao/CustomEditorTipoApoioInteracaoStyle.uss";
+
         #region .: Elementos :.
 
         private const string NOME_REGIAO_CARREGAMENTO_INPUTS_TIPO_ACAO = "regiao-carregamento-inputs-tipo-acao";
@@ -17,22 +20,16 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
 
         private IdentificadorTipoApoioObjetoInteracao componente;
 
-        protected override void OnEnable() {
-            base.OnEnable();
-
+        protected override void OnRenderizarInterface() {
             componente = target as IdentificadorTipoApoioObjetoInteracao;
-            
-            ImportarTemplate("/CustomEditor/CustomEditorTipoApoioInteracao/CustomEditorTipoApoioInteracaoTemplate.uxml");
-            ImportarStyle("/CustomEditor/CustomEditorTipoApoioInteracao/CustomEditorTipoApoioInteracaoStyle.uss");
 
             grupoInputsTipoApoioObjetoInteracao = new InputsTipoApoioInteracao();
-
-            ConfigurarInputs();
+            ConfigurarTipoApoioObjetoInteracao();
 
             return;
         }
 
-        protected override void ConfigurarInputs() {
+        private void ConfigurarTipoApoioObjetoInteracao() {
             regiaoCarregamentoInputsTipoAcao = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_TIPO_ACAO);
             regiaoCarregamentoInputsTipoAcao.Add(grupoInputsTipoApoioObjetoInteracao.Root);
 

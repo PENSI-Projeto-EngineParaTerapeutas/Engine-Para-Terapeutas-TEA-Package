@@ -17,16 +17,14 @@ namespace EngineParaTerapeutas.UI {
             ImportarTemplate(CaminhoTemplate);
             root = template.Instantiate();
 
-            ImportarStyle(CaminhoStyle);
             ImportarDefaultStyle();
+            ImportarStyle(CaminhoStyle);
 
             return;
         }
 
-        protected abstract void ImportarDefaultStyle();
-
         protected abstract void ImportarTemplate(string caminho);
-
+        protected abstract void ImportarDefaultStyle();
         protected abstract void ImportarStyle(string caminho);
     }
 }

@@ -9,6 +9,8 @@ using EngineParaTerapeutas.ComponentesGameObjects;
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(IdentificadorTipoApoio))]
     public class CustomEditorTipoApoioBehaviour : CustomEditorBase {
+        protected override string CaminhoTemplate => "CustomEditor/CustomEditorTipoApoio/CustomEditorTipoApoioTemplate.uxml";
+        protected override string CaminhoStyle => "CustomEditor/CustomEditorTipoApoio/CustomEditorTipoApoioStyle.uss";
 
         #region .: Elementos :.
 
@@ -20,20 +22,15 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
 
         private IdentificadorTipoApoio componente;
 
-        protected override void OnEnable() {
-            base.OnEnable();
-
+        protected override void OnRenderizarInterface() {
             componente = target as IdentificadorTipoApoio;
 
-            ImportarTemplate("/CustomEditor/CustomEditorTipoApoio/CustomEditorTipoApoioTemplate.uxml");
-            ImportarStyle("/CustomEditor/CustomEditorTipoApoio/CustomEditorTipoApoioStyle.uss");
-
-            ConfigurarInputs();
+            ConfigurarInputTipoApoio();
 
             return;
         }
 
-        protected override void ConfigurarInputs() {
+        private void ConfigurarInputTipoApoio() {
             campoTipoApoio = root.Query<EnumField>(NOME_INPUT_TIPO_APOIO);
 
             campoTipoApoio.labelElement.name = NOME_LABEL_TIPO_APOIO;

@@ -6,6 +6,9 @@ using EngineParaTerapeutas.ComponentesGameObjects;
 namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(Texto))]
     public class CustomEditorTextoBehaviour : CustomEditorBase {
+        protected override string CaminhoTemplate => "CustomEditor/CustomEditorTexto/CustomEditorTextoTemplate.uxml";
+        protected override string CaminhoStyle => "CustomEditor/CustomEditorTexto/CustomEditorTextoStyle.uss";
+
         #region .: Elementos :.
 
         private const string REGIAO_CARREGAMENTO_INPUTS_PADROES_TEXTO = "regiao-carregamento-inputs-padroes-texto";
@@ -17,22 +20,16 @@ namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
 
         private Texto componente;
 
-        protected override void OnEnable() {
-            base.OnEnable();
-
+        protected override void OnRenderizarInterface() {
             componente = target as Texto;
-            root = new VisualElement();
+
             grupoInputsTexto = new InputsComponenteTexto();
-
-            ImportarTemplate("/CustomEditor/CustomEditorTexto/CustomEditorTextoTemplate.uxml");
-            ImportarStyle("/CustomEditor/CustomEditorTexto/CustomEditorTextoStyle.uss");
-
-            ConfigurarInputs();
+            ConfigurarInputsTexto();
 
             return;
         }
 
-        protected override void ConfigurarInputs() {
+        private void ConfigurarInputsTexto() {
             regiaoCarregamentosInputsPadroesTexto = root.Query<VisualElement>(REGIAO_CARREGAMENTO_INPUTS_PADROES_TEXTO);
             regiaoCarregamentosInputsPadroesTexto.Add(grupoInputsTexto.Root);
 

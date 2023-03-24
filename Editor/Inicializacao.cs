@@ -9,11 +9,10 @@ using EngineParaTerapeutas.UI;
 namespace EngineParaTerapeutas {
     [InitializeOnLoad]
     public class Inicializacao : AssetPostprocessor {
-        private const string NOME_ARQUIVO_CONFIGURACAO_PACOTE = "package.json";
-
         static Inicializacao() {}
 
         private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths) {
+            const string NOME_ARQUIVO_CONFIGURACAO_PACOTE = "package.json";
             string caminhoArquivoConfiguracaoPacote = Path.Combine(ConstantesProjeto.PastaRaizProjeto, NOME_ARQUIVO_CONFIGURACAO_PACOTE);
 
             foreach(string caminho in importedAssets) {
@@ -40,7 +39,6 @@ namespace EngineParaTerapeutas {
                 ConstantesRuntime.CaminhoPastaSons,
                 ConstantesRuntime.CaminhoPastaScriptableObjectsCenas,
                 ConstantesRuntime.CaminhoPastaStreamingAssets,
-                ConstantesRuntime.CaminhoPastaAnimacoes,
             };
 
             foreach(string pasta in CAMINHO_PASTAS) {
@@ -51,6 +49,7 @@ namespace EngineParaTerapeutas {
                 Directory.CreateDirectory(pasta);
             }
 
+            AssetDatabase.CopyAsset(Path.Combine(ConstantesRuntime.CaminhoCompletoPastaResources, ConstantesRuntime.CaminhoPastaAnimacoes), ConstantesRuntime.CaminhoPastaAnimacoes);
             return;
         }
 
