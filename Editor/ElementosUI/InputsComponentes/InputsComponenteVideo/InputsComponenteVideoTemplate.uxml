@@ -5,8 +5,7 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:VisualElement name="regiao-input-video">
-    </engine:VisualElement>
+    <engine:VisualElement name="regiao-input-video"/>
 
     <engine:Toggle name="input-reproduzir-ao-iniciar" class="input-padrao" label="Reproduzir vídeo ao iniciar o jogo"  tooltip="Determina se o vídeo iniciará assim que a fase começar"/>
     <engine:Toggle name="input-reproduzir-em-loop" class="input-padrao" label="Reproduzir vídeo em loop"  tooltip="Determina se o vídeo deverá reproduzir novamente ao terminar"/>

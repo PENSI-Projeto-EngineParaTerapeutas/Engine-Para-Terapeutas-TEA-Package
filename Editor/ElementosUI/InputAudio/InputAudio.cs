@@ -49,7 +49,7 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void HandleBotaoBuscarAudioClick() {
-            string caminhoAqruivoSelecionado = EditorUtility.OpenFilePanel("Procurar Audio", "", ConstantesEditor.ExtensoesAudio);
+            string caminhoAqruivoSelecionado = EditorUtility.OpenFilePanel("Procurar Audio", string.Empty, ExtensoesEditor.Audio);
 
             if(string.IsNullOrWhiteSpace(caminhoAqruivoSelecionado)) {
                 Debug.Log("[LOG]: Nenhum arquivo selecionado");

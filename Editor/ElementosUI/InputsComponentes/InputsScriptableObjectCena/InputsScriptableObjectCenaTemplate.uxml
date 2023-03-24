@@ -11,6 +11,5 @@
     
     <editor:IntegerField name="input-faixa-etaria" class="input-padrao" label="Faixa etária" tooltip="Define a idade recomendada para a cena"/>
     
-    <engine:VisualElement name="regiao-input-video">
-    </engine:VisualElement>
+    <engine:VisualElement name="regiao-input-video"/>
 </engine:UXML>

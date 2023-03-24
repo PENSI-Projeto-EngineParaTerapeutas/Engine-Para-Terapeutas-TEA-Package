@@ -3,7 +3,7 @@ using EngineParaTerapeutas.DTOs;
 
 namespace EngineParaTerapeutas.ComponentesGameObjects {
     public class ListenerEventosApoio : ListenerEventosBase {
-        [AddComponentMenu("Engine Terapeutas TEA/Listener Eventos Apoio")]
+        [AddComponentMenu("Engine Terapeutas TEA/Listeners/Listener Apoio")]
         private IdentificadorTipoApoio tipoApoio;
         private AudioSource audioSource;
         private Video video;

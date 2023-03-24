@@ -7,7 +7,7 @@ using EngineParaTerapeutas.ScriptableObjects;
 using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.ComponentesGameObjects {
-    [AddComponentMenu("Engine Terapeutas TEA/Listener Contexto")]
+    [AddComponentMenu("Engine Terapeutas TEA/Listeners/Listener Contexto")]
     public class ListenerContexto : MonoBehaviour {
         private Video video;
         private EventoJogo eventoExibirContextualizacao;
@@ -26,7 +26,10 @@ namespace EngineParaTerapeutas.ComponentesGameObjects {
         }
 
         private void CarregarVideo() {
-            string caminhoInfoCenaAtual = Path.Combine(ConstantesRuntime.NomePastaCenas, SceneManager.GetActiveScene().name);
+            string[] partesCaminhoPastaCenas = ConstantesProjetoUnity.CaminhoUnityAssetsCenas.Split(Path.AltDirectorySeparatorChar); // TODO: Testar funcionamento após build
+            string nomePastaCenas = partesCaminhoPastaCenas[^2];
+
+            string caminhoInfoCenaAtual = Path.Combine(nomePastaCenas, SceneManager.GetActiveScene().name);
             Cena infoCenaAtual = Resources.Load<Cena>(caminhoInfoCenaAtual);
 
             video.AlterarVideo(infoCenaAtual.NomeArquivoVideoContexto);

@@ -1,6 +1,7 @@
 using UnityEngine;
 
 namespace EngineParaTerapeutas.ComponentesGameObjects {
+    [AddComponentMenu("Engine Terapeutas TEA/Controles Personagem/Controle Direto")]
     public class ControleDireto : MonoBehaviour {
         [SerializeField]
         private float PASSO_ROTACAO = 0.15f;

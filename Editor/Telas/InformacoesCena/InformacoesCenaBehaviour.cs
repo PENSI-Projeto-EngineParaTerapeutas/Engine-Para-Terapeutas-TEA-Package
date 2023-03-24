@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 using EngineParaTerapeutas.UI;
 using EngineParaTerapeutas.Constantes;
 using EngineParaTerapeutas.ScriptableObjects;
-using EngineParaTerapeutas.Utils;
 
 namespace EngineParaTerapeutas.Telas {
     public class InformacoesCenaBehaviour : Tela {
@@ -40,7 +39,7 @@ namespace EngineParaTerapeutas.Telas {
 
         private void CarregarCenaAtual() {
             string nomeCenaAtual = SceneManager.GetActiveScene().name;
-            cenaAtual = AssetDatabase.LoadAssetAtPath<Cena>(Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas, nomeCenaAtual + Extensoes.ScriptableObject));
+            cenaAtual = AssetDatabase.LoadAssetAtPath<Cena>(Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas, nomeCenaAtual + ExtensoesEditor.ScriptableObject));
             
             return;
         }

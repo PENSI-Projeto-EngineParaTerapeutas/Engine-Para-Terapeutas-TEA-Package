@@ -21,7 +21,7 @@ namespace EngineParaTerapeutas.Utils {
 
                 string[] arquivos = Directory.GetFiles(ConstantesProjetoUnity.CaminhoUnityAssetsCenas);
                 foreach(string arquivo in arquivos) {
-                    if(Path.GetExtension(arquivo) == Extensoes.Cena) {
+                    if(Path.GetExtension(arquivo) == ExtensoesEditor.Cena) {
                         quantidadeCenas++;
                     }
                 }
@@ -34,8 +34,11 @@ namespace EngineParaTerapeutas.Utils {
             string dataHoraCraicao = DateTime.UtcNow.ToString("yyyy-MM-dd_HH-mm-ss-fff", CultureInfo.InvariantCulture);
             string nomeNovaCena = "Fase_" + dataHoraCraicao;
 
-            string caminhoCenaPadrao = Path.Combine(ConstantesEditor.PastaRaiz, ConstantesRuntime.NomePastaCenas, ConstantesEditor.NomeCenaPadrao);
-            string caminhoNovaCena = Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsCenas, nomeNovaCena + Extensoes.Cena);
+            string[] partesCaminhoPastaCenas = ConstantesProjetoUnity.CaminhoUnityAssetsCenas.Split(Path.AltDirectorySeparatorChar);
+            string nomePastaCenas = partesCaminhoPastaCenas[^2];
+
+            string caminhoCenaPadrao = Path.Combine(ConstantesEditor.CaminhoPastaEditor, nomePastaCenas, ConstantesEditor.NomeCenaPadrao);
+            string caminhoNovaCena = Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsCenas, nomeNovaCena + ExtensoesEditor.Cena);
 
             AssetDatabase.CopyAsset(caminhoCenaPadrao, caminhoNovaCena);
             Salvamento.SalvarAssets();
@@ -51,15 +54,15 @@ namespace EngineParaTerapeutas.Utils {
                 Directory.CreateDirectory(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas);
             }
 
-            AssetDatabase.CreateAsset(novaCena, Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas, nomeNovaCena + Extensoes.ScriptableObject));
+            AssetDatabase.CreateAsset(novaCena, Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas, nomeNovaCena + ExtensoesEditor.ScriptableObject));
             Salvamento.SalvarAssets();
 
             return novaCena;
         }
 
         public static void DeletarCena(Cena cena) {
-            string caminhoScriptableObjectCenaAlvo = Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas, cena.NomeArquivo + Extensoes.ScriptableObject);
-            string caminhoArquivoCenaAlvo = Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsCenas, cena.NomeArquivo + Extensoes.Cena);
+            string caminhoScriptableObjectCenaAlvo = Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas, cena.NomeArquivo + ExtensoesEditor.ScriptableObject);
+            string caminhoArquivoCenaAlvo = Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsCenas, cena.NomeArquivo + ExtensoesEditor.Cena);
 
             AssetDatabase.DeleteAsset(caminhoScriptableObjectCenaAlvo);
             AssetDatabase.DeleteAsset(caminhoArquivoCenaAlvo);
@@ -69,8 +72,8 @@ namespace EngineParaTerapeutas.Utils {
         }
 
         public static List<Cena> GetTodasCenasCriadas() {
-            if(!AssetDatabase.IsValidFolder(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas)) { // TODO: Alterar para Directory
-                AssetDatabase.CreateFolder("Assets", "Cenas");
+            if(!Directory.Exists(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas)) {
+                Directory.CreateDirectory(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas);
                 return new List<Cena>();
             }
 
@@ -78,7 +81,7 @@ namespace EngineParaTerapeutas.Utils {
             List<Cena> cenas = new();
 
             foreach(string arquivo in arquivos) {
-                if(Path.GetExtension(arquivo) == Extensoes.ScriptableObject) {
+                if(Path.GetExtension(arquivo) == ExtensoesEditor.ScriptableObject) {
                     Cena cena = AssetDatabase.LoadAssetAtPath<Cena>(arquivo);
                     cenas.Add(cena);
                 }

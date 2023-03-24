@@ -8,13 +8,13 @@ namespace EngineParaTerapeutas.ScriptableObjects {
 
         public string NomeExibicao { get => nomeExibicao; set { nomeExibicao = value; } }
         [SerializeField]
-        private string nomeExibicao = "";
+        private string nomeExibicao = string.Empty;
 
         public string NomeArquivo { get => nomeArquivo; set { nomeArquivo = value; } }
-        private string nomeArquivo = "";
+        private string nomeArquivo = string.Empty;
 
         public string Caminho { get => caminho; set { caminho = value; } }
-        private string caminho = "";
+        private string caminho = string.Empty;
 
         public int BuildIndex { get => buildIndex; set { buildIndex = value; } }
         private int buildIndex = -1;
@@ -29,7 +29,7 @@ namespace EngineParaTerapeutas.ScriptableObjects {
         private NiveisDificuldade nivelDificuldade = NiveisDificuldade.Facil;
 
         public string NomeArquivoVideoContexto { get => nomeArquivoVideoContexto; set { nomeArquivoVideoContexto = value; } }
-        private string nomeArquivoVideoContexto = "";
+        private string nomeArquivoVideoContexto = string.Empty;
 
         public void AssociarValores(Scene arquivo) {
             nomeExibicao = arquivo.name;

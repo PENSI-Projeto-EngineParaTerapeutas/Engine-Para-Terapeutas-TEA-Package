@@ -2,6 +2,7 @@ using UnityEngine;
 using EngineParaTerapeutas.DTOs;
 
 namespace EngineParaTerapeutas.ComponentesGameObjects {
+    [AddComponentMenu("Engine Terapeutas TEA/Identificador Tipo/Identificador Tipo Reforço")]
     public class IdentificadorTipoReforco : IdentificadorTipo<TiposReforcos> {
         private SpriteRenderer spriteRenderer;
         private AudioSource audioSource;

@@ -1,6 +1,8 @@
+using UnityEngine;
 using EngineParaTerapeutas.DTOs;
 
 namespace EngineParaTerapeutas.ComponentesGameObjects {
+    [AddComponentMenu("Engine Terapeutas TEA/Identificador Tipo/Identificador Tipo Ação do Objeto de Interação")]
     public class IdentificadorTipoAcao : IdentificadorTipo<TiposAcoes> {
         private Arrastavel componenteArrastar;
         private Selecionavel componenteSelecao;

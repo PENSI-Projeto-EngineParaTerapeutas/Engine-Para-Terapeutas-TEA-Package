@@ -1,7 +1,4 @@
-using UnityEditor;
-using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEditor.UIElements;
 using EngineParaTerapeutas.Utils;
 
 namespace EngineParaTerapeutas.UI {

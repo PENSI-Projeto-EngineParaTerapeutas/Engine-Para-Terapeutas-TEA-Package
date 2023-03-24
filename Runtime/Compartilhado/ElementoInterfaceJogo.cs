@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using EngineParaTerapeutas.Constantes;
 
 namespace EngineParaTerapeutas.UI {
     public abstract class ElementoInterfaceJogo : ElementoInterface {
-        private const string CAMINHO_CLASS_PADROES_USS = "Scripts/Compartilhado/ClassesPadroesStyle";
-
         protected override void ImportarDefaultStyle() {
-            defaultStyle = Resources.Load<StyleSheet>(CAMINHO_CLASS_PADROES_USS);
+            defaultStyle = Resources.Load<StyleSheet>(ConstantesRuntime.CaminhoClassesPadroesUSS);
             Root.styleSheets.Add(defaultStyle);
 
             return;

@@ -16,7 +16,6 @@
 
     <engine:VisualElement name="botoes-controle-cena">
         <engine:Button name="botao-abrir-cena" text="Abrir"/>
-        <engine:Button name="botao-editar-cena" text="Editar"/>
         <engine:Button name="botao-excluir-cena" text="Excluir"/>
     </engine:VisualElement>
 </engine:UXML>

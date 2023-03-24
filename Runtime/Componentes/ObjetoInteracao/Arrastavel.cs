@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace EngineParaTerapeutas.ComponentesGameObjects {
-    [AddComponentMenu("Engine Terapeutas TEA/Arrastável")]
+    [AddComponentMenu("Engine Terapeutas TEA/Objeto Interação/Arrastável")]
     public class Arrastavel : MonoBehaviour {
         private const string NOME_GAME_OBJECT_VIDEO_OBJETO_INTERACAO = "Video";
 

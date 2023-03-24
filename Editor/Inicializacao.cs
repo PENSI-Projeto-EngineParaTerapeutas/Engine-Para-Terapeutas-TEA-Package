@@ -5,7 +5,6 @@ using UnityEditor;
 using EngineParaTerapeutas.Constantes;
 using EngineParaTerapeutas.DTOs;
 using EngineParaTerapeutas.UI;
-using EngineParaTerapeutas.Utils;
 
 namespace EngineParaTerapeutas {
     [InitializeOnLoad]
@@ -14,7 +13,7 @@ namespace EngineParaTerapeutas {
 
         private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths) {
             const string NOME_ARQUIVO_CONFIGURACAO_PACOTE = "package.json";
-            string caminhoArquivoConfiguracaoPacote = Path.Combine(ConstantesProjeto.PastaRaizProjeto, NOME_ARQUIVO_CONFIGURACAO_PACOTE);
+            string caminhoArquivoConfiguracaoPacote = Path.Combine(ConstantesProjeto.CaminhoAssetDatabaseProjeto, NOME_ARQUIVO_CONFIGURACAO_PACOTE);
 
             foreach(string caminho in importedAssets) {
                 if(caminhoArquivoConfiguracaoPacote == caminho) {
@@ -72,7 +71,7 @@ namespace EngineParaTerapeutas {
                 CriarPasta(pasta);
             }
 
-            string[] pastasTiposAnimacaoPorPersonagem = Directory.GetDirectories(Path.Combine(ConstantesEditor.CaminhoDinamicoPacote, "Runtime/Resources/Assets/Animacoes")); // TODO: Mover para constantes runtime???
+            string[] pastasTiposAnimacaoPorPersonagem = Directory.GetDirectories(Path.Combine(ConstantesProjeto.CaminhoDinamicoPacote, "Runtime/Resources/Assets/Animacoes"));
             foreach(string pasta in pastasTiposAnimacaoPorPersonagem) {
                 string caminnhoFormatado = pasta.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
                 string nomePasta = caminnhoFormatado.Split(Path.AltDirectorySeparatorChar).Last();
@@ -80,7 +79,7 @@ namespace EngineParaTerapeutas {
                 string[] arquivos = Directory.GetFiles(caminnhoFormatado);
                 foreach(string arquivo in arquivos) {
                     string caminhoArquivoFormatado = arquivo.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
-                    if(Path.GetExtension(caminhoArquivoFormatado) == Extensoes.Meta) {
+                    if(Path.GetExtension(caminhoArquivoFormatado) == ExtensoesEditor.Meta) {
                         continue;
                     }
 

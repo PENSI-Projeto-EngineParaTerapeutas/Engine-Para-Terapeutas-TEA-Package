@@ -2,6 +2,7 @@ using UnityEngine;
 using EngineParaTerapeutas.DTOs;
 
 namespace EngineParaTerapeutas.ComponentesGameObjects {
+    [AddComponentMenu("Engine Terapeutas TEA/Listeners/Listener Reforço")]
     public class ListenerEventosReforco : ListenerEventosBase {
         [AddComponentMenu("Engine Terapeutas TEA/Listener Eventos Reforço")]
         private IdentificadorTipoReforco tipoReforco;

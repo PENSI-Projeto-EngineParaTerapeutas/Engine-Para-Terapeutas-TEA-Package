@@ -5,6 +5,5 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:VisualElement name="regiao-carregamento-inputs-padroes-texto">
-    </engine:VisualElement>
+    <engine:VisualElement name="regiao-carregamento-inputs-padroes-texto"/>
 </engine:UXML>

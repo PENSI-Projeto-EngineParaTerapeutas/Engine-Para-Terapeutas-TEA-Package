@@ -131,7 +131,7 @@ namespace EngineParaTerapeutas.UI {
         public void ReiniciarCampos() {
             cena = null;
 
-            CampoNome.SetValueWithoutNotify("");
+            CampoNome.SetValueWithoutNotify(string.Empty);
             CampoFaixaEtaria.SetValueWithoutNotify(0);
             CampoDificuldade.SetValueWithoutNotify(NiveisDificuldade.Facil);
             InputVideo.ReiniciarCampos();

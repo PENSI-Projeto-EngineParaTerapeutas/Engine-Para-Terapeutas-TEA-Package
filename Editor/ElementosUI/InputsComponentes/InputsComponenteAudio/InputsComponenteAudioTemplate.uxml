@@ -7,7 +7,6 @@
 >
     <engine:Toggle name="input-mudo" class="input-padrao" label="Mudo" tooltip="Define se som está mudo"/>
     <engine:Toggle name="input-tocar-iniciar" class="input-padrao" label="Tocar ao iniciar" tooltip="Define se som irá reproduzir assim que iniciar o jogo"/>
-    <engine:VisualElement name="regiao-input-audio">
-    </engine:VisualElement>
+    <engine:VisualElement name="regiao-input-audio"/>
     <editor:FloatField name="input-volume" class="input-padrao" label="Volume" tooltip="Define o volume do som"/>
 </engine:UXML>

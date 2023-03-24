@@ -2,6 +2,7 @@ using UnityEngine;
 using EngineParaTerapeutas.DTOs;
 
 namespace EngineParaTerapeutas.ComponentesGameObjects {
+    [AddComponentMenu("Engine Terapeutas TEA/Identificador Tipo/Identificador Tipo Apoio")]
     public class IdentificadorTipoApoio : IdentificadorTipo<TiposApoios> {
         private SpriteRenderer spriteRenderer;
         private AudioSource audioSource;

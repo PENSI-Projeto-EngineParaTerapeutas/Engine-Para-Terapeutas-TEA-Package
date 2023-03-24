@@ -1,39 +1,18 @@
 using System.IO;
-using UnityEditor;
-using UnityEngine;
 
 namespace EngineParaTerapeutas.Constantes {
     public static class ConstantesEditor {
-        public static string CaminhoDinamicoPacote { // TODO: Arrumar localização
-            get {
-                if(!string.IsNullOrWhiteSpace(caminhoDinamicoPacote)) {
-                    return caminhoDinamicoPacote;
-                }
+        public static string CaminhoPastaEditor => Path.Combine(ConstantesProjeto.CaminhoAssetDatabaseProjeto, "Editor/");
+        public static string CaminhoPastaResourcesEditor => Path.Combine(CaminhoPastaEditor, "Resources/");
+        public static string CaminhoPastaImagensEditor => Path.Combine(CaminhoPastaResourcesEditor, "Imagens/");
 
-                string[] assets = AssetDatabase.FindAssets($"t:Script {nameof(Inicializacao)}");
-                string caminhoArquivoInicializacao = AssetDatabase.GUIDToAssetPath(assets[0]);
+        public static string CaminhoPastaRuntime => Path.Combine(ConstantesProjeto.CaminhoAssetDatabaseProjeto, "Runtime/");
+        public static string CaminhoPastaResourcesRuntime => Path.Combine(CaminhoPastaRuntime, "Resources/");
 
-                string caminhoCompletoProjetoUnity = Directory.GetParent(Application.dataPath).FullName;
-                string caminhoCompletoPacoteEngineTEA = Directory.GetParent(Path.GetDirectoryName(Path.GetFullPath(caminhoArquivoInicializacao))).FullName.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
-                caminhoDinamicoPacote = Path.GetRelativePath(caminhoCompletoProjetoUnity, caminhoCompletoPacoteEngineTEA);
+        public static string CaminhoArquivoClassesPadroesUSS => "Compartilhado/ClassesPadroesEditorStyle.uss";
 
-                return caminhoDinamicoPacote;
-            }
-        }
-        private static string caminhoDinamicoPacote = "";
-
-        public static string PastaRaiz { get => Path.Combine(ConstantesProjeto.PastaRaizProjeto, "Editor/"); }
-        public static string CaminhoCompletoPastaResources { get => Path.Combine(PastaRaiz, "Resources/"); }
-        public static string CaminhoCompletoPastaImagens { get => Path.Combine(CaminhoCompletoPastaResources, "Imagens/"); }
-        public static string CaminhoPastaBuild { get => "Build/WebGL/"; }
-
-        public static string CaminhoArquivoClassesPadroesUSS { get => "Compartilhado/ClassesPadroesEditorStyle.uss"; }
-
-        public static string NomePastaLayouts { get => "Layouts/";  }
-        public static string NomeCenaPadrao { get => "CenaBasePadrao.unity"; }
-
-        public static string ExtensoesImagem { get => "png,jpg,jpeg"; }
-        public static string ExtensoesAudio { get => "mp3,wav"; }
-        public static string ExtensoesVideo { get => "mp4"; }
+        public static string CaminhoPastaBuild => "Build/WebGL/";
+        public static string NomePastaLayouts => "Layouts/";
+        public static string NomeCenaPadrao => "CenaBasePadrao.unity";
     }
 }

@@ -10,8 +10,8 @@
 
         <engine:Button name="botao-carregar-secao-cenario" text="Cenário"/>
         <engine:Button name="botao-carregar-secao-instrucao" text="Instrução"/>
-        <engine:Button name="botao-carregar-secao-personagem" text="Personagem"/>
         <engine:Button name="botao-carregar-secao-objeto-interacao" text="Objeto interação"/>
+        <engine:Button name="botao-carregar-secao-personagem" text="Personagem"/>
         <engine:Button name="botao-carregar-secao-reforco" text="Reforço"/>
         <engine:Button name="botao-carregar-secao-apoio" text="Apoio"/>
     </engine:VisualElement>

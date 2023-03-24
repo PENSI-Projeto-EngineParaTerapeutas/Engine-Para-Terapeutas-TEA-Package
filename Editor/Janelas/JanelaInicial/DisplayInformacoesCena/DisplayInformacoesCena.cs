@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.SceneManagement;
 using EngineParaTerapeutas.ScriptableObjects;
@@ -18,7 +17,6 @@ namespace EngineParaTerapeutas.UI {
         public Label LabelDificuldade { get => labelDificuldade; }
         public Label LabelFaixaEtaria { get => labelFaixaEtaria; }
         public Button BotaoAbrirCena { get => botaoAbrirCena; }
-        public Button BotaoEditarCena { get => botaoEditarCena; }
         public Button BotaoExcluirCena { get => botaoExcluirCena; }
 
         private const string NOME_LABEL_NOME_CENA = "nome-cena";
@@ -32,9 +30,6 @@ namespace EngineParaTerapeutas.UI {
 
         private const string NOME_BOTAO_ABRIR_CENA = "botao-abrir-cena";
         private readonly Button botaoAbrirCena;
-
-        private const string NOME_BOTAO_EDITAR_CENA = "botao-editar-cena";
-        private readonly Button botaoEditarCena;
 
         private const string NOME_BOTAO_EXCLUIR_CENA = "botao-excluir-cena";
         private readonly Button botaoExcluirCena;
@@ -55,7 +50,6 @@ namespace EngineParaTerapeutas.UI {
             labelFaixaEtaria = Root.Query<Label>(NOME_LABEL_FAIXA_ETARIA_CENA);
 
             botaoAbrirCena = Root.Query<Button>(NOME_BOTAO_ABRIR_CENA);
-            botaoEditarCena = Root.Query<Button>(NOME_BOTAO_EDITAR_CENA);
             botaoExcluirCena = Root.Query<Button>(NOME_BOTAO_EXCLUIR_CENA);
 
             ConfigurarLabels();
@@ -74,25 +68,14 @@ namespace EngineParaTerapeutas.UI {
 
         private void ConfigurarBotoes() {
             botaoAbrirCena.clicked += HandleClickBotaoAbrirCena;
-            botaoEditarCena.clicked += HandleClickBotaoEditarCena;
             botaoExcluirCena.clicked += HandleClickBotaoExcluirCena;
 
             return;
         }
 
         private void HandleClickBotaoAbrirCena() {
-            EditorSceneManager.OpenScene(Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsCenas, informacoesCena.NomeArquivo + Extensoes.Cena));
+            EditorSceneManager.OpenScene(Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsCenas, informacoesCena.NomeArquivo + ExtensoesEditor.Cena));
             LayoutLoader.CarregarTelaEditor();
-            return;
-        }
-
-        private void HandleClickBotaoEditarCena() {
-            // TODO: Remover
-            Debug.Log("---- Editar cena: " + informacoesCena.NomeExibicao);
-            Debug.Log("Nome: " + informacoesCena.NomeExibicao);
-            Debug.Log("BuildIndex: " + informacoesCena.BuildIndex);
-            Debug.Log("Caminho: " + informacoesCena.Caminho);
-
             return;
         }
 

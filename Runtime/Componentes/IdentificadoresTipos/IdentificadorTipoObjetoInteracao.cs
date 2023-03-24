@@ -2,6 +2,7 @@ using UnityEngine;
 using EngineParaTerapeutas.DTOs;
 
 namespace EngineParaTerapeutas.ComponentesGameObjects {
+    [AddComponentMenu("Engine Terapeutas TEA/Identificador Tipo/Identificador Tipo Objeto de Interação")]
     public class IdentificadorTipoObjetoInteracao : IdentificadorTipo<TiposObjetosInteracao> {
         private SpriteRenderer spriteRenderer;
         private Texto texto;

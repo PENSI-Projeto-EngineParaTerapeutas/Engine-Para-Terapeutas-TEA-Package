@@ -10,7 +10,6 @@ namespace EngineParaTerapeutas.UI {
 
         public Label InputHabilitarAtor { get => InputHabilitarAtor; }
 
-
         private string NOME_INPUT_HABILITAR_ATOR = "input-habilitar-ator";
         private readonly Toggle inputHabilitarAtor;
 

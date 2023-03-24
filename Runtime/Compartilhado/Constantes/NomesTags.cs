@@ -1,13 +1,13 @@
 namespace EngineParaTerapeutas.Constantes {
     public static class NomesTags {
-        public static string Untagged { get => "Untagged"; }
-        public static string EditorOnly { get => "EditorOnly"; }
-        public static string Apoios { get => "Apoios"; }
-        public static string Reforcos { get => "Reforcos"; }
-        public static string Cenario { get => "Cenario"; }
-        public static string Contexto { get => "Contexto"; }
-        public static string Instrucoes { get => "Instrucoes"; }
-        public static string ObjetosInteracao { get => "ObjetosInteracao"; }
-        public static string Personagem { get => "Personagem"; }
+        public static string Untagged => "Untagged";
+        public static string EditorOnly => "EditorOnly";
+        public static string Apoios => "Apoios";
+        public static string Reforcos => "Reforcos";
+        public static string Cenario => "Cenario";
+        public static string Contexto => "Contexto";
+        public static string Instrucoes => "Instrucoes";
+        public static string ObjetosInteracao => "ObjetosInteracao";
+        public static string Personagem => "Personagem";
     }
 }

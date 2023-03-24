@@ -48,7 +48,7 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void HandleBotaoBuscarVideoClick() {
-            string caminhoAqruivoSelecionado = EditorUtility.OpenFilePanel("Procurar Video", "", ConstantesEditor.ExtensoesVideo);
+            string caminhoAqruivoSelecionado = EditorUtility.OpenFilePanel("Procurar Video", string.Empty, ExtensoesEditor.Video);
 
             if (string.IsNullOrWhiteSpace(caminhoAqruivoSelecionado)) {
                 Debug.Log("[LOG]: Nenhum arquivo selecionado");

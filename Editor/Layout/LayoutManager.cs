@@ -4,7 +4,6 @@ using Type = System.Type;
 using UnityEngine;
 using UnityEditor;
 using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.Utils;
 
 namespace EngineParaTerapeutas.UI {
     public static class LayoutManager {
@@ -62,7 +61,7 @@ namespace EngineParaTerapeutas.UI {
         }
 
         public static void SalvarLayoutAtual(string nomeLayout) {
-            SalvarLayout(Path.Combine(GetCaminhoDiretorioAtual, ConstantesEditor.NomePastaLayouts) + nomeLayout + Extensoes.Layout);
+            SalvarLayout(Path.Combine(GetCaminhoDiretorioAtual, ConstantesEditor.NomePastaLayouts) + nomeLayout + ExtensoesEditor.Layout);
             return;
         }
     }

@@ -58,7 +58,7 @@ namespace EngineParaTerapeutas.UI {
 
         #if UNITY_EDITOR
         private void HandleAlterarImagemClickEditor() {
-            string caminhoAqruivoSelecionado = EditorUtility.OpenFilePanel("Procurar Imagem", "", "png,jpg,jpeg");
+            string caminhoAqruivoSelecionado = EditorUtility.OpenFilePanel("Procurar Imagem", string.Empty, "png,jpg,jpeg");
             if (string.IsNullOrWhiteSpace(caminhoAqruivoSelecionado)) {
                 Debug.Log("[LOG]: Nenhum arquivo selecionado");
                 return;

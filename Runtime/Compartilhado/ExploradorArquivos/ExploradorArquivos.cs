@@ -11,7 +11,7 @@ namespace EngineParaTerapeutas.Utils {
 
         public static void SelecionarSprite(Action<Sprite> callback) {
             callbackAoCarregarImagem = callback;
-            AdaptadorExploradorArquivosJS.RequisitarSelecaoArquivo(HandleSelecaoArquivoImagemConcluida, ConstantesRuntime.ExtensoesImagem);
+            AdaptadorExploradorArquivosJS.RequisitarSelecaoArquivo(HandleSelecaoArquivoImagemConcluida, ExtensoesRuntime.Imagem);
             return;
         }
 
@@ -41,7 +41,7 @@ namespace EngineParaTerapeutas.Utils {
 
         public static void SelecionarAudio(Action<AudioClip> callback) {
             callbackAoCarregarAudio = callback;
-            AdaptadorExploradorArquivosJS.RequisitarSelecaoArquivo(HandleSelecaoArquivoAudioConcluida, ConstantesRuntime.ExtensoesAudio);
+            AdaptadorExploradorArquivosJS.RequisitarSelecaoArquivo(HandleSelecaoArquivoAudioConcluida, ExtensoesRuntime.Audio);
             return;
         }
 

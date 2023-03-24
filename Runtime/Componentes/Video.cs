@@ -6,7 +6,7 @@ namespace EngineParaTerapeutas.ComponentesGameObjects {
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(AudioSource))]
     [RequireComponent(typeof(VideoPlayer))]
-    [AddComponentMenu("Engine Terapeutas TEA/Video")]
+    [AddComponentMenu("Engine Terapeutas TEA/Componentes Básicos/Texto")]
     public class Video : MonoBehaviour {
         public string nomeArquivoVideo;
 

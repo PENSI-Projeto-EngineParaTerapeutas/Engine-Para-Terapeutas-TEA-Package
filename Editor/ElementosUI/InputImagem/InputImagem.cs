@@ -49,7 +49,7 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void HandleBotaoBuscarImagemClick() {
-            string caminhoAqruivoSelecionado = EditorUtility.OpenFilePanel("Procurar Imagem", "", ConstantesEditor.ExtensoesImagem);
+            string caminhoAqruivoSelecionado = EditorUtility.OpenFilePanel("Procurar Imagem", string.Empty, ExtensoesEditor.Imagem);
 
             if(string.IsNullOrWhiteSpace(caminhoAqruivoSelecionado)) {
                 Debug.Log("[LOG]: Nenhum arquivo selecionado");

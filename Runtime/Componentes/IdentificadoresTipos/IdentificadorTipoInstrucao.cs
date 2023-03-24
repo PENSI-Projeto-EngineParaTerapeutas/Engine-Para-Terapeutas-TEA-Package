@@ -1,8 +1,8 @@
 using UnityEngine;
-using UnityEngine.Video;
 using EngineParaTerapeutas.DTOs;
 
 namespace EngineParaTerapeutas.ComponentesGameObjects {
+    [AddComponentMenu("Engine Terapeutas TEA/Identificador Tipo/Identificador Tipo Instrução")]
     public class IdentificadorTipoInstrucao : IdentificadorTipo<TiposIntrucoes> {
         private SpriteRenderer spriteRenderer;
         private AudioSource audioSource;

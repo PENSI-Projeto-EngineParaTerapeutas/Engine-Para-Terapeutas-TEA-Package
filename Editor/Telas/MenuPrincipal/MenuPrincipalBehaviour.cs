@@ -1,6 +1,5 @@
 using UnityEngine.UIElements;
 using EngineParaTerapeutas.Criadores;
-using EngineParaTerapeutas.UI;
 
 namespace EngineParaTerapeutas.Telas {
     public class MenuPrincipalBehaviour : Tela {

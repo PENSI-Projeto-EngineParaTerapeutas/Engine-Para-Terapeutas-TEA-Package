@@ -4,13 +4,11 @@ using EngineParaTerapeutas.Utils;
 
 namespace EngineParaTerapeutas.Build {
     public static class CompilacaoAutomatica {
-        private static string NomeCompania { get => (ConstantesProjeto.NomeOrganizacao + " - " + ConstantesProjeto.NomeProjeto); }
-
         [MenuItem("Engine Para Terapeutas/Criar jogo")]
         public static void Compilar() {
             Salvamento.SalvarProjeto();
 
-            PlayerSettings.companyName = NomeCompania;
+            PlayerSettings.companyName = ConstantesProjeto.NomeOrganizacao + " - " + ConstantesProjeto.NomeProjeto;
             PlayerSettings.productName = "Teste"; // TODO: Pegar dinamicamente
 
             PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Gzip;

@@ -2,7 +2,7 @@ using UnityEngine;
 using EngineParaTerapeutas.DTOs;
 
 namespace EngineParaTerapeutas.ComponentesGameObjects {
-    [AddComponentMenu("Engine Terapeutas TEA/Listener Eventos Apoio Interação")]
+    [AddComponentMenu("Engine Terapeutas TEA/Listeners/Listener Apoio Objeto de Interação")]
     public class ListenerEventosApoioInteracao : ListenerEventosBase {
         private IdentificadorTipoApoioObjetoInteracao tipoApoioObjetoInteracao;
         private AudioSource audioSource;

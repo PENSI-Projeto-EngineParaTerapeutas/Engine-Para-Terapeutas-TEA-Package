@@ -45,7 +45,6 @@ namespace EngineParaTerapeutas.Criadores {
 
         private readonly TiposApoios tipoPadrao = TiposApoios.Imagem;
 
-
         public CriadorApoioBehaviour() {
             grupoInputsImagem = new InputsComponenteImagem();
             grupoInputsAudio = new InputsComponenteAudio();

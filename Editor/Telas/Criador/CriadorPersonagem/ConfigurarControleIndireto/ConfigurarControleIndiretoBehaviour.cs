@@ -162,7 +162,7 @@ namespace EngineParaTerapeutas.Telas {
             }
 
             foreach(string caminhoArquivo in caminhoArquivosPastaAnimacao) {
-                if(Path.GetExtension(caminhoArquivo) == Extensoes.ClipAnimacao) {
+                if(Path.GetExtension(caminhoArquivo) == ExtensoesEditor.ClipAnimacao) {
                     AnimationClip clipAnimacao = AssetDatabase.LoadAssetAtPath<AnimationClip>(caminhoArquivo);
                     clipsAnimacoes.Add(clipAnimacao);
                 }
