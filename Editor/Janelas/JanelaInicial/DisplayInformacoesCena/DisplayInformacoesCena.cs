@@ -81,7 +81,7 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void HandleClickBotaoAbrirCena() {
-            EditorSceneManager.OpenScene(Path.Combine(ConstantesRuntime.CaminhoPastaCenas, informacoesCena.NomeArquivo + Extensoes.Cena));
+            EditorSceneManager.OpenScene(Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsCenas, informacoesCena.NomeArquivo + Extensoes.Cena));
             LayoutLoader.CarregarTelaEditor();
             return;
         }

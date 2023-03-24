@@ -40,7 +40,7 @@ namespace EngineParaTerapeutas.Telas {
 
         private void CarregarCenaAtual() {
             string nomeCenaAtual = SceneManager.GetActiveScene().name;
-            cenaAtual = AssetDatabase.LoadAssetAtPath<Cena>(Path.Combine(ConstantesRuntime.CaminhoPastaScriptableObjectsCenas, nomeCenaAtual + Extensoes.ScriptableObject));
+            cenaAtual = AssetDatabase.LoadAssetAtPath<Cena>(Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas, nomeCenaAtual + Extensoes.ScriptableObject));
             
             return;
         }

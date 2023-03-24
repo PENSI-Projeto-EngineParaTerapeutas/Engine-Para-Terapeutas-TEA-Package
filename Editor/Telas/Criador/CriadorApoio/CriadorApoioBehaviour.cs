@@ -51,7 +51,7 @@ namespace EngineParaTerapeutas.Criadores {
             grupoInputsAudio = new InputsComponenteAudio();
             grupoInputsVideo = new InputsComponenteVideo();
 
-            ImportarPrefab("Prefabs/Apoios/Apoio.prefab");
+            ImportarPrefab("Apoios/Apoio.prefab");
 
             CarregarRegiaoHeader();
             CarregarRegiaoInputsImagem();

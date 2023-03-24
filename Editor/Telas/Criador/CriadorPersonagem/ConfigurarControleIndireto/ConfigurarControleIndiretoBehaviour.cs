@@ -148,15 +148,15 @@ namespace EngineParaTerapeutas.Telas {
 
             switch(tiposPersonagem) {
                 case(TiposPersonagem.Avatar): {
-                    caminhoArquivosPastaAnimacao = Directory.GetFiles(Path.Combine(ConstantesRuntime.CaminhoCompletoPastaResources, ConstantesRuntime.CaminhoPastaAnimacoesAvatar)).ToList();
+                    caminhoArquivosPastaAnimacao = Directory.GetFiles(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesAvatar).ToList();
                     break;
                 }
                 case(TiposPersonagem.BonecoPalito): {
-                    caminhoArquivosPastaAnimacao = Directory.GetFiles(Path.Combine(ConstantesRuntime.CaminhoCompletoPastaResources, ConstantesRuntime.CaminhoPastaAnimacoesBonecoPalito)).ToList();
+                    caminhoArquivosPastaAnimacao = Directory.GetFiles(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesBonecoPalito).ToList();
                     break;
                 }
                 case(TiposPersonagem.Ludico): {
-                    caminhoArquivosPastaAnimacao = Directory.GetFiles(Path.Combine(ConstantesRuntime.CaminhoCompletoPastaResources, ConstantesRuntime.CaminhoPastaAnimacoesPersonagemLudico)).ToList();
+                    caminhoArquivosPastaAnimacao = Directory.GetFiles(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesPersonagemLudico).ToList();
                     break;
                 }
             }

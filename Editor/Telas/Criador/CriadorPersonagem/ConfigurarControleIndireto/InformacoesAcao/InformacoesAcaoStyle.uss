@@ -7,5 +7,5 @@
 }
 
 #imagem-icone-lixeira {
-	align-self: end;
+	align-self: flex-end;
 }

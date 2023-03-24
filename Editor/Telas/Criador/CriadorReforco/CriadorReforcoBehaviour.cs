@@ -56,7 +56,7 @@ namespace EngineParaTerapeutas.Criadores {
             grupoInputsTexto = new InputsComponenteTexto();
             grupoInputsVideo = new InputsComponenteVideo();
 
-            ImportarPrefab("Prefabs/Reforcos/Reforco.prefab");
+            ImportarPrefab("Reforcos/Reforco.prefab");
 
             CarregarRegiaoHeader();
             CarregarRegiaoInputsImagem();

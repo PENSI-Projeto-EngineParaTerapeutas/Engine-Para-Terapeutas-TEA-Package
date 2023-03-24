@@ -34,11 +34,11 @@ namespace EngineParaTerapeutas {
 
         private static void CriarPastasProjeto() {
             string[] CAMINHO_PASTAS = {
-                ConstantesRuntime.CaminhoPastaCenas,
-                ConstantesRuntime.CaminhoPastaImagens,
-                ConstantesRuntime.CaminhoPastaSons,
-                ConstantesRuntime.CaminhoPastaScriptableObjectsCenas,
-                ConstantesRuntime.CaminhoPastaStreamingAssets,
+                ConstantesProjetoUnity.CaminhoUnityAssetsCenas,
+                ConstantesProjetoUnity.CaminhoUnityAssetsImagens,
+                ConstantesProjetoUnity.CaminhoUnityAssetsSons,
+                ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas,
+                ConstantesProjetoUnity.CaminhoUnityAssetsStreamingAssets,
             };
 
             foreach(string pasta in CAMINHO_PASTAS) {
@@ -49,7 +49,7 @@ namespace EngineParaTerapeutas {
                 Directory.CreateDirectory(pasta);
             }
 
-            AssetDatabase.CopyAsset(Path.Combine(ConstantesRuntime.CaminhoCompletoPastaResources, ConstantesRuntime.CaminhoPastaAnimacoes), ConstantesRuntime.CaminhoPastaAnimacoes);
+            AssetDatabase.CopyAsset(ConstantesRuntime.CaminhoPastaAnimacoes, ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoes);
             return;
         }
 

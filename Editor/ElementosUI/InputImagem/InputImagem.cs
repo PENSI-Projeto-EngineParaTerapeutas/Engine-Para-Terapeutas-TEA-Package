@@ -59,7 +59,7 @@ namespace EngineParaTerapeutas.UI {
             CopiarArquivoSeNaoExistir(caminhoAqruivoSelecionado);
 
             string nomeArquivo = Path.GetFileName(caminhoAqruivoSelecionado);
-            Sprite imagemCarregada = AssetDatabase.LoadAssetAtPath<Sprite>(Path.Combine(ConstantesRuntime.CaminhoPastaImagens, nomeArquivo));
+            Sprite imagemCarregada = AssetDatabase.LoadAssetAtPath<Sprite>(Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsImagens, nomeArquivo));
 
             CampoImagem.value = imagemCarregada;
             CampoImagem.SendEvent(new ChangeEvent<Object>());
@@ -67,11 +67,11 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void CopiarArquivoSeNaoExistir(string caminho) {
-            if(!Directory.Exists(ConstantesRuntime.CaminhoPastaImagens)) {
-                Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaImagens);
+            if(!Directory.Exists(ConstantesProjetoUnity.CaminhoUnityAssetsImagens)) {
+                Directory.CreateDirectory(ConstantesProjetoUnity.CaminhoUnityAssetsImagens);
             }
 
-            string[] arquivos = Directory.GetFiles(ConstantesRuntime.CaminhoPastaImagens);
+            string[] arquivos = Directory.GetFiles(ConstantesProjetoUnity.CaminhoUnityAssetsImagens);
             string nomeArquivo = Path.GetFileName(caminho);
 
             foreach(string arquivo in arquivos) {
@@ -80,7 +80,7 @@ namespace EngineParaTerapeutas.UI {
                 }
             }
 
-            FileUtil.CopyFileOrDirectory(caminho, Path.Combine(ConstantesRuntime.CaminhoPastaImagens, nomeArquivo));
+            FileUtil.CopyFileOrDirectory(caminho, Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsImagens, nomeArquivo));
             AssetDatabase.Refresh();
             return;
         }

@@ -28,7 +28,7 @@ namespace EngineParaTerapeutas.Criadores {
         public CriadorCenarioBehaviour() {
             grupoInputsImagem = new InputsComponenteImagem();
 
-            ImportarPrefab("Prefabs/Cenarios/Cenario.prefab");
+            ImportarPrefab("Cenarios/Cenario.prefab");
 
             CarregarRegiaoHeader();
             CarregarRegiaoInputsImagem();

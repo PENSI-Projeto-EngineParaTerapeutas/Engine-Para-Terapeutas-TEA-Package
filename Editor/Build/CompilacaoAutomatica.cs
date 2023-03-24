@@ -18,7 +18,7 @@ namespace EngineParaTerapeutas.Build {
             PlayerSettings.SetApplicationIdentifier(BuildTargetGroup.WebGL, PlayerSettings.productName);
 
             BuildPlayerOptions playerOptions = new() {
-                scenes = new string[] { ConstantesRuntime.CaminhoPastaCenas + "/Fase1.unity" }, // TODO: Pegar dinamicamente
+                scenes = new string[] { ConstantesProjetoUnity.CaminhoUnityAssetsCenas + "/Fase1.unity" }, // TODO: Pegar dinamicamente
                 locationPathName = ConstantesEditor.CaminhoPastaBuild,
                 target = BuildTarget.WebGL,
                 options = BuildOptions.None,

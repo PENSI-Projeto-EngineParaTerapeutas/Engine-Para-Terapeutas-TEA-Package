@@ -33,7 +33,7 @@ namespace EngineParaTerapeutas.Criadores {
             this.objetoInteracaoOrigem = objetoInteracaoOrigem;
             inputsTipoApoioInteracao = new InputsTipoApoioInteracao();
 
-            ImportarPrefab("Prefabs/ObjetosInteracao/ApoioObjetoInteracao.prefab");
+            ImportarPrefab("ObjetosInteracao/ApoioObjetoInteracao.prefab");
 
             CarregarRegiaoHeader();
             CarregarInputsTipoApoioObjetoInteracao();

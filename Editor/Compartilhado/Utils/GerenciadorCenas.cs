@@ -15,11 +15,11 @@ namespace EngineParaTerapeutas.Utils {
             get {
                 int quantidadeCenas = 0;
 
-                if(!Directory.Exists(ConstantesRuntime.CaminhoPastaCenas)) {
-                    Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaCenas);
+                if(!Directory.Exists(ConstantesProjetoUnity.CaminhoUnityAssetsCenas)) {
+                    Directory.CreateDirectory(ConstantesProjetoUnity.CaminhoUnityAssetsCenas);
                 }
 
-                string[] arquivos = Directory.GetFiles(ConstantesRuntime.CaminhoPastaCenas);
+                string[] arquivos = Directory.GetFiles(ConstantesProjetoUnity.CaminhoUnityAssetsCenas);
                 foreach(string arquivo in arquivos) {
                     if(Path.GetExtension(arquivo) == Extensoes.Cena) {
                         quantidadeCenas++;
@@ -35,7 +35,7 @@ namespace EngineParaTerapeutas.Utils {
             string nomeNovaCena = "Fase_" + dataHoraCraicao;
 
             string caminhoCenaPadrao = Path.Combine(ConstantesEditor.PastaRaiz, ConstantesRuntime.NomePastaCenas, ConstantesEditor.NomeCenaPadrao);
-            string caminhoNovaCena = Path.Combine(ConstantesRuntime.CaminhoPastaCenas, nomeNovaCena + Extensoes.Cena);
+            string caminhoNovaCena = Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsCenas, nomeNovaCena + Extensoes.Cena);
 
             AssetDatabase.CopyAsset(caminhoCenaPadrao, caminhoNovaCena);
             Salvamento.SalvarAssets();
@@ -47,19 +47,19 @@ namespace EngineParaTerapeutas.Utils {
             novaCena.AssociarValores(arquivoCena);
             novaCena.NomeArquivo = nomeNovaCena;
 
-            if(!Directory.Exists(ConstantesRuntime.CaminhoPastaScriptableObjectsCenas)) {
-                Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaScriptableObjectsCenas);
+            if(!Directory.Exists(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas)) {
+                Directory.CreateDirectory(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas);
             }
 
-            AssetDatabase.CreateAsset(novaCena, Path.Combine(ConstantesRuntime.CaminhoPastaScriptableObjectsCenas, nomeNovaCena + Extensoes.ScriptableObject));
+            AssetDatabase.CreateAsset(novaCena, Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas, nomeNovaCena + Extensoes.ScriptableObject));
             Salvamento.SalvarAssets();
 
             return novaCena;
         }
 
         public static void DeletarCena(Cena cena) {
-            string caminhoScriptableObjectCenaAlvo = Path.Combine(ConstantesRuntime.CaminhoPastaScriptableObjectsCenas, cena.NomeArquivo + Extensoes.ScriptableObject);
-            string caminhoArquivoCenaAlvo = Path.Combine(ConstantesRuntime.CaminhoPastaCenas, cena.NomeArquivo + Extensoes.Cena);
+            string caminhoScriptableObjectCenaAlvo = Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas, cena.NomeArquivo + Extensoes.ScriptableObject);
+            string caminhoArquivoCenaAlvo = Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsCenas, cena.NomeArquivo + Extensoes.Cena);
 
             AssetDatabase.DeleteAsset(caminhoScriptableObjectCenaAlvo);
             AssetDatabase.DeleteAsset(caminhoArquivoCenaAlvo);
@@ -69,12 +69,12 @@ namespace EngineParaTerapeutas.Utils {
         }
 
         public static List<Cena> GetTodasCenasCriadas() {
-            if(!AssetDatabase.IsValidFolder(ConstantesRuntime.CaminhoPastaScriptableObjectsCenas)) {
+            if(!AssetDatabase.IsValidFolder(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas)) { // TODO: Alterar para Directory
                 AssetDatabase.CreateFolder("Assets", "Cenas");
                 return new List<Cena>();
             }
 
-            string[] arquivos = Directory.GetFiles(ConstantesRuntime.CaminhoPastaScriptableObjectsCenas);
+            string[] arquivos = Directory.GetFiles(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas);
             List<Cena> cenas = new();
 
             foreach(string arquivo in arquivos) {

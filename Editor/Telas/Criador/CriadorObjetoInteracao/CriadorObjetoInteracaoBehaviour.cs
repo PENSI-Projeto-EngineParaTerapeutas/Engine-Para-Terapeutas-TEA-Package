@@ -60,7 +60,7 @@ namespace EngineParaTerapeutas.Criadores {
             grupoInputsTexto = new InputsComponenteTexto();
             grupoInputsTipoAcao = new InputsIdentificadorTipoAcao();
 
-            ImportarPrefab("Prefabs/ObjetosInteracao/ObjetoInteracao.prefab");
+            ImportarPrefab("ObjetosInteracao/ObjetoInteracao.prefab");
 
             CarregarRegiaoHeader();
             CarregarRegiaoInputsImagem();

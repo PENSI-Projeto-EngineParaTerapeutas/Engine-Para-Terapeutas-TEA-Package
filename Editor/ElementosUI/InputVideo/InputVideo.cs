@@ -66,11 +66,11 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void CopiarArquivoSeNaoExistir(string caminho) {
-            if(!Directory.Exists(ConstantesRuntime.CaminhoPastaStreamingAssets)) {
-                Directory.CreateDirectory(ConstantesRuntime.CaminhoPastaStreamingAssets);
+            if(!Directory.Exists(ConstantesProjetoUnity.CaminhoUnityAssetsStreamingAssets)) {
+                Directory.CreateDirectory(ConstantesProjetoUnity.CaminhoUnityAssetsStreamingAssets);
             }
 
-            string[] arquivos = Directory.GetFiles(ConstantesRuntime.CaminhoPastaStreamingAssets);
+            string[] arquivos = Directory.GetFiles(ConstantesProjetoUnity.CaminhoUnityAssetsStreamingAssets);
             string nomeArquivo = Path.GetFileName(caminho);
 
             foreach(string arquivo in arquivos) {
@@ -79,7 +79,7 @@ namespace EngineParaTerapeutas.UI {
                 }
             }
 
-            FileUtil.CopyFileOrDirectory(caminho, Path.Combine(ConstantesRuntime.CaminhoPastaStreamingAssets, nomeArquivo));
+            FileUtil.CopyFileOrDirectory(caminho, Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsStreamingAssets, nomeArquivo));
             AssetDatabase.Refresh();
             return;
         }
