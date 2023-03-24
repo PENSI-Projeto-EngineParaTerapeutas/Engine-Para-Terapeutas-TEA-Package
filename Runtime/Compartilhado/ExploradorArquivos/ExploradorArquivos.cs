@@ -16,7 +16,7 @@ namespace EngineParaTerapeutas.Utils {
         }
 
         private static void HandleSelecaoArquivoImagemConcluida(string caminho) {
-            if(string.IsNullOrEmpty(caminho)) {
+            if(string.IsNullOrWhiteSpace(caminho)) {
                 Debug.Log("[LOG]: Nenhum arquivo selecionado");
                 return;
             }
@@ -46,7 +46,7 @@ namespace EngineParaTerapeutas.Utils {
         }
 
         private static void HandleSelecaoArquivoAudioConcluida(string caminho) {
-            if (string.IsNullOrEmpty(caminho)) {
+            if(string.IsNullOrWhiteSpace(caminho)) {
                 Debug.Log("[LOG]: Nenhum arquivo selecionado");
                 return;
             }

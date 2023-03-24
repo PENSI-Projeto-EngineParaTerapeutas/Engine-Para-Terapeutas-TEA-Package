@@ -35,7 +35,7 @@ namespace EngineParaTerapeutas.ComponentesGameObjects {
         }
 
         private void HandleEventoExibirContextualizacao() {
-            if(string.IsNullOrEmpty(video.nomeArquivoVideo)) {
+            if(string.IsNullOrWhiteSpace(video.nomeArquivoVideo)) {
                 EncerrarContextualizacao();
                 return;
             }

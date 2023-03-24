@@ -49,7 +49,7 @@ namespace EngineParaTerapeutas.ComponentesGameObjects {
                 audioSource.Play();
             }
 
-            if(!string.IsNullOrEmpty(video.nomeArquivoVideo)) {
+            if(!string.IsNullOrWhiteSpace(video.nomeArquivoVideo)) {
                 gameObjectVideo.SetActive(true);
                 video.Player.Play();
                 video.Player.loopPointReached += HandleFimVideo;

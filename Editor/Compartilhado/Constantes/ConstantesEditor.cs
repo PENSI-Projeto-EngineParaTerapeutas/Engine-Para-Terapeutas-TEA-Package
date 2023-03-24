@@ -1,7 +1,27 @@
 using System.IO;
+using UnityEditor;
+using UnityEngine;
 
 namespace EngineParaTerapeutas.Constantes {
     public static class ConstantesEditor {
+        public static string CaminhoDinamicoPacote { // TODO: Arrumar localização
+            get {
+                if(!string.IsNullOrWhiteSpace(caminhoDinamicoPacote)) {
+                    return caminhoDinamicoPacote;
+                }
+
+                string[] assets = AssetDatabase.FindAssets($"t:Script {nameof(Inicializacao)}");
+                string caminhoArquivoInicializacao = AssetDatabase.GUIDToAssetPath(assets[0]);
+
+                string caminhoCompletoProjetoUnity = Directory.GetParent(Application.dataPath).FullName;
+                string caminhoCompletoPacoteEngineTEA = Directory.GetParent(Path.GetDirectoryName(Path.GetFullPath(caminhoArquivoInicializacao))).FullName.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+                caminhoDinamicoPacote = Path.GetRelativePath(caminhoCompletoProjetoUnity, caminhoCompletoPacoteEngineTEA);
+
+                return caminhoDinamicoPacote;
+            }
+        }
+        private static string caminhoDinamicoPacote = "";
+
         public static string PastaRaiz { get => Path.Combine(ConstantesProjeto.PastaRaizProjeto, "Editor/"); }
         public static string CaminhoCompletoPastaResources { get => Path.Combine(PastaRaiz, "Resources/"); }
         public static string CaminhoCompletoPastaImagens { get => Path.Combine(CaminhoCompletoPastaResources, "Imagens/"); }

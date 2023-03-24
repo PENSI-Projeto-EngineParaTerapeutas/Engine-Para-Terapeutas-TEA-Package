@@ -5,31 +5,12 @@ using UnityEditor;
 using EngineParaTerapeutas.Constantes;
 using EngineParaTerapeutas.DTOs;
 using EngineParaTerapeutas.UI;
-using Codice.CM.Client.Differences;
 using EngineParaTerapeutas.Utils;
 
 namespace EngineParaTerapeutas {
     [InitializeOnLoad]
     public class Inicializacao : AssetPostprocessor {
         static Inicializacao() {}
-
-        [MenuItem("Engine Para Terapeutas/Teste")]
-        public static void Teste() {
-            string caminhoCompletoProjetoUnity = Directory.GetParent(Application.dataPath).FullName;
-            string caminhoPacoteEngine = Directory.GetParent(GetCaminhoDiretorioAtual).FullName;
-
-            Debug.Log(Path.GetRelativePath(caminhoCompletoProjetoUnity, caminhoPacoteEngine));
-            return;
-        }
-
-        private static string GetCaminhoDiretorioAtual {
-            get {
-                string[] assets = AssetDatabase.FindAssets($"t:Script {nameof(Inicializacao)}");
-                string caminhoLayoutManager = AssetDatabase.GUIDToAssetPath(assets[0]);
-
-                return Path.GetDirectoryName(Path.GetFullPath(caminhoLayoutManager));
-            }
-        }
 
         private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths) {
             const string NOME_ARQUIVO_CONFIGURACAO_PACOTE = "package.json";
@@ -63,23 +44,20 @@ namespace EngineParaTerapeutas {
             };
 
             foreach(string pasta in CAMINHO_PASTAS) {
-                if(Directory.Exists(pasta)) {
-                    continue;
-                }
-
-                Directory.CreateDirectory(pasta);
+                CriarPasta(pasta);
             }
-
-            /*string caminhoCompletoProjetoUnity = Directory.GetParent(Application.dataPath).FullName;
-            string caminhoCompletoPacoteEngine = Directory.GetParent(GetCaminhoDiretorioAtual).FullName;
-            string caminhoRelativoProjeto = Path.GetRelativePath(caminhoCompletoProjetoUnity, caminhoCompletoPacoteEngine);
-
-            Debug.Log("Copiando de: " + Path.Combine(caminhoRelativoProjeto, "Runtime/Resources/Assets/Animacoes"));
-            Debug.Log("Destino da cópia: " + ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoes);*/
-            //FileUtil.CopyFileOrDirectory(Path.Combine(caminhoRelativoProjeto, "Runtime/Resources/Assets/Animacoes"), ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoes);
 
             CopiarConteudoPastaAnimacoes();
 
+            return;
+        }
+
+        private static void CriarPasta(string caminho) {
+            if(Directory.Exists(caminho)) {
+                return;
+            }
+
+            Directory.CreateDirectory(caminho);
             return;
         }
 
@@ -91,30 +69,23 @@ namespace EngineParaTerapeutas {
             };
 
             foreach(string pasta in SUBPASTAS_ANIMACAO) {
-                if(Directory.Exists(pasta)) {
-                    continue;
-                }
-
-                Directory.CreateDirectory(pasta);
+                CriarPasta(pasta);
             }
 
-            string caminhoCompletoProjetoUnity = Directory.GetParent(Application.dataPath).FullName;
-            string caminhoCompletoPacoteEngine = Directory.GetParent(GetCaminhoDiretorioAtual).FullName;
-            string caminhoRelativoProjeto = Path.GetRelativePath(caminhoCompletoProjetoUnity, caminhoCompletoPacoteEngine);
+            string[] pastasTiposAnimacaoPorPersonagem = Directory.GetDirectories(Path.Combine(ConstantesEditor.CaminhoDinamicoPacote, "Runtime/Resources/Assets/Animacoes")); // TODO: Mover para constantes runtime???
+            foreach(string pasta in pastasTiposAnimacaoPorPersonagem) {
+                string caminnhoFormatado = pasta.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+                string nomePasta = caminnhoFormatado.Split(Path.AltDirectorySeparatorChar).Last();
 
-            //string[] pastasTiposAnimacaoPorPersonagem = Directory.GetDirectories(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoes);
-            string[] pastasTiposAnimacaoPorPersonagem = Directory.GetFiles(Path.Combine(caminhoRelativoProjeto, "Runtime/Resources/Assets/Animacoes/BonecoPalito"));
-            foreach (string pasta in pastasTiposAnimacaoPorPersonagem) {
-                string nomePasta = Path.GetDirectoryName(pasta);
-                string[] arquivos = Directory.GetFiles(pasta);
-
+                string[] arquivos = Directory.GetFiles(caminnhoFormatado);
                 foreach(string arquivo in arquivos) {
-                    if(Path.GetExtension(arquivo) == Extensoes.Meta) {
+                    string caminhoArquivoFormatado = arquivo.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+                    if(Path.GetExtension(caminhoArquivoFormatado) == Extensoes.Meta) {
                         continue;
                     }
 
-                    string nomeArquivo = Path.GetFileName(arquivo);
-                    FileUtil.CopyFileOrDirectory(arquivo, Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoes, nomePasta, nomeArquivo));
+                    string nomeArquivo = Path.GetFileName(caminhoArquivoFormatado);
+                    FileUtil.CopyFileOrDirectory(caminhoArquivoFormatado, Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoes, nomePasta, nomeArquivo));
                 }
             }
 
