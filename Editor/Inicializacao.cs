@@ -11,6 +11,30 @@ namespace EngineParaTerapeutas {
     public class Inicializacao : AssetPostprocessor {
         static Inicializacao() {}
 
+        [MenuItem("Engine Para Terapeutas/Teste")]
+        public static void Teste() {
+            string[] assets = AssetDatabase.FindAssets($"t:Script {nameof(Inicializacao)}");
+            string caminhoLayoutManager = AssetDatabase.GUIDToAssetPath(assets[0]);
+
+            Debug.Log("Path.GetFullPath(caminhoLayoutManager): " + Path.GetFullPath(caminhoLayoutManager));
+            Debug.Log("Path.GetDirectoryName(caminhoLayoutManager): " + Path.GetDirectoryName(caminhoLayoutManager));
+            Debug.Log("Path.GetPathRoot(caminhoLayoutManager): " + Path.GetPathRoot(caminhoLayoutManager));
+            Debug.Log("Path.GetDirectoryName(Path.GetFullPath(caminhoLayoutManager)): " + Path.GetDirectoryName(Path.GetFullPath(caminhoLayoutManager)));
+            Debug.Log("Directory.GetCurrentDirectory()" + Directory.GetCurrentDirectory());
+            Debug.Log("Directory.GetParent(Path.GetDirectoryName(Path.GetFullPath(caminhoLayoutManager))): " + Directory.GetParent(Path.GetDirectoryName(Path.GetFullPath(caminhoLayoutManager))).FullName);
+
+            return;
+        }
+
+        private static string GetCaminhoDiretorioAtual {
+            get {
+                string[] assets = AssetDatabase.FindAssets($"t:Script {nameof(Inicializacao)}");
+                string caminhoLayoutManager = AssetDatabase.GUIDToAssetPath(assets[0]);
+
+                return Path.GetDirectoryName(Path.GetFullPath(caminhoLayoutManager));
+            }
+        }
+
         private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths) {
             const string NOME_ARQUIVO_CONFIGURACAO_PACOTE = "package.json";
             string caminhoArquivoConfiguracaoPacote = Path.Combine(ConstantesProjeto.PastaRaizProjeto, NOME_ARQUIVO_CONFIGURACAO_PACOTE);
@@ -49,7 +73,10 @@ namespace EngineParaTerapeutas {
                 Directory.CreateDirectory(pasta);
             }
 
-            Debug.Log("Copiando de: " + ConstantesRuntime.CaminhoPastaAnimacoes);
+            Debug.Log("Directory.GetCurrentDirectory(): " + Directory.GetCurrentDirectory());
+            Debug.Log("Directory.GetParent(GetCaminhoDiretorioAtual): " + Directory.GetParent(GetCaminhoDiretorioAtual));
+
+            Debug.Log("Copiando de: " + Path.Combine(Directory.GetParent(GetCaminhoDiretorioAtual).FullName, "Resources/Assets/Animacoes"));
             Debug.Log("Destino da cópia: " + ConstantesProjetoUnity.CaminhoUnityAssets);
             bool funfou = AssetDatabase.CopyAsset(ConstantesRuntime.CaminhoPastaAnimacoes, ConstantesProjetoUnity.CaminhoUnityAssets);
             Debug.Log("Funfou? " + funfou);
