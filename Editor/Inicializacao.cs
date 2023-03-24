@@ -49,7 +49,10 @@ namespace EngineParaTerapeutas {
                 Directory.CreateDirectory(pasta);
             }
 
-            AssetDatabase.CopyAsset(ConstantesRuntime.CaminhoPastaAnimacoes, ConstantesProjetoUnity.CaminhoUnityAssets);
+            Debug.Log("Copiando de: " + ConstantesRuntime.CaminhoPastaAnimacoes);
+            Debug.Log("Destino da cópia: " + ConstantesProjetoUnity.CaminhoUnityAssets);
+            bool funfou = AssetDatabase.CopyAsset(ConstantesRuntime.CaminhoPastaAnimacoes, ConstantesProjetoUnity.CaminhoUnityAssets);
+            Debug.Log("Funfou? " + funfou);
             return;
         }
 
