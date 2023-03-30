@@ -4,8 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 namespace EngineParaTerapeutas.Eventos {
-    [CreateAssetMenu(fileName = "EventoJogoGenerico", menuName = "Engine Para Terapeutas/Scriptable Object/Eventos/Evento Jogo Genérico")]
-    public class EventoJogoGenerico<T> : ScriptableObject {
+    public abstract class EventoJogoGenerico<T> : ScriptableObject {
         public int QuantidadeCallbacks { get => callbacks.Count; }
         
         private readonly List<UnityAction<T>> callbacks = new();

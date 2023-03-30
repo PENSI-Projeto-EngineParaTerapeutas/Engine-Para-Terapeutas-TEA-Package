@@ -466,6 +466,7 @@ GameObject:
   - component: {fileID: 3964692198615236006}
   - component: {fileID: 3118507252743676052}
   - component: {fileID: 279766814399228454}
+  - component: {fileID: 1543872781761479993}
   m_Layer: 0
   m_Name: ObjetoInteracao
   m_TagString: ObjetosInteracao
@@ -696,7 +697,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4872734823746003635}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2747e11ebad780a4caa0c4121add53fc, type: 3}
   m_Name: 
@@ -709,7 +710,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4872734823746003635}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28e8dba0d0bf9fa479b7678e1510a3a3, type: 3}
   m_Name: 
@@ -727,4 +728,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0b1794fb46d43c4da870e5c0e0f0a85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tipoAcao: 0
+  tipo: 0
+--- !u!114 &1543872781761479993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4872734823746003635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 708e72743f5888345a152d507694dd05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animacaoAcionada: {fileID: 0}

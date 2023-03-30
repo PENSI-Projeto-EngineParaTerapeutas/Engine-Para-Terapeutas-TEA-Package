@@ -5,7 +5,9 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:Image name="imagem-icone-animacao"/>
-    <engine:Label name="label-associacao-objeto-animacao" text="-"/>
+    <engine:VisualElement name="imagem-nome-associacao">
+        <engine:Image name="imagem-icone-animacao"/>
+        <engine:Label name="label-associacao-objeto-animacao" text="-"/>
+    </engine:VisualElement>
     <engine:Image name="imagem-icone-lixeira"/>   
 </engine:UXML>

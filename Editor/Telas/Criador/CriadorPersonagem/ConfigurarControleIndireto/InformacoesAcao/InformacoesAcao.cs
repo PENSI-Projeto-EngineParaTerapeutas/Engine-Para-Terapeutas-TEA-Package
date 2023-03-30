@@ -1,13 +1,21 @@
+using System;
 using UnityEngine.UIElements;
 using EngineParaTerapeutas.Utils;
+using EngineParaTerapeutas.DTOs;
 
 namespace EngineParaTerapeutas.UI {
     public class InformacoesAcao : ElementoInterfaceEditor {
-        private const string IMAGEM_ANIMACAO = "icone-animacao.png";
-        private const string IMAGEM_LIXEIRA = "icone-lixeira.png";
-
         protected override string CaminhoTemplate => "Telas/Criador/CriadorPersonagem/ConfigurarControleIndireto/InformacoesAcao/InformacoesAcaoTemplate.uxml";
         protected override string CaminhoStyle => "Telas/Criador/CriadorPersonagem/ConfigurarControleIndireto/InformacoesAcao/InformacoesAcaoStyle.uss";
+
+        public Action<InformacoesAcao> CallbackExcluirAcao { get => callbackExcluirAcao; set => callbackExcluirAcao = value; }
+        private Action<InformacoesAcao> callbackExcluirAcao;
+
+        public Action<InformacoesAcao> CallbackEditarAcao { get => callbackEditarAcao; set => callbackEditarAcao = value; }
+        private Action<InformacoesAcao> callbackEditarAcao;
+
+        public AcaoPersonagem AcaoVinculada { get => acaoVinculada; }
+        private readonly AcaoPersonagem acaoVinculada;
 
         #region .: Elementos :.
 
@@ -22,26 +30,46 @@ namespace EngineParaTerapeutas.UI {
 
         #endregion
 
-        public InformacoesAcao(string nomeObjeto, string nomeAnimacao) {
+        public InformacoesAcao(AcaoPersonagem acaoPersonagem) {
+            acaoVinculada = acaoPersonagem;
+
             iconeAnimacao = Root.Query<Image>(NOME_IMAGEM_ICONE_ANIMACAO);
             associacaoObjetoAnimacao = Root.Query<Label>(NOME_LABEL_ASSOCIACAO_OBJETO_ANIMACAO);
             iconeLixeira = Root.Query<Image>(NOME_IMAGEM_ICONE_LIXEIRA);
 
             ConfigurarImagens();
-            ConfigurarLabel(nomeObjeto, nomeAnimacao);
+            ConfigurarLabel();
 
             return;
         }
 
         private void ConfigurarImagens() {
-            iconeAnimacao.image = Importador.ImportarImagem(IMAGEM_ANIMACAO);
-            iconeLixeira.image = Importador.ImportarImagem(IMAGEM_LIXEIRA);
+            iconeAnimacao.image = Importador.ImportarImagem("icone-animacao.png");
+            iconeLixeira.image = Importador.ImportarImagem("icone-lixeira.png");
+
+            iconeLixeira.RegisterCallback<ClickEvent>(evt => {
+                callbackExcluirAcao?.Invoke(this);
+            });
 
             return;
         }
 
-        private void ConfigurarLabel(string nomeObjeto, string nomeAnimacao) {
-            associacaoObjetoAnimacao.text = nomeObjeto + " - " + nomeAnimacao;
+        private void ConfigurarLabel() {
+            AtualizarInformacoesLabel();
+            associacaoObjetoAnimacao.RegisterCallback<ClickEvent>(evt => {
+                callbackEditarAcao?.Invoke(this);
+            });
+
+            return;
+        }
+
+        public void AtualizarInformacoesLabel() {
+            if(acaoVinculada.ObjetoGatilho == null || acaoVinculada.Animacao == null) {
+                associacaoObjetoAnimacao.text = " - ";
+                return;
+            }
+
+            associacaoObjetoAnimacao.text = acaoVinculada.ObjetoGatilho.name + " - " + acaoVinculada.Animacao.name;
             return;
         }
     }

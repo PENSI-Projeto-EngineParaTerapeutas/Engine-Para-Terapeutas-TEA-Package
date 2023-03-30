@@ -37,3 +37,7 @@
 .opcao-radio-button > Label {
 	margin-right: 3px;
 }
+
+#label-aviso-personagem-ja-existente {
+	white-space: normal;
+}

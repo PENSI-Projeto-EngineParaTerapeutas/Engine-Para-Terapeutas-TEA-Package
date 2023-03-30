@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using EngineParaTerapeutas.ComponentesGameObjects;
 using EngineParaTerapeutas.Constantes;
+using EngineParaTerapeutas.DTOs;
 
 namespace EngineParaTerapeutas.Telas { 
     public class ControleDiretoPersonagem : TelaJogo {
@@ -40,14 +41,16 @@ namespace EngineParaTerapeutas.Telas {
         #endregion
 
         private GameObject personagem;
+        private IdentificadorTipoControle tipoControle;
 
         private Transform parteSelecionada;
         private ControleDireto controlePersonagem;
 
         private void Awake() {
             personagem = GameObject.FindGameObjectWithTag(NomesTags.Personagem);
+            tipoControle = personagem.GetComponent<IdentificadorTipoControle>();
 
-            if(personagem == null) {
+            if(personagem == null || tipoControle.Tipo != TipoControle.Direto) {
                 gameObject.SetActive(false);
                 return;
             }

@@ -807,6 +807,8 @@ GameObject:
   - component: {fileID: 1133652200472320637}
   - component: {fileID: 5639503983129708798}
   - component: {fileID: 1827164500159984653}
+  - component: {fileID: 4921972572283533366}
+  - component: {fileID: 7308341961934312334}
   m_Layer: 0
   m_Name: Boneco_Palito_Redondo
   m_TagString: Personagem
@@ -864,9 +866,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5238693539030694353}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2b8dcb4ffdb6d204d97230c3afce870d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4f38e2dfcc259004bb34f6196821eeb6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -876,6 +878,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &4921972572283533366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238693539030694353}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d28cf28dc005af489f1d52abd2b887e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7308341961934312334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238693539030694353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8613eb201aac0e0469d3a21fd4cc2058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipo: 0
 --- !u!1 &5547406628248003877
 GameObject:
   m_ObjectHideFlags: 0

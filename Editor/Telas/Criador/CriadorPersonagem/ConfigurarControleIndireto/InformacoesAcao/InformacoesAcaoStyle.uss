@@ -1,5 +1,10 @@
 :root {
 	flex-direction: row;
+	justify-content: space-between;
+}
+
+#imagem-nome-associacao {
+	flex-direction: row;
 }
 
 #imagem-icone-animacao {
@@ -7,5 +12,6 @@
 }
 
 #imagem-icone-lixeira {
-	align-self: flex-end;
+	align-self: flex-start;
+	margin-right: 15px;
 }

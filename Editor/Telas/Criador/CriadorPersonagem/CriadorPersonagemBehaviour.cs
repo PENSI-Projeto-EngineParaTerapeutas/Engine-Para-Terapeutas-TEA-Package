@@ -1,16 +1,18 @@
 using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEditor;
 using UnityEditor.UIElements;
 using EngineParaTerapeutas.UI;
 using EngineParaTerapeutas.Constantes;
 using EngineParaTerapeutas.DTOs;
 using EngineParaTerapeutas.Utils;
 using EngineParaTerapeutas.Telas;
+using EngineParaTerapeutas.ComponentesGameObjects;
 
 namespace EngineParaTerapeutas.Criadores {
     public class CriadorPersonagemBehaviour : Criador {
-        private const string IMAGEM_PERSONAGEM = "imagem-personagem.png";
         private const string CAMINHO_PREFAB_BONECO_PALITO = "Personagens/Boneco_Palito_Redondo.prefab";
         private const string CAMINHO_PREFAB_PERSONAGEM_LUDICO = "Personagens/Personagem.prefab"; // TODO: Alterar quando implementar o tipo de personagem
         private const string CAMINHO_PREFAB_AVATAR = "Personagens/Personagem.prefab"; // TODO: Alterar quando implementar o tipo de personagem
@@ -21,6 +23,12 @@ namespace EngineParaTerapeutas.Criadores {
         protected override string CaminhoStyle => "Telas/Criador/CriadorPersonagem/CriadorPersonagemStyle.uss";
 
         #region .: Elementos :.
+
+        private const string NOME_REGIAO_CONFIGURACAO_PERSONAGEM = "regiao-configurar-personagem";
+        private readonly VisualElement regiaoConfigurarPersonagem;
+
+        private const string NOME_REGIAO_AVISO_PERSONAGEM_JA_CRIADO = "regiao-aviso-personagem-ja-existente";
+        private readonly VisualElement regiaoAvisoPersonagemJaCriado;
 
         private const string NOME_REGIAO_CARREGAMENTO_HEADER = "regiao-carregamento-header";
         private VisualElement regiaoCarregamentoHeader;
@@ -65,6 +73,23 @@ namespace EngineParaTerapeutas.Criadores {
         private TiposPersonagem tipoPersonagemAtual;
 
         public CriadorPersonagemBehaviour() {
+            regiaoConfigurarPersonagem = Root.Query<VisualElement>(NOME_REGIAO_CONFIGURACAO_PERSONAGEM);
+            regiaoAvisoPersonagemJaCriado = Root.Query<VisualElement>(NOME_REGIAO_AVISO_PERSONAGEM_JA_CRIADO);
+
+            bool jaCriouPersonagem = GameObject.FindGameObjectWithTag(NomesTags.Personagem) != null;
+            if(jaCriouPersonagem) {
+                regiaoAvisoPersonagemJaCriado.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+                regiaoConfigurarPersonagem.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+
+                regiaoCarregamentoBotoesConfirmacao = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO);
+                regiaoCarregamentoBotoesConfirmacao.Add(botoesConfirmacao.Root);
+
+                return;
+            }
+
+            regiaoConfigurarPersonagem.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            regiaoAvisoPersonagemJaCriado.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+
             tooltipTitulo = new InterrogacaoToolTip();
             tooltipTipoControle = new InterrogacaoToolTip();
 
@@ -116,7 +141,7 @@ namespace EngineParaTerapeutas.Criadores {
 
         private void ConfigurarImagemPersonagem() {
             imagemPersonagem = Root.Query<Image>(NOME_IMAGEM_PERSONAGEM);
-            imagemPersonagem.image = Importador.ImportarImagem(IMAGEM_PERSONAGEM);
+            imagemPersonagem.image = Importador.ImportarImagem("imagem-personagem.png");
 
             return;
         }
@@ -195,6 +220,7 @@ namespace EngineParaTerapeutas.Criadores {
                     return;
                 }
 
+                novoObjeto.GetComponent<IdentificadorTipoControle>().AlterarTipo(TipoControle.Direto);
                 botaoConfigurarControleIndireto.SetEnabled(false);
             });
 
@@ -206,6 +232,7 @@ namespace EngineParaTerapeutas.Criadores {
                     return;
                 }
 
+                novoObjeto.GetComponent<IdentificadorTipoControle>().AlterarTipo(TipoControle.Indireto);
                 botaoConfigurarControleIndireto.SetEnabled(true);
             });
 
@@ -227,6 +254,31 @@ namespace EngineParaTerapeutas.Criadores {
 
             botoesConfirmacao.BotaoConfirmar.clicked += HandleBotaoConfirmarClick;
             botoesConfirmacao.BotaoCancelar.clicked += HandleBotaoCancelarClick;
+
+            return;
+        }
+
+        protected override void HandleBotaoConfirmarClick() {
+            RuntimeAnimatorController controller = null;
+            switch(tipoPersonagemAtual) {
+                case(TiposPersonagem.Avatar): {
+                    controller = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesAvatar, "ControllerAvatar.controller"));
+                    break;
+                }
+                case(TiposPersonagem.BonecoPalito): {
+                    controller = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesBonecoPalito, "ControllerPersonagemPalito.controller"));
+                    break;
+
+                }
+                case(TiposPersonagem.Ludico): {
+                    controller = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesPersonagemLudico, "ControllerPersonagemLudico.controller"));
+                    break;
+                }
+            }
+
+            novoObjeto.GetComponent<Animator>().runtimeAnimatorController = controller;
+
+            base.HandleBotaoConfirmarClick();
 
             return;
         }

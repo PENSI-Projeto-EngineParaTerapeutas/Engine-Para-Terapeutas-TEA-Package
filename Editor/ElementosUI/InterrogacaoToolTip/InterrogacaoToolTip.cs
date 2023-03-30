@@ -6,8 +6,6 @@ using EngineParaTerapeutas.Utils;
 namespace EngineParaTerapeutas.UI {
 
     public class InterrogacaoToolTip : ElementoInterfaceEditor {
-        private const string IMAGEM_TOOLTIP = "interrogacao.png";
-
         protected override string CaminhoTemplate => "ElementosUI/InterrogacaoToolTip/InterrogacaoToolTipTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/InterrogacaoToolTip/InterrogacaoToolTipStyle.uss";
 
@@ -39,7 +37,7 @@ namespace EngineParaTerapeutas.UI {
         }
 
         private void ConfigurarImagemToolTip() {
-            imagemTooltip.image = Importador.ImportarImagem(IMAGEM_TOOLTIP);
+            imagemTooltip.image = Importador.ImportarImagem("interrogacao.png");
             return;
         }
 

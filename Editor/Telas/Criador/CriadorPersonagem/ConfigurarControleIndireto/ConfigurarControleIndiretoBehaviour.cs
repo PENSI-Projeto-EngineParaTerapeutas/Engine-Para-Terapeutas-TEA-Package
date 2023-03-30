@@ -7,19 +7,16 @@ using UnityEngine.UIElements;
 using EngineParaTerapeutas.UI;
 using EngineParaTerapeutas.Constantes;
 using EngineParaTerapeutas.DTOs;
-using EngineParaTerapeutas.Utils;
+using EngineParaTerapeutas.ComponentesGameObjects;
 
 namespace EngineParaTerapeutas.Telas {
     public class ConfigurarControleIndiretoBehaviour : Tela, IReiniciavel {
         protected override string CaminhoTemplate => "Telas/Criador/CriadorPersonagem/ConfigurarControleIndireto/ConfigurarControleIndiretoTemplate.uxml";
         protected override string CaminhoStyle => "Telas/Criador/CriadorPersonagem/ConfigurarControleIndireto/ConfigurarControleIndiretoStyle.uss";
 
-        private class Acao {
-            public GameObject ObjetoInteracaoGatilho { get; set; }
-            public AnimationClip AnimacaoAssociada { get; set; }
-        }
-
         private const string VALOR_PADRAO_DROPDOWN = "Selecione";
+
+        private enum EstadoConfiguracao { Edicao, Criacao, }
 
         #region .: Elementos :.
 
@@ -53,19 +50,22 @@ namespace EngineParaTerapeutas.Telas {
 
         #endregion
 
-        private readonly List<Acao> acoes;
+        private InformacoesAcao displayInformacoesAcaoAtual;
+        private readonly List<InformacoesAcao> displaysInformacoesAcao;
 
         private readonly List<GameObject> objetosInteracao;
         private readonly List<AnimationClip> clipsAnimacoes;
-        private Acao acaoAtual;
+
+        private EstadoConfiguracao estadoAtual = EstadoConfiguracao.Criacao;
 
         public ConfigurarControleIndiretoBehaviour() {
-            acoes = new List<Acao>();
+            displaysInformacoesAcao = new List<InformacoesAcao>();
+            displayInformacoesAcaoAtual = CriarDisplayInformacoesAcao();
+
             clipsAnimacoes = new List<AnimationClip>();
-            objetosInteracao = GameObject.FindGameObjectsWithTag(NomesTags.ObjetosInteracao).ToList();
             CarregarAnimacoesComBaseTipoPersonagem(TiposPersonagem.BonecoPalito);
 
-            acaoAtual = new Acao();
+            objetosInteracao = GameObject.FindGameObjectsWithTag(NomesTags.ObjetosInteracao).ToList();
 
             botoesConfirmacao = new BotoesConfirmacao();
 
@@ -79,68 +79,18 @@ namespace EngineParaTerapeutas.Telas {
             ConfigurarInputObjetoGatilho();
             ConfigurarAnimacao();
             ConfigurarBotaoAdicionarAcao();
-            ConfigurarListaAnimacoes();
             ConfigurarBoteosConfirmacao();
 
-            return;
-        }
-
-        private void ConfigurarInputObjetoGatilho() {
-            List<string> nomeObjetosInteracao = new() { VALOR_PADRAO_DROPDOWN };
-            foreach(GameObject objetoInteracao in objetosInteracao) {
-                nomeObjetosInteracao.Add(objetoInteracao.name);
-            }
-
-            inputObjetoGatilho = new DropdownField("Objeto:", nomeObjetosInteracao, 0) {
-                tooltip = "Define o Ator que irá iniciar a animação",
-                name = NOME_INPUT_OBJETO_GATILHO,
-            };
-            inputObjetoGatilho.AddToClassList(NomesClassesPadroesEditorStyle.InputPadrao);
-
-            inputObjetoGatilho.labelElement.name = NOME_LABEL_OBJETO_GATILHO;
-            inputObjetoGatilho.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
-
-            inputObjetoGatilho.RegisterCallback<ChangeEvent<string>>(evt => {
-                if(inputObjetoGatilho.value == VALOR_PADRAO_DROPDOWN) {
-                    acaoAtual.ObjetoInteracaoGatilho = null;
-                    return;
-                }
-
-                acaoAtual.ObjetoInteracaoGatilho = objetosInteracao.Find(objeto => objeto.name == inputObjetoGatilho.value);
-            });
-
-            regiaoCarregamentoInputObjetoGatilho.Add(inputObjetoGatilho);
+            CarregarAssociacoesJaEstabelecidas();
 
             return;
         }
 
-        private void ConfigurarAnimacao() {
-            List<string> nomeClipsAnimacoes = new() { VALOR_PADRAO_DROPDOWN };
-            foreach(AnimationClip clip in clipsAnimacoes) {
-                nomeClipsAnimacoes.Add(clip.name);
-            }
-
-            inputAnimacao = new DropdownField("Animação:", nomeClipsAnimacoes, 0) {
-                tooltip = "Define o a animação que será exibida ao selecionar o Ator",
-                name = NOME_INPUT_ANIMACAO,
+        private InformacoesAcao CriarDisplayInformacoesAcao() {
+            return new InformacoesAcao(new AcaoPersonagem()) {
+                CallbackExcluirAcao = HandleExcluirAcao,
+                CallbackEditarAcao = HandleEditarAcao,
             };
-            inputAnimacao.AddToClassList(NomesClassesPadroesEditorStyle.InputPadrao);
-
-            inputAnimacao.labelElement.name = NOME_LABEL_ANIMACAO;
-            inputAnimacao.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
-
-            inputAnimacao.RegisterCallback<ChangeEvent<string>>(evt => {
-                if(inputAnimacao.value == VALOR_PADRAO_DROPDOWN) {
-                    acaoAtual.AnimacaoAssociada = null;
-                    return;
-                }
-
-                acaoAtual.AnimacaoAssociada = clipsAnimacoes.Find(clip => clip.name == inputAnimacao.value);
-            });
-
-            regiaoCarregamentoInputAnimacao.Add(inputAnimacao);
-
-            return;
         }
 
         private void CarregarAnimacoesComBaseTipoPersonagem(TiposPersonagem tiposPersonagem) {
@@ -171,43 +121,183 @@ namespace EngineParaTerapeutas.Telas {
             return;
         }
 
+        private void CarregarAssociacoesJaEstabelecidas() {
+            foreach(GameObject objetoInteracao in objetosInteracao) {
+                AcionadorAcaoPersonagem acionador = objetoInteracao.GetComponent<AcionadorAcaoPersonagem>();
+                if(acionador.animacaoAcionada == null) {
+                    continue;
+                }
+
+                displayInformacoesAcaoAtual.AcaoVinculada.Animacao = acionador.animacaoAcionada;
+                displayInformacoesAcaoAtual.AcaoVinculada.ObjetoGatilho = objetoInteracao;
+
+                AdicionarAcaoAtual();
+
+                displayInformacoesAcaoAtual = CriarDisplayInformacoesAcao();
+            }
+
+            return;
+        }
+
+        private void ConfigurarInputObjetoGatilho() {
+            List<string> nomeObjetosInteracao = new() { VALOR_PADRAO_DROPDOWN };
+            foreach(GameObject objetoInteracao in objetosInteracao) {
+                nomeObjetosInteracao.Add(objetoInteracao.name);
+            }
+
+            inputObjetoGatilho = new DropdownField("Objeto:", nomeObjetosInteracao, 0) {
+                tooltip = "Define o Ator que irá iniciar a animação",
+                name = NOME_INPUT_OBJETO_GATILHO,
+            };
+            inputObjetoGatilho.AddToClassList(NomesClassesPadroesEditorStyle.InputPadrao);
+
+            inputObjetoGatilho.labelElement.name = NOME_LABEL_OBJETO_GATILHO;
+            inputObjetoGatilho.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
+
+            inputObjetoGatilho.RegisterCallback<ChangeEvent<string>>(evt => {
+                if(inputObjetoGatilho.value == VALOR_PADRAO_DROPDOWN) {
+                    displayInformacoesAcaoAtual.AcaoVinculada.ObjetoGatilho = null;
+                    return;
+                }
+
+                displayInformacoesAcaoAtual.AcaoVinculada.ObjetoGatilho = objetosInteracao.Find(objeto => objeto.name == inputObjetoGatilho.value);
+            });
+
+            regiaoCarregamentoInputObjetoGatilho.Add(inputObjetoGatilho);
+
+            return;
+        }
+
+        private void ConfigurarAnimacao() {
+            List<string> nomeClipsAnimacoes = new() { VALOR_PADRAO_DROPDOWN };
+            foreach(AnimationClip clip in clipsAnimacoes) {
+                nomeClipsAnimacoes.Add(clip.name);
+            }
+
+            inputAnimacao = new DropdownField("Animação:", nomeClipsAnimacoes, 0) {
+                tooltip = "Define o a animação que será exibida ao selecionar o Ator",
+                name = NOME_INPUT_ANIMACAO,
+            };
+            inputAnimacao.AddToClassList(NomesClassesPadroesEditorStyle.InputPadrao);
+
+            inputAnimacao.labelElement.name = NOME_LABEL_ANIMACAO;
+            inputAnimacao.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
+
+            inputAnimacao.RegisterCallback<ChangeEvent<string>>(evt => {
+                if(inputAnimacao.value == VALOR_PADRAO_DROPDOWN) {
+                    displayInformacoesAcaoAtual.AcaoVinculada.Animacao = null;
+                    return;
+                }
+
+                displayInformacoesAcaoAtual.AcaoVinculada.Animacao = clipsAnimacoes.Find(clip => clip.name == inputAnimacao.value);
+            });
+
+            regiaoCarregamentoInputAnimacao.Add(inputAnimacao);
+
+            return;
+        }
+
         private void ConfigurarBotaoAdicionarAcao() {
             botaoAdicionarAcao.clicked += HandleBotaoAdicionarAcaoClick;
             return;
         }
 
         private void HandleBotaoAdicionarAcaoClick() {
-            if(acaoAtual.AnimacaoAssociada == null || acaoAtual.ObjetoInteracaoGatilho == null) {
+            if(displayInformacoesAcaoAtual.AcaoVinculada.Animacao == null || displayInformacoesAcaoAtual.AcaoVinculada.ObjetoGatilho == null) {
                 Debug.Log("[LOG]: Valores obrigatórios não preenchidos");
                 return;
             }
 
-            acoes.Add(acaoAtual);
-            Debug.Log(acoes.Count);
-            AtualizarListaAnimacoes();
+            switch(estadoAtual) {
+                case(EstadoConfiguracao.Criacao): {
+                    AdicionarAcaoAtual();
+                    break;
+                }
+                case(EstadoConfiguracao.Edicao): {
+                    EditarAcaoAtual();
+                    break;
+                }
+            }
 
-            acaoAtual = new Acao();
+            displayInformacoesAcaoAtual = CriarDisplayInformacoesAcao();
             ReiniciarCampos();
-            return;
-        }
-
-        private void AtualizarListaAnimacoes() {
-            Debug.Log("[TODO]: Atualizar lista animações");
-
-            regiaoListaAnimacoesVazia.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-            regiaoListaAnimacoes.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-            InformacoesAcao teste = new(acaoAtual.ObjetoInteracaoGatilho.name, acaoAtual.AnimacaoAssociada.name);
-            regiaoListaAnimacoes.Add(teste.Root);
 
             return;
         }
 
-        private void ConfigurarListaAnimacoes() {
+        private void AdicionarAcaoAtual() {
+            InformacoesAcao acaoRepetida = displaysInformacoesAcao.Find(displayInformacao => displayInformacao.AcaoVinculada.ObjetoGatilho == displayInformacoesAcaoAtual.AcaoVinculada.ObjetoGatilho);
+            if(acaoRepetida != null) {
+                acaoRepetida.AcaoVinculada.Animacao = displayInformacoesAcaoAtual.AcaoVinculada.Animacao;
+                acaoRepetida.AtualizarInformacoesLabel();
+
+                return;
+            }
+
+            displaysInformacoesAcao.Add(displayInformacoesAcaoAtual);
+            regiaoListaAnimacoes.Add(displayInformacoesAcaoAtual.Root);
+
+            displayInformacoesAcaoAtual.AtualizarInformacoesLabel();
+            AlterarVizibilidadeListaAnimacoes(displaysInformacoesAcao.Count > 0);
+
+            return;
+        }
+
+        private void AlterarVizibilidadeListaAnimacoes(bool deveExibir) {
+            if(deveExibir) {
+                regiaoListaAnimacoesVazia.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+                regiaoListaAnimacoes.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            }
+            else {
+                regiaoListaAnimacoesVazia.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+                regiaoListaAnimacoes.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            }
+
+            return;
+        }
+
+        private void EditarAcaoAtual() {
+            displayInformacoesAcaoAtual.AtualizarInformacoesLabel();
+            estadoAtual = EstadoConfiguracao.Criacao;
+            return;
+        }
+
+        private void HandleExcluirAcao(InformacoesAcao displayInformacoesAcao) {
+            AcionadorAcaoPersonagem acionador = displayInformacoesAcao.AcaoVinculada.ObjetoGatilho.GetComponent<AcionadorAcaoPersonagem>();
+            acionador.animacaoAcionada = null;
+
+            displaysInformacoesAcao.Remove(displayInformacoesAcao);
+            regiaoListaAnimacoes.Remove(displayInformacoesAcao.Root);
+
+            AlterarVizibilidadeListaAnimacoes(displaysInformacoesAcao.Count > 0);
+
+            return;
+        }
+
+        private void HandleEditarAcao(InformacoesAcao displayInformacoesAcao) {
+            estadoAtual = EstadoConfiguracao.Edicao;
+
+            displayInformacoesAcaoAtual = displayInformacoesAcao;
+
+            inputAnimacao.SetValueWithoutNotify(displayInformacoesAcaoAtual.AcaoVinculada.Animacao.name);
+            inputObjetoGatilho.SetValueWithoutNotify(displayInformacoesAcaoAtual.AcaoVinculada.ObjetoGatilho.name);
+
             return;
         }
 
         private void ConfigurarBoteosConfirmacao() {
             regiaoBotoesConfirmacao.Add(botoesConfirmacao.Root);
+            botoesConfirmacao.BotaoConfirmar.clicked += HandleBotaoConfirmarClick;
+
+            return;
+        }
+
+        private void HandleBotaoConfirmarClick() {
+            foreach(InformacoesAcao informacoesAcao in displaysInformacoesAcao) {
+                AcionadorAcaoPersonagem acionador = informacoesAcao.AcaoVinculada.ObjetoGatilho.GetComponent<AcionadorAcaoPersonagem>();
+                acionador.animacaoAcionada = informacoesAcao.AcaoVinculada.Animacao;
+            }
+
             return;
         }
 
