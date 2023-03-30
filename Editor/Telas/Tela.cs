@@ -1,6 +1,6 @@
-using EngineParaTerapeutas.UI;
+using Autis.Editor.UI;
 
-namespace EngineParaTerapeutas.Telas {
+namespace Autis.Editor.Telas {
     public abstract class Tela : ElementoInterfaceEditor {
         public virtual void OnEditorUpdate() {
             return;

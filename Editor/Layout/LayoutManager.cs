@@ -3,9 +3,9 @@ using System.Reflection;
 using Type = System.Type;
 using UnityEngine;
 using UnityEditor;
-using EngineParaTerapeutas.Constantes;
+using Autis.Editor.Constantes;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Editor.UI {
     public static class LayoutManager {
         private enum TipoMetodo { Salvar, Carregar };
 

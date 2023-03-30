@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-namespace EngineParaTerapeutas.Eventos {
+namespace Autis.Runtime.Eventos {
     [CreateAssetMenu(fileName = "EventoJogo", menuName = "Engine Para Terapeutas/Scriptable Object/Eventos/Evento Jogo")]
     public class EventoJogo : ScriptableObject {
         public int QuantidadeCallbacks { get => callbacks.Count; }

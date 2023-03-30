@@ -1,13 +1,13 @@
 using System.IO;
 using UnityEngine;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.Utils;
+using Autis.Runtime.Utils;
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Runtime.UI {
     public class ModificadorImagemDinamico : ElementoInterfaceJogo {
         protected override string CaminhoTemplate => "Scripts/ElementosUI/ModificadorImagemDinamico/ModificadorImagemDinamicoTemplate";
         protected override string CaminhoStyle => "Scripts/ElementosUI/ModificadorImagemDinamico/ModificadorImagemDinamicoStyle";

@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
-using EngineParaTerapeutas.Constantes;
+using Autis.Editor.Constantes;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Editor.UI {
     public class InputsComponenteImagem : ElementoInterfaceEditor, IVinculavel<SpriteRenderer>, IReiniciavel {
         protected override string CaminhoTemplate => "ElementosUI/InputsComponentes/InputsComponenteImagem/InputsComponenteImagemTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/InputsComponentes/InputsComponenteImagem/InputsComponenteImagemStyle.uss";

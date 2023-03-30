@@ -1,7 +1,8 @@
 using UnityEngine;
-using EngineParaTerapeutas.DTOs;
+using Autis.Runtime.DTOs;
+using Autis.Runtime.ComponentesGameObjects;
 
-namespace EngineParaTerapeutas.ComponentesGameObjects {
+namespace Autis.Runtime.ComponentesGameObjects {
     [RequireComponent(typeof(ControleDireto))]
     [RequireComponent(typeof(ControleIndireto))]
     [AddComponentMenu("Engine Terapeutas TEA/Controles Personagem/Identificador Tipo Controle")]

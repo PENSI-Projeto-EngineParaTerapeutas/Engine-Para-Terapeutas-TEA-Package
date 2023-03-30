@@ -1,10 +1,10 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.UI;
+using Autis.Editor.Constantes;
+using Autis.Editor.UI;
 
-namespace EngineParaTerapeutas.Telas {
+namespace Autis.Editor.Telas {
     public class PopupSalvarLayoutBehaviour : JanelaEditor {
         protected override string CaminhoTemplate => "Layout/PopupSalvarLayout/PopupSalvarLayoutTemplate.uxml";
         protected override string CaminhoStyle => "Layout/PopupSalvarLayout/PopupSalvarLayoutStyle.uss";

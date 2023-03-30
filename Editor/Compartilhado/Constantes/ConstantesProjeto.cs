@@ -2,7 +2,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace EngineParaTerapeutas.Constantes {
+namespace Autis.Editor.Constantes {
     public static class ConstantesProjeto {
         public static string CaminhoDinamicoPacote {
             get {
@@ -22,7 +22,7 @@ namespace EngineParaTerapeutas.Constantes {
         }
         private static string caminhoDinamicoPacote = string.Empty;
 
-        public static string NomeProjeto => "Engine Para Terapeutas TEA";
+        public static string NomeProjeto => "Autis";
         public static string NomeOrganizacao => "PENSI";
         public static string NomePacote => "com.pensi.engine-para-terapeutas-tea";
         public static string CaminhoAssetDatabaseProjeto => "Packages/com.pensi.engine-para-terapeutas-tea/";

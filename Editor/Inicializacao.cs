@@ -2,11 +2,12 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEditor;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.DTOs;
-using EngineParaTerapeutas.UI;
+using Autis.Runtime.Constantes;
+using Autis.Runtime.DTOs;
+using Autis.Editor.Constantes;
+using Autis.Editor.UI;
 
-namespace EngineParaTerapeutas {
+namespace Autis {
     [InitializeOnLoad]
     public class Inicializacao : AssetPostprocessor {
         static Inicializacao() {}

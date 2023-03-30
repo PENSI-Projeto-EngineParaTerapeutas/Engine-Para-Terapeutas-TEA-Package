@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace EngineParaTerapeutas.Telas {
+namespace Autis.Runtime.Telas {
     public abstract class TelaJogo : MonoBehaviour {
         [SerializeField]
         protected UIDocument uiDocument;

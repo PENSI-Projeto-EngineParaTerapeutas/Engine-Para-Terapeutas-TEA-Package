@@ -1,9 +1,9 @@
 using UnityEditor;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.ScriptableObjects;
-using EngineParaTerapeutas.UI;
+using Autis.Runtime.ScriptableObjects;
+using Autis.Editor.UI;
 
-namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
+namespace Autis.Editor.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(Cena))]
     public class CustomEditorCenaBehaviour : CustomEditorBase {
         protected override string CaminhoTemplate => "CustomEditor/CustomEditorCena/CustomEditorCenaTemplate.uxml";

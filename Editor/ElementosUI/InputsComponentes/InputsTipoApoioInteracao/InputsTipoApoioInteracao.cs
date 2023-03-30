@@ -2,11 +2,11 @@ using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
-using EngineParaTerapeutas.DTOs;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.ComponentesGameObjects;
+using Autis.Runtime.ComponentesGameObjects;
+using Autis.Runtime.DTOs;
+using Autis.Editor.Constantes;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Editor.UI {
     public class InputsTipoApoioInteracao : ElementoInterfaceEditor, IVinculavel<IdentificadorTipoApoioObjetoInteracao>, IReiniciavel {
         protected override string CaminhoTemplate => "ElementosUI/InputsComponentes/InputsTipoApoioInteracao/InputsTipoApoioInteracaoTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/InputsComponentes/InputsTipoApoioInteracao/InputsTipoApoioInteracaoStyle.uss";

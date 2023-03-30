@@ -1,7 +1,8 @@
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.Utils;
+using Autis.Runtime.UI;
+using Autis.Editor.Utils;
+using Autis.Editor.Constantes;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Editor.UI {
     public abstract class ElementoInterfaceEditor : ElementoInterface {
         protected override void ImportarTemplate(string caminho) {
             template = Importador.ImportarUXML(caminho);

@@ -1,7 +1,7 @@
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.Criadores;
+using Autis.Editor.Criadores;
 
-namespace EngineParaTerapeutas.Telas {
+namespace Autis.Editor.Telas {
     public class MenuPrincipalBehaviour : Tela {
         protected override string CaminhoTemplate => "Telas/MenuPrincipal/MenuPrincipalTemplate.uxml";
         protected override string CaminhoStyle => "Telas/MenuPrincipal/MenuPrincipalStyle.uss";

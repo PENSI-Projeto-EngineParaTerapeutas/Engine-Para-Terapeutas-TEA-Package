@@ -2,11 +2,12 @@ using System.IO;
 using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
-using EngineParaTerapeutas.UI;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.ScriptableObjects;
+using Autis.Editor.Constantes;
+using Autis.Editor.UI;
+using Autis.Runtime.Constantes;
+using Autis.Runtime.ScriptableObjects;
 
-namespace EngineParaTerapeutas.Telas {
+namespace Autis.Editor.Telas {
     public class InformacoesCenaBehaviour : Tela {
         protected override string CaminhoTemplate => "Telas/InformacoesCena/InformacoesCenaTemplate.uxml";
         protected override string CaminhoStyle => "Telas/InformacoesCena/InformacoesCenaStyle.uss";

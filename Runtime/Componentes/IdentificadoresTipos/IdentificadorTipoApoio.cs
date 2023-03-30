@@ -1,7 +1,7 @@
 using UnityEngine;
-using EngineParaTerapeutas.DTOs;
+using Autis.Runtime.DTOs;
 
-namespace EngineParaTerapeutas.ComponentesGameObjects {
+namespace Autis.Runtime.ComponentesGameObjects {
     [AddComponentMenu("Engine Terapeutas TEA/Identificador Tipo/Identificador Tipo Apoio")]
     public class IdentificadorTipoApoio : IdentificadorTipo<TiposApoios> {
         private SpriteRenderer spriteRenderer;

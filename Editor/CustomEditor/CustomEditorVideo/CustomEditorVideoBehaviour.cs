@@ -1,9 +1,9 @@
 using UnityEditor;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.ComponentesGameObjects;
-using EngineParaTerapeutas.UI;
+using Autis.Editor.UI;
+using Autis.Runtime.ComponentesGameObjects;
 
-namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
+namespace Autis.Editor.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(Video))]
     public class CustomEditorVideoBehaviour : CustomEditorBase {
         protected override string CaminhoTemplate => "CustomEditor/CustomEditorVideo/CustomEditorVideoTemplate.uxml";

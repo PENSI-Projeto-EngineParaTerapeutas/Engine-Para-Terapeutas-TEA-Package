@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace EngineParaTerapeutas.Constantes {
+namespace Autis.Runtime.Constantes {
     public static class ConstantesProjetoUnity {
         public static string CaminhoUnityAssets => "Assets/";
         public static string CaminhoUnityAssetsCenas => Path.Combine(CaminhoUnityAssets, "Cenas/");

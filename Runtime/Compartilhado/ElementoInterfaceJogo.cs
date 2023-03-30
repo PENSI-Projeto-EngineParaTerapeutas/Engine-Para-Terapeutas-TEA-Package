@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.Constantes;
+using Autis.Runtime.Constantes;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Runtime.UI {
     public abstract class ElementoInterfaceJogo : ElementoInterface {
         protected override void ImportarDefaultStyle() {
             defaultStyle = Resources.Load<StyleSheet>(ConstantesRuntime.CaminhoClassesPadroesUSS);

@@ -2,9 +2,9 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
-using EngineParaTerapeutas.Constantes;
+using Autis.Runtime.Constantes;
 
-namespace EngineParaTerapeutas.Utils {
+namespace Autis.Runtime.Utils {
     public static class ExploradorArquivos {
         private static Action<Sprite> callbackAoCarregarImagem;
         private static Action<AudioClip> callbackAoCarregarAudio;

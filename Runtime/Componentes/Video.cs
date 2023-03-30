@@ -2,7 +2,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Video;
 
-namespace EngineParaTerapeutas.ComponentesGameObjects {
+namespace Autis.Runtime.ComponentesGameObjects {
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(AudioSource))]
     [RequireComponent(typeof(VideoPlayer))]

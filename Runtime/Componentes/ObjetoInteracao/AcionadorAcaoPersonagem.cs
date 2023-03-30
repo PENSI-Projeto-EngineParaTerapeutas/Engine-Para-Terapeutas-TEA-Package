@@ -1,8 +1,8 @@
 using UnityEngine;
-using EngineParaTerapeutas.Eventos;
-using EngineParaTerapeutas.Constantes;
+using Autis.Runtime.Eventos;
+using Autis.Runtime.Constantes;
 
-namespace EngineParaTerapeutas.ComponentesGameObjects {
+namespace Autis.Runtime.ComponentesGameObjects {
     [AddComponentMenu("Engine Terapeutas TEA/Objeto Interação/Acionador Ação Personagem")]
     public class AcionadorAcaoPersonagem : MonoBehaviour {
         public AnimationClip animacaoAcionada;

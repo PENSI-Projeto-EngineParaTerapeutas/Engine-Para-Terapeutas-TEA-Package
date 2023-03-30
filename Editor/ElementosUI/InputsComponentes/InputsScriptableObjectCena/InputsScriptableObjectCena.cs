@@ -1,11 +1,11 @@
 using System;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
-using EngineParaTerapeutas.ScriptableObjects;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.DTOs;
+using Autis.Editor.Constantes;
+using Autis.Runtime.ScriptableObjects;
+using Autis.Runtime.DTOs;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Editor.UI {
     public class InputsScriptableObjectCena : ElementoInterfaceEditor, IVinculavel<Cena>, IReiniciavel {
         protected override string CaminhoTemplate => "ElementosUI/InputsComponentes/InputsScriptableObjectCena/InputsScriptableObjectCenaTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/InputsComponentes/InputsScriptableObjectCena/InputsScriptableObjectCenaStyle.uss";

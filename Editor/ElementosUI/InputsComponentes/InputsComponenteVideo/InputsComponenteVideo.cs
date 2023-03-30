@@ -1,11 +1,11 @@
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using UnityEngine.Video;
-using EngineParaTerapeutas.ComponentesGameObjects;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.Utils;
+using Autis.Runtime.ComponentesGameObjects;
+using Autis.Editor.Constantes;
+using Autis.Editor.Utils;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Editor.UI {
     public class InputsComponenteVideo : ElementoInterfaceEditor, IVinculavel<Video>, IReiniciavel {
         protected override string CaminhoTemplate => "ElementosUI/InputsComponentes/InputsComponenteVideo/InputsComponenteVideoTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/InputsComponentes/InputsComponenteVideo/InputsComponenteVideoStyle.uss";

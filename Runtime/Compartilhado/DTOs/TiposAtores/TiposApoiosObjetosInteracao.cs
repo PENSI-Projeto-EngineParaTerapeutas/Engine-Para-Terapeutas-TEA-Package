@@ -1,4 +1,4 @@
-namespace EngineParaTerapeutas.DTOs {
+namespace Autis.Runtime.DTOs {
     public enum TiposApoiosObjetosInteracao {
         Audio,
         Seta,

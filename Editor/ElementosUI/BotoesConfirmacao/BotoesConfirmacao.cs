@@ -1,7 +1,7 @@
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.Telas;
+using Autis.Editor.Telas;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Editor.UI {
     public class BotoesConfirmacao : ElementoInterfaceEditor {
         protected override string CaminhoTemplate => "ElementosUI/BotoesConfirmacao/BotoesConfirmacaoTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/BotoesConfirmacao/BotoesConfirmacaoStyle.uss";

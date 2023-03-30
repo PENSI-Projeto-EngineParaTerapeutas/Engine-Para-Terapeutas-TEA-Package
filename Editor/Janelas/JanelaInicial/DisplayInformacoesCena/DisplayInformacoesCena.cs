@@ -2,11 +2,12 @@ using System;
 using System.IO;
 using UnityEngine.UIElements;
 using UnityEditor.SceneManagement;
-using EngineParaTerapeutas.ScriptableObjects;
-using EngineParaTerapeutas.Utils;
-using EngineParaTerapeutas.Constantes;
+using Autis.Runtime.Constantes;
+using Autis.Runtime.ScriptableObjects;
+using Autis.Editor.Constantes;
+using Autis.Editor.Utils;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Editor.UI {
     public class DisplayInformacoesCena : ElementoInterfaceEditor {
         protected override string CaminhoTemplate => "Janelas/JanelaInicial/DisplayInformacoesCena/DisplayInformacoesCenaTemplate.uxml";
         protected override string CaminhoStyle => "Janelas/JanelaInicial/DisplayInformacoesCena/DisplayInformacoesCenaStyle.uss";

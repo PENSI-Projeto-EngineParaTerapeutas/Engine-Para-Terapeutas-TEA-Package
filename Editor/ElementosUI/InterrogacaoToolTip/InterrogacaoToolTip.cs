@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.Utils;
+using Autis.Editor.Utils;
+using Autis.Editor.Constantes;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Editor.UI {
 
     public class InterrogacaoToolTip : ElementoInterfaceEditor {
         protected override string CaminhoTemplate => "ElementosUI/InterrogacaoToolTip/InterrogacaoToolTipTemplate.uxml";

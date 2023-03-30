@@ -1,6 +1,6 @@
 using UnityEngine.UIElements;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Runtime.UI {
     public abstract class ElementoInterface {
         protected abstract string CaminhoTemplate { get; }
         protected abstract string CaminhoStyle { get; }

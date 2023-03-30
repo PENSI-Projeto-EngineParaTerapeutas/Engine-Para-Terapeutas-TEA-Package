@@ -1,9 +1,9 @@
 using UnityEditor;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.UI;
-using EngineParaTerapeutas.ComponentesGameObjects;
+using Autis.Editor.UI;
+using Autis.Runtime.ComponentesGameObjects;
 
-namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
+namespace Autis.Editor.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(Texto))]
     public class CustomEditorTextoBehaviour : CustomEditorBase {
         protected override string CaminhoTemplate => "CustomEditor/CustomEditorTexto/CustomEditorTextoTemplate.uxml";

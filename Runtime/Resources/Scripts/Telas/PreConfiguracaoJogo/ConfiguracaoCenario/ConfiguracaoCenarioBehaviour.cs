@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.Constantes;
+using Autis.Runtime.Constantes;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Runtime.UI {
     public class ConfiguracaoCenarioBehaviour : ElementoInterfaceJogo {
         protected override string CaminhoTemplate => "Scripts/Telas/PreConfiguracaoJogo/ConfiguracaoCenario/ConfiguracaoCenarioTemplate";
         protected override string CaminhoStyle => "Scripts/Telas/PreConfiguracaoJogo/ConfiguracaoCenario/ConfiguracaoCenarioStyle";

@@ -2,11 +2,11 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
-using EngineParaTerapeutas.UI;
-using EngineParaTerapeutas.Telas;
-using EngineParaTerapeutas.Constantes;
+using Autis.Editor.Constantes;
+using Autis.Editor.Telas;
+using Autis.Editor.UI;
 
-namespace EngineParaTerapeutas.Criadores {
+namespace Autis.Editor.Criadores {
     public class PersonalizacaoBonecoPalitoBehaviour : Tela, IReiniciavel {
         protected override string CaminhoTemplate => "Telas/Criador/CriadorPersonagem/PersonalizacaoBonecoPalito/PersonalizacaoBonecoPalitoTemplate.uxml";
         protected override string CaminhoStyle => "Telas/Criador/CriadorPersonagem/PersonalizacaoBonecoPalito/PersonalizacaoBonecoPalitoStyle.uss";

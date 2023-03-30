@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using TMPro;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.ComponentesGameObjects;
+using Autis.Runtime.ComponentesGameObjects;
+using Autis.Editor.Constantes;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Editor.UI {
     public class InputsComponenteTexto : ElementoInterfaceEditor, IVinculavel<Texto>, IReiniciavel {
         protected override string CaminhoTemplate => "ElementosUI/InputsComponentes/InputsComponenteTexto/InputsComponenteTextoTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/InputsComponentes/InputsComponenteTexto/InputsComponenteTextoStyle.uss";

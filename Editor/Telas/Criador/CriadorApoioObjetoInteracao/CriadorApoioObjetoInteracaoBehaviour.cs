@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.UI;
-using EngineParaTerapeutas.ComponentesGameObjects;
-using EngineParaTerapeutas.Constantes;
+using Autis.Runtime.ComponentesGameObjects;
+using Autis.Runtime.Constantes;
+using Autis.Editor.UI;
 
-namespace EngineParaTerapeutas.Criadores {
+namespace Autis.Editor.Criadores {
     public class CriadorApoioObjetoInteracaoBehaviour : Criador {
         protected override string CaminhoTemplate => "Telas/Criador/CriadorApoioObjetoInteracao/CriadorApoioObjetoInteracaoTemplate.uxml";
         protected override string CaminhoStyle => "Telas/Criador/CriadorApoioObjetoInteracao/CriadorApoioObjetoInteracaoStyle.uss";

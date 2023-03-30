@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.UI;
-using EngineParaTerapeutas.Constantes;
+using Autis.Runtime.Constantes;
+using Autis.Editor.UI;
 
-namespace EngineParaTerapeutas.Criadores {
+namespace Autis.Editor.Criadores {
     public class CriadorCenarioBehaviour : Criador {
         protected override string CaminhoTemplate => "Telas/Criador/CriadorCenario/CriadorCenarioTemplate.uxml";
         protected override string CaminhoStyle => "Telas/Criador/CriadorCenario/CriadorCenarioStyle.uss";

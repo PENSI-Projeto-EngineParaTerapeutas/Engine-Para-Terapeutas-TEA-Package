@@ -2,11 +2,11 @@ using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
-using EngineParaTerapeutas.ComponentesGameObjects;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.DTOs;
+using Autis.Runtime.ComponentesGameObjects;
+using Autis.Runtime.DTOs;
+using Autis.Editor.Constantes;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Editor.UI {
     public class InputsIdentificadorTipoAcao : ElementoInterfaceEditor, IVinculavel<IdentificadorTipoAcao>, IReiniciavel {
         private const string NOME_GAME_OBJECT_VIDEO_OBJETO_INTERACAO = "Video";
 

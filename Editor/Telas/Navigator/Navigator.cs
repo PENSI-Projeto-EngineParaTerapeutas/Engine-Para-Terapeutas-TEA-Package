@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Collections.Generic;
 
-namespace EngineParaTerapeutas.Telas {
+namespace Autis.Editor.Telas {
     public class Navigator {
         private static readonly Tela TELA_PADRAO = new MenuPrincipalBehaviour();
 

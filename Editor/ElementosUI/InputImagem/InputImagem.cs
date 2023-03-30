@@ -3,9 +3,10 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
-using EngineParaTerapeutas.Constantes;
+using Autis.Editor.Constantes;
+using Autis.Runtime.Constantes;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Editor.UI {
     public class InputImagem : ElementoInterfaceEditor, IReiniciavel {
         protected override string CaminhoTemplate => "ElementosUI/InputImagem/InputImagemTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/InputImagem/InputImagemStyle.uss";

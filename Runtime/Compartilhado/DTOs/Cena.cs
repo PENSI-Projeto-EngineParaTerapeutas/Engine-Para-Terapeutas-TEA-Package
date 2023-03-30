@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using EngineParaTerapeutas.DTOs;
+using Autis.Runtime.DTOs;
 
-namespace EngineParaTerapeutas.ScriptableObjects {
+namespace Autis.Runtime.ScriptableObjects {
     [CreateAssetMenu(fileName = "Cena", menuName = "Engine Para Terapeutas/Scriptable Object/Cena")]
     public class Cena : ScriptableObject {
 

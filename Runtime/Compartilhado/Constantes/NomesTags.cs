@@ -1,4 +1,4 @@
-namespace EngineParaTerapeutas.Constantes {
+namespace Autis.Runtime.Constantes {
     public static class NomesTags {
         public static string Untagged => "Untagged";
         public static string EditorOnly => "EditorOnly";

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.Utils;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.ScriptableObjects;
-using EngineParaTerapeutas.UI;
+using Autis.Editor.Constantes;
+using Autis.Editor.UI;
+using Autis.Editor.Utils;
+using Autis.Runtime.ScriptableObjects;
 
-namespace EngineParaTerapeutas.Telas {
+namespace Autis.Editor.Telas {
     public class JanelaInicialBehaviour : JanelaEditor {
         protected override string CaminhoTemplate => "Janelas/JanelaInicial/JanelaInicialTemplate.uxml";
         protected override string CaminhoStyle => "Janelas/JanelaInicial/JanelaInicialStyle.uss";

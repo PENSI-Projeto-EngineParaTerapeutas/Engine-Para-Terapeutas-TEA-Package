@@ -2,11 +2,11 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.ComponentesGameObjects;
-using EngineParaTerapeutas.DTOs;
+using Autis.Runtime.Constantes;
+using Autis.Runtime.ComponentesGameObjects;
+using Autis.Runtime.DTOs;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Runtime.UI {
     public class ConfiguracaoObjetoInteracao : ElementoInterfaceJogo {
         protected override string CaminhoTemplate => "Scripts/Telas/PreConfiguracaoJogo/ConfiguracaoObjetoInteracao/ConfiguracaoObjetoInteracaoTemplate";
         protected override string CaminhoStyle => "Scripts/Telas/PreConfiguracaoJogo/ConfiguracaoObjetoInteracao/ConfiguracaoObjetoInteracaoStyle";

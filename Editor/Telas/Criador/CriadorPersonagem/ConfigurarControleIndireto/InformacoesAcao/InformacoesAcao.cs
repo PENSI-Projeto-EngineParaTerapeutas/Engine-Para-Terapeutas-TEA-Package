@@ -1,9 +1,9 @@
 using System;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.Utils;
-using EngineParaTerapeutas.DTOs;
+using Autis.Editor.DTOs;
+using Autis.Editor.Utils;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Editor.UI {
     public class InformacoesAcao : ElementoInterfaceEditor {
         protected override string CaminhoTemplate => "Telas/Criador/CriadorPersonagem/ConfigurarControleIndireto/InformacoesAcao/InformacoesAcaoTemplate.uxml";
         protected override string CaminhoStyle => "Telas/Criador/CriadorPersonagem/ConfigurarControleIndireto/InformacoesAcao/InformacoesAcaoStyle.uss";

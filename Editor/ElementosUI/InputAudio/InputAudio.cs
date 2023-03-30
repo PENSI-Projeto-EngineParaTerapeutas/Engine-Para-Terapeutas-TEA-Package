@@ -3,9 +3,10 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
-using EngineParaTerapeutas.Constantes;
+using Autis.Editor.Constantes;
+using Autis.Runtime.Constantes;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Editor.UI {
     public class InputAudio : ElementoInterfaceEditor, IReiniciavel {
         protected override string CaminhoTemplate => "ElementosUI/InputAudio/InputAudioTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/InputAudio/InputAudioStyle.uss";

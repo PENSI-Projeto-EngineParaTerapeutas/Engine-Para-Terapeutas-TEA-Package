@@ -1,4 +1,4 @@
-namespace EngineParaTerapeutas.Constantes {
+namespace Autis.Runtime.Constantes {
     public static class NomesClassesPadroesStyle {
         public static string ContainerHorizontal => "container-horizontal";
         public static string DisplayNone => "display-none";

@@ -1,6 +1,6 @@
 using UnityEngine.UIElements;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Editor.UI {
     public class Botao : ElementoInterfaceEditor {
         protected override string CaminhoTemplate => "ElementosUI/Botao/BotaoTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/Botao/BotaoStyle.uss";

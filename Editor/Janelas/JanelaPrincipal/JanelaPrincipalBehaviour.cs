@@ -1,9 +1,9 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.Constantes;
+using Autis.Editor.Constantes;
 
-namespace EngineParaTerapeutas.Telas {
+namespace Autis.Editor.Telas {
     public class JanelaPrincipalBehaviour : JanelaEditor {
         protected override string CaminhoTemplate => "Janelas/JanelaPrincipal/JanelaPrincipalTemplate.uxml";
         protected override string CaminhoStyle => "Janelas/JanelaPrincipal/JanelaPrincipalStyle.uss";

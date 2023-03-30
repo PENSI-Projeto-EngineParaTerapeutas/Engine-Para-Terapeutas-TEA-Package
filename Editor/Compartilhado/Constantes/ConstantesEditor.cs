@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace EngineParaTerapeutas.Constantes {
+namespace Autis.Editor.Constantes {
     public static class ConstantesEditor {
         public static string CaminhoPastaEditor => Path.Combine(ConstantesProjeto.CaminhoAssetDatabaseProjeto, "Editor/");
         public static string CaminhoPastaResourcesEditor => Path.Combine(CaminhoPastaEditor, "Resources/");

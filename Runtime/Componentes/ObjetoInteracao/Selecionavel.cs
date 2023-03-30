@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EngineParaTerapeutas.ComponentesGameObjects {
+namespace Autis.Runtime.ComponentesGameObjects {
     [AddComponentMenu("Engine Terapeutas TEA/Objeto Interação/Selecionável")]
     public class Selecionavel : MonoBehaviour {
         private const string NOME_GAME_OBJECT_VIDEO_OBJETO_INTERACAO = "Video";

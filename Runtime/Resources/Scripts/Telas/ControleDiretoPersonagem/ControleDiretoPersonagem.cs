@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.ComponentesGameObjects;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.DTOs;
+using Autis.Runtime.ComponentesGameObjects;
+using Autis.Runtime.Constantes;
+using Autis.Runtime.DTOs;
 
-namespace EngineParaTerapeutas.Telas { 
+namespace Autis.Runtime.Telas { 
     public class ControleDiretoPersonagem : TelaJogo {
         #region .: Elementos :.
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EngineParaTerapeutas.DTOs {
+namespace Autis.Editor.DTOs {
     public class AcaoPersonagem {
         public AnimationClip Animacao { get => animacao; set => animacao = value; }
         private AnimationClip animacao;

@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
-using EngineParaTerapeutas.Constantes;
+using Autis.Editor.Constantes;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Editor.UI {
     public class InputsComponentePosicao : ElementoInterfaceEditor, IVinculavel<Transform>, IReiniciavel, ICamposAtualizaveis {
         protected override string CaminhoTemplate => "ElementosUI/InputsComponentes/InputsComponentePosicao/InputsComponentePosicaoTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/InputsComponentes/InputsComponentePosicao/InputsComponentePosicaoStyle.uss";

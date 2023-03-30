@@ -1,7 +1,7 @@
 using UnityEngine;
-using EngineParaTerapeutas.DTOs;
+using Autis.Runtime.DTOs;
 
-namespace EngineParaTerapeutas.ComponentesGameObjects {
+namespace Autis.Runtime.ComponentesGameObjects {
     [AddComponentMenu("Engine Terapeutas TEA/Controles Personagem/Controle Direto")]
     public class ControleDireto : MonoBehaviour {
         [SerializeField]

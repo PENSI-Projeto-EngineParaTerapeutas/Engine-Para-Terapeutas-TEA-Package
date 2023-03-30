@@ -1,9 +1,9 @@
 using UnityEditor;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.Utils;
-using EngineParaTerapeutas.Constantes;
+using Autis.Editor.Utils;
+using Autis.Editor.Constantes;
 
-namespace EngineParaTerapeutas.Telas {
+namespace Autis.Editor.Telas {
     public abstract class JanelaEditor : EditorWindow {
         protected abstract string CaminhoTemplate { get; }
         protected abstract string CaminhoStyle { get; }

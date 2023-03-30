@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Runtime.UI {
     public class HabilitadorAtoresDinamico : ElementoInterfaceJogo {
         protected override string CaminhoTemplate => "Scripts/ElementosUI/HabilitadorAtoresDinamico/HabilitadorAtoresDinamicoTemplate";
         protected override string CaminhoStyle => "Scripts/ElementosUI/HabilitadorAtoresDinamico/HabilitadorAtoresDinamicoStyle";

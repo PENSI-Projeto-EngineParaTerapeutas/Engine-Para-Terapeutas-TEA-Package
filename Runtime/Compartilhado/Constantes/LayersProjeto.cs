@@ -1,6 +1,6 @@
-using EngineParaTerapeutas.DTOs;
+using Autis.Runtime.DTOs;
 
-namespace EngineParaTerapeutas.Constantes {
+namespace Autis.Runtime.Constantes {
     public static class LayersProjeto {
         public readonly static LayerInfo Default = new() { Nome = "Default", Index = 0 };
 

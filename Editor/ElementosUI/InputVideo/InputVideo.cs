@@ -2,9 +2,10 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.Constantes;
+using Autis.Editor.Constantes;
+using Autis.Runtime.Constantes;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Editor.UI {
     public class InputVideo : ElementoInterfaceEditor, IReiniciavel {
         protected override string CaminhoTemplate => "ElementosUI/InputVideo/InputVideoTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/InputVideo/InputVideoStyle.uss";

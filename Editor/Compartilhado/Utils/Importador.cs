@@ -2,9 +2,9 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
-using EngineParaTerapeutas.Constantes;
+using Autis.Editor.Constantes;
 
-namespace EngineParaTerapeutas.Utils {
+namespace Autis.Editor.Utils {
     public static class Importador {
         public static T ImportarAsset<T>(string caminho) where T : UnityEngine.Object {
             return AssetDatabase.LoadAssetAtPath<T>(Path.Combine(ConstantesEditor.CaminhoPastaEditor, caminho));

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace EngineParaTerapeutas.ComponentesGameObjects {
+namespace Autis.Runtime.ComponentesGameObjects {
     public abstract class IdentificadorTipo<T> : MonoBehaviour where T : Enum {
         private const float TEMPO_ESPERA_PADRAO = 2f;
 

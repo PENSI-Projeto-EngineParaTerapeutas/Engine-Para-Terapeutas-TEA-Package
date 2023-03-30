@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.UI;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.DTOs;
-using EngineParaTerapeutas.ComponentesGameObjects;
+using Autis.Editor.UI;
+using Autis.Editor.DTOs;
+using Autis.Runtime.Constantes;
+using Autis.Editor.Constantes;
+using Autis.Runtime.ComponentesGameObjects;
+using Autis.Runtime.DTOs;
 
-namespace EngineParaTerapeutas.Telas {
+namespace Autis.Editor.Telas {
     public class ConfigurarControleIndiretoBehaviour : Tela, IReiniciavel {
         protected override string CaminhoTemplate => "Telas/Criador/CriadorPersonagem/ConfigurarControleIndireto/ConfigurarControleIndiretoTemplate.uxml";
         protected override string CaminhoStyle => "Telas/Criador/CriadorPersonagem/ConfigurarControleIndireto/ConfigurarControleIndiretoStyle.uss";
@@ -77,7 +79,7 @@ namespace EngineParaTerapeutas.Telas {
             regiaoBotoesConfirmacao = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO);
 
             ConfigurarInputObjetoGatilho();
-            ConfigurarAnimacao();
+            ConfigurarInputAnimacao();
             ConfigurarBotaoAdicionarAcao();
             ConfigurarBoteosConfirmacao();
 
@@ -157,10 +159,15 @@ namespace EngineParaTerapeutas.Telas {
             inputObjetoGatilho.RegisterCallback<ChangeEvent<string>>(evt => {
                 if(inputObjetoGatilho.value == VALOR_PADRAO_DROPDOWN) {
                     displayInformacoesAcaoAtual.AcaoVinculada.ObjetoGatilho = null;
+                    botaoAdicionarAcao.SetEnabled(false);
                     return;
                 }
 
                 displayInformacoesAcaoAtual.AcaoVinculada.ObjetoGatilho = objetosInteracao.Find(objeto => objeto.name == inputObjetoGatilho.value);
+                if(displayInformacoesAcaoAtual.AcaoVinculada.ObjetoGatilho != null && displayInformacoesAcaoAtual.AcaoVinculada.Animacao != null) {
+                    botaoAdicionarAcao.SetEnabled(true);
+                    return;
+                }
             });
 
             regiaoCarregamentoInputObjetoGatilho.Add(inputObjetoGatilho);
@@ -168,7 +175,7 @@ namespace EngineParaTerapeutas.Telas {
             return;
         }
 
-        private void ConfigurarAnimacao() {
+        private void ConfigurarInputAnimacao() {
             List<string> nomeClipsAnimacoes = new() { VALOR_PADRAO_DROPDOWN };
             foreach(AnimationClip clip in clipsAnimacoes) {
                 nomeClipsAnimacoes.Add(clip.name);
@@ -186,10 +193,15 @@ namespace EngineParaTerapeutas.Telas {
             inputAnimacao.RegisterCallback<ChangeEvent<string>>(evt => {
                 if(inputAnimacao.value == VALOR_PADRAO_DROPDOWN) {
                     displayInformacoesAcaoAtual.AcaoVinculada.Animacao = null;
+                    botaoAdicionarAcao.SetEnabled(false);
                     return;
                 }
 
                 displayInformacoesAcaoAtual.AcaoVinculada.Animacao = clipsAnimacoes.Find(clip => clip.name == inputAnimacao.value);
+                if(displayInformacoesAcaoAtual.AcaoVinculada.ObjetoGatilho != null && displayInformacoesAcaoAtual.AcaoVinculada.Animacao != null) {
+                    botaoAdicionarAcao.SetEnabled(true);
+                    return;
+                }
             });
 
             regiaoCarregamentoInputAnimacao.Add(inputAnimacao);
@@ -199,6 +211,7 @@ namespace EngineParaTerapeutas.Telas {
 
         private void ConfigurarBotaoAdicionarAcao() {
             botaoAdicionarAcao.clicked += HandleBotaoAdicionarAcaoClick;
+            botaoAdicionarAcao.SetEnabled(false);
             return;
         }
 

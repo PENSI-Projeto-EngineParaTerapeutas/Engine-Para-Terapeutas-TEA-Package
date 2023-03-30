@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEditor.SceneManagement;
 
-namespace EngineParaTerapeutas.Utils {
+namespace Autis.Editor.Utils {
     public static class Salvamento {
         public static void SalvarProjeto() {
             SalvarAssets();

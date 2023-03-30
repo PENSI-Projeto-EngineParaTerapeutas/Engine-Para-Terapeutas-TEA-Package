@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-namespace EngineParaTerapeutas.Utils {
+namespace Autis.Runtime.Utils {
     public static class AdaptadorExploradorArquivosJS {
         private readonly static string NOME_OBJETO_DESTINATARIO_SEND_MESSAGE = typeof(ComponenteComunicacaoUploaderArquivosJS).Name;
         private readonly static string NOME_METODO_DESTINATARIO_SEND_MESSAGE = "ReceberCallbackSelecaoArquivoJS";

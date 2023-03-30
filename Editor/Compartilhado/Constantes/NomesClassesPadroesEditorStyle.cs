@@ -1,4 +1,4 @@
-namespace EngineParaTerapeutas.Constantes {
+namespace Autis.Editor.Constantes {
     public static class NomesClassesPadroesEditorStyle {
         public static string ContainerHorizontal => "container-horizontal";
         public static string LabelInputPadrao => "label-input-padrao";

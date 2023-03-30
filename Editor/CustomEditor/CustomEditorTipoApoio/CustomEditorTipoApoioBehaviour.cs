@@ -2,11 +2,11 @@ using System;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.DTOs;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.ComponentesGameObjects;
+using Autis.Runtime.ComponentesGameObjects;
+using Autis.Runtime.DTOs;
+using Autis.Editor.Constantes;
 
-namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
+namespace Autis.Editor.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(IdentificadorTipoApoio))]
     public class CustomEditorTipoApoioBehaviour : CustomEditorBase {
         protected override string CaminhoTemplate => "CustomEditor/CustomEditorTipoApoio/CustomEditorTipoApoioTemplate.uxml";

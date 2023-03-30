@@ -6,10 +6,11 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.ScriptableObjects;
+using Autis.Runtime.Constantes;
+using Autis.Runtime.ScriptableObjects;
+using Autis.Editor.Constantes;
 
-namespace EngineParaTerapeutas.Utils {
+namespace Autis.Editor.Utils {
     public static class GerenciadorCenas {
         public static int QuantidadeCenas {
             get {

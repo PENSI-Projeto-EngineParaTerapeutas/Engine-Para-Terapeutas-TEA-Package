@@ -4,18 +4,19 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEditor.UIElements;
-using EngineParaTerapeutas.UI;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.DTOs;
-using EngineParaTerapeutas.Utils;
-using EngineParaTerapeutas.Telas;
-using EngineParaTerapeutas.ComponentesGameObjects;
+using Autis.Runtime.ComponentesGameObjects;
+using Autis.Runtime.Constantes;
+using Autis.Runtime.DTOs;
+using Autis.Editor.Constantes;
+using Autis.Editor.Utils;
+using Autis.Editor.UI;
+using Autis.Editor.Telas;
 
-namespace EngineParaTerapeutas.Criadores {
+namespace Autis.Editor.Criadores {
     public class CriadorPersonagemBehaviour : Criador {
         private const string CAMINHO_PREFAB_BONECO_PALITO = "Personagens/Boneco_Palito_Redondo.prefab";
-        private const string CAMINHO_PREFAB_PERSONAGEM_LUDICO = "Personagens/Personagem.prefab"; // TODO: Alterar quando implementar o tipo de personagem
-        private const string CAMINHO_PREFAB_AVATAR = "Personagens/Personagem.prefab"; // TODO: Alterar quando implementar o tipo de personagem
+        private const string CAMINHO_PREFAB_PERSONAGEM_LUDICO = "Personagens/Ludico.prefab";
+        private const string CAMINHO_PREFAB_AVATAR = "Personagens/Avatar.prefab";
 
         private const TiposPersonagem TIPO_PADRAO = TiposPersonagem.BonecoPalito;
 
@@ -71,6 +72,8 @@ namespace EngineParaTerapeutas.Criadores {
         private readonly GameObject prefabAvatar;
 
         private TiposPersonagem tipoPersonagemAtual;
+
+        private IdentificadorTipoControle tipoControle;
 
         public CriadorPersonagemBehaviour() {
             regiaoConfigurarPersonagem = Root.Query<VisualElement>(NOME_REGIAO_CONFIGURACAO_PERSONAGEM);
@@ -220,7 +223,7 @@ namespace EngineParaTerapeutas.Criadores {
                     return;
                 }
 
-                novoObjeto.GetComponent<IdentificadorTipoControle>().AlterarTipo(TipoControle.Direto);
+                tipoControle.AlterarTipo(TipoControle.Direto);
                 botaoConfigurarControleIndireto.SetEnabled(false);
             });
 
@@ -232,7 +235,7 @@ namespace EngineParaTerapeutas.Criadores {
                     return;
                 }
 
-                novoObjeto.GetComponent<IdentificadorTipoControle>().AlterarTipo(TipoControle.Indireto);
+                tipoControle.AlterarTipo(TipoControle.Indireto);
                 botaoConfigurarControleIndireto.SetEnabled(true);
             });
 
@@ -284,35 +287,37 @@ namespace EngineParaTerapeutas.Criadores {
         }
 
         protected override void VincularCamposAoNovoObjeto() {
-            // TODO: Implementar
+            tipoControle = novoObjeto.GetComponent<IdentificadorTipoControle>();
             return;
         }
 
         protected override void ReiniciarPropriedadesNovoObjeto() {
-            // TODO: Implementar
+            tipoControle = null;
             return;
         }
 
         public override void ReiniciarCampos() {
-            // TODO: Implementar
+            campoTipoPersonagem.SetValueWithoutNotify(TiposPersonagem.BonecoPalito);
+            campoTipoPersonagem.SendEvent(new ChangeEvent<TiposPersonagem>());
+
+            radioOpcaoControleDireto.SetValueWithoutNotify(true);
+            radioOpcaoControleDireto.SendEvent(new ChangeEvent<bool>());
+
+            radioOpcaoControleIndireto.SetValueWithoutNotify(false);
+            radioOpcaoControleIndireto.SendEvent(new ChangeEvent<bool>());
             return;
         }
 
         public override void FinalizarCriacao() {
             novoObjeto.tag = NomesTags.Personagem;
             novoObjeto.layer = LayersProjeto.Default.Index;
-            AlterarSpriteRendererOrder();
-            
-            base.FinalizarCriacao();
 
-            return;
-        }
-
-        private void AlterarSpriteRendererOrder() {
             SpriteRenderer[] spriteRenderers = novoObjeto.GetComponentsInChildren<SpriteRenderer>();
             foreach(SpriteRenderer spriteRenderer in spriteRenderers) {
                 spriteRenderer.sortingOrder = OrdemRenderizacao.Personagem;
             }
+            
+            base.FinalizarCriacao();
 
             return;
         }

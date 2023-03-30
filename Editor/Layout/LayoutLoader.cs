@@ -1,7 +1,7 @@
 using UnityEditor;
-using EngineParaTerapeutas.Constantes;
+using Autis.Editor.Constantes;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Editor.UI {
     public static class LayoutLoader {
         [MenuItem("Engine Para Terapeutas/Carregar Tela Inical")]
         public static void CarregarTelaInicial() {

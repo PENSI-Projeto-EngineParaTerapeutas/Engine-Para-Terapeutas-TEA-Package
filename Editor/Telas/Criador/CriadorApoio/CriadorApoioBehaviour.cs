@@ -2,12 +2,13 @@ using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.ComponentesGameObjects;
-using EngineParaTerapeutas.DTOs;
-using EngineParaTerapeutas.UI;
+using Autis.Runtime.Constantes;
+using Autis.Runtime.ComponentesGameObjects;
+using Autis.Runtime.DTOs;
+using Autis.Editor.Constantes;
+using Autis.Editor.UI;
 
-namespace EngineParaTerapeutas.Criadores {
+namespace Autis.Editor.Criadores {
     public class CriadorApoioBehaviour : Criador {
         protected override string CaminhoTemplate => "Telas/Criador/CriadorApoio/CriadorApoioTemplate.uxml";
         protected override string CaminhoStyle => "Telas/Criador/CriadorApoio/CriadorApoioStyle.uss";

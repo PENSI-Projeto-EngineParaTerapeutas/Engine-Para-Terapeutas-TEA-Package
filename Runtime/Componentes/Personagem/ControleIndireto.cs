@@ -1,8 +1,8 @@
 using UnityEngine;
-using EngineParaTerapeutas.Eventos;
-using EngineParaTerapeutas.DTOs;
+using Autis.Runtime.DTOs;
+using Autis.Runtime.Eventos;
 
-namespace EngineParaTerapeutas.ComponentesGameObjects {
+namespace Autis.Runtime.ComponentesGameObjects {
     [RequireComponent(typeof(Animator))]
     [AddComponentMenu("Engine Terapeutas TEA/Controles Personagem/Controle Indireto")]
     public class ControleIndireto : MonoBehaviour {

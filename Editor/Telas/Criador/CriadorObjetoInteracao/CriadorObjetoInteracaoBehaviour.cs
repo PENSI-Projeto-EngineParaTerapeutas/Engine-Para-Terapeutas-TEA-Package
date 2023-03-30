@@ -2,13 +2,14 @@ using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
-using EngineParaTerapeutas.ComponentesGameObjects;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.DTOs;
-using EngineParaTerapeutas.UI;
-using EngineParaTerapeutas.Telas;
+using Autis.Runtime.Constantes;
+using Autis.Runtime.ComponentesGameObjects;
+using Autis.Runtime.DTOs;
+using Autis.Editor.Constantes;
+using Autis.Editor.UI;
+using Autis.Editor.Telas;
 
-namespace EngineParaTerapeutas.Criadores {
+namespace Autis.Editor.Criadores {
     public class CriadorObjetoInteracaoBehaviour : Criador {
         protected override string CaminhoTemplate => "Telas/Criador/CriadorObjetoInteracao/CriadorObjetoInteracaoTemplate.uxml";
         protected override string CaminhoStyle => "Telas/Criador/CriadorObjetoInteracao/CriadorObjetoInteracaoStyle.uss";

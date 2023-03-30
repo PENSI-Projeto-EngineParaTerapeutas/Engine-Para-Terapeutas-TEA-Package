@@ -2,9 +2,9 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.Constantes;
+using Autis.Runtime.Constantes;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Runtime.UI {
     public class ConfiguracaoApoioBehaviour : ElementoInterfaceJogo {
         protected override string CaminhoTemplate => "Scripts/Telas/PreConfiguracaoJogo/ConfiguracaoApoio/ConfiguracaoApoioTemplate";
         protected override string CaminhoStyle => "Scripts/Telas/PreConfiguracaoJogo/ConfiguracaoApoio/ConfiguracaoApoioStyle";

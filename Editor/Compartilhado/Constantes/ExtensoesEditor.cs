@@ -1,4 +1,4 @@
-namespace EngineParaTerapeutas.Constantes {
+namespace Autis.Editor.Constantes {
     public static class ExtensoesEditor {
         public static string Cena => ".unity";
         public static string ScriptableObject => ".asset";

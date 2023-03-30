@@ -1,4 +1,4 @@
-namespace EngineParaTerapeutas.Constantes {
+namespace Autis.Runtime.Constantes {
     public static class OrdemRenderizacao {
         public static int Cenario => 0;
         public static int Apoio => 1;

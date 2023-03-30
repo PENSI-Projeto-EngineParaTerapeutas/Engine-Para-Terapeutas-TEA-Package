@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.UI;
+using Autis.Editor.UI;
+using Autis.Editor.Constantes;
 
-namespace EngineParaTerapeutas.Criadores {
+namespace Autis.Editor.Criadores {
     public class HeaderCriadorBehaviour : ElementoInterfaceEditor, IVinculavel<GameObject>, IReiniciavel, ICamposAtualizaveis {
         private const string NOME_PADRAO_NOVO_ATOR = "Ator";
 

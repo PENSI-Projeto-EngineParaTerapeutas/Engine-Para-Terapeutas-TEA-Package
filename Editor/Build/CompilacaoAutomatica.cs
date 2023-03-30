@@ -1,8 +1,9 @@
 using UnityEditor;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.Utils;
+using Autis.Runtime.Constantes;
+using Autis.Editor.Constantes;
+using Autis.Editor.Utils;
 
-namespace EngineParaTerapeutas.Build {
+namespace Autis.Editor.Build {
     public static class CompilacaoAutomatica {
         [MenuItem("Engine Para Terapeutas/Criar jogo")]
         public static void Compilar() {

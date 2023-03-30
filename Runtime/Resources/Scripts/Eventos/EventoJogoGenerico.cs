@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-namespace EngineParaTerapeutas.Eventos {
+namespace Autis.Runtime.Eventos {
     public abstract class EventoJogoGenerico<T> : ScriptableObject {
         public int QuantidadeCallbacks { get => callbacks.Count; }
         

@@ -2,11 +2,11 @@ using System;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.ComponentesGameObjects;
-using EngineParaTerapeutas.DTOs;
+using Autis.Runtime.ComponentesGameObjects;
+using Autis.Editor.Constantes;
+using Autis.Runtime.DTOs;
 
-namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
+namespace Autis.Editor.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(IdentificadorTipoReforco))]
     public class CustomEditorTipoReforcoBehaviour : CustomEditorBase {
         protected override string CaminhoTemplate => "CustomEditor/CustomEditorTipoReforco/CustomEditorTipoReforcoTemplate.uxml";

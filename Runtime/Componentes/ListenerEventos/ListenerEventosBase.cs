@@ -1,8 +1,8 @@
 using UnityEngine;
-using EngineParaTerapeutas.Eventos;
-using EngineParaTerapeutas.DTOs;
+using Autis.Runtime.DTOs;
+using Autis.Runtime.Eventos;
 
-namespace EngineParaTerapeutas.ComponentesGameObjects {
+namespace Autis.Runtime.ComponentesGameObjects {
     public abstract class ListenerEventosBase : MonoBehaviour {
         public TipoAcionamento TipoAcionamento { get => tipoAcionamento; set { tipoAcionamento = value; } }
         [SerializeField]

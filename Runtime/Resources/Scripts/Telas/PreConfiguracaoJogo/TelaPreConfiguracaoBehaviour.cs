@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.UI;
-using EngineParaTerapeutas.Eventos;
+using Autis.Runtime.UI;
+using Autis.Runtime.Eventos;
 
-namespace EngineParaTerapeutas.Telas {
+namespace Autis.Runtime.Telas {
     public class TelaPreConfiguracaoBehaviour : TelaJogo {
         private enum AbasTelaPreConfiguracao {
             Nenhuma,

@@ -1,11 +1,11 @@
 using UnityEditor;
 using UnityEngine;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.UI;
-using EngineParaTerapeutas.Telas;
-using EngineParaTerapeutas.Utils;
+using Autis.Runtime.Constantes;
+using Autis.Editor.Telas;
+using Autis.Editor.UI;
+using Autis.Editor.Utils;
 
-namespace EngineParaTerapeutas.Criadores {
+namespace Autis.Editor.Criadores {
     public abstract class Criador : Tela, IReiniciavel, ICamposAtualizaveis {
         #region .: Elementos :.
 

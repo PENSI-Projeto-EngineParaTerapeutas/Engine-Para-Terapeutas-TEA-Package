@@ -1,7 +1,7 @@
 using UnityEngine;
-using EngineParaTerapeutas.DTOs;
+using Autis.Runtime.DTOs;
 
-namespace EngineParaTerapeutas.ComponentesGameObjects {
+namespace Autis.Runtime.ComponentesGameObjects {
     [AddComponentMenu("Engine Terapeutas TEA/Listeners/Listener Reforço")]
     public class ListenerEventosReforco : ListenerEventosBase {
         [AddComponentMenu("Engine Terapeutas TEA/Listener Eventos Reforço")]

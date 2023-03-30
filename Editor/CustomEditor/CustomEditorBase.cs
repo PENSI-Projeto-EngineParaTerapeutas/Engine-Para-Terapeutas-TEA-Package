@@ -1,10 +1,9 @@
-using UnityEditor;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.Constantes;
-using EngineParaTerapeutas.Utils;
+using Autis.Editor.Utils;
+using Autis.Editor.Constantes;
 
-namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
-    public abstract class CustomEditorBase : Editor {
+namespace Autis.Editor.CustomEditorComponentesGameObjects {
+    public abstract class CustomEditorBase : UnityEditor.Editor {
         protected abstract string CaminhoTemplate { get; }
         protected abstract string CaminhoStyle { get; }
 

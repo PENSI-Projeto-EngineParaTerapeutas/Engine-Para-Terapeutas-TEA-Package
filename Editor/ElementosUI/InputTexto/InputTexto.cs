@@ -1,7 +1,7 @@
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.Constantes;
+using Autis.Editor.Constantes;
 
-namespace EngineParaTerapeutas.UI {
+namespace Autis.Editor.UI {
     public class InputTexto : ElementoInterfaceEditor, IReiniciavel {
         protected override string CaminhoTemplate => "ElementosUI/InputTexto/InputTextoTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/InputTexto/InputTextoStyle.uss";

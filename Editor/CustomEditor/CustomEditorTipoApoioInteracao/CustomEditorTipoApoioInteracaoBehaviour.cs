@@ -1,9 +1,9 @@
 using UnityEditor;
 using UnityEngine.UIElements;
-using EngineParaTerapeutas.ComponentesGameObjects;
-using EngineParaTerapeutas.UI;
+using Autis.Runtime.ComponentesGameObjects;
+using Autis.Editor.UI;
 
-namespace EngineParaTerapeutas.CustomEditorComponentesGameObjects {
+namespace Autis.Editor.CustomEditorComponentesGameObjects {
     [CustomEditor(typeof(IdentificadorTipoApoioObjetoInteracao))]
     public class CustomEditorTipoApoioInteracaoBehaviour : CustomEditorBase {
         protected override string CaminhoTemplate => "CustomEditor/CustomEditorTipoApoioInteracao/CustomEditorTipoApoioInteracaoTemplate.uxml";
