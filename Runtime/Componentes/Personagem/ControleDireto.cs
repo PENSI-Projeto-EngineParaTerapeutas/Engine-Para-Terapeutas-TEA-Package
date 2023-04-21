@@ -1,40 +1,17 @@
 using UnityEngine;
 using Autis.Runtime.DTOs;
+using System.Collections.Generic;
 
 namespace Autis.Runtime.ComponentesGameObjects {
-    [AddComponentMenu("Engine Terapeutas TEA/Controles Personagem/Controle Direto")]
+    [AddComponentMenu("AUTIS/Personagem/Controle Direto")]
     public class ControleDireto : MonoBehaviour {
         [SerializeField]
         private float PASSO_ROTACAO = 0.15f;
 
-        public Transform BracoEsquerdo { get => bracoEsquerdo; }
-        public Transform AntebracoEsquerdo { get => antebracoEsquerdo; }
-        public Transform BracoDireito { get => bracoDireito; }
-        public Transform AntebracoDireito { get => antebracoDireito; }
-        public Transform PernaEsquerda { get => pernaEsquerda; }
-        public Transform PernaInferiorEsquerda { get => pernaInferiorEsquerda; }
-        public Transform PernaDireita { get => pernaDireita; }
-        public Transform PernaInferiorDireita { get => pernaInferiorDireita; }
+        public List<Transform> PartesCorpo { get => partesCorpo; }
 
         [SerializeField]
-        private Transform bracoEsquerdo;
-        [SerializeField]
-        private Transform antebracoEsquerdo;
-
-        [SerializeField]
-        private Transform bracoDireito;
-        [SerializeField]
-        private Transform antebracoDireito;
-
-        [SerializeField]
-        private Transform pernaEsquerda;
-        [SerializeField]
-        private Transform pernaInferiorEsquerda;
-
-        [SerializeField]
-        private Transform pernaDireita;
-        [SerializeField]
-        private Transform pernaInferiorDireita;
+        private List<Transform> partesCorpo;
 
         private IdentificadorTipoControle tipoControle;
 
@@ -43,6 +20,7 @@ namespace Autis.Runtime.ComponentesGameObjects {
             if(tipoControle.Tipo != TipoControle.Direto) {
                 this.enabled = false;
             }
+
 
             return;
         }

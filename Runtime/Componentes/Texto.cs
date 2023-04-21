@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 
 namespace Autis.Runtime.ComponentesGameObjects {
-    [AddComponentMenu("Engine Terapeutas TEA/Componentes Básicos/Texto")]
+    [AddComponentMenu("AUTIS/Componentes Básicos/Texto")]
     public class Texto : MonoBehaviour {
         private const string NOME_CANVAS = "Canvas";
 

@@ -6,7 +6,7 @@ namespace Autis.Runtime.Constantes {
         public static int ObjetoInteracao => 2;
         public static int Instrucao => 3;
         public static int Personagem => 4;
-        public static int Contexto => 5;
+        public static int Contexto => 11;
         public static int EmCriacao => 99;
     }
 }

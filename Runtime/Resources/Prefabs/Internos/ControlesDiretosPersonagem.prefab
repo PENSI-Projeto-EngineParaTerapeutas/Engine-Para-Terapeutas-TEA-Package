@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1476322098622755466}
   - component: {fileID: 1476322098622755465}
-  - component: {fileID: 1476322098622755463}
+  - component: {fileID: 8307806386100464312}
   m_Layer: 5
   m_Name: ControlesDiretosPersonagem
   m_TagString: Untagged
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: f8904fbdb9a9f044d86045cca5a7126d, type: 3}
   m_SortingOrder: 0
---- !u!114 &1476322098622755463
+--- !u!114 &8307806386100464312
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

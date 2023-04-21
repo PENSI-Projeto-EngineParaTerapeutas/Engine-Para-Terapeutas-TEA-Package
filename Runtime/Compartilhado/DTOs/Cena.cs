@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using Autis.Runtime.DTOs;
 
 namespace Autis.Runtime.ScriptableObjects {
-    [CreateAssetMenu(fileName = "Cena", menuName = "Engine Para Terapeutas/Scriptable Object/Cena")]
+    [CreateAssetMenu(fileName = "Cena", menuName = "AUTIS/Scriptable Object/Cena")]
     public class Cena : ScriptableObject {
 
         public string NomeExibicao { get => nomeExibicao; set { nomeExibicao = value; } }

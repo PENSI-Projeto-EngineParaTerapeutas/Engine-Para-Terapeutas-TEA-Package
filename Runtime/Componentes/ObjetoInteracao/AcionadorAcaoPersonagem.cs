@@ -3,7 +3,7 @@ using Autis.Runtime.Eventos;
 using Autis.Runtime.Constantes;
 
 namespace Autis.Runtime.ComponentesGameObjects {
-    [AddComponentMenu("Engine Terapeutas TEA/Objeto Interação/Acionador Ação Personagem")]
+    [AddComponentMenu("AUTIS/Objeto Interação/Acionador Ação Personagem")]
     public class AcionadorAcaoPersonagem : MonoBehaviour {
         public AnimationClip animacaoAcionada;
 

@@ -2,7 +2,7 @@ using UnityEngine;
 using Autis.Runtime.DTOs;
 
 namespace Autis.Runtime.ComponentesGameObjects {
-    [AddComponentMenu("Engine Terapeutas TEA/Identificador Tipo/Identificador Tipo Ação do Objeto de Interação")]
+    [AddComponentMenu("AUTIS/Objeto Interação/Identificador Tipo Ação do Objeto de Interação")]
     public class IdentificadorTipoAcao : IdentificadorTipo<TiposAcoes> {
         private Arrastavel componenteArrastar;
         private Selecionavel componenteSelecao;

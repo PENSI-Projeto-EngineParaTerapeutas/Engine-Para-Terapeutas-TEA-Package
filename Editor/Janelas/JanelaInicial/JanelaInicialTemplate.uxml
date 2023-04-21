@@ -6,7 +6,7 @@
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
     <engine:ScrollView>
-        <engine:Label name="titulo" text="Engine para Terapeutas TEA"/>
+        <engine:Label name="titulo" text="AUTIS"/>
 
         <engine:VisualElement name="lista-cenas"/>
 

@@ -2,9 +2,8 @@ using UnityEngine;
 using Autis.Runtime.DTOs;
 
 namespace Autis.Runtime.ComponentesGameObjects {
-    [AddComponentMenu("Engine Terapeutas TEA/Listeners/Listener Reforço")]
+    [AddComponentMenu("AUTIS/Reforço/Listener Reforço")]
     public class ListenerEventosReforco : ListenerEventosBase {
-        [AddComponentMenu("Engine Terapeutas TEA/Listener Eventos Reforço")]
         private IdentificadorTipoReforco tipoReforco;
         private AudioSource audioSource;
         private Video video;

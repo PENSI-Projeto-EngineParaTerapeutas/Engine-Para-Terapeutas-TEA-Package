@@ -28,7 +28,7 @@ namespace Autis.Editor.Telas {
 
         private List<Cena> cenas = new();
 
-        [MenuItem("Engine Para Terapeutas/Janela Inicial")]
+        [MenuItem("AUTIS/Janela Inicial")]
         public static void ShowJanelaInicial() {
             const string TITULO = "Janela Inicial";
 

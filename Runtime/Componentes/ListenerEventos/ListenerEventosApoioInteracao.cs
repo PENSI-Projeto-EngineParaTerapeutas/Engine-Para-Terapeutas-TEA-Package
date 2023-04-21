@@ -2,7 +2,7 @@ using UnityEngine;
 using Autis.Runtime.DTOs;
 
 namespace Autis.Runtime.ComponentesGameObjects {
-    [AddComponentMenu("Engine Terapeutas TEA/Listeners/Listener Apoio Objeto de Interação")]
+    [AddComponentMenu("AUTIS/Apoio Objeto Interação/Listener Apoio Objeto de Interação")]
     public class ListenerEventosApoioInteracao : ListenerEventosBase {
         private IdentificadorTipoApoioObjetoInteracao tipoApoioObjetoInteracao;
         private AudioSource audioSource;

@@ -1,9 +1,9 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
-using UnityEditor.UIElements;
 using Autis.Runtime.ComponentesGameObjects;
 using Autis.Runtime.Constantes;
 using Autis.Runtime.DTOs;
@@ -11,25 +11,28 @@ using Autis.Editor.Constantes;
 using Autis.Editor.Utils;
 using Autis.Editor.UI;
 using Autis.Editor.Telas;
+using Autis.Editor.DTOs;
 
 namespace Autis.Editor.Criadores {
     public class CriadorPersonagemBehaviour : Criador {
+        protected override string CaminhoTemplate => "Telas/Criador/CriadorPersonagem/CriadorPersonagemTemplate.uxml";
+        protected override string CaminhoStyle => "Telas/Criador/CriadorPersonagem/CriadorPersonagemStyle.uss";
+        
         private const string CAMINHO_PREFAB_BONECO_PALITO = "Personagens/Boneco_Palito_Redondo.prefab";
         private const string CAMINHO_PREFAB_PERSONAGEM_LUDICO = "Personagens/Ludico.prefab";
         private const string CAMINHO_PREFAB_AVATAR = "Personagens/Avatar.prefab";
 
-        private const TiposPersonagem TIPO_PADRAO = TiposPersonagem.BonecoPalito;
+        #region .: Mensagens :.
 
-        protected override string CaminhoTemplate => "Telas/Criador/CriadorPersonagem/CriadorPersonagemTemplate.uxml";
-        protected override string CaminhoStyle => "Telas/Criador/CriadorPersonagem/CriadorPersonagemStyle.uss";
+        private const string MENSAGEM_ERRO_CARREGAR_CONTROLLER_PERSONAGEM = "[ERROR]: Não foi possível achar a referência para o Controlador de Animação para o Personagem. Certifique-se de que o arquivo {nome-controller} ControllerAvatar.controller está localizado em {local}.";
+
+        private const string TOOLTIP_TITULO = "Tipo especial de objeto interativo, que interage com outros objetos do jogo. Os personagens devem ter uma representação visual com perspectiva em primeira ou terceira pessoa, e sua movimentação deve ser controlada pelo usuário por meio de manipulação direta ou indireta (e.g., após a ação do usuário é exibidauma animação com o personagem). Opcionalmente, o personagem pode ter acapacidade de se comunicar por meio de texto ou áudio.";
+        private const string TOOLTIP_TIPO_CONTROLE = "Texto de teste.";
+        private const string TOOLTIP_TIPO_PERSONAGEM = "Define o tipo de Personagem";
+
+        #endregion
 
         #region .: Elementos :.
-
-        private const string NOME_REGIAO_CONFIGURACAO_PERSONAGEM = "regiao-configurar-personagem";
-        private readonly VisualElement regiaoConfigurarPersonagem;
-
-        private const string NOME_REGIAO_AVISO_PERSONAGEM_JA_CRIADO = "regiao-aviso-personagem-ja-existente";
-        private readonly VisualElement regiaoAvisoPersonagemJaCriado;
 
         private const string NOME_REGIAO_CARREGAMENTO_HEADER = "regiao-carregamento-header";
         private VisualElement regiaoCarregamentoHeader;
@@ -37,9 +40,8 @@ namespace Autis.Editor.Criadores {
         private const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO = "regiao-tooltip-titulo";
         private VisualElement regiaoCarregamentoTooltipTitulo;
 
-        private const string NOME_LABEL_TIPO_PERSONAGEM = "label-tipo-objeto-interacao";
-        private const string NOME_ENUM_TIPO_PERSONAGEM = "input-tipo-objeto-interacao";
-        private EnumField campoTipoPersonagem;
+        private const string NOME_REIGAO_CARREGAMENTO_DROPDOWN_TIPO_PERSONAGEM = "regiao-carregamento-tipo-personagem";
+        private VisualElement regiaoCarregamentoDropdownTipoPersonagem;
 
         private const string NOME_IMAGEM_PERSONAGEM = "imagem-personagem";
         private Image imagemPersonagem;
@@ -65,54 +67,37 @@ namespace Autis.Editor.Criadores {
         private readonly InterrogacaoToolTip tooltipTitulo;
         private readonly InterrogacaoToolTip tooltipTipoControle;
 
+        private Dropdown dropdownTipoPersonagem;
+
         #endregion
 
         private readonly GameObject prefabBonecoPalito;
         private readonly GameObject prefabPersonagemLudico;
         private readonly GameObject prefabAvatar;
 
-        private TiposPersonagem tipoPersonagemAtual;
+        private TiposPersonagem tipoPersonagemAtual = TiposPersonagem.Nenhum;
 
         private IdentificadorTipoControle tipoControle;
 
+        private readonly List<AcaoPersonagem> associacoesAcoes;
+
         public CriadorPersonagemBehaviour() {
-            regiaoConfigurarPersonagem = Root.Query<VisualElement>(NOME_REGIAO_CONFIGURACAO_PERSONAGEM);
-            regiaoAvisoPersonagemJaCriado = Root.Query<VisualElement>(NOME_REGIAO_AVISO_PERSONAGEM_JA_CRIADO);
-
-            bool jaCriouPersonagem = GameObject.FindGameObjectWithTag(NomesTags.Personagem) != null;
-            if(jaCriouPersonagem) {
-                regiaoAvisoPersonagemJaCriado.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-                regiaoConfigurarPersonagem.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-
-                regiaoCarregamentoBotoesConfirmacao = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO);
-                regiaoCarregamentoBotoesConfirmacao.Add(botoesConfirmacao.Root);
-
-                return;
-            }
-
-            regiaoConfigurarPersonagem.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-            regiaoAvisoPersonagemJaCriado.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-
             tooltipTitulo = new InterrogacaoToolTip();
             tooltipTipoControle = new InterrogacaoToolTip();
+            associacoesAcoes = new List<AcaoPersonagem>();
 
             prefabBonecoPalito = Importador.ImportarPrefab(CAMINHO_PREFAB_BONECO_PALITO);
             prefabPersonagemLudico = Importador.ImportarPrefab(CAMINHO_PREFAB_PERSONAGEM_LUDICO);
             prefabAvatar = Importador.ImportarPrefab(CAMINHO_PREFAB_AVATAR);
 
-            prefab = prefabBonecoPalito;
-            tipoPersonagemAtual = TIPO_PADRAO;
-
             CarregarRegiaoHeader();
             CarregarTooltipTitulo();
+            ConfigurarDropdownTipoPersonagem();
             ConfigurarImagemPersonagem();
             ConfigurarBotaoPersonalizarPersonagem();
             CarregarTooltipTipoControle();
-            ConfigurarCampoTipoPersonagem();
             ConfigurarRadioButtons();
             ConfigurarBotoesConfirmacao();
-
-            IniciarCriacao();
 
             return;
         }
@@ -128,7 +113,7 @@ namespace Autis.Editor.Criadores {
             regiaoCarregamentoTooltipTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
             regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);
 
-            tooltipTitulo.SetTexto("Tipo especial de objeto interativo, que interage com outros objetos do jogo. Os personagens devem ter uma representação visual com perspectiva em primeira ou terceira pessoa, e sua movimentação deve ser controlada pelo usuário por meio de manipulação direta ou indireta (e.g., após a ação do usuário é exibidauma animação com o personagem). Opcionalmente, o personagem pode ter acapacidade de se comunicar por meio de texto ou áudio.");
+            tooltipTitulo.SetTexto(TOOLTIP_TITULO);
 
             return;
         }
@@ -137,7 +122,94 @@ namespace Autis.Editor.Criadores {
             regiaoCarregamentoTooltipTipoControle = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TIPO_CONTROLE);
             regiaoCarregamentoTooltipTipoControle.Add(tooltipTipoControle.Root);
 
-            tooltipTipoControle.SetTexto("Texto de teste.");
+            tooltipTipoControle.SetTexto(TOOLTIP_TIPO_CONTROLE);
+
+            return;
+        }
+
+        private void ConfigurarDropdownTipoPersonagem() {
+            List<string> tiposPersonagem = new() {
+                TiposPersonagem.Avatar.ToString(),
+                TiposPersonagem.BonecoPalito.ToString(),
+                TiposPersonagem.Ludico.ToString(),
+            };
+            dropdownTipoPersonagem = new Dropdown("Tipo de personagem:", TOOLTIP_TIPO_PERSONAGEM, tiposPersonagem);
+
+            dropdownTipoPersonagem.Campo.RegisterCallback<ChangeEvent<string>>(evt => {
+                if(evt.newValue == Dropdown.VALOR_PADRAO_DROPDOWN) {
+                    CancelarCriacao();
+
+                    tipoPersonagemAtual = TiposPersonagem.Nenhum;
+
+                    radioOpcaoControleDireto.SetValueWithoutNotify(false);
+                    radioOpcaoControleIndireto.SetValueWithoutNotify(false);
+
+                    botaoPersonalizarPersonagem.SetEnabled(false);
+                    radioOpcaoControleDireto.SetEnabled(false);
+                    radioOpcaoControleIndireto.SetEnabled(false);
+                    botaoConfigurarControleIndireto.SetEnabled(false);
+                    botoesConfirmacao.BotaoConfirmar.SetEnabled(false);
+
+                    return;
+                }
+
+                TiposPersonagem tipoSelecionado = Enum.Parse<TiposPersonagem>(evt.newValue);
+                if(tipoPersonagemAtual == tipoSelecionado) {
+                    return;
+                }
+
+                tipoPersonagemAtual = tipoSelecionado;
+                botaoPersonalizarPersonagem.SetEnabled(true);
+
+                CancelarCriacao();
+
+                switch(tipoPersonagemAtual) {
+                    case(TiposPersonagem.Avatar): {
+                        prefab = prefabAvatar;
+
+                        radioOpcaoControleDireto.SetValueWithoutNotify(false);
+                        radioOpcaoControleIndireto.SetValueWithoutNotify(false);
+
+                        radioOpcaoControleDireto.SetEnabled(true);
+                        radioOpcaoControleIndireto.SetEnabled(true);
+                        botaoConfigurarControleIndireto.SetEnabled(false);
+                        botoesConfirmacao.BotaoConfirmar.SetEnabled(true);
+
+                        break;
+                    }
+                    case(TiposPersonagem.BonecoPalito): {
+                        prefab = prefabBonecoPalito;
+
+                        radioOpcaoControleDireto.SetValueWithoutNotify(false);
+                        radioOpcaoControleIndireto.SetValueWithoutNotify(false);
+
+                        radioOpcaoControleDireto.SetEnabled(true);
+                        radioOpcaoControleIndireto.SetEnabled(true);
+                        botaoConfigurarControleIndireto.SetEnabled(false);
+                        botoesConfirmacao.BotaoConfirmar.SetEnabled(true);
+
+                        break;
+                    }
+                    case(TiposPersonagem.Ludico): {
+                        prefab = prefabPersonagemLudico;
+
+                        radioOpcaoControleDireto.SetValueWithoutNotify(false);
+                        radioOpcaoControleIndireto.SetValueWithoutNotify(false);
+
+                        radioOpcaoControleDireto.SetEnabled(false);
+                        radioOpcaoControleIndireto.SetEnabled(false);
+                        botaoConfigurarControleIndireto.SetEnabled(false);
+                        botoesConfirmacao.BotaoConfirmar.SetEnabled(false);
+
+                        break;
+                    }
+                }
+
+                IniciarCriacao();
+            });
+
+            regiaoCarregamentoDropdownTipoPersonagem = Root.Query<VisualElement>(NOME_REIGAO_CARREGAMENTO_DROPDOWN_TIPO_PERSONAGEM);
+            regiaoCarregamentoDropdownTipoPersonagem.Add(dropdownTipoPersonagem.Root);
 
             return;
         }
@@ -151,7 +223,9 @@ namespace Autis.Editor.Criadores {
 
         private void ConfigurarBotaoPersonalizarPersonagem() {
             botaoPersonalizarPersonagem = Root.Query<Button>(NOME_BOTAO_PERSONALIZAR_PERSONAGEM);
+
             botaoPersonalizarPersonagem.clicked += HandleBotaoPersonalizarPersonagemClick;
+            botaoPersonalizarPersonagem.SetEnabled(false);
 
             return;
         }
@@ -167,7 +241,7 @@ namespace Autis.Editor.Criadores {
                     break;
                 }
                 case(TiposPersonagem.Ludico): {
-                    Debug.Log("[TODO] Implementar");
+                    Navigator.Instance.IrPara(new PersonalizarLudicoBehaviour(prefab, ReiniciarCriacaoComPrefab));
                     break;
                 }
             }
@@ -175,41 +249,20 @@ namespace Autis.Editor.Criadores {
             return;
         }
 
-        private void ConfigurarCampoTipoPersonagem() {
-            campoTipoPersonagem = Root.Query<EnumField>(NOME_ENUM_TIPO_PERSONAGEM);
+        private void ReiniciarCriacaoComPrefab(GameObject novoPrefab) {
+            CancelarCriacao();
 
-            campoTipoPersonagem.labelElement.name = NOME_LABEL_TIPO_PERSONAGEM;
-            campoTipoPersonagem.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
+            radioOpcaoControleDireto.SetValueWithoutNotify(false);
+            radioOpcaoControleIndireto.SetValueWithoutNotify(false);
 
-            campoTipoPersonagem.Init(TIPO_PADRAO);
-            campoTipoPersonagem.SetValueWithoutNotify(TIPO_PADRAO);
+            radioOpcaoControleDireto.SetEnabled(true);
+            radioOpcaoControleIndireto.SetEnabled(true);
+            botoesConfirmacao.BotaoConfirmar.SetEnabled(true);
+            botaoConfigurarControleIndireto.SetEnabled(false);
 
-            campoTipoPersonagem.RegisterCallback<ChangeEvent<Enum>>(evt => {
-                TiposPersonagem tipoSelecionado = Enum.Parse<TiposPersonagem>(campoTipoPersonagem.value.ToString());
-                if(tipoPersonagemAtual == tipoSelecionado) {
-                    return;
-                }
+            prefab = novoPrefab;
 
-                tipoPersonagemAtual = tipoSelecionado;
-                CancelarCriacao();
-
-                switch(tipoPersonagemAtual) {
-                    case(TiposPersonagem.Avatar): {
-                        prefab = prefabAvatar;
-                        break;
-                    }
-                    case(TiposPersonagem.BonecoPalito): {
-                        prefab = prefabBonecoPalito;
-                        break;
-                    }
-                    case(TiposPersonagem.Ludico): {
-                        prefab = prefabPersonagemLudico;
-                        break;
-                    }
-                }
-
-                IniciarCriacao();
-            });
+            IniciarCriacao();
 
             return;
         }
@@ -217,7 +270,7 @@ namespace Autis.Editor.Criadores {
         private void ConfigurarRadioButtons() {
             radioOpcaoControleDireto = Root.Query<RadioButton>(NOME_RADIO_OPCAO_CONTROLE_DIRETO);
             radioOpcaoControleDireto.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
-            radioOpcaoControleDireto.SetValueWithoutNotify(true);
+            radioOpcaoControleDireto.SetValueWithoutNotify(false);
             radioOpcaoControleDireto.RegisterValueChangedCallback(evt => {
                 if(!evt.newValue) {
                     return;
@@ -226,6 +279,7 @@ namespace Autis.Editor.Criadores {
                 tipoControle.AlterarTipo(TipoControle.Direto);
                 botaoConfigurarControleIndireto.SetEnabled(false);
             });
+            radioOpcaoControleDireto.SetEnabled(false);
 
             radioOpcaoControleIndireto = Root.Query<RadioButton>(NOME_RADIO_OPCAO_CONTROLE_INDIRETO);
             radioOpcaoControleIndireto.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
@@ -238,16 +292,17 @@ namespace Autis.Editor.Criadores {
                 tipoControle.AlterarTipo(TipoControle.Indireto);
                 botaoConfigurarControleIndireto.SetEnabled(true);
             });
+            radioOpcaoControleIndireto.SetEnabled(false);
 
             botaoConfigurarControleIndireto = Root.Query<Button>(NOME_BOTAO_CONFIGURAR_CONTROLE_INDIRETO);
-            botaoConfigurarControleIndireto.SetEnabled(false);
             botaoConfigurarControleIndireto.clicked += HandleBotaoConfigurarControleIndiretoClick;
+            botaoConfigurarControleIndireto.SetEnabled(false);
 
             return;
         }
 
         private void HandleBotaoConfigurarControleIndiretoClick() {
-            Navigator.Instance.IrPara(new ConfigurarControleIndiretoBehaviour());
+            Navigator.Instance.IrPara(new ConfigurarControleIndiretoBehaviour(novoObjeto, tipoPersonagemAtual, associacoesAcoes));
             return;
         }
 
@@ -255,6 +310,7 @@ namespace Autis.Editor.Criadores {
             regiaoCarregamentoBotoesConfirmacao = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO);
             regiaoCarregamentoBotoesConfirmacao.Add(botoesConfirmacao.Root);
 
+            botoesConfirmacao.BotaoConfirmar.SetEnabled(false);
             botoesConfirmacao.BotaoConfirmar.clicked += HandleBotaoConfirmarClick;
             botoesConfirmacao.BotaoCancelar.clicked += HandleBotaoCancelarClick;
 
@@ -262,32 +318,87 @@ namespace Autis.Editor.Criadores {
         }
 
         protected override void HandleBotaoConfirmarClick() {
-            RuntimeAnimatorController controller = null;
-            switch(tipoPersonagemAtual) {
-                case(TiposPersonagem.Avatar): {
-                    controller = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesAvatar, "ControllerAvatar.controller"));
-                    break;
-                }
-                case(TiposPersonagem.BonecoPalito): {
-                    controller = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesBonecoPalito, "ControllerPersonagemPalito.controller"));
-                    break;
-
-                }
-                case(TiposPersonagem.Ludico): {
-                    controller = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesPersonagemLudico, "ControllerPersonagemLudico.controller"));
-                    break;
-                }
-            }
-
-            novoObjeto.GetComponent<Animator>().runtimeAnimatorController = controller;
+            CarregarControllerPersonagem();
+            AtribuirVinculoAcoesControleIndireto();
 
             base.HandleBotaoConfirmarClick();
 
             return;
         }
 
-        protected override void VincularCamposAoNovoObjeto() {
-            tipoControle = novoObjeto.GetComponent<IdentificadorTipoControle>();
+        private void CarregarControllerPersonagem() {
+            RuntimeAnimatorController controller = null;
+
+            switch(tipoPersonagemAtual) {
+                case(TiposPersonagem.Avatar): {
+                    controller = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesAvatar, "ControllerAvatar.controller"));
+
+                    if(controller == null) {
+                        Debug.LogError(MENSAGEM_ERRO_CARREGAR_CONTROLLER_PERSONAGEM.Replace("{nome-controller}", "ControllerAvatar.controller").Replace("{local}", ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesAvatar));
+                    }
+
+                    break;
+                }
+                case(TiposPersonagem.BonecoPalito): {
+                    controller = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesBonecoPalito, "ControllerPersonagemPalito.controller"));
+
+                    if(controller == null) {
+                        Debug.LogError(MENSAGEM_ERRO_CARREGAR_CONTROLLER_PERSONAGEM.Replace("{nome-controller}", "ControllerPersonagemPalito.controller").Replace("{local}", ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesBonecoPalito));
+                    }
+
+                    break;
+                }
+                case(TiposPersonagem.Ludico): {
+                    string nomeTipoPersonagemLudico = novoObjeto.GetComponent<IdentificadorTipoPersonagemLudico>().tipoPersonagenLudicos.ToString();
+                    controller = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesPersonagemLudico, nomeTipoPersonagemLudico, "ControllerPersonagemLudico.controller"));
+
+                    if(controller == null) {
+                        Debug.LogError(MENSAGEM_ERRO_CARREGAR_CONTROLLER_PERSONAGEM.Replace("{nome-controller}", "ControllerPersonagemLudico.controller").Replace("{local}", ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesPersonagemLudico + nomeTipoPersonagemLudico));
+                    }
+
+                    break;
+                }
+            }
+
+            novoObjeto.GetComponent<Animator>().runtimeAnimatorController = controller;
+
+            return;
+        }
+
+
+        private void AtribuirVinculoAcoesControleIndireto() {
+            if(radioOpcaoControleIndireto.value == false) {
+                return;
+            }
+
+            foreach(AcaoPersonagem vinculoAcao in associacoesAcoes) {
+                AcionadorAcaoPersonagem acionador = vinculoAcao.ObjetoGatilho.GetComponent<AcionadorAcaoPersonagem>();
+                acionador.animacaoAcionada = vinculoAcao.Animacao;
+            }
+
+            return;
+        }
+
+        protected override void HandleBotaoCancelarClick() {
+            CancelarCriacao();
+            ReiniciarCampos();
+
+            return;
+        }
+
+        public override void CancelarCriacao() {
+            header.ReiniciarCampos();
+
+            ReiniciarPropriedadesNovoObjeto();
+            associacoesAcoes.Clear();
+
+            if(novoObjeto != null) {
+                GameObject.DestroyImmediate(novoObjeto);
+            }
+
+            novoObjeto = null;
+            prefab = null;
+
             return;
         }
 
@@ -296,15 +407,20 @@ namespace Autis.Editor.Criadores {
             return;
         }
 
+        protected override void VincularCamposAoNovoObjeto() {
+            tipoControle = novoObjeto.GetComponent<IdentificadorTipoControle>();
+            return;
+        }
+
         public override void ReiniciarCampos() {
-            campoTipoPersonagem.SetValueWithoutNotify(TiposPersonagem.BonecoPalito);
-            campoTipoPersonagem.SendEvent(new ChangeEvent<TiposPersonagem>());
+            tipoPersonagemAtual = TiposPersonagem.Nenhum;
 
-            radioOpcaoControleDireto.SetValueWithoutNotify(true);
-            radioOpcaoControleDireto.SendEvent(new ChangeEvent<bool>());
+            dropdownTipoPersonagem.ReiniciarCampos();
+            botaoPersonalizarPersonagem.SetEnabled(false);
 
+            radioOpcaoControleDireto.SetValueWithoutNotify(false);
             radioOpcaoControleIndireto.SetValueWithoutNotify(false);
-            radioOpcaoControleIndireto.SendEvent(new ChangeEvent<bool>());
+
             return;
         }
 

@@ -1,7 +1,9 @@
+using System.IO;
 using UnityEditor;
 using UnityEngine.UIElements;
 using Autis.Editor.Utils;
 using Autis.Editor.Constantes;
+using Autis.Runtime.Eventos;
 
 namespace Autis.Editor.Telas {
     public abstract class JanelaEditor : EditorWindow {
@@ -14,7 +16,16 @@ namespace Autis.Editor.Telas {
 
         protected StyleSheet defaultStyle;
 
+        protected static EventoJogo eventoAbrirPopupAviso;
+        protected static EventoJogo eventoFecharPopupAviso;
+
         protected virtual void CreateGUI() {
+            eventoAbrirPopupAviso = AssetDatabase.LoadAssetAtPath<EventoJogo>(Path.Combine(ConstantesEditor.CaminhoPastaEventosEditor, "EventoAbrirPopupAviso" + ExtensoesEditor.ScriptableObject));
+            eventoFecharPopupAviso = AssetDatabase.LoadAssetAtPath<EventoJogo>(Path.Combine(ConstantesEditor.CaminhoPastaEventosEditor, "EventoFecharPopupAviso" + ExtensoesEditor.ScriptableObject));
+
+            eventoAbrirPopupAviso.AdicionarCallback(HandleAbrirPopupAviso);
+            eventoFecharPopupAviso.AdicionarCallback(HandleFecharPopupAviso);
+
             root = rootVisualElement;
             ImportarTemplate(CaminhoTemplate);
 
@@ -23,6 +34,16 @@ namespace Autis.Editor.Telas {
 
             OnRenderizarInterface();
 
+            return;
+        }
+
+        protected virtual void HandleAbrirPopupAviso() {
+            root.SetEnabled(false);
+            return;
+        }
+
+        protected virtual void HandleFecharPopupAviso() {
+            root.SetEnabled(true);
             return;
         }
 

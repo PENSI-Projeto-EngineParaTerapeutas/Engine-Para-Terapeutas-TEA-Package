@@ -5,7 +5,7 @@ using Autis.Runtime.ComponentesGameObjects;
 namespace Autis.Runtime.ComponentesGameObjects {
     [RequireComponent(typeof(ControleDireto))]
     [RequireComponent(typeof(ControleIndireto))]
-    [AddComponentMenu("Engine Terapeutas TEA/Controles Personagem/Identificador Tipo Controle")]
+    [AddComponentMenu("AUTIS/Personagem/Identificador Tipo Controle")]
     public class IdentificadorTipoControle : IdentificadorTipo<TipoControle> {
         private ControleDireto controleDireto;
         private ControleIndireto controleIndireto;

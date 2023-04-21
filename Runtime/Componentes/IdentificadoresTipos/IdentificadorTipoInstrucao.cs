@@ -2,7 +2,7 @@ using UnityEngine;
 using Autis.Runtime.DTOs;
 
 namespace Autis.Runtime.ComponentesGameObjects {
-    [AddComponentMenu("Engine Terapeutas TEA/Identificador Tipo/Identificador Tipo Instrução")]
+    [AddComponentMenu("AUTIS/Instrução/Identificador Tipo Instrução")]
     public class IdentificadorTipoInstrucao : IdentificadorTipo<TiposIntrucoes> {
         private SpriteRenderer spriteRenderer;
         private AudioSource audioSource;

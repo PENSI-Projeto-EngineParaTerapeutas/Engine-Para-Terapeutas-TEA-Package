@@ -1,0 +1,18 @@
+#regiao-tipos-personagens {
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+#regiao-tipos-personagens > VisualElement {
+	height: 106px;
+	width: 106px;
+	padding: 3px;
+	margin-left: 9px;
+	margin-top: 9px;
+	margin-bottom: 9px;
+	border-color: black;
+	border-radius: 6px;
+	border-width: 1.2px;
+}

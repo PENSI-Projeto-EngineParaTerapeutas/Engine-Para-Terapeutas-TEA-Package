@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1827164500159984653}
   - component: {fileID: 4921972572283533366}
   - component: {fileID: 7308341961934312334}
+  - component: {fileID: 1464257825912651569}
   m_Layer: 0
   m_Name: Ludico
   m_TagString: Personagem
@@ -48,14 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PASSO_ROTACAO: 0.15
-  bracoEsquerdo: {fileID: 0}
-  antebracoEsquerdo: {fileID: 0}
-  bracoDireito: {fileID: 0}
-  antebracoDireito: {fileID: 0}
-  pernaEsquerda: {fileID: 0}
-  pernaInferiorEsquerda: {fileID: 0}
-  pernaDireita: {fileID: 0}
-  pernaInferiorDireita: {fileID: 0}
+  partesCorpo: []
 --- !u!95 &1827164500159984653
 Animator:
   serializedVersion: 5
@@ -101,3 +95,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipo: 0
+--- !u!114 &1464257825912651569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238693539030694353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c1b80ca998c8e499d2bc7261841a53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiposPersonagenLudicos: 0

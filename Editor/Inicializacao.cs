@@ -10,6 +10,12 @@ using Autis.Editor.UI;
 namespace Autis {
     [InitializeOnLoad]
     public class Inicializacao : AssetPostprocessor {
+        #region .: Mensagens :.
+
+        private const string MENSAGEM_ERRO_CRIAR_LAYER = "[ERROR]: Não foi possível inserir a layer: {nome-layer}.";
+
+        #endregion
+
         static Inicializacao() {}
 
         private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths) {
@@ -40,14 +46,13 @@ namespace Autis {
                 ConstantesProjetoUnity.CaminhoUnityAssetsSons,
                 ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas,
                 ConstantesProjetoUnity.CaminhoUnityAssetsStreamingAssets,
-                ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoes,
             };
 
             foreach(string pasta in CAMINHO_PASTAS) {
                 CriarPasta(pasta);
             }
 
-            CopiarConteudoPastaAnimacoes();
+            CopiarPasta(Path.Combine(ConstantesProjeto.CaminhoDinamicoPacote, "Runtime/Resources/Assets/Animacoes"), ConstantesProjetoUnity.CaminhoUnityAssets);
 
             return;
         }
@@ -61,32 +66,34 @@ namespace Autis {
             return;
         }
 
-        private static void CopiarConteudoPastaAnimacoes() {
-            string[] SUBPASTAS_ANIMACAO = {
-                ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesAvatar,
-                ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesBonecoPalito,
-                ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesPersonagemLudico,
-            };
+        [MenuItem("AUTIS/Teste")]
+        public static void Teste() {
+            CopiarPasta(Path.Combine(ConstantesProjeto.CaminhoDinamicoPacote, "Runtime/Resources/Assets/Animacoes"), ConstantesProjetoUnity.CaminhoUnityAssets);
+            return;
+        }
 
-            foreach(string pasta in SUBPASTAS_ANIMACAO) {
-                CriarPasta(pasta);
+        private static void CopiarPasta(string origem, string destino) {
+            string nomePastaOrigem = origem.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar).Split(Path.AltDirectorySeparatorChar).Last();
+            string caminhoCopia = Path.Combine(destino, nomePastaOrigem).Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
+            if(!Directory.Exists(caminhoCopia)) {
+                Directory.CreateDirectory(caminhoCopia);
             }
 
-            string[] pastasTiposAnimacaoPorPersonagem = Directory.GetDirectories(Path.Combine(ConstantesProjeto.CaminhoDinamicoPacote, "Runtime/Resources/Assets/Animacoes"));
-            foreach(string pasta in pastasTiposAnimacaoPorPersonagem) {
-                string caminnhoFormatado = pasta.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
-                string nomePasta = caminnhoFormatado.Split(Path.AltDirectorySeparatorChar).Last();
+            string[] subDiretorios = Directory.GetDirectories(origem);
+            foreach(string subDiretorio in subDiretorios) {
+                CopiarPasta(subDiretorio, caminhoCopia);
+            }
 
-                string[] arquivos = Directory.GetFiles(caminnhoFormatado);
-                foreach(string arquivo in arquivos) {
-                    string caminhoArquivoFormatado = arquivo.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
-                    if(Path.GetExtension(caminhoArquivoFormatado) == ExtensoesEditor.Meta) {
-                        continue;
-                    }
-
-                    string nomeArquivo = Path.GetFileName(caminhoArquivoFormatado);
-                    FileUtil.CopyFileOrDirectory(caminhoArquivoFormatado, Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoes, nomePasta, nomeArquivo));
+            string[] arquivos = Directory.GetFiles(origem);
+            foreach(string arquivo in arquivos) {
+                string caminhoArquivoFormatado = arquivo.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+                if(Path.GetExtension(caminhoArquivoFormatado) == ExtensoesEditor.Meta) {
+                    continue;
                 }
+
+                string nomeArquivo = Path.GetFileName(caminhoArquivoFormatado);
+                FileUtil.CopyFileOrDirectory(caminhoArquivoFormatado, Path.Combine(caminhoCopia, nomeArquivo));
             }
 
             return;
@@ -135,8 +142,9 @@ namespace Autis {
 
         private static void AdicionarLayer(SerializedProperty layersProperty, LayerInfo layer) {
             SerializedProperty layerAlvo = layersProperty.GetArrayElementAtIndex(layer.Index);
+
             if(layerAlvo == null) {
-                Debug.LogError("[ERRO]: Não foi possível inserir a layer: " + layer.Nome);
+                Debug.LogError(MENSAGEM_ERRO_CRIAR_LAYER.Replace("{nome-layer}", layer.Nome));
                 return;
             }
 

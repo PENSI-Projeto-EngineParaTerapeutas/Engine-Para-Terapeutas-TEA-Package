@@ -2,7 +2,7 @@ using UnityEngine;
 using Autis.Runtime.DTOs;
 
 namespace Autis.Runtime.ComponentesGameObjects {
-    [AddComponentMenu("Engine Terapeutas TEA/Identificador Tipo/Identificador Tipo Objeto de Interação")]
+    [AddComponentMenu("AUTIS/Objeto Interação/Identificador Tipo Objeto de Interação")]
     public class IdentificadorTipoObjetoInteracao : IdentificadorTipo<TiposObjetosInteracao> {
         private SpriteRenderer spriteRenderer;
         private Texto texto;

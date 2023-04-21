@@ -16,25 +16,24 @@ namespace Autis.Editor.Telas {
         protected override string CaminhoTemplate => "Telas/Criador/CriadorPersonagem/ConfigurarControleIndireto/ConfigurarControleIndiretoTemplate.uxml";
         protected override string CaminhoStyle => "Telas/Criador/CriadorPersonagem/ConfigurarControleIndireto/ConfigurarControleIndiretoStyle.uss";
 
-        private const string VALOR_PADRAO_DROPDOWN = "Selecione";
-
         private enum EstadoConfiguracao { Edicao, Criacao, }
+
+        #region .: Mensagens :.
+
+        private const string MENSAGEM_ERRO_CARREGAR_ANIMACOES = "[ERROR]: Não foi possível carregar as animações do Personagem. Certifique-se de que as Animações estão localizadas em {local}.";
+
+        private const string TOOLTIP_DROPDOWN_ANIMACAO = "Define o a animação que será exibida ao selecionar o Ator";
+        private const string TOOLTIP_DROPDOWN_OBJETO_GATILHO = "Define o Ator que irá iniciar a animação";
+
+        #endregion
 
         #region .: Elementos :.
 
         private const string NOME_REGIAO_CARREGAMENTO_INPUT_OBJETO_GATILHO = "regiao-carregamento-input-objeto-interacao";
         private readonly VisualElement regiaoCarregamentoInputObjetoGatilho;
 
-        private const string NOME_LABEL_OBJETO_GATILHO = "label-objeto-interacao-gatilho";
-        private const string NOME_INPUT_OBJETO_GATILHO = "input-objeto-interacao-gatilho";
-        private DropdownField inputObjetoGatilho;
-
         private const string NOME_REGIAO_CARREGAMENTO_INPUT_ANIMACAO = "regiao-carregamento-input-animacao";
         private readonly VisualElement regiaoCarregamentoInputAnimacao;
-
-        private const string NOME_LABEL_ANIMACAO = "label-animacao";
-        private const string NOME_INPUT_ANIMACAO = "input-animacao";
-        private DropdownField inputAnimacao;
 
         private const string NOME_BOTAO_ADICIONAR_ACAO = "botao-adicionar-acao";
         private readonly Button botaoAdicionarAcao;
@@ -48,24 +47,32 @@ namespace Autis.Editor.Telas {
         private const string NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO = "regiao-carregamento-botoes-confirmacao";
         private readonly VisualElement regiaoBotoesConfirmacao;
 
+        private Dropdown inputObjetoGatilho;
+        private Dropdown inputAnimacao;
         private readonly BotoesConfirmacao botoesConfirmacao;
 
         #endregion
 
         private InformacoesAcao displayInformacoesAcaoAtual;
+        private readonly List<AcaoPersonagem> associacoesAcoes;
         private readonly List<InformacoesAcao> displaysInformacoesAcao;
 
         private readonly List<GameObject> objetosInteracao;
         private readonly List<AnimationClip> clipsAnimacoes;
 
+        private readonly GameObject personagem;
+
         private EstadoConfiguracao estadoAtual = EstadoConfiguracao.Criacao;
 
-        public ConfigurarControleIndiretoBehaviour() {
+        public ConfigurarControleIndiretoBehaviour(GameObject personagem, TiposPersonagem tipoPersonagem, List<AcaoPersonagem> associacoesAcoes) {
+            this.personagem = personagem;
+            this.associacoesAcoes = associacoesAcoes;
+
             displaysInformacoesAcao = new List<InformacoesAcao>();
             displayInformacoesAcaoAtual = CriarDisplayInformacoesAcao();
 
             clipsAnimacoes = new List<AnimationClip>();
-            CarregarAnimacoesComBaseTipoPersonagem(TiposPersonagem.BonecoPalito);
+            CarregarAnimacoesComBaseTipoPersonagem(tipoPersonagem);
 
             objetosInteracao = GameObject.FindGameObjectsWithTag(NomesTags.ObjetosInteracao).ToList();
 
@@ -101,14 +108,30 @@ namespace Autis.Editor.Telas {
             switch(tiposPersonagem) {
                 case(TiposPersonagem.Avatar): {
                     caminhoArquivosPastaAnimacao = Directory.GetFiles(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesAvatar).ToList();
+
+                    if(caminhoArquivosPastaAnimacao.Count <= 0) {
+                        Debug.LogError(MENSAGEM_ERRO_CARREGAR_ANIMACOES.Replace("{local}", ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesAvatar));
+                    }
+
                     break;
                 }
                 case(TiposPersonagem.BonecoPalito): {
                     caminhoArquivosPastaAnimacao = Directory.GetFiles(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesBonecoPalito).ToList();
+
+                    if(caminhoArquivosPastaAnimacao.Count <= 0) {
+                        Debug.LogError(MENSAGEM_ERRO_CARREGAR_ANIMACOES.Replace("{local}", ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesBonecoPalito));
+                    }
+
                     break;
                 }
                 case(TiposPersonagem.Ludico): {
-                    caminhoArquivosPastaAnimacao = Directory.GetFiles(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesPersonagemLudico).ToList();
+                    string tipoPersonagemLudico = personagem.GetComponent<IdentificadorTipoPersonagemLudico>().tipoPersonagenLudicos.ToString();
+                    caminhoArquivosPastaAnimacao = Directory.GetFiles(Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesPersonagemLudico, tipoPersonagemLudico)).ToList();
+
+                    if(caminhoArquivosPastaAnimacao.Count <= 0) {
+                        Debug.LogError(MENSAGEM_ERRO_CARREGAR_ANIMACOES.Replace("{local}", ConstantesProjetoUnity.CaminhoUnityAssetsAnimacoesPersonagemLudico + tipoPersonagemLudico));
+                    }
+
                     break;
                 }
             }
@@ -124,14 +147,9 @@ namespace Autis.Editor.Telas {
         }
 
         private void CarregarAssociacoesJaEstabelecidas() {
-            foreach(GameObject objetoInteracao in objetosInteracao) {
-                AcionadorAcaoPersonagem acionador = objetoInteracao.GetComponent<AcionadorAcaoPersonagem>();
-                if(acionador.animacaoAcionada == null) {
-                    continue;
-                }
-
-                displayInformacoesAcaoAtual.AcaoVinculada.Animacao = acionador.animacaoAcionada;
-                displayInformacoesAcaoAtual.AcaoVinculada.ObjetoGatilho = objetoInteracao;
+            foreach(AcaoPersonagem acaoAssociada in associacoesAcoes) {
+                displayInformacoesAcaoAtual.AcaoVinculada.Animacao = acaoAssociada.Animacao;
+                displayInformacoesAcaoAtual.AcaoVinculada.ObjetoGatilho = acaoAssociada.ObjetoGatilho;
 
                 AdicionarAcaoAtual();
 
@@ -142,69 +160,55 @@ namespace Autis.Editor.Telas {
         }
 
         private void ConfigurarInputObjetoGatilho() {
-            List<string> nomeObjetosInteracao = new() { VALOR_PADRAO_DROPDOWN };
+            List<string> nomeObjetosInteracao = new();
             foreach(GameObject objetoInteracao in objetosInteracao) {
                 nomeObjetosInteracao.Add(objetoInteracao.name);
             }
 
-            inputObjetoGatilho = new DropdownField("Objeto:", nomeObjetosInteracao, 0) {
-                tooltip = "Define o Ator que irá iniciar a animação",
-                name = NOME_INPUT_OBJETO_GATILHO,
-            };
-            inputObjetoGatilho.AddToClassList(NomesClassesPadroesEditorStyle.InputPadrao);
+            inputObjetoGatilho = new Dropdown("Objeto:", TOOLTIP_DROPDOWN_OBJETO_GATILHO, nomeObjetosInteracao);
 
-            inputObjetoGatilho.labelElement.name = NOME_LABEL_OBJETO_GATILHO;
-            inputObjetoGatilho.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
-
-            inputObjetoGatilho.RegisterCallback<ChangeEvent<string>>(evt => {
-                if(inputObjetoGatilho.value == VALOR_PADRAO_DROPDOWN) {
+            inputObjetoGatilho.Campo.RegisterCallback<ChangeEvent<string>>(evt => {
+                if(inputObjetoGatilho.Campo.value == Dropdown.VALOR_PADRAO_DROPDOWN) {
                     displayInformacoesAcaoAtual.AcaoVinculada.ObjetoGatilho = null;
                     botaoAdicionarAcao.SetEnabled(false);
                     return;
                 }
 
-                displayInformacoesAcaoAtual.AcaoVinculada.ObjetoGatilho = objetosInteracao.Find(objeto => objeto.name == inputObjetoGatilho.value);
+                displayInformacoesAcaoAtual.AcaoVinculada.ObjetoGatilho = objetosInteracao.Find(objeto => objeto.name == inputObjetoGatilho.Campo.value);
                 if(displayInformacoesAcaoAtual.AcaoVinculada.ObjetoGatilho != null && displayInformacoesAcaoAtual.AcaoVinculada.Animacao != null) {
                     botaoAdicionarAcao.SetEnabled(true);
                     return;
                 }
             });
 
-            regiaoCarregamentoInputObjetoGatilho.Add(inputObjetoGatilho);
+            regiaoCarregamentoInputObjetoGatilho.Add(inputObjetoGatilho.Root);
 
             return;
         }
 
         private void ConfigurarInputAnimacao() {
-            List<string> nomeClipsAnimacoes = new() { VALOR_PADRAO_DROPDOWN };
+            List<string> nomeClipsAnimacoes = new();
             foreach(AnimationClip clip in clipsAnimacoes) {
                 nomeClipsAnimacoes.Add(clip.name);
             }
 
-            inputAnimacao = new DropdownField("Animação:", nomeClipsAnimacoes, 0) {
-                tooltip = "Define o a animação que será exibida ao selecionar o Ator",
-                name = NOME_INPUT_ANIMACAO,
-            };
-            inputAnimacao.AddToClassList(NomesClassesPadroesEditorStyle.InputPadrao);
+            inputAnimacao = new Dropdown("Animação:", TOOLTIP_DROPDOWN_ANIMACAO, nomeClipsAnimacoes);
 
-            inputAnimacao.labelElement.name = NOME_LABEL_ANIMACAO;
-            inputAnimacao.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
-
-            inputAnimacao.RegisterCallback<ChangeEvent<string>>(evt => {
-                if(inputAnimacao.value == VALOR_PADRAO_DROPDOWN) {
+            inputAnimacao.Campo.RegisterCallback<ChangeEvent<string>>(evt => {
+                if(inputAnimacao.Campo.value == Dropdown.VALOR_PADRAO_DROPDOWN) {
                     displayInformacoesAcaoAtual.AcaoVinculada.Animacao = null;
                     botaoAdicionarAcao.SetEnabled(false);
                     return;
                 }
 
-                displayInformacoesAcaoAtual.AcaoVinculada.Animacao = clipsAnimacoes.Find(clip => clip.name == inputAnimacao.value);
+                displayInformacoesAcaoAtual.AcaoVinculada.Animacao = clipsAnimacoes.Find(clip => clip.name == inputAnimacao.Campo.value);
                 if(displayInformacoesAcaoAtual.AcaoVinculada.ObjetoGatilho != null && displayInformacoesAcaoAtual.AcaoVinculada.Animacao != null) {
                     botaoAdicionarAcao.SetEnabled(true);
                     return;
                 }
             });
 
-            regiaoCarregamentoInputAnimacao.Add(inputAnimacao);
+            regiaoCarregamentoInputAnimacao.Add(inputAnimacao.Root);
 
             return;
         }
@@ -292,8 +296,8 @@ namespace Autis.Editor.Telas {
 
             displayInformacoesAcaoAtual = displayInformacoesAcao;
 
-            inputAnimacao.SetValueWithoutNotify(displayInformacoesAcaoAtual.AcaoVinculada.Animacao.name);
-            inputObjetoGatilho.SetValueWithoutNotify(displayInformacoesAcaoAtual.AcaoVinculada.ObjetoGatilho.name);
+            inputAnimacao.Campo.SetValueWithoutNotify(displayInformacoesAcaoAtual.AcaoVinculada.Animacao.name);
+            inputObjetoGatilho.Campo.SetValueWithoutNotify(displayInformacoesAcaoAtual.AcaoVinculada.ObjetoGatilho.name);
 
             return;
         }
@@ -306,17 +310,18 @@ namespace Autis.Editor.Telas {
         }
 
         private void HandleBotaoConfirmarClick() {
+            associacoesAcoes.Clear();
+
             foreach(InformacoesAcao informacoesAcao in displaysInformacoesAcao) {
-                AcionadorAcaoPersonagem acionador = informacoesAcao.AcaoVinculada.ObjetoGatilho.GetComponent<AcionadorAcaoPersonagem>();
-                acionador.animacaoAcionada = informacoesAcao.AcaoVinculada.Animacao;
+                associacoesAcoes.Add(informacoesAcao.AcaoVinculada);
             }
 
             return;
         }
 
         public void ReiniciarCampos() {
-            inputObjetoGatilho.SetValueWithoutNotify(inputObjetoGatilho.choices.First());
-            inputAnimacao.SetValueWithoutNotify(inputAnimacao.choices.First());
+            inputObjetoGatilho.ReiniciarCampos();
+            inputAnimacao.ReiniciarCampos();
 
             return;
         }

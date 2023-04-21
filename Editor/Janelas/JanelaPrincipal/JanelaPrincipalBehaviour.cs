@@ -23,7 +23,7 @@ namespace Autis.Editor.Telas {
 
         private Tela telaAtual;
 
-        [MenuItem("Engine Para Terapeutas/Janela Principal")]
+        [MenuItem("AUTIS/Janela Principal")]
         public static void ShowJanelaPrincipal() {
             string titulo = ConstantesProjeto.NomeProjeto;
 

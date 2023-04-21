@@ -5,7 +5,7 @@ using Autis.Editor.Utils;
 
 namespace Autis.Editor.Build {
     public static class CompilacaoAutomatica {
-        [MenuItem("Engine Para Terapeutas/Criar jogo")]
+        [MenuItem("AUTIS/Criar jogo")]
         public static void Compilar() {
             Salvamento.SalvarProjeto();
 

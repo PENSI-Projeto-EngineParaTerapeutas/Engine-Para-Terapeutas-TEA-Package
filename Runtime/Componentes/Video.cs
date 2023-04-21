@@ -6,7 +6,7 @@ namespace Autis.Runtime.ComponentesGameObjects {
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(AudioSource))]
     [RequireComponent(typeof(VideoPlayer))]
-    [AddComponentMenu("Engine Terapeutas TEA/Componentes Básicos/Texto")]
+    [AddComponentMenu("AUTIS/Componentes Básicos/Vídeo")]
     public class Video : MonoBehaviour {
         public string nomeArquivoVideo;
 

@@ -7,7 +7,7 @@ using Autis.Runtime.ScriptableObjects;
 using Autis.Runtime.Constantes;
 
 namespace Autis.Runtime.ComponentesGameObjects {
-    [AddComponentMenu("Engine Terapeutas TEA/Listeners/Listener Contexto")]
+    [AddComponentMenu("AUTIS/Contexto/Listener Contexto")]
     public class ListenerContexto : MonoBehaviour {
         private Video video;
         private EventoJogo eventoExibirContextualizacao;

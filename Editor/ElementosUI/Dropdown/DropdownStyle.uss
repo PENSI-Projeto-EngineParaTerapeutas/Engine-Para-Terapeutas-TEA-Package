@@ -1,0 +1,4 @@
+.estilo-dropdown {
+	flex-direction: column;
+	margin-right: 0px;
+}

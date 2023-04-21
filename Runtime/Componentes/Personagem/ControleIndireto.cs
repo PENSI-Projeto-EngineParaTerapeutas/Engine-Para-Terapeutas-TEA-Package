@@ -4,7 +4,7 @@ using Autis.Runtime.Eventos;
 
 namespace Autis.Runtime.ComponentesGameObjects {
     [RequireComponent(typeof(Animator))]
-    [AddComponentMenu("Engine Terapeutas TEA/Controles Personagem/Controle Indireto")]
+    [AddComponentMenu("AUTIS/Personagem/Controle Indireto")]
     public class ControleIndireto : MonoBehaviour {
         private Animator animator;
         private EventoAcionarAcaoPersonagem eventoAcionarAcaoPersonagem;

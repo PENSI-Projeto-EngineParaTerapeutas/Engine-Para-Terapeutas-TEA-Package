@@ -1,10 +1,18 @@
+using UnityEngine;
 using UnityEngine.UIElements;
+using Autis.Runtime.Constantes;
 using Autis.Editor.Criadores;
 
 namespace Autis.Editor.Telas {
     public class MenuPrincipalBehaviour : Tela {
         protected override string CaminhoTemplate => "Telas/MenuPrincipal/MenuPrincipalTemplate.uxml";
         protected override string CaminhoStyle => "Telas/MenuPrincipal/MenuPrincipalStyle.uss";
+
+        #region .: Mensagens :.
+
+        private const string MENSAGEM_AVISO_ATOR_SINGLETON = "AVISO: Só pode haver um {tipo} por jogo. Caso queira alterar o {tipo}, acesse a aba de edição";
+
+        #endregion
 
         #region .: Elementos :.
 
@@ -63,11 +71,23 @@ namespace Autis.Editor.Telas {
         }
 
         private void HandleBotaoCarregarSecaoCenarioClick() {
+            GameObject cenario = GameObject.FindGameObjectWithTag(NomesTags.Cenario);
+            if(cenario != null) {
+                PopupAvisoBehaviour.ShowPopupAviso(MENSAGEM_AVISO_ATOR_SINGLETON.Replace("{tipo}", "Cenário"));
+                return;
+            }
+
             Navigator.Instance.IrPara(new CriadorCenarioBehaviour());
             return;
         }
 
         private void HandleBotaoCarregarSecaoPersonagemClick() {
+            GameObject personagem = GameObject.FindGameObjectWithTag(NomesTags.Personagem);
+            if(personagem != null) {
+                PopupAvisoBehaviour.ShowPopupAviso(MENSAGEM_AVISO_ATOR_SINGLETON.Replace("{tipo}", "Personagem"));
+                return;
+            }
+
             Navigator.Instance.IrPara(new CriadorPersonagemBehaviour());
             return;
         }

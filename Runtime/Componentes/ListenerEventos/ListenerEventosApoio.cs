@@ -2,8 +2,8 @@ using UnityEngine;
 using Autis.Runtime.DTOs;
 
 namespace Autis.Runtime.ComponentesGameObjects {
+    [AddComponentMenu("AUTIS/Apoio/Listener Apoio")]
     public class ListenerEventosApoio : ListenerEventosBase {
-        [AddComponentMenu("Engine Terapeutas TEA/Listeners/Listener Apoio")]
         private IdentificadorTipoApoio tipoApoio;
         private AudioSource audioSource;
         private Video video;

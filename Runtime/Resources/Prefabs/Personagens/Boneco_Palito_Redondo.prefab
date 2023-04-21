@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6913341698790122912}
+  - component: {fileID: 7943484550938751547}
   m_Layer: 0
   m_Name: Pivot_Braco_Inferior
   m_TagString: Untagged
@@ -32,6 +33,21 @@ Transform:
   m_Father: {fileID: 4343742810864078052}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7943484550938751547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81168690907707564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nomeDisplay: "Antebra\xE7o Direito"
+  sprite: {fileID: 2354288430565903659}
+  ordemRenderizacao: 7
 --- !u!1 &294854491181595182
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,7 +59,7 @@ GameObject:
   - component: {fileID: 2347957970719413250}
   - component: {fileID: 2354288430565903659}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Sprite_Braco_Inferior_Direito
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,7 +120,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 7
   m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -125,8 +141,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4343742810864078052}
+  - component: {fileID: 2411007336730268387}
   m_Layer: 0
-  m_Name: Braco_Direito
+  m_Name: Pivot_Braco_Direito_Completo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,6 +166,21 @@ Transform:
   m_Father: {fileID: 1133652200472320637}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2411007336730268387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438664437737165523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nomeDisplay: "Bra\xE7o Direito"
+  sprite: {fileID: 8166225964164300644}
+  ordemRenderizacao: 6
 --- !u!1 &707139608799890001
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,6 +190,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1840857272576626821}
+  - component: {fileID: 8624011204729254624}
   m_Layer: 0
   m_Name: Pivot_Braco_Inferior
   m_TagString: Untagged
@@ -181,6 +214,21 @@ Transform:
   m_Father: {fileID: 5806827996691034852}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8624011204729254624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707139608799890001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nomeDisplay: "Antebra\xE7o Esquerdo"
+  sprite: {fileID: 3098072387776877811}
+  ordemRenderizacao: 7
 --- !u!1 &1108808777029812257
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2023612710446979102}
+  - component: {fileID: 5960440714109845594}
   m_Layer: 0
   m_Name: Perna_Direita
   m_TagString: Untagged
@@ -246,6 +295,21 @@ Transform:
   m_Father: {fileID: 1133652200472320637}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5960440714109845594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495573024014979723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nomeDisplay: Perna Direita
+  sprite: {fileID: 2273229941563505986}
+  ordemRenderizacao: 7
 --- !u!1 &2267921816169660327
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,7 +382,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 6
   m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -402,7 +466,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 7
   m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -425,7 +489,7 @@ GameObject:
   - component: {fileID: 6760150416578550885}
   - component: {fileID: 1578849364751519293}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Sprite_Braco_Superior_Esquerdo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -486,7 +550,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 6
   m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -509,7 +573,7 @@ GameObject:
   - component: {fileID: 1393460034743427475}
   - component: {fileID: 3098072387776877811}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Sprite_Braco_Inferior_Esquerdo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -570,7 +634,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 7
   m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -655,6 +719,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1926890680325417531}
+  - component: {fileID: 3123985089121811174}
   m_Layer: 0
   m_Name: Perna_Esquerda
   m_TagString: Untagged
@@ -679,6 +744,21 @@ Transform:
   m_Father: {fileID: 1133652200472320637}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3123985089121811174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3758028010847043045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nomeDisplay: Perna Esquerda
+  sprite: {fileID: 3461032371220855279}
+  ordemRenderizacao: 7
 --- !u!1 &4172322653854942926
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,8 +768,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5806827996691034852}
+  - component: {fileID: 7659431892687224556}
   m_Layer: 0
-  m_Name: Braco_Esquerdo
+  m_Name: Pivot_Braco_Esquerdo_Completo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -712,6 +793,21 @@ Transform:
   m_Father: {fileID: 1133652200472320637}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7659431892687224556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172322653854942926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nomeDisplay: "Bra\xE7o Esquerdo"
+  sprite: {fileID: 1578849364751519293}
+  ordemRenderizacao: 6
 --- !u!1 &4825159620793595512
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +880,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 6
   m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -850,14 +946,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PASSO_ROTACAO: 0.15
-  bracoEsquerdo: {fileID: 5806827996691034852}
-  antebracoEsquerdo: {fileID: 1840857272576626821}
-  bracoDireito: {fileID: 4343742810864078052}
-  antebracoDireito: {fileID: 6913341698790122912}
-  pernaEsquerda: {fileID: 1926890680325417531}
-  pernaInferiorEsquerda: {fileID: 2048799289711656506}
-  pernaDireita: {fileID: 2023612710446979102}
-  pernaInferiorDireita: {fileID: 2537976895650945794}
+  partesCorpo:
+  - {fileID: 5806827996691034852}
+  - {fileID: 1840857272576626821}
+  - {fileID: 4343742810864078052}
+  - {fileID: 6913341698790122912}
+  - {fileID: 1926890680325417531}
+  - {fileID: 2048799289711656506}
+  - {fileID: 2023612710446979102}
+  - {fileID: 2537976895650945794}
 --- !u!95 &1827164500159984653
 Animator:
   serializedVersion: 5
@@ -912,6 +1009,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2537976895650945794}
+  - component: {fileID: 8598738112904375745}
   m_Layer: 0
   m_Name: Pivot_Perna_Inferior
   m_TagString: Untagged
@@ -935,6 +1033,21 @@ Transform:
   m_Father: {fileID: 2023612710446979102}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8598738112904375745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5547406628248003877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nomeDisplay: Panturrilha Direita
+  sprite: {fileID: 6278084668738333306}
+  ordemRenderizacao: 6
 --- !u!1 &6120567954996691214
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,7 +1091,7 @@ GameObject:
   - component: {fileID: 7649994735002906468}
   - component: {fileID: 268674211119860729}
   m_Layer: 0
-  m_Name: Cabeca
+  m_Name: Sprite_Cabeca
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1039,7 +1152,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1144,6 +1257,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2048799289711656506}
+  - component: {fileID: 1713192004815620542}
   m_Layer: 0
   m_Name: Pivot_Perna_Inferior
   m_TagString: Untagged
@@ -1167,6 +1281,21 @@ Transform:
   m_Father: {fileID: 1926890680325417531}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1713192004815620542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6712918604249195473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nomeDisplay: Panturrilha Esquerda
+  sprite: {fileID: 6810103794393031375}
+  ordemRenderizacao: 6
 --- !u!1 &7390892461502957382
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,7 +1307,7 @@ GameObject:
   - component: {fileID: 8696906104478819330}
   - component: {fileID: 8166225964164300644}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: Sprite_Braco_Superior_Direito
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1239,7 +1368,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 6
   m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1323,7 +1452,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 7
   m_Sprite: {fileID: -5177388603050735206, guid: 8884154dfe85442a3a3578be807dbcdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
