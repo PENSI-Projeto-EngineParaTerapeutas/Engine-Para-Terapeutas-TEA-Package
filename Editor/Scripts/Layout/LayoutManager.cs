@@ -2,8 +2,8 @@ using System.IO;
 using System.Reflection;
 using Type = System.Type;
 using UnityEngine;
-using UnityEditor;
 using Autis.Editor.Constantes;
+using UnityEditor;
 
 namespace Autis.Editor.UI {
     public static class LayoutManager {
@@ -17,18 +17,9 @@ namespace Autis.Editor.UI {
         private enum TipoMetodo { Salvar, Carregar };
         private static string CaminhoPastaLayoutsSalvos { get => Path.Combine(ConstantesEditor.CaminhoPastaEditor, "Assets/Layouts/"); }
 
-        private static string GetCaminhoDiretorioAtual {
-            get {
-                string[] assets  = AssetDatabase.FindAssets($"t:Script {nameof(Inicializacao)}");
-                string caminhoLayoutManager = AssetDatabase.GUIDToAssetPath(assets[0]);
-
-                return Path.GetDirectoryName(Path.GetFullPath(caminhoLayoutManager));
-            }
-        }
-
-        public static void SalvarLayout(string path) {
-            path = Path.Combine(GetCaminhoDiretorioAtual, path);
-            CarregarMetodo(TipoMetodo.Salvar).Invoke(null, new object[] { path });
+        public static void CarregarLayout(string nome) {
+            string path = Path.Combine(CaminhoPastaLayoutsSalvos, nome);
+            CarregarMetodo(TipoMetodo.Carregar).Invoke(null, new object[] { path, false });
 
             return;
         }
@@ -55,21 +46,21 @@ namespace Autis.Editor.UI {
 
             if(tipoMetodo == TipoMetodo.Salvar) {
                 return save;
-            } 
+            }
             else {
                 return load;
             }
         }
 
-        public static void CarregarLayout(string path) {
-            path = Path.Combine(CaminhoPastaLayoutsSalvos, path);
-            CarregarMetodo(TipoMetodo.Carregar).Invoke(null, new object[] { path, false });
+        public static void SalvarLayout(string nome) {
+            string path = Path.Combine(CaminhoPastaLayoutsSalvos, nome);
+            CarregarMetodo(TipoMetodo.Salvar).Invoke(null, new object[] { path });
 
             return;
         }
 
-        public static void SalvarLayoutAtual(string nomeLayout) {
-            SalvarLayout(CaminhoPastaLayoutsSalvos + nomeLayout + ExtensoesEditor.Layout);
+        public static void SalvarLayoutAtual(string nome) {
+            SalvarLayout(nome + ExtensoesEditor.Layout);
             return;
         }
     }
