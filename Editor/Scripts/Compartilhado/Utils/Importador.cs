@@ -15,15 +15,15 @@ namespace Autis.Editor.Utils {
         }
 
         public static GameObject ImportarPrefab(string caminho) {
-            return AssetDatabase.LoadAssetAtPath<GameObject>(Path.Combine(ConstantesEditor.CaminhoPastaResourcesRuntime, "Prefabs/", caminho));
+            return AssetDatabase.LoadAssetAtPath<GameObject>(Path.Combine(ConstantesEditor.CaminhoPastaRuntime, "Prefabs/", caminho));
         }
 
         public static VisualTreeAsset ImportarUXML(string caminho) {
-            return AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(Path.Combine(ConstantesEditor.CaminhoPastaEditor, caminho));
+            return AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(Path.Combine(ConstantesEditor.CaminhoPastaScriptsEditor, caminho));
         }
 
         public static StyleSheet ImportarUSS(string caminho) {
-            return AssetDatabase.LoadAssetAtPath<StyleSheet>(Path.Combine(ConstantesEditor.CaminhoPastaEditor, caminho));
+            return AssetDatabase.LoadAssetAtPath<StyleSheet>(Path.Combine(ConstantesEditor.CaminhoPastaScriptsEditor, caminho));
         }
     }
 }

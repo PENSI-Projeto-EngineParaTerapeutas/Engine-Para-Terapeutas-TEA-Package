@@ -15,10 +15,11 @@ namespace Autis.Editor.UI {
         #endregion
 
         private enum TipoMetodo { Salvar, Carregar };
+        private static string CaminhoPastaLayoutsSalvos { get => Path.Combine(ConstantesEditor.CaminhoPastaEditor, "Assets/Layouts/"); }
 
         private static string GetCaminhoDiretorioAtual {
             get {
-                string[] assets  = AssetDatabase.FindAssets($"t:Script {nameof(LayoutManager)}");
+                string[] assets  = AssetDatabase.FindAssets($"t:Script {nameof(Inicializacao)}");
                 string caminhoLayoutManager = AssetDatabase.GUIDToAssetPath(assets[0]);
 
                 return Path.GetDirectoryName(Path.GetFullPath(caminhoLayoutManager));
@@ -61,14 +62,14 @@ namespace Autis.Editor.UI {
         }
 
         public static void CarregarLayout(string path) {
-            path = Path.Combine(GetCaminhoDiretorioAtual, path);
+            path = Path.Combine(CaminhoPastaLayoutsSalvos, path);
             CarregarMetodo(TipoMetodo.Carregar).Invoke(null, new object[] { path, false });
 
             return;
         }
 
         public static void SalvarLayoutAtual(string nomeLayout) {
-            SalvarLayout(Path.Combine(GetCaminhoDiretorioAtual, ConstantesEditor.NomePastaLayouts) + nomeLayout + ExtensoesEditor.Layout);
+            SalvarLayout(CaminhoPastaLayoutsSalvos + nomeLayout + ExtensoesEditor.Layout);
             return;
         }
     }

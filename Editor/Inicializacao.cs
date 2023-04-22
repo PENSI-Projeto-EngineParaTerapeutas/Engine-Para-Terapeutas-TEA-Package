@@ -52,7 +52,7 @@ namespace Autis {
                 CriarPasta(pasta);
             }
 
-            CopiarPasta(Path.Combine(ConstantesProjeto.CaminhoDinamicoPacote, "Runtime/Resources/Assets/Animacoes"), ConstantesProjetoUnity.CaminhoUnityAssets);
+            CopiarPasta(Path.Combine(ConstantesEditor.CaminhoPastaAssetsRuntime, "Animacoes"), ConstantesProjetoUnity.CaminhoUnityAssets);
 
             return;
         }
@@ -68,7 +68,7 @@ namespace Autis {
 
         [MenuItem("AUTIS/Teste")]
         public static void Teste() {
-            CopiarPasta(Path.Combine(ConstantesProjeto.CaminhoDinamicoPacote, "Runtime/Resources/Assets/Animacoes"), ConstantesProjetoUnity.CaminhoUnityAssets);
+            CopiarPasta(Path.Combine(ConstantesEditor.CaminhoPastaAssetsRuntime, "Animacoes"), ConstantesProjetoUnity.CaminhoUnityAssets);
             return;
         }
 

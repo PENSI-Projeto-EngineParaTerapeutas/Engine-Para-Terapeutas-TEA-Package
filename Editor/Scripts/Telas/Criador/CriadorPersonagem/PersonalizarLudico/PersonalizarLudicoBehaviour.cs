@@ -77,7 +77,7 @@ namespace Autis.Editor.Criadores {
 
         private List<Texture2D> CarregarImagensPersonagens() {
             List<Texture2D> imagensPersonagens = new();
-            string[] pastasPersonagens = Directory.GetDirectories(Path.Combine(ConstantesEditor.CaminhoPastaResourcesRuntime, "Personagens/"));
+            string[] pastasPersonagens = Directory.GetDirectories(Path.Combine(ConstantesEditor.CaminhoPastaAssetsRuntime, "Personagens/"));
 
             foreach(string pasta in pastasPersonagens) {
                 string caminhoFormatado = pasta.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);

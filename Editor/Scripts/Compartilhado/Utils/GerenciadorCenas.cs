@@ -35,10 +35,7 @@ namespace Autis.Editor.Utils {
             string dataHoraCraicao = DateTime.UtcNow.ToString("yyyy-MM-dd_HH-mm-ss-fff", CultureInfo.InvariantCulture);
             string nomeNovaCena = "Fase_" + dataHoraCraicao;
 
-            string[] partesCaminhoPastaCenas = ConstantesProjetoUnity.CaminhoUnityAssetsCenas.Split(Path.AltDirectorySeparatorChar);
-            string nomePastaCenas = partesCaminhoPastaCenas[^2];
-
-            string caminhoCenaPadrao = Path.Combine(ConstantesEditor.CaminhoPastaEditor, nomePastaCenas, ConstantesEditor.NomeCenaPadrao);
+            string caminhoCenaPadrao = Path.Combine(ConstantesEditor.CaminhoPastaCenasEditor, ConstantesEditor.NomeCenaPadrao);
             string caminhoNovaCena = Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsCenas, nomeNovaCena + ExtensoesEditor.Cena);
 
             AssetDatabase.CopyAsset(caminhoCenaPadrao, caminhoNovaCena);
