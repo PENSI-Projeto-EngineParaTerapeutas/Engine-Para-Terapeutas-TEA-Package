@@ -37,6 +37,27 @@ namespace Autis.Runtime.ComponentesGameObjects {
         }
         private AudioSource playerAudio = null;
 
+        public bool Habilitado {
+            get => habilitado;
+
+            set {
+                habilitado = value;
+                SetHabilitado(habilitado);
+
+                return;
+            }
+        }
+        [SerializeField]
+        private bool habilitado = true;
+
+        private void SetHabilitado(bool habilitado) {
+            player.enabled = habilitado;
+            //playerAudio.enabled = habilitado;
+            this.enabled = habilitado;
+
+            return;
+        }
+
         private void Awake() {
             CaminhoCompletoArquivoVideo = Path.Combine(Application.streamingAssetsPath, nomeArquivoVideo);
             Player.url = CaminhoCompletoArquivoVideo;
@@ -44,15 +65,6 @@ namespace Autis.Runtime.ComponentesGameObjects {
             if(Player.playOnAwake && gameObject.activeInHierarchy) {
                 Player.Play();
             }
-
-            return;
-        }
-
-        public void AlterarVideo(string nomeNovoVideo) {
-            nomeArquivoVideo = nomeNovoVideo;
-
-            CaminhoCompletoArquivoVideo = Path.Combine(Application.streamingAssetsPath, nomeArquivoVideo);
-            Player.url = CaminhoCompletoArquivoVideo;
 
             return;
         }

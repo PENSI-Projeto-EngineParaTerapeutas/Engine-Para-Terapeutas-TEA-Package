@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6913341698790122912}
-  - component: {fileID: 7943484550938751547}
   m_Layer: 0
   m_Name: Pivot_Braco_Inferior
   m_TagString: Untagged
@@ -33,21 +32,6 @@ Transform:
   m_Father: {fileID: 4343742810864078052}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7943484550938751547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81168690907707564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomeDisplay: "Antebra\xE7o Direito"
-  sprite: {fileID: 2354288430565903659}
-  ordemRenderizacao: 7
 --- !u!1 &294854491181595182
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +125,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4343742810864078052}
-  - component: {fileID: 2411007336730268387}
   m_Layer: 0
   m_Name: Pivot_Braco_Direito_Completo
   m_TagString: Untagged
@@ -166,21 +149,6 @@ Transform:
   m_Father: {fileID: 1133652200472320637}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2411007336730268387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 438664437737165523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomeDisplay: "Bra\xE7o Direito"
-  sprite: {fileID: 8166225964164300644}
-  ordemRenderizacao: 6
 --- !u!1 &707139608799890001
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,7 +158,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1840857272576626821}
-  - component: {fileID: 8624011204729254624}
   m_Layer: 0
   m_Name: Pivot_Braco_Inferior
   m_TagString: Untagged
@@ -214,21 +181,6 @@ Transform:
   m_Father: {fileID: 5806827996691034852}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8624011204729254624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 707139608799890001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomeDisplay: "Antebra\xE7o Esquerdo"
-  sprite: {fileID: 3098072387776877811}
-  ordemRenderizacao: 7
 --- !u!1 &1108808777029812257
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +222,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2023612710446979102}
-  - component: {fileID: 5960440714109845594}
   m_Layer: 0
   m_Name: Perna_Direita
   m_TagString: Untagged
@@ -295,21 +246,6 @@ Transform:
   m_Father: {fileID: 1133652200472320637}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5960440714109845594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495573024014979723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomeDisplay: Perna Direita
-  sprite: {fileID: 2273229941563505986}
-  ordemRenderizacao: 7
 --- !u!1 &2267921816169660327
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,7 +638,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3459317650012931786}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.007324907, y: 0.0010000169, z: 0.19973902}
+  m_LocalPosition: {x: 0.007324907, y: 0.001000017, z: 0.19973902}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -719,7 +655,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1926890680325417531}
-  - component: {fileID: 3123985089121811174}
   m_Layer: 0
   m_Name: Perna_Esquerda
   m_TagString: Untagged
@@ -744,21 +679,6 @@ Transform:
   m_Father: {fileID: 1133652200472320637}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3123985089121811174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3758028010847043045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomeDisplay: Perna Esquerda
-  sprite: {fileID: 3461032371220855279}
-  ordemRenderizacao: 7
 --- !u!1 &4172322653854942926
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,7 +688,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5806827996691034852}
-  - component: {fileID: 7659431892687224556}
   m_Layer: 0
   m_Name: Pivot_Braco_Esquerdo_Completo
   m_TagString: Untagged
@@ -793,21 +712,6 @@ Transform:
   m_Father: {fileID: 1133652200472320637}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7659431892687224556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4172322653854942926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomeDisplay: "Bra\xE7o Esquerdo"
-  sprite: {fileID: 1578849364751519293}
-  ordemRenderizacao: 6
 --- !u!1 &4825159620793595512
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,10 +805,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1133652200472320637}
-  - component: {fileID: 5639503983129708798}
+  - component: {fileID: 2273120498668754126}
+  - component: {fileID: 7250102822947198696}
   - component: {fileID: 1827164500159984653}
+  - component: {fileID: 3488904224178400462}
+  - component: {fileID: 5639503983129708798}
   - component: {fileID: 4921972572283533366}
-  - component: {fileID: 7308341961934312334}
   m_Layer: 0
   m_Name: Boneco_Palito_Redondo
   m_TagString: Personagem
@@ -933,6 +839,67 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2273120498668754126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238693539030694353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba582a2216be70a4a95adee8ce54a5c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipoPersonagem: 3
+  tipoControle: 0
+--- !u!210 &7250102822947198696
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238693539030694353}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5
+--- !u!95 &1827164500159984653
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238693539030694353}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!111 &3488904224178400462
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238693539030694353}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &5639503983129708798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -947,34 +914,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PASSO_ROTACAO: 0.15
   partesCorpo:
-  - {fileID: 5806827996691034852}
-  - {fileID: 1840857272576626821}
-  - {fileID: 4343742810864078052}
-  - {fileID: 6913341698790122912}
-  - {fileID: 1926890680325417531}
-  - {fileID: 2048799289711656506}
-  - {fileID: 2023612710446979102}
-  - {fileID: 2537976895650945794}
---- !u!95 &1827164500159984653
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5238693539030694353}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4f38e2dfcc259004bb34f6196821eeb6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  - nomeDisplay: "Bra\xE7o Esquerdo"
+    parteCorpo: {fileID: 5806827996691034852}
+  - nomeDisplay: "Antebra\xE7o Esquerdo"
+    parteCorpo: {fileID: 1840857272576626821}
+  - nomeDisplay: "Bra\xE7o Direito"
+    parteCorpo: {fileID: 4343742810864078052}
+  - nomeDisplay: "Antebra\xE7o Direito"
+    parteCorpo: {fileID: 6913341698790122912}
+  - nomeDisplay: Perna Esquerda
+    parteCorpo: {fileID: 1926890680325417531}
+  - nomeDisplay: Canela Esquerda
+    parteCorpo: {fileID: 2048799289711656506}
+  - nomeDisplay: Perna Direita
+    parteCorpo: {fileID: 2023612710446979102}
+  - nomeDisplay: Canela Direita
+    parteCorpo: {fileID: 2537976895650945794}
 --- !u!114 &4921972572283533366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -987,19 +942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d28cf28dc005af489f1d52abd2b887e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7308341961934312334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5238693539030694353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8613eb201aac0e0469d3a21fd4cc2058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tipo: 0
+  eventoAcionarAcaoPersonagem: {fileID: 11400000, guid: 26062ea3e14ccac4e9623e44ef7da94f, type: 2}
 --- !u!1 &5547406628248003877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,7 +952,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2537976895650945794}
-  - component: {fileID: 8598738112904375745}
   m_Layer: 0
   m_Name: Pivot_Perna_Inferior
   m_TagString: Untagged
@@ -1033,21 +975,6 @@ Transform:
   m_Father: {fileID: 2023612710446979102}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8598738112904375745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5547406628248003877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomeDisplay: Panturrilha Direita
-  sprite: {fileID: 6278084668738333306}
-  ordemRenderizacao: 6
 --- !u!1 &6120567954996691214
 GameObject:
   m_ObjectHideFlags: 0
@@ -1257,7 +1184,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2048799289711656506}
-  - component: {fileID: 1713192004815620542}
   m_Layer: 0
   m_Name: Pivot_Perna_Inferior
   m_TagString: Untagged
@@ -1281,21 +1207,6 @@ Transform:
   m_Father: {fileID: 1926890680325417531}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1713192004815620542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6712918604249195473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomeDisplay: Panturrilha Esquerda
-  sprite: {fileID: 6810103794393031375}
-  ordemRenderizacao: 6
 --- !u!1 &7390892461502957382
 GameObject:
   m_ObjectHideFlags: 0

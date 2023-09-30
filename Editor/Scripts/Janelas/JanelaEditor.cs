@@ -11,6 +11,7 @@ namespace Autis.Editor.Telas {
         protected abstract string CaminhoStyle { get; }
 
         protected VisualElement root;
+        protected TemplateContainer templateInstace;
         protected VisualTreeAsset template;
         protected StyleSheet style;
 
@@ -58,7 +59,11 @@ namespace Autis.Editor.Telas {
 
         protected virtual void ImportarTemplate(string caminho) {
             template = Importador.ImportarUXML(caminho);
-            root.Add(template.Instantiate());
+            
+            templateInstace = template.Instantiate();
+            templateInstace.AddToClassList(NomesClassesPadroesEditorStyle.TemplateContainerPadrao);
+
+            root.Add(templateInstace);
 
             return;
         }

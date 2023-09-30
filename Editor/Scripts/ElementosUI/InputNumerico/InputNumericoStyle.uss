@@ -1,0 +1,36 @@
+:root {
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+}
+
+#input-numerico {
+	flex-direction: column;
+	margin: 0 10px 10px 10px;
+}
+
+#input-numerico > Label {
+	font-size: 16px;
+	-unity-font-style: bold;
+	margin-bottom: 4px;
+	color: black;
+	align-self: flex-start;
+}
+
+#input-numerico > FloatInput {
+	background-color: #F0F3F4;
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-top: 9.5px;
+	padding-bottom: 9.5px;
+	color: black;
+	font-size: 14px;
+	border-radius: 6px;
+	border-width: 0px;
+	height: 40px;
+}
+
+#regiao-tooltip-titulo {
+	position: absolute;
+	right: 0px;
+}

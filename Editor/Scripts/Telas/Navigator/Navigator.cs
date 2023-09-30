@@ -39,5 +39,14 @@ namespace Autis.Editor.Telas {
             telas.RemoveAt(telas.Count - 1);
             return;
         }
+
+        public void VoltarParaTelaInicial() {
+            Tela telaInicial = telas.First();
+            
+            telas.Clear();
+            telas.Add(telaInicial);
+
+            return;
+        }
     }
 }

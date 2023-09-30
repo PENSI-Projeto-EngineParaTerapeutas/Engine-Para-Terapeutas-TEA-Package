@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -11,6 +12,8 @@ namespace Autis.Runtime.UI {
     public class ModificadorImagemDinamico : ElementoInterfaceJogo {
         protected override string CaminhoTemplate => "Scripts/ElementosUI/ModificadorImagemDinamico/ModificadorImagemDinamicoTemplate";
         protected override string CaminhoStyle => "Scripts/ElementosUI/ModificadorImagemDinamico/ModificadorImagemDinamicoStyle";
+
+        private readonly Action<Texture2D> handleLoadTexture;
 
         #region .: Elementos :.
 
@@ -29,15 +32,14 @@ namespace Autis.Runtime.UI {
 
         #endregion
 
-        private readonly SpriteRenderer spriteRenderer;
-
-        public ModificadorImagemDinamico(SpriteRenderer spriteRenderer) {
-            this.spriteRenderer = spriteRenderer;
+        public ModificadorImagemDinamico(Sprite imagemAtualAtor, Action<Texture2D> handleLoadTexture) {
+            this.handleLoadTexture = handleLoadTexture;
 
             labelPreviewImagem = Root.Query<Label>(NOME_LABEL_PREVIEW_IMAGEM);
             previewImagem = Root.Query<Image>(NOME_PREVIEW_IMAGEM);
             botaoAlterarImagem = Root.Query<Button>(NOME_BOTAO_ALTERAR_IMAGEM);
 
+            previewImagem.sprite = imagemAtualAtor;
             ConfigurarElementos();
 
             return;
@@ -52,14 +54,13 @@ namespace Autis.Runtime.UI {
             botaoAlterarImagem.clicked += HandleAlterarImagemClick;
             #endif
 
-            previewImagem.sprite = spriteRenderer.sprite;
             return;
         }
 
         #if UNITY_EDITOR
         private void HandleAlterarImagemClickEditor() {
             string caminhoAqruivoSelecionado = EditorUtility.OpenFilePanel("Procurar Imagem", string.Empty, "png,jpg,jpeg");
-            if (string.IsNullOrWhiteSpace(caminhoAqruivoSelecionado)) {
+            if(string.IsNullOrWhiteSpace(caminhoAqruivoSelecionado)) {
                 Debug.Log("[LOG]: Nenhum arquivo selecionado");
                 return;
             }
@@ -68,10 +69,8 @@ namespace Autis.Runtime.UI {
 
             Texture2D texture = new(0, 0);
             texture.LoadImage(imagemBytes);
-            Sprite imagem = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
 
-            spriteRenderer.sprite = imagem;
-            previewImagem.sprite = spriteRenderer.sprite;
+            HandleCarregamentoImagemCompleto(texture);
             return;
         }
         #endif
@@ -81,9 +80,9 @@ namespace Autis.Runtime.UI {
             return;
         }
 
-        private void HandleCarregamentoImagemCompleto(Sprite imagem) {
-            spriteRenderer.sprite = imagem;
-            previewImagem.sprite = spriteRenderer.sprite;
+        private void HandleCarregamentoImagemCompleto(Texture2D texture) {
+            previewImagem.sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+            handleLoadTexture.Invoke(texture);
 
             return;
         }

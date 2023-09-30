@@ -5,6 +5,12 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <editor:ObjectField name="input-imagem" class="input-padrao" label="Imagem"/>
-    <engine:Button name="buscar-imagem" text="Buscar"/>
+    <editor:ObjectField name="input-imagem" class="input-padrao"/>
+    <engine:Button name="buscar-imagem" text="">
+        <engine:Image name="imagem-icone-arquivo-imagem"/>
+        <engine:Label name="label-botao" text="Selecionar imagem"/>
+        <engine:Button name="cancelar-imagem">
+            <engine:Image name="imagem-icone-fechar"/>
+        </engine:Button>
+    </engine:Button>
 </engine:UXML>

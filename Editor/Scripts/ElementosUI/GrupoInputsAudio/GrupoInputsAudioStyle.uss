@@ -1,0 +1,10 @@
+#regiao-input-audio {
+	margin-bottom: 24px;
+}
+
+#label-slider-volume {
+	color: black;
+	font-size: 15px;
+	-unity-font-style: bold;
+	margin-bottom: 6px;
+}

@@ -11,9 +11,7 @@ namespace Autis.Runtime.Constantes {
         public static string CaminhoUnityAssetsAnimacoesPersonagemLudico => Path.Combine(CaminhoUnityAssetsAnimacoes, "PersonagemLudico/");
         public static string CaminhoUnityAssetsAnimacoesAvatar => Path.Combine(CaminhoUnityAssetsAnimacoes, "Avatar/");
 
-        public static string CaminhoUnityAssetsResources => Path.Combine(CaminhoUnityAssets, "Resources/");
-        public static string CaminhoUnityAssetsImagens => Path.Combine(CaminhoUnityAssetsResources, "Imagens/");
-        public static string CaminhoUnityAssetsSons => Path.Combine(CaminhoUnityAssetsResources, "Sons/");
-        public static string CaminhoUnityAssetsScriptableObjectsCenas => Path.Combine(CaminhoUnityAssetsResources, "Cenas/");
+        public static string CaminhoUnityAssetsImagens => Path.Combine(CaminhoUnityAssets, "Imagens/");
+        public static string CaminhoUnityAssetsSons => Path.Combine(CaminhoUnityAssets, "Sons/");
     }
 }

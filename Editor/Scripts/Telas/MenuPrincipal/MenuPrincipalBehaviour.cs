@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Autis.Runtime.Constantes;
 using Autis.Editor.Criadores;
+using Autis.Editor.Utils;
 
 namespace Autis.Editor.Telas {
     public class MenuPrincipalBehaviour : Tela {
@@ -37,35 +38,93 @@ namespace Autis.Editor.Telas {
         private const string NOME_BOTAO_CARREGAR_SECAO_INFORMACOES_FASE = "botao-carregar-secao-informacoes-fase";
         private Button botaoCarregarSecaoInformacoesFase;
 
+        private const string NOME_REGIAO_AJUDA = "label-ajuda";
+        private VisualElement regiaoAjuda;
+
+        private const string NOME_ICONE_AJUDA = "imagem-icone-ajuda";
+        private Image iconeAjuda;
 
         #endregion
 
         public MenuPrincipalBehaviour() {
-            ConfigurarBotoesCarregamentoSecoes();
+            ConfigurarBotaoCarregarCenario();
+            ConfigurarBotaoCarregarPersonagem();
+            ConfigurarBotaoCarregarReforco();
+            ConfigurarBotaoCarregarApoio();
+            ConfigurarBotaoCarregarElementoInteracao();
+            ConfigurarBotaoCarregarInstrucao();
+            ConfigurarBotaoCarregarInformacoesFase();
+
+            ConfigurarRegiaoAjuda();
+
             return;
         }
 
-        private void ConfigurarBotoesCarregamentoSecoes() {
+        private void ConfigurarBotaoCarregarCenario() {
             botaoCarregarSecaoCenario = Root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_CENARIO);
+            botaoCarregarSecaoCenario.Insert(0, CriarIconeMais());
             botaoCarregarSecaoCenario.clicked += HandleBotaoCarregarSecaoCenarioClick;
 
+            return;
+        }
+
+        private Image CriarIconeMais() {
+            return new() {
+                image = Importador.ImportarImagem("mais.png"),
+            };
+        }
+
+        private void ConfigurarBotaoCarregarPersonagem() {
             botaoCarregarSecaoPersonagem = Root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_PERSONAGEM);
+            botaoCarregarSecaoPersonagem.Insert(0, CriarIconeMais());
             botaoCarregarSecaoPersonagem.clicked += HandleBotaoCarregarSecaoPersonagemClick;
 
+            return;
+        }
+
+        private void ConfigurarBotaoCarregarReforco() {
             botaoCarregarSecaoReforco = Root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_REFORCO);
+            botaoCarregarSecaoReforco.Insert(0, CriarIconeMais());
             botaoCarregarSecaoReforco.clicked += HandleBotaoCarregarSecaoReforcoClick;
 
+            return;
+        }
+
+        private void ConfigurarBotaoCarregarApoio() {
             botaoCarregarSecaoApoio = Root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_APOIO);
+            botaoCarregarSecaoApoio.Insert(0, CriarIconeMais());
             botaoCarregarSecaoApoio.clicked += HandleBotaoCarregarSecaoApoioClick;
 
+            return;
+        }
+
+        private void ConfigurarBotaoCarregarElementoInteracao() {
             botaoCarregarSecaoObjetoIteracao = Root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_OBJETO_INTERACAO);
+            botaoCarregarSecaoObjetoIteracao.Insert(0, CriarIconeMais());
             botaoCarregarSecaoObjetoIteracao.clicked += HandleBotaoCarregarSecaoObjetoInteracaoClick;
 
+            return;
+        }
+
+        private void ConfigurarBotaoCarregarInstrucao() {
             botaoCarregarSecaoInstrucao = Root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_INSTRUCAO);
+            botaoCarregarSecaoInstrucao.Insert(0, CriarIconeMais());
             botaoCarregarSecaoInstrucao.clicked += HandleBotaoCarregarSecaoInstrucaoClick;
 
+            return;
+        }
+
+        private void ConfigurarBotaoCarregarInformacoesFase() {
             botaoCarregarSecaoInformacoesFase = Root.Query<Button>(NOME_BOTAO_CARREGAR_SECAO_INFORMACOES_FASE);
             botaoCarregarSecaoInformacoesFase.clicked += HandleBotaoCarregarSecaoInformacoesFaseClick;
+
+            return;
+        }
+
+        private void ConfigurarRegiaoAjuda() {
+            regiaoAjuda = root.Query<VisualElement>(NOME_REGIAO_AJUDA);
+            iconeAjuda = root.Query<Image>(NOME_ICONE_AJUDA);
+            iconeAjuda.image = Importador.ImportarImagem("interrogacao-azul.png");
 
             return;
         }

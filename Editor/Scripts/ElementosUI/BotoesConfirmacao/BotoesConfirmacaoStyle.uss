@@ -1,7 +1,29 @@
-#regiao-botoes-confirmacao {
+:root {
 	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
 }
 
-#regiao-botoes-confirmacao > Button {
-	flex: 1;
+#botao-confirmar, #botao-cancelar {
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	border-radius: 25px;
+	font-size: 15px;
+	min-width: 120px;
+	padding: 9px 24px 9px 24px;
+	margin: 0;
+	cursor: link;
+}
+
+#botao-confirmar > Image, #botao-cancelar > Image {
+	margin-right: 9px;
+	height: 21px;
+	width: 21px;
+	cursor: link;
+}
+
+#botao-confirmar > Label, #botao-cancelar > Label {
+	cursor: link;
 }

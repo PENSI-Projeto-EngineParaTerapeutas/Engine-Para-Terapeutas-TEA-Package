@@ -1,60 +1,62 @@
-using System;
-using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine.UIElements;
-using UnityEditor.UIElements;
-using Autis.Runtime.Constantes;
-using Autis.Runtime.ComponentesGameObjects;
 using Autis.Runtime.DTOs;
 using Autis.Editor.UI;
 using Autis.Editor.Constantes;
+using Autis.Editor.Manipuladores;
+using Autis.Editor.Telas;
 
-namespace Autis.Editor.Criadores {
-    public class CriadorInstrucoesBehaviour : Criador {
+namespace Autis.Editor.Criadores
+{
+    public class CriadorInstrucoesBehaviour : Tela, IReiniciavel
+    {
         protected override string CaminhoTemplate => "Telas/Criador/CriadorInstrucoes/CriadorInstrucoesTemplate.uxml";
         protected override string CaminhoStyle => "Telas/Criador/CriadorInstrucoes/CriadorInstrucoesStyle.uss";
 
-        #region .: Elementos :.
+        #region .: Mensagens :.
 
-        private const string NOME_REGIAO_CARREGAMENTO_HEADER = "regiao-carregamento-header";
-        private VisualElement regiaoCarregamentoHeader;
-
-        private const string NOME_LABEL_TIPO_INSTRUCAO = "label-tipo-instrucao";
-        private const string NOME_INPUT_TIPO_INSTRUCAO = "input-tipo-instrucao";
-        private EnumField campoTipoInstrucao;
-
-        private const string NOME_REGIAO_CARREGAMENTO_INPUTS_VIDEO = "regiao-carregamento-inputs-video";
-        private VisualElement regiaoCarregamentoInputsVideo;
-
-        private const string NOME_REGIAO_CARREGAMENTO_INPUTS_AUDIO = "regiao-carregamento-inputs-audio";
-        private VisualElement regiaoCarregamentoInputsAudio;
-
-        private const string NOME_REGIAO_CARREGAMENTO_INPUTS_TEXTO = "regiao-carregamento-inputs-texto";
-        private VisualElement regiaoCarregamentoInputsTexto;
-
-        private const string NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO = "regiao-carregamento-botoes-confirmacao";
-        private VisualElement regiaoCarregamentoBotoesConfirmacao;
-
-        private readonly InputsComponenteVideo grupoInputsVideo;
-        private readonly InputsComponenteAudio grupoInputsAudio;
-        private readonly InputsComponenteTexto grupoInputsTexto;
+        private const string MENSAGEM_TOOLTIP_DROPDOWN_TIPO_INSTRUCAO = "[TODO]: Adicionar";
 
         #endregion
 
-        private Video video;
-        private AudioSource audio;
-        private Texto texto;
-        private SpriteRenderer spriteRenderer;
+        #region .: Elementos :.
 
-        private readonly TiposIntrucoes tipoPadrao = TiposIntrucoes.Texto;
+        protected const string NOME_REGIAO_CARREGAMENTO_INPUT_NOME = "regiao-input-nome";
+        protected VisualElement regiaoCarregamenteInputNome;
+
+        protected const string NOME_REGIAO_CARREGAMENTO_TIPO_INSTRUCAO = "regiao-carregamento-input-tipo-instrucao";
+        protected VisualElement regiaoCarregamentoTipoInstrucao;
+
+        protected const string NOME_REGIAO_CARREGAMENTO_INPUTS_VIDEO = "regiao-carregamento-inputs-video";
+        protected VisualElement regiaoCarregamentoInputsVideo;
+
+        protected const string NOME_REGIAO_CARREGAMENTO_INPUTS_AUDIO = "regiao-carregamento-inputs-audio";
+        protected VisualElement regiaoCarregamentoInputsAudio;
+
+        protected const string NOME_REGIAO_CARREGAMENTO_INPUTS_TEXTO = "regiao-carregamento-inputs-texto";
+        protected VisualElement regiaoCarregamentoInputsTexto;
+
+        protected const string NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO = "regiao-carregamento-botoes-confirmacao";
+        protected VisualElement regiaoCarregamentoBotoesConfirmacao;
+
+        protected InputTexto campoNome;
+        protected Dropdown dropdownTipoInstrucao;
+        protected InputsComponenteVideo grupoInputsVideo;
+        protected GrupoInputsAudio grupoInputsAudio;
+        protected GrupoInputsTexto grupoInputsTexto;
+        protected BotoesConfirmacao botoesConfirmacao;
+
+        #endregion
+
+        protected readonly TiposIntrucoes tipoPadrao = TiposIntrucoes.Texto;
+        protected ManipuladorInstrucoes manipulador;
 
         public CriadorInstrucoesBehaviour() {
-            grupoInputsVideo = new InputsComponenteVideo();
-            grupoInputsAudio = new InputsComponenteAudio();
-            grupoInputsTexto = new InputsComponenteTexto();
+            manipulador = new ManipuladorInstrucoes();
+            manipulador.Criar();
 
-            ImportarPrefab("Instrucao/Instrucao.prefab");
-
-            CarregarRegiaoHeader();
+            ConfigurarCampoNome();
             CarregarRegiaoInputsVideo();
             CarregarRegiaoInputsAudio();
             CarregarRegiaoInputsTexto();
@@ -64,136 +66,168 @@ namespace Autis.Editor.Criadores {
 
             ConfigurarBotoesConfirmacao();
 
-            IniciarCriacao();
+            return;
+        }
+
+        protected virtual void ConfigurarCampoNome() {
+            campoNome = new InputTexto("Nome:");
+
+            campoNome.CampoTexto.AddToClassList("input-texto");
+
+            campoNome.CampoTexto.RegisterCallback<ChangeEvent<string>>(evt => {
+                manipulador.SetNome(evt.newValue);
+            });
+
+            regiaoCarregamenteInputNome = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUT_NOME);
+            regiaoCarregamenteInputNome.Add(campoNome.Root);
 
             return;
         }
 
-        private void CarregarRegiaoHeader() {
-            regiaoCarregamentoHeader = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_HEADER);
-            regiaoCarregamentoHeader.Add(header.Root);
+        protected virtual void CarregarRegiaoInputsVideo() {
+            grupoInputsVideo = new InputsComponenteVideo();
+            grupoInputsVideo.VincularDados(manipulador.ComponenteVideo);
 
-            return;
-        }
-
-        private void CarregarRegiaoInputsVideo() {
             regiaoCarregamentoInputsVideo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_VIDEO);
             regiaoCarregamentoInputsVideo.Add(grupoInputsVideo.Root);
 
             return;
         }
 
-        private void CarregarRegiaoInputsAudio() {
+        protected virtual void CarregarRegiaoInputsAudio() {
+            grupoInputsAudio = new GrupoInputsAudio();
+            //grupoInputsAudio.VincularDados(manipulador.ComponenteAudioSource);
+
             regiaoCarregamentoInputsAudio = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_AUDIO);
             regiaoCarregamentoInputsAudio.Add(grupoInputsAudio.Root);
-            
+
             return;
         }
 
-        private void CarregarRegiaoInputsTexto() {
+        protected virtual void CarregarRegiaoInputsTexto() {
+            grupoInputsTexto = new GrupoInputsTexto();
+            grupoInputsTexto.VincularDados(manipulador.ManipuladorTexto);
+
             regiaoCarregamentoInputsTexto = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_TEXTO);
             regiaoCarregamentoInputsTexto.Add(grupoInputsTexto.Root);
 
             return;
         }
 
-        private void ConfigurarCampoTipoInstrucao() {
-            campoTipoInstrucao = Root.Query<EnumField>(NOME_INPUT_TIPO_INSTRUCAO);
+        protected virtual void ConfigurarCampoTipoInstrucao() {
+            List<string> opcoes = new()
+            {
+                TiposIntrucoes.Audio.ToString(),
+                TiposIntrucoes.Texto.ToString(),
+                TiposIntrucoes.Video.ToString(),
+            };
 
-            campoTipoInstrucao.labelElement.name = NOME_LABEL_TIPO_INSTRUCAO;
-            campoTipoInstrucao.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
+            dropdownTipoInstrucao = new Dropdown("Tipo de instrução:", MENSAGEM_TOOLTIP_DROPDOWN_TIPO_INSTRUCAO, opcoes);
+            dropdownTipoInstrucao.Campo.RegisterCallback<ChangeEvent<string>>(evt => {
+                if (evt.newValue == Dropdown.VALOR_PADRAO_DROPDOWN) {
+                    manipulador.DesabilitarComponentes();
+                    OcultarCampos();
+                    return;
+                }
 
-            campoTipoInstrucao.Init(TiposIntrucoes.Texto);
-            campoTipoInstrucao.SetValueWithoutNotify(TiposIntrucoes.Texto);
+                TiposIntrucoes novoTipo = Enum.Parse<TiposIntrucoes>(evt.newValue);
 
-            campoTipoInstrucao.RegisterCallback<ChangeEvent<Enum>>(evt => {
-                TiposIntrucoes novoTipo = Enum.Parse<TiposIntrucoes>(campoTipoInstrucao.value.ToString());
-                IdentificadorTipoInstrucao tipoNovoObjeto = novoObjeto.GetComponent<IdentificadorTipoInstrucao>();
-
-                tipoNovoObjeto.AlterarTipo(novoTipo);
                 AlterarVisibilidadeCamposComBaseTipo(novoTipo);
+                manipulador.AlterarTipo(novoTipo);
             });
+
+            regiaoCarregamentoTipoInstrucao = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TIPO_INSTRUCAO);
+            regiaoCarregamentoTipoInstrucao.Add(dropdownTipoInstrucao.Root);
 
             return;
         }
 
-        private void AlterarVisibilidadeCamposComBaseTipo(TiposIntrucoes tipo) {
-            regiaoCarregamentoInputsAudio.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-            regiaoCarregamentoInputsTexto.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-            regiaoCarregamentoInputsVideo.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-            
-            switch(tipo) {
-                case(TiposIntrucoes.Audio): {
-                    regiaoCarregamentoInputsAudio.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-                    break;
-                }
-                case(TiposIntrucoes.Texto): {
-                    regiaoCarregamentoInputsTexto.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-                    break;
-                }
-                case(TiposIntrucoes.Video): {
-                    regiaoCarregamentoInputsVideo.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-                    break;
-                }
+        protected virtual void AlterarVisibilidadeCamposComBaseTipo(TiposIntrucoes tipo) {
+            OcultarCampos();
+
+            switch (tipo) {
+                case (TiposIntrucoes.Audio): {
+                        ExibirCamposAudio();
+                        break;
+                    }
+                case (TiposIntrucoes.Texto): {
+                        ExibirCamposTexto();
+                        break;
+                    }
+                case (TiposIntrucoes.Video): {
+                        ExibirCamposVideo();
+                        break;
+                    }
             }
 
             return;
         }
 
-        private void ConfigurarBotoesConfirmacao() {
-            regiaoCarregamentoBotoesConfirmacao = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO);
-            regiaoCarregamentoBotoesConfirmacao.Add(botoesConfirmacao.Root);
+        protected virtual void OcultarCampos() {
+            regiaoCarregamentoInputsAudio.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            regiaoCarregamentoInputsTexto.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            regiaoCarregamentoInputsVideo.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
 
+            return;
+        }
+
+        protected virtual void ExibirCamposAudio() {
+            OcultarCampos();
+
+            regiaoCarregamentoInputsAudio.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+
+            return;
+        }
+
+        protected virtual void ExibirCamposTexto() {
+            OcultarCampos();
+
+            regiaoCarregamentoInputsTexto.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+
+            return;
+        }
+
+        protected virtual void ExibirCamposVideo() {
+            OcultarCampos();
+
+            regiaoCarregamentoInputsVideo.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+
+            return;
+        }
+
+        protected virtual void ConfigurarBotoesConfirmacao() {
+            botoesConfirmacao = new();
             botoesConfirmacao.BotaoConfirmar.clicked += HandleBotaoConfirmarClick;
             botoesConfirmacao.BotaoCancelar.clicked += HandleBotaoCancelarClick;
 
-            return;
-        }
-
-        protected override void VincularCamposAoNovoObjeto() {
-            video = novoObjeto.GetComponent<Video>();
-            grupoInputsVideo.VincularDados(video);
-
-            audio = novoObjeto.GetComponent<AudioSource>();
-            grupoInputsAudio.VincularDados(audio);
-
-            texto = novoObjeto.GetComponent<Texto>();
-            grupoInputsTexto.VincularDados(texto);
-
-            spriteRenderer = novoObjeto.GetComponent<SpriteRenderer>();
-            spriteRenderer.sortingOrder = OrdemRenderizacao.EmCriacao;
-
-            IdentificadorTipoInstrucao tipoInstrucao = novoObjeto.GetComponent<IdentificadorTipoInstrucao>();
-            tipoInstrucao.AlterarTipo(tipoPadrao);
+            regiaoCarregamentoBotoesConfirmacao = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO);
+            regiaoCarregamentoBotoesConfirmacao.Add(botoesConfirmacao.Root);
 
             return;
         }
 
-        public override void FinalizarCriacao() {
-            novoObjeto.tag = NomesTags.Instrucoes;
-            novoObjeto.layer = LayersProjeto.Default.Index;
-            spriteRenderer.sortingOrder = OrdemRenderizacao.Instrucao;
-            
-            base.FinalizarCriacao();
+        protected virtual void HandleBotaoConfirmarClick() {
+            manipulador.Finalizar();
 
+            Navigator.Instance.Voltar();
             return;
         }
 
-        protected override void ReiniciarPropriedadesNovoObjeto() {
-            video = null;
-            audio = null;
-            texto = null;
-            spriteRenderer = null;
+        protected virtual void HandleBotaoCancelarClick() {
+            manipulador.Cancelar();
 
+            Navigator.Instance.Voltar();
             return;
         }
 
-        public override void ReiniciarCampos() {
+        public virtual void ReiniciarCampos() {
+            campoNome.ReiniciarCampos();
+            dropdownTipoInstrucao.ReiniciarCampos();
+
             grupoInputsVideo.ReiniciarCampos();
             grupoInputsAudio.ReiniciarCampos();
             grupoInputsTexto.ReiniciarCampos();
 
-            campoTipoInstrucao.SetValueWithoutNotify(tipoPadrao);
             AlterarVisibilidadeCamposComBaseTipo(tipoPadrao);
 
             return;

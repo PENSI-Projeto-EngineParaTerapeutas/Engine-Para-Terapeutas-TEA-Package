@@ -27,8 +27,7 @@ namespace Autis.Editor.UI {
         private readonly VisualElement regiaoCarregamentoInputsTexto;
 
         private readonly InputsComponenteImagem grupoInputsImagem;
-        private readonly InputsComponenteAudio grupoInputsAudio;
-        private readonly InputsComponenteTexto grupoInputsTexto;
+        private readonly GrupoInputsTexto grupoInputsTexto;
 
         #endregion
 
@@ -41,9 +40,8 @@ namespace Autis.Editor.UI {
         private SpriteRenderer spriteRenderer;
 
         public InputsTipoApoioInteracao() {
-            grupoInputsAudio = new InputsComponenteAudio();
             grupoInputsImagem = new InputsComponenteImagem();
-            grupoInputsTexto = new InputsComponenteTexto();
+            grupoInputsTexto = new GrupoInputsTexto();
 
             campoTipoApoioObjetoInteracao = Root.Query<EnumField>(NOME_INPUT_TIPO_ACAO_APOIO_OBJETO_INTERACAO);
             regiaoCarregamentoInputsImagem = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_IMAGEM);
@@ -51,7 +49,6 @@ namespace Autis.Editor.UI {
             regiaoCarregamentoInputsTexto = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_TEXTO);
 
             ConfigurarInputTipoApoioObjetoInteracao();
-            CarregarRegiaoInputsAudio();
             CarregarRegiaoInputsImagem();
             CarregarRegiaoInputsTexto();
 
@@ -101,13 +98,6 @@ namespace Autis.Editor.UI {
             return;
         }
 
-        private void CarregarRegiaoInputsAudio() {
-            regiaoCarregamentoInputsAudio.Add(grupoInputsAudio.Root);
-            grupoInputsAudio.ReiniciarCampos();
-
-            return;
-        }
-
         private void CarregarRegiaoInputsTexto() {
             regiaoCarregamentoInputsTexto.Add(grupoInputsTexto.Root);
             grupoInputsTexto.ReiniciarCampos();
@@ -117,7 +107,6 @@ namespace Autis.Editor.UI {
 
         public void ReiniciarCampos() {
             campoTipoApoioObjetoInteracao.SetValueWithoutNotify(tipoPadrao);
-            grupoInputsAudio.ReiniciarCampos();
             grupoInputsImagem.ReiniciarCampos();
             grupoInputsTexto.ReiniciarCampos();
 
@@ -139,8 +128,7 @@ namespace Autis.Editor.UI {
                 AlterarVisibilidadeCamposComBaseTipo(novoTipo);
             });
 
-            grupoInputsAudio.VincularDados(audioSource);
-            grupoInputsTexto.VincularDados(texto);
+            //grupoInputsTexto.VincularDados(texto);
             grupoInputsImagem.VincularDados(spriteRenderer);
 
             AlterarVisibilidadeCamposComBaseTipo(tipoApoioObjetoInteracao.Tipo);

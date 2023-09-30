@@ -34,6 +34,27 @@ namespace Autis.Runtime.ComponentesGameObjects {
         }
         private Transform canvas = null;
 
+        public bool Habilitado {
+            get => habilitado;
+
+            set {
+                habilitado = value;
+                SetHabilitado(habilitado);
+
+                return;
+            }
+        }
+        [SerializeField]
+        private bool habilitado = true;
+
+        private void SetHabilitado(bool habilitado) {
+            Canvas.gameObject.SetActive(habilitado);
+            TextMesh.enabled = habilitado;
+            this.enabled = false;
+
+            return;
+        }
+
         public void Habilitar() {
             Canvas.gameObject.SetActive(true);
             TextMesh.enabled = true;

@@ -1,0 +1,785 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AbrirChuveiro
+  serializedVersion: 6
+  m_Legacy: 0
+  m_Compressed: 0
+  m_UseHighQualityCurve: 1
+  m_RotationCurves: []
+  m_CompressedRotationCurves: []
+  m_EulerCurves: []
+  m_PositionCurves: []
+  m_ScaleCurves: []
+  m_FloatCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.71666664
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Animacao_Banho_Feminina/EfeitoAgua
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.8
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Animacao_Banho_Feminina/EfeitoPocaoAgua
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1.4833333
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1.6166667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Animacao_Banho_Feminina/Personagem/Pivot_Olhos
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Pivot_Cabeca
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Torso
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Pivot_Braco_Direito_Completo
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Pivot_Braco_Esquerdo_Completo
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Pivot_Perna_Direita_Completa
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Pivot_Perna_Esquerda_Completa
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Roupas
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Animacao_Banho_Feminina
+    classID: 1
+    script: {fileID: 0}
+  m_PPtrCurves:
+  - curve:
+    - time: 0
+      value: {fileID: 21300000, guid: 7213754b43e8a5d4cabe9733d2d2ff99, type: 3}
+    - time: 0.53333336
+      value: {fileID: 21300000, guid: 714d3f7188575cb4db1debd7d526e7c7, type: 3}
+    - time: 0.65
+      value: {fileID: 21300000, guid: 7213754b43e8a5d4cabe9733d2d2ff99, type: 3}
+    - time: 0.76666665
+      value: {fileID: 21300000, guid: 714d3f7188575cb4db1debd7d526e7c7, type: 3}
+    - time: 0.9
+      value: {fileID: 21300000, guid: 7213754b43e8a5d4cabe9733d2d2ff99, type: 3}
+    - time: 1.0333333
+      value: {fileID: 21300000, guid: 714d3f7188575cb4db1debd7d526e7c7, type: 3}
+    - time: 1.15
+      value: {fileID: 21300000, guid: 7213754b43e8a5d4cabe9733d2d2ff99, type: 3}
+    - time: 1.6166667
+      value: {fileID: 21300000, guid: 7213754b43e8a5d4cabe9733d2d2ff99, type: 3}
+    attribute: m_Sprite
+    path: Animacao_Banho_Feminina/Chuveiro
+    classID: 212
+    script: {fileID: 0}
+  - curve:
+    - time: 0
+      value: {fileID: 21300000, guid: 1edfb6eb3b9d50a4e8ece38ff8d591b2, type: 3}
+    - time: 0.8333333
+      value: {fileID: 21300000, guid: 85fb733f6de9f9840b245f99fd4091c1, type: 3}
+    - time: 0.93333334
+      value: {fileID: 21300000, guid: dfc6e9a33e925d04ea05147363a9a751, type: 3}
+    - time: 1.05
+      value: {fileID: 21300000, guid: 85fb733f6de9f9840b245f99fd4091c1, type: 3}
+    - time: 1.15
+      value: {fileID: 21300000, guid: dfc6e9a33e925d04ea05147363a9a751, type: 3}
+    - time: 1.25
+      value: {fileID: 21300000, guid: 85fb733f6de9f9840b245f99fd4091c1, type: 3}
+    - time: 1.35
+      value: {fileID: 21300000, guid: dfc6e9a33e925d04ea05147363a9a751, type: 3}
+    - time: 1.45
+      value: {fileID: 21300000, guid: 85fb733f6de9f9840b245f99fd4091c1, type: 3}
+    - time: 1.55
+      value: {fileID: 21300000, guid: dfc6e9a33e925d04ea05147363a9a751, type: 3}
+    - time: 1.6166667
+      value: {fileID: 21300000, guid: dfc6e9a33e925d04ea05147363a9a751, type: 3}
+    attribute: m_Sprite
+    path: Animacao_Banho_Feminina/EfeitoAgua
+    classID: 212
+    script: {fileID: 0}
+  - curve:
+    - time: 0
+      value: {fileID: 21300000, guid: efdf3066629de7b4cb176f4d5deb841b, type: 3}
+    - time: 0.8666667
+      value: {fileID: 21300000, guid: 5536cc0144d3b384792c2227749a3dea, type: 3}
+    - time: 0.98333335
+      value: {fileID: 21300000, guid: 04385adb54c093b4fb2f6aef65263869, type: 3}
+    - time: 1.1166667
+      value: {fileID: 21300000, guid: 24b0aead021023d42a69a1bf3362ba5b, type: 3}
+    - time: 1.6166667
+      value: {fileID: 21300000, guid: 24b0aead021023d42a69a1bf3362ba5b, type: 3}
+    attribute: m_Sprite
+    path: Animacao_Banho_Feminina/EfeitoPocaoAgua
+    classID: 212
+    script: {fileID: 0}
+  - curve:
+    - time: 0
+      value: {fileID: 21300000, guid: 40ff83b9ae810b9419914834ef5a6850, type: 3}
+    - time: 0.083333336
+      value: {fileID: 21300000, guid: 40ff83b9ae810b9419914834ef5a6850, type: 3}
+    - time: 0.18333334
+      value: {fileID: 21300000, guid: 2bf2d7c10302e114aa6dad8e7545eb8c, type: 3}
+    - time: 0.26666668
+      value: {fileID: 21300000, guid: 8a8209fb05cc67c4ab903e2382ab9358, type: 3}
+    - time: 0.36666667
+      value: {fileID: 21300000, guid: 85c8dd75721596a478a529a7dfef1544, type: 3}
+    - time: 0.46666667
+      value: {fileID: 21300000, guid: 19634e69b07785340ba52fece520d080, type: 3}
+    - time: 0.53333336
+      value: {fileID: 21300000, guid: 9f7d737885d532b48984a026df7e3e22, type: 3}
+    - time: 0.65
+      value: {fileID: 21300000, guid: 19634e69b07785340ba52fece520d080, type: 3}
+    - time: 0.76666665
+      value: {fileID: 21300000, guid: 9f7d737885d532b48984a026df7e3e22, type: 3}
+    - time: 0.9
+      value: {fileID: 21300000, guid: 19634e69b07785340ba52fece520d080, type: 3}
+    - time: 1.0333333
+      value: {fileID: 21300000, guid: 9f7d737885d532b48984a026df7e3e22, type: 3}
+    - time: 1.15
+      value: {fileID: 21300000, guid: 19634e69b07785340ba52fece520d080, type: 3}
+    - time: 1.25
+      value: {fileID: 21300000, guid: 85c8dd75721596a478a529a7dfef1544, type: 3}
+    - time: 1.3666667
+      value: {fileID: 21300000, guid: 8a8209fb05cc67c4ab903e2382ab9358, type: 3}
+    - time: 1.4833333
+      value: {fileID: 21300000, guid: 34d477584a35a0442ac5f6da6e000478, type: 3}
+    - time: 1.6166667
+      value: {fileID: 21300000, guid: 40ff83b9ae810b9419914834ef5a6850, type: 3}
+    attribute: m_Sprite
+    path: Animacao_Banho_Feminina/Personagem/Corpo
+    classID: 212
+    script: {fileID: 0}
+  m_SampleRate: 60
+  m_WrapMode: 0
+  m_Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_ClipBindingConstant:
+    genericBindings:
+    - serializedVersion: 2
+      path: 3221788655
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 4163355287
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3307360248
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1878388886
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3869152129
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1721805444
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2569307536
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1528611868
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1380530612
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1444719197
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 2469773058
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 1107592699
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 3221788655
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 4163355287
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 102799209
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    pptrCurveMapping:
+    - {fileID: 21300000, guid: 7213754b43e8a5d4cabe9733d2d2ff99, type: 3}
+    - {fileID: 21300000, guid: 714d3f7188575cb4db1debd7d526e7c7, type: 3}
+    - {fileID: 21300000, guid: 7213754b43e8a5d4cabe9733d2d2ff99, type: 3}
+    - {fileID: 21300000, guid: 714d3f7188575cb4db1debd7d526e7c7, type: 3}
+    - {fileID: 21300000, guid: 7213754b43e8a5d4cabe9733d2d2ff99, type: 3}
+    - {fileID: 21300000, guid: 714d3f7188575cb4db1debd7d526e7c7, type: 3}
+    - {fileID: 21300000, guid: 7213754b43e8a5d4cabe9733d2d2ff99, type: 3}
+    - {fileID: 21300000, guid: 7213754b43e8a5d4cabe9733d2d2ff99, type: 3}
+    - {fileID: 21300000, guid: 1edfb6eb3b9d50a4e8ece38ff8d591b2, type: 3}
+    - {fileID: 21300000, guid: 85fb733f6de9f9840b245f99fd4091c1, type: 3}
+    - {fileID: 21300000, guid: dfc6e9a33e925d04ea05147363a9a751, type: 3}
+    - {fileID: 21300000, guid: 85fb733f6de9f9840b245f99fd4091c1, type: 3}
+    - {fileID: 21300000, guid: dfc6e9a33e925d04ea05147363a9a751, type: 3}
+    - {fileID: 21300000, guid: 85fb733f6de9f9840b245f99fd4091c1, type: 3}
+    - {fileID: 21300000, guid: dfc6e9a33e925d04ea05147363a9a751, type: 3}
+    - {fileID: 21300000, guid: 85fb733f6de9f9840b245f99fd4091c1, type: 3}
+    - {fileID: 21300000, guid: dfc6e9a33e925d04ea05147363a9a751, type: 3}
+    - {fileID: 21300000, guid: dfc6e9a33e925d04ea05147363a9a751, type: 3}
+    - {fileID: 21300000, guid: efdf3066629de7b4cb176f4d5deb841b, type: 3}
+    - {fileID: 21300000, guid: 5536cc0144d3b384792c2227749a3dea, type: 3}
+    - {fileID: 21300000, guid: 04385adb54c093b4fb2f6aef65263869, type: 3}
+    - {fileID: 21300000, guid: 24b0aead021023d42a69a1bf3362ba5b, type: 3}
+    - {fileID: 21300000, guid: 24b0aead021023d42a69a1bf3362ba5b, type: 3}
+    - {fileID: 21300000, guid: 40ff83b9ae810b9419914834ef5a6850, type: 3}
+    - {fileID: 21300000, guid: 40ff83b9ae810b9419914834ef5a6850, type: 3}
+    - {fileID: 21300000, guid: 2bf2d7c10302e114aa6dad8e7545eb8c, type: 3}
+    - {fileID: 21300000, guid: 8a8209fb05cc67c4ab903e2382ab9358, type: 3}
+    - {fileID: 21300000, guid: 85c8dd75721596a478a529a7dfef1544, type: 3}
+    - {fileID: 21300000, guid: 19634e69b07785340ba52fece520d080, type: 3}
+    - {fileID: 21300000, guid: 9f7d737885d532b48984a026df7e3e22, type: 3}
+    - {fileID: 21300000, guid: 19634e69b07785340ba52fece520d080, type: 3}
+    - {fileID: 21300000, guid: 9f7d737885d532b48984a026df7e3e22, type: 3}
+    - {fileID: 21300000, guid: 19634e69b07785340ba52fece520d080, type: 3}
+    - {fileID: 21300000, guid: 9f7d737885d532b48984a026df7e3e22, type: 3}
+    - {fileID: 21300000, guid: 19634e69b07785340ba52fece520d080, type: 3}
+    - {fileID: 21300000, guid: 85c8dd75721596a478a529a7dfef1544, type: 3}
+    - {fileID: 21300000, guid: 8a8209fb05cc67c4ab903e2382ab9358, type: 3}
+    - {fileID: 21300000, guid: 34d477584a35a0442ac5f6da6e000478, type: 3}
+    - {fileID: 21300000, guid: 40ff83b9ae810b9419914834ef5a6850, type: 3}
+  m_AnimationClipSettings:
+    serializedVersion: 2
+    m_AdditiveReferencePoseClip: {fileID: 0}
+    m_AdditiveReferencePoseTime: 0
+    m_StartTime: 0
+    m_StopTime: 1.6333333
+    m_OrientationOffsetY: 0
+    m_Level: 0
+    m_CycleOffset: 0
+    m_HasAdditiveReferencePose: 0
+    m_LoopTime: 0
+    m_LoopBlend: 0
+    m_LoopBlendOrientation: 0
+    m_LoopBlendPositionY: 0
+    m_LoopBlendPositionXZ: 0
+    m_KeepOriginalOrientation: 0
+    m_KeepOriginalPositionY: 1
+    m_KeepOriginalPositionXZ: 0
+    m_HeightFromFeet: 0
+    m_Mirror: 0
+  m_EditorCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.71666664
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Animacao_Banho_Feminina/EfeitoAgua
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.8
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Animacao_Banho_Feminina/EfeitoPocaoAgua
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1.4833333
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1.6166667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Animacao_Banho_Feminina/Personagem/Pivot_Olhos
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Pivot_Cabeca
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Torso
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Pivot_Braco_Direito_Completo
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Pivot_Braco_Esquerdo_Completo
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Pivot_Perna_Direita_Completa
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Pivot_Perna_Esquerda_Completa
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Roupas
+    classID: 1
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: Animacao_Banho_Feminina
+    classID: 1
+    script: {fileID: 0}
+  m_EulerEditorCurves: []
+  m_HasGenericRootTransform: 0
+  m_HasMotionFloatCurves: 0
+  m_Events: []

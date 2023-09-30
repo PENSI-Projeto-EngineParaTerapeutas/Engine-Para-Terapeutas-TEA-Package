@@ -1,0 +1,19 @@
+:root {
+	flex: 1;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+#regiao-icone-nome {
+	flex-direction: row;
+	align-items: center;
+}
+
+#imagem-icone-arrastavel {
+	margin-right: 6px;
+}
+
+#imagem-icone-lixeira {
+	align-self: center;
+	margin-right: 6px;
+}

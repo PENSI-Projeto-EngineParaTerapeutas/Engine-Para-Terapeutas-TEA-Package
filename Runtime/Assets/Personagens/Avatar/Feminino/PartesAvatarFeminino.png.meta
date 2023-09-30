@@ -1,0 +1,541 @@
+fileFormatVersion: 2
+guid: cb0b5909156057c4fa4e7575cee05fd1
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: AvatarFemininoCustomizacao_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 1946
+        width: 480
+        height: 430
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5b21a4349a0a5b4284591082423ca9a
+      internalID: -1117629589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AvatarFemininoCustomizacao_1
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 1945
+        width: 447
+        height: 444
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81051bbeec2926c46bdb277b176b9299
+      internalID: -1113194151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AvatarFemininoCustomizacao_3
+      rect:
+        serializedVersion: 2
+        x: 983
+        y: 1960
+        width: 573
+        height: 399
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecc9bdc1036291a428bfb82e4723ef9c
+      internalID: 1951177448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AvatarFemininoCustomizacao_11
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 1596
+        width: 475
+        height: 221
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed994e8bfafef604698c3cde93b9af9d
+      internalID: 1558509150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AvatarFemininoCustomizacao_12
+      rect:
+        serializedVersion: 2
+        x: 1174
+        y: 1730
+        width: 290
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b0c6bbdbf7aaee4a90d71120a15d23e
+      internalID: 1389855716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AvatarFemininoCustomizacao_16
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 833
+        width: 402
+        height: 683
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17efad32a2af87b4f8c0c0a64dce136d
+      internalID: -780200704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AvatarFemininoCustomizacao_18
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 870
+        width: 336
+        height: 605
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0589fa9704a850e49867748fa6ce0365
+      internalID: -2039882449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AvatarFemininoCustomizacao_19
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 1071
+        width: 470
+        height: 505
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9f3c042c8f1b2a449387ef1331b95fe
+      internalID: -222022953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AvatarFemininoCustomizacao_23
+      rect:
+        serializedVersion: 2
+        x: 1114
+        y: 779
+        width: 354
+        height: 267
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 633a3cf33914b304ebdf2efc302f044e
+      internalID: -96006264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AvatarFemininoCustomizacao_27
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 394
+        width: 96
+        height: 298
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1db5b780c4c5e4344b213bf235f96cf9
+      internalID: 1096836806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AvatarFemininoCustomizacao_29
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 287
+        width: 154
+        height: 299
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6f200669283c924982875a1a2b1ea79
+      internalID: -2102816219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AvatarFemininoCustomizacao_31
+      rect:
+        serializedVersion: 2
+        x: 859
+        y: 280
+        width: 154
+        height: 301
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 723f551795083744888fec0f3a8f948b
+      internalID: -2048164823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AvatarFemininoCustomizacao_33
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 393
+        width: 104
+        height: 308
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c271e3c0cfe6f84b8781fd9402e70c1
+      internalID: -1776882294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AvatarFemininoCustomizacao_40
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 60
+        width: 173
+        height: 385
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 277360eb193bf5d40a3c9413f19122d9
+      internalID: -1144144084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AvatarFemininoCustomizacao_41
+      rect:
+        serializedVersion: 2
+        x: 1103
+        y: 62
+        width: 173
+        height: 383
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ce6b75a4049eea4a9498346685d533c
+      internalID: 373742824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AvatarFemininoCustomizacao_44
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 28
+        width: 79
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a2c17e851cdaa042ab716a08536b1b9
+      internalID: 398195504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AvatarFemininoCustomizacao_46
+      rect:
+        serializedVersion: 2
+        x: 1411
+        y: 34
+        width: 80
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4152330372e6a9f4cb544172658ba47d
+      internalID: -1153383831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      AvatarFemininoCustomizacao_0: -1117629589
+      AvatarFemininoCustomizacao_1: -1113194151
+      AvatarFemininoCustomizacao_10: 388667829
+      AvatarFemininoCustomizacao_11: 1558509150
+      AvatarFemininoCustomizacao_12: 1389855716
+      AvatarFemininoCustomizacao_13: -1639555208
+      AvatarFemininoCustomizacao_14: -1390977440
+      AvatarFemininoCustomizacao_15: -1776779174
+      AvatarFemininoCustomizacao_16: -780200704
+      AvatarFemininoCustomizacao_17: -799606604
+      AvatarFemininoCustomizacao_18: -2039882449
+      AvatarFemininoCustomizacao_19: -222022953
+      AvatarFemininoCustomizacao_2: -1729564010
+      AvatarFemininoCustomizacao_20: 1495285534
+      AvatarFemininoCustomizacao_21: 1639199866
+      AvatarFemininoCustomizacao_22: 833022155
+      AvatarFemininoCustomizacao_23: -96006264
+      AvatarFemininoCustomizacao_24: 1589241196
+      AvatarFemininoCustomizacao_25: 903921866
+      AvatarFemininoCustomizacao_26: 1064632178
+      AvatarFemininoCustomizacao_27: 1096836806
+      AvatarFemininoCustomizacao_28: 1103968005
+      AvatarFemininoCustomizacao_29: -2102816219
+      AvatarFemininoCustomizacao_3: 1951177448
+      AvatarFemininoCustomizacao_30: 2088994452
+      AvatarFemininoCustomizacao_31: -2048164823
+      AvatarFemininoCustomizacao_32: -104588306
+      AvatarFemininoCustomizacao_33: -1776882294
+      AvatarFemininoCustomizacao_34: -156738468
+      AvatarFemininoCustomizacao_35: -1555494418
+      AvatarFemininoCustomizacao_36: -1724177789
+      AvatarFemininoCustomizacao_37: -202060178
+      AvatarFemininoCustomizacao_38: -147347036
+      AvatarFemininoCustomizacao_39: -752825157
+      AvatarFemininoCustomizacao_4: 1360758761
+      AvatarFemininoCustomizacao_40: -1144144084
+      AvatarFemininoCustomizacao_41: 373742824
+      AvatarFemininoCustomizacao_42: 359220357
+      AvatarFemininoCustomizacao_43: -1918595091
+      AvatarFemininoCustomizacao_44: 398195504
+      AvatarFemininoCustomizacao_45: -1996430352
+      AvatarFemininoCustomizacao_46: -1153383831
+      AvatarFemininoCustomizacao_47: -222049456
+      AvatarFemininoCustomizacao_48: 2078354359
+      AvatarFemininoCustomizacao_5: 1865102493
+      AvatarFemininoCustomizacao_6: -1511944970
+      AvatarFemininoCustomizacao_7: -2127588331
+      AvatarFemininoCustomizacao_8: 124337762
+      AvatarFemininoCustomizacao_9: -590534117
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

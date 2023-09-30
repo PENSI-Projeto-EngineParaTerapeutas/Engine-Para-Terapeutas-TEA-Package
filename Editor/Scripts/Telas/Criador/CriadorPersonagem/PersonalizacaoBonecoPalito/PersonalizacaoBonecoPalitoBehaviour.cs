@@ -1,10 +1,8 @@
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEditor.UIElements;
-using Autis.Editor.Constantes;
 using Autis.Editor.Telas;
 using Autis.Editor.UI;
+using Autis.Editor.Manipuladores;
 
 namespace Autis.Editor.Criadores {
     public class PersonalizacaoBonecoPalitoBehaviour : Tela, IReiniciavel {
@@ -13,32 +11,26 @@ namespace Autis.Editor.Criadores {
 
         #region .: Elementos :.
 
-        private const string NOME_LABEL_COR = "label-cor";
-        private const string NOME_INPUT_COR = "input-cor";
-        private readonly ColorField inputCor;
+        public InputCor InputCor { get => inputCor; }
+        private InputCor inputCor;
 
-        private const string NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO = "regiao-carregamento-botoes-confirmacao";
-        private readonly VisualElement regiaoBotoesConfirmacao;
+        protected const string NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO = "regiao-carregamento-botoes-confirmacao";
+        protected VisualElement regiaoCarregamentoBotoesConfirmacao;
 
-        private readonly BotoesConfirmacao botoesConfirmacao;
+        public VisualElement RegiaoInputCor { get => regiaoInputCor; }
+        private const string NOME_REGIAO_INPUT_COR = "regiao-input-cor";
+        private VisualElement regiaoInputCor;
+
+        protected BotoesConfirmacao botoesConfirmacao;
 
         #endregion
 
-        private readonly GameObject personagemAtual;
-        private readonly SpriteRenderer[] spriteRenderers;
-
+        private readonly ManipuladorBonecoPalito manipuladorBonecoPalito;
         private readonly Color corInicial;
 
-        public PersonalizacaoBonecoPalitoBehaviour(GameObject personagemAtual) {
-            this.personagemAtual = personagemAtual;
-            spriteRenderers = this.personagemAtual.GetComponentsInChildren<SpriteRenderer>();
-            corInicial = spriteRenderers.First().color;
-
-            botoesConfirmacao = new BotoesConfirmacao();
-
-            inputCor = Root.Query<ColorField>(NOME_INPUT_COR);
-            regiaoBotoesConfirmacao = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO);
-            regiaoBotoesConfirmacao.Add(botoesConfirmacao.Root);
+        public PersonalizacaoBonecoPalitoBehaviour(ManipuladorBonecoPalito manipuladorBonecoPalito) {
+            this.manipuladorBonecoPalito = manipuladorBonecoPalito;
+            corInicial = manipuladorBonecoPalito.Cor;
 
             ConfigurarInputCor();
             ConfigurarBotoesConfirmacao();
@@ -47,35 +39,42 @@ namespace Autis.Editor.Criadores {
         }
 
         private void ConfigurarInputCor() {
-            inputCor.labelElement.name = NOME_LABEL_COR;
-            inputCor.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
-            inputCor.SetValueWithoutNotify(corInicial);
+            inputCor = new InputCor("Cor do boneco palito:");
+            inputCor.CampoCor.tooltip = "Cor que sobrepõe a imagem do ator";
 
-            inputCor.RegisterCallback<ChangeEvent<Color>>(evt => {
-                foreach(SpriteRenderer spriteRenderer in spriteRenderers) {
-                    spriteRenderer.color = inputCor.value;
-                }
-            });
+            regiaoInputCor = Root.Query<VisualElement>(NOME_REGIAO_INPUT_COR);
+            regiaoInputCor.Add(inputCor.Root);
 
             return;
         }
 
         private void ConfigurarBotoesConfirmacao() {
+            botoesConfirmacao = new();
+            botoesConfirmacao.BotaoConfirmar.clicked += HandleBotaoConfirmarClick;
             botoesConfirmacao.BotaoCancelar.clicked += HandleBotaoCancelarClick;
+
+            regiaoCarregamentoBotoesConfirmacao = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO);
+            regiaoCarregamentoBotoesConfirmacao.Add(botoesConfirmacao.Root);
+
+            return;
+        }
+
+        private void HandleBotaoConfirmarClick() {
+            Navigator.Instance.Voltar();
             return;
         }
 
         private void HandleBotaoCancelarClick() {
-            foreach(SpriteRenderer spriteRenderer in spriteRenderers) {
-                spriteRenderer.color = corInicial;
-            }
+            manipuladorBonecoPalito.SetCor(corInicial);
 
             ReiniciarCampos();
+            Navigator.Instance.Voltar();
+            
             return;
         }
 
         public void ReiniciarCampos() {
-            inputCor.SetValueWithoutNotify(Color.white);
+            inputCor.CampoCor.SetValueWithoutNotify(Color.white);
             return;
         }
     }

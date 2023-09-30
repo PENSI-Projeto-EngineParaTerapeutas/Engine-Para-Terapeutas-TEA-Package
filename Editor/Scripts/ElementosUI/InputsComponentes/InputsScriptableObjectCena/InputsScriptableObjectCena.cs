@@ -2,11 +2,11 @@ using System;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using Autis.Editor.Constantes;
-using Autis.Runtime.ScriptableObjects;
 using Autis.Runtime.DTOs;
+using Autis.Editor.Manipuladores;
 
 namespace Autis.Editor.UI {
-    public class InputsScriptableObjectCena : ElementoInterfaceEditor, IVinculavel<Cena>, IReiniciavel {
+    public class InputsScriptableObjectCena : ElementoInterfaceEditor, IVinculavel<ManipuladorCena>, IReiniciavel {
         protected override string CaminhoTemplate => "ElementosUI/InputsComponentes/InputsScriptableObjectCena/InputsScriptableObjectCenaTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/InputsComponentes/InputsScriptableObjectCena/InputsScriptableObjectCenaStyle.uss";
 
@@ -14,8 +14,6 @@ namespace Autis.Editor.UI {
         public TextField CampoNome { get => campoNome; }
         public EnumField CampoDificuldade { get => campoDificuldade; }
         public IntegerField CampoFaixaEtaria { get => campoFaixaEtaria; }
-        public VisualElement RegiaoInputVideo { get => regiaoInputVideo; }
-        public InputVideo InputVideo { get => inputVideo; }
 
         private const string NOME_LABEL_NOME = "label-nome";
         private const string NOME_INPUT_NOME = "input-nome";
@@ -29,27 +27,18 @@ namespace Autis.Editor.UI {
         private const string NOME_INPUT_FAIXA_ETARIA  = "input-faixa-etaria";
         private readonly IntegerField campoFaixaEtaria;
 
-        private const string NOME_REGIAO_INPUT_VIDEO = "regiao-input-video";
-        private readonly VisualElement regiaoInputVideo;
-
-        private readonly InputVideo inputVideo;
-
         #endregion
 
-        private Cena cena;
+        private ManipuladorCena manipuladorCena;
 
         public InputsScriptableObjectCena() {
             campoNome = Root.Query<TextField>(NOME_INPUT_NOME);
             campoDificuldade = Root.Query<EnumField>(NOME_INPUT_DIFICULDADE);
             campoFaixaEtaria = Root.Query<IntegerField>(NOME_INPUT_FAIXA_ETARIA);
-            regiaoInputVideo = Root.Query<VisualElement>(NOME_REGIAO_INPUT_VIDEO);
-
-            inputVideo = new InputVideo();
 
             ConfigurarCampoNome();
             ConfigurarCampoDificuldade();
             ConfigurarCampoFaixaEtaria();
-            ConfigurarInputVideo();
 
             return;
         }
@@ -57,6 +46,7 @@ namespace Autis.Editor.UI {
         private void ConfigurarCampoNome() {
             CampoNome.labelElement.name = NOME_LABEL_NOME;
             CampoNome.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
+            CampoNome.AddToClassList("input-texto");
             CampoNome.SetValueWithoutNotify(string.Empty);
 
             return;
@@ -78,22 +68,15 @@ namespace Autis.Editor.UI {
             return;
         }
 
-        private void ConfigurarInputVideo() {
-            RegiaoInputVideo.Add(InputVideo.Root);
-            return;
-        }
+        public void VincularDados(ManipuladorCena manipulador) {
+            manipuladorCena = manipulador;
 
-
-        public void VincularDados(Cena componente) {
-            cena = componente;
-
-            CampoNome.SetValueWithoutNotify(cena.NomeExibicao);
-            CampoFaixaEtaria.SetValueWithoutNotify(cena.FaixaEtaria);
-            CampoDificuldade.SetValueWithoutNotify(cena.NivelDificuldade);
-            InputVideo.CampoVideo.SetValueWithoutNotify(cena.NomeArquivoVideoContexto);
+            CampoNome.SetValueWithoutNotify(manipuladorCena.GetNome());
+            CampoFaixaEtaria.SetValueWithoutNotify(manipuladorCena.GetFaixaEtaria());
+            CampoDificuldade.SetValueWithoutNotify(manipuladorCena.GetDificuldade());
 
             campoNome.RegisterCallback<ChangeEvent<string>>(evt => {
-                cena.NomeExibicao = CampoNome.value;
+                manipuladorCena.SetNome(evt.newValue);
             });
 
             CampoFaixaEtaria.RegisterCallback<ChangeEvent<int>>(evt => {
@@ -101,40 +84,22 @@ namespace Autis.Editor.UI {
                     CampoFaixaEtaria.value = 0;
                 }
 
-                cena.FaixaEtaria = CampoFaixaEtaria.value;
+                manipuladorCena.SetFaixaEtaria(campoFaixaEtaria.value);
             });
 
             CampoDificuldade.RegisterCallback<ChangeEvent<Enum>>(evt => {
-                switch(CampoDificuldade.value) {
-                    case(NiveisDificuldade.Facil): {
-                        cena.NivelDificuldade = NiveisDificuldade.Facil;
-                        break;
-                    }
-                    case(NiveisDificuldade.Medio): {
-                        cena.NivelDificuldade = NiveisDificuldade.Medio;
-                        break;
-                    }
-                    case(NiveisDificuldade.Dificil): {
-                        cena.NivelDificuldade = NiveisDificuldade.Dificil;
-                        break;
-                    }
-                }
-            });
-
-            InputVideo.CampoVideo.RegisterCallback<ChangeEvent<string>>(evt => {
-                cena.NomeArquivoVideoContexto = InputVideo.CampoVideo.value;
+                manipuladorCena.SetDificuldade((NiveisDificuldade) evt.newValue);
             });
 
             return;
         }
 
         public void ReiniciarCampos() {
-            cena = null;
+            manipuladorCena = null;
 
             CampoNome.SetValueWithoutNotify(string.Empty);
             CampoFaixaEtaria.SetValueWithoutNotify(0);
             CampoDificuldade.SetValueWithoutNotify(NiveisDificuldade.Facil);
-            InputVideo.ReiniciarCampos();
 
             return;
         }

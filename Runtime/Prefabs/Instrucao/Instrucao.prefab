@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1876942453077104044
 RectTransform:
   m_ObjectHideFlags: 0
@@ -97,7 +97,6 @@ GameObject:
   - component: {fileID: 1471820739329969076}
   - component: {fileID: 4324583156129870933}
   - component: {fileID: 7850561010317529448}
-  - component: {fileID: 6557953189447638842}
   m_Layer: 0
   m_Name: Instrucao
   m_TagString: Untagged
@@ -317,6 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nomeArquivoVideo: 
+  habilitado: 1
 --- !u!114 &7850561010317529448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,24 +324,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6179218885272493543}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 291ef4b6549f26547b0d5ca37672b1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6557953189447638842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6179218885272493543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86a3763ae723095458074a7a2b0e87d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tipo: 0
+  habilitado: 1
 --- !u!1 &7203130124661638608
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,7 +396,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <Conteudo>
+  m_text: Digite o texto aqui.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -1,4 +1,67 @@
+:root {
+	flex: 1;
+	justify-content: space-between;
+	padding-bottom: 12px;
+}
+
 #label-descricao {
 	white-space: normal;
 	margin-bottom: 6px;
+}
+
+#label-titulo {
+	align-self: center;
+	width: 10%;
+	font-size: 20px;
+	-unity-text-align: middle-center;
+	margin-top: 3%;
+}
+
+#regiao-carregamento-botoes-confirmacao {
+	flex-direction: row;
+}
+
+#regiao-lista-animacoes-vazia {
+	background-color: #F0F3F4;
+	height: 100%;
+	border-radius: 10px;
+}
+
+#foldout-lista-animacoes {
+	margin-top: 13%;
+	flex-grow: 1;
+}
+
+#foldout-lista-animacoes > #unity-content {
+	margin-left: 0;
+	flex-grow: 1;
+}
+
+#foldout-lista-animacoes > Toggle > VisualElement > Label {
+	-unity-font-style: bold;
+	font-size: 20px;
+}
+
+#foldout-lista-animacoes > Toggle > VisualElement > VisualElement {
+	-unity-background-image-tint-color: rgba(1, 1, 1, 0);
+	width: 0;
+}
+
+#label-descricao {
+	margin-top: 5%;
+}
+
+#botao-adicionar-acao {
+	width: 80%;
+	align-self: center;
+	border-radius: 25px;
+}
+
+#regiao-lista-animacoes-vazia {
+	justify-content: center;
+	margin-bottom: 6%;
+}
+
+#regiao-lista-animacoes-vazia > Label {
+	-unity-text-align: middle-center;
 }

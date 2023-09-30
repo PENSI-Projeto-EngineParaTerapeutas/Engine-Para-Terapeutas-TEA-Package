@@ -1,43 +1,134 @@
+:root {
+	flex: 1;
+	width: 100%;
+	justify-content: space-between;
+}
+
 #regiao-titulo {
 	flex-direction: row;
 }
 
 #grupo-radio-button {
 	flex-direction: column;
+	margin-left: 5%;
 }
 
 #regiao-opcao-controle-indireto {
 	flex-direction: row;
+	
+}
+
+#radio-opcao-controle-direto > Label {
+	margin-right: 1.6%;
+}
+
+#regiao-opcao-controle-indireto > RadioButton > Label {
+	margin-right: 2%;
+	-unity-text-align: middle-center;
 }
 
 #regiao-label-selecao-controle {
+	margin-top: 10%;
 	flex-direction: row;
 }
 
-#regiao-label-selecao-controle > Label {
+#label-selecao-controle {
+	margin-top: 0%;
 	margin-right: 3px;
+	-unity-font-style: bold;
 }
 
-.opcao-radio-button {
-	flex: 5;
-	flex-direction: row-reverse;
-	align-items: center;
-	justify-content: flex-end;
-}
-
-#radio-opcao-controle-indireto {
-	flex-grow: 0.5;
-}
-
-.opcao-radio-button > VisualElement {
-	flex-grow: 0;
-	margin-right: 3px;
-}
-
-.opcao-radio-button > Label {
-	margin-right: 3px;
+#regiao-opcao-controle-indireto {
+	margin-top: 2%;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
 #label-aviso-personagem-ja-existente {
 	white-space: normal;
+}
+
+#regiao-carregamento-botoes-confirmacao > Button {
+	width: 40%;
+}
+
+#campo-dropdown > VisualElement > * {
+	background-color: rgba(1, 1, 1, 0);
+}
+
+#campo-dropdown > VisualElement > PopupTextElement {
+	color: black;
+	background-color: rgba(1, 1, 1, 0);
+}
+
+#botao-configurar-controle-indireto:disabled {
+	width: 60%;
+	font-size: 20px;
+	-unity-font-style: bold;
+	border-width: 0px;
+    border-radius: 18px;
+	background-color: #E4E4E4;
+	color: #353535;
+    margin-top: 1%;
+	align-self: center;
+	height: 35px;
+	font-size: 12px;
+	margin-right: 10%;
+}
+
+#botao-configurar-controle-indireto:enabled {
+	width: 60%;
+	font-size: 20px;
+	-unity-font-style: bold;
+	border-width: 0px;
+    border-radius: 18px;
+	background-color: #1976D2;
+	color: white;
+    margin-top: 1%;
+	align-self: center;
+	height: 35px;
+	font-size: 12px;
+	margin-right: 10%;
+}
+
+#input-texto {
+	width: 100%;
+	align-self: center;
+}
+
+
+#botao-personalizar-personagem {
+	font-size: 15px;
+	-unity-font-style: bold;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-width: 0px;
+    border-radius: 6px;
+	margin-top: 1%;
+	max-width: 550px;
+	min-width: 100px;
+	border-radius: 19px;
+	align-self: center;
+	white-space: nowrap;
+	margin-top: 3%;
+}
+
+#botao-personalizar-personagem:disabled {
+	color: #353535;
+	background-color: #E4E4E4;
+}
+
+#botao-personalizar-personagem:enabled {
+	color: white;
+	background-color: #1976D2;
+}
+
+#imagem-personagem {
+	margin-top: 3%;
+}
+
+#regiao-carregamento-inputs-tamanho > TemplateContainer > #input-numerico {
+	margin-right: 0;
 }

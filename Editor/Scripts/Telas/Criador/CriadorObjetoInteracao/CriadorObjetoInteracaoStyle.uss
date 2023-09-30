@@ -1,3 +1,9 @@
+:root {
+	flex: 1;
+	justify-content: space-between;
+	padding-bottom: 12px;
+}
+
 #grupo-radio-button {
 	flex-direction: column;
 }
@@ -21,4 +27,18 @@
 
 .opcao-radio-button > Label {
 	margin-right: 3px;
+}
+
+#regiao-input-imagem {
+	margin-top: 6%;
+}
+
+#regiao-input-imagem > TemplateContainer > #buscar-imagem {
+	height: 47px;
+	width: 70%;
+	align-self: center;
+}
+
+#input-desfazer-acao {
+	margin-top: 21px;
 }

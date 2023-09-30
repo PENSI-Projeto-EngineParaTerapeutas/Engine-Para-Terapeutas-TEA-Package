@@ -93,7 +93,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 754376179488486975}
-  - component: {fileID: 1137303372121335720}
   m_Layer: 0
   m_Name: Pivot_Cabeca
   m_TagString: Untagged
@@ -117,21 +116,6 @@ Transform:
   m_Father: {fileID: 6342595118188641561}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1137303372121335720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2988551537094817307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomeDisplay: "Cabe\xE7a"
-  sprite: {fileID: 4232194869220533948}
-  ordemRenderizacao: 5
 --- !u!1 &3244945572283313996
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +273,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2455310725081326501}
-  - component: {fileID: 4047478341299843242}
   m_Layer: 0
   m_Name: Pivot_Braco_Esquerdo_Completo
   m_TagString: Untagged
@@ -314,21 +297,6 @@ Transform:
   m_Father: {fileID: 6342595118188641561}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4047478341299843242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3746651483710742202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomeDisplay: "Bra\xE7o Esquerdo"
-  sprite: {fileID: 365430854891588499}
-  ordemRenderizacao: 6
 --- !u!1 &3833022331119503627
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +306,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3585291162060918891}
-  - component: {fileID: 5402228374346045072}
   m_Layer: 0
   m_Name: Pivot_Braco_Direito_Completo
   m_TagString: Untagged
@@ -363,21 +330,6 @@ Transform:
   m_Father: {fileID: 6342595118188641561}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5402228374346045072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3833022331119503627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomeDisplay: "Bra\xE7o Direito"
-  sprite: {fileID: 8026288130996315637}
-  ordemRenderizacao: 6
 --- !u!1 &3962293176774092312
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,7 +507,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1400919114099448365}
-  - component: {fileID: 2375859486028534286}
   m_Layer: 0
   m_Name: Pivot_Mao_Esquerda
   m_TagString: Untagged
@@ -579,21 +530,6 @@ Transform:
   m_Father: {fileID: 2455310725081326501}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2375859486028534286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5389715476561466456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomeDisplay: "M\xE3o Esquerda"
-  sprite: {fileID: 6553492839540994809}
-  ordemRenderizacao: 7
 --- !u!1 &5453884008214545211
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,7 +539,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5760205446070138997}
-  - component: {fileID: 6739664154730946118}
   m_Layer: 0
   m_Name: Pivot_Perna_Direita
   m_TagString: Untagged
@@ -627,21 +562,6 @@ Transform:
   m_Father: {fileID: 6342595118188641561}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6739664154730946118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5453884008214545211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomeDisplay: Perna Direita
-  sprite: {fileID: 7204243346381557404}
-  ordemRenderizacao: 6
 --- !u!1 &6396249567683039525
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,7 +687,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 523275157973552037}
-  - component: {fileID: 4285937105847603492}
   m_Layer: 0
   m_Name: Pivot_Perna_Esquerda
   m_TagString: Untagged
@@ -791,21 +710,6 @@ Transform:
   m_Father: {fileID: 6342595118188641561}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4285937105847603492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7035079277306335051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomeDisplay: Perna Esquerda
-  sprite: {fileID: 4850646672011836301}
-  ordemRenderizacao: 6
 --- !u!1 &7151362865161891956
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,7 +887,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5014564637546454322}
-  - component: {fileID: 627669183585234729}
   m_Layer: 0
   m_Name: Pivot_Mao_Direita
   m_TagString: Untagged
@@ -1007,21 +910,6 @@ Transform:
   m_Father: {fileID: 3585291162060918891}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &627669183585234729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8307450498543766535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718912bc5ceb3ff45b8d4adf65b2738b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nomeDisplay: "M\xE3o Direita"
-  sprite: {fileID: 2624804374847409848}
-  ordemRenderizacao: 7
 --- !u!1 &8870341802385572355
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,9 +1057,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ludico_Pocoyo
       objectReference: {fileID: 0}
+    - target: {fileID: 5355687585244585727, guid: d9043e317d3c0264f8c3944be81bd832, type: 3}
+      propertyPath: tiposPersonagensLudicos
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5639503983129708798, guid: d9043e317d3c0264f8c3944be81bd832, type: 3}
       propertyPath: partesCorpo.Array.size
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5639503983129708798, guid: d9043e317d3c0264f8c3944be81bd832, type: 3}
       propertyPath: partesCorpo.Array.data[0]
@@ -1201,6 +1093,66 @@ PrefabInstance:
       propertyPath: partesCorpo.Array.data[6]
       value: 
       objectReference: {fileID: 5760205446070138997}
+    - target: {fileID: 7286405005108080800, guid: d9043e317d3c0264f8c3944be81bd832, type: 3}
+      propertyPath: partesCorpo.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7286405005108080800, guid: d9043e317d3c0264f8c3944be81bd832, type: 3}
+      propertyPath: partesCorpo.Array.data[0].parteCorpo
+      value: 
+      objectReference: {fileID: 754376179488486975}
+    - target: {fileID: 7286405005108080800, guid: d9043e317d3c0264f8c3944be81bd832, type: 3}
+      propertyPath: partesCorpo.Array.data[1].parteCorpo
+      value: 
+      objectReference: {fileID: 2455310725081326501}
+    - target: {fileID: 7286405005108080800, guid: d9043e317d3c0264f8c3944be81bd832, type: 3}
+      propertyPath: partesCorpo.Array.data[2].parteCorpo
+      value: 
+      objectReference: {fileID: 1400919114099448365}
+    - target: {fileID: 7286405005108080800, guid: d9043e317d3c0264f8c3944be81bd832, type: 3}
+      propertyPath: partesCorpo.Array.data[3].parteCorpo
+      value: 
+      objectReference: {fileID: 3585291162060918891}
+    - target: {fileID: 7286405005108080800, guid: d9043e317d3c0264f8c3944be81bd832, type: 3}
+      propertyPath: partesCorpo.Array.data[4].parteCorpo
+      value: 
+      objectReference: {fileID: 5014564637546454322}
+    - target: {fileID: 7286405005108080800, guid: d9043e317d3c0264f8c3944be81bd832, type: 3}
+      propertyPath: partesCorpo.Array.data[5].parteCorpo
+      value: 
+      objectReference: {fileID: 523275157973552037}
+    - target: {fileID: 7286405005108080800, guid: d9043e317d3c0264f8c3944be81bd832, type: 3}
+      propertyPath: partesCorpo.Array.data[6].parteCorpo
+      value: 
+      objectReference: {fileID: 5760205446070138997}
+    - target: {fileID: 7286405005108080800, guid: d9043e317d3c0264f8c3944be81bd832, type: 3}
+      propertyPath: partesCorpo.Array.data[0].nomeDisplay
+      value: "Cabe\xE7a"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7286405005108080800, guid: d9043e317d3c0264f8c3944be81bd832, type: 3}
+      propertyPath: partesCorpo.Array.data[1].nomeDisplay
+      value: "Bra\xE7o Esquerdo"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7286405005108080800, guid: d9043e317d3c0264f8c3944be81bd832, type: 3}
+      propertyPath: partesCorpo.Array.data[2].nomeDisplay
+      value: "M\xE3o Esquerda"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7286405005108080800, guid: d9043e317d3c0264f8c3944be81bd832, type: 3}
+      propertyPath: partesCorpo.Array.data[3].nomeDisplay
+      value: "Bra\xE7o Direito"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7286405005108080800, guid: d9043e317d3c0264f8c3944be81bd832, type: 3}
+      propertyPath: partesCorpo.Array.data[4].nomeDisplay
+      value: "M\xE3o Direita"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7286405005108080800, guid: d9043e317d3c0264f8c3944be81bd832, type: 3}
+      propertyPath: partesCorpo.Array.data[5].nomeDisplay
+      value: Perna Esquerda
+      objectReference: {fileID: 0}
+    - target: {fileID: 7286405005108080800, guid: d9043e317d3c0264f8c3944be81bd832, type: 3}
+      propertyPath: partesCorpo.Array.data[6].nomeDisplay
+      value: Perna Direita
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9043e317d3c0264f8c3944be81bd832, type: 3}
 --- !u!4 &6342595118188641561 stripped

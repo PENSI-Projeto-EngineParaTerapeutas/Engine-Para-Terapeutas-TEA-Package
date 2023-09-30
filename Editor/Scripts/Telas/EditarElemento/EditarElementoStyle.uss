@@ -1,0 +1,43 @@
+.item-lista-elementos {
+	flex-direction: row;
+	align-items: center;
+	margin-top: 6px;
+	padding-left: 12px;
+}
+
+.item-lista-elementos:hover {
+	background-color: #D7EBFF;
+}
+
+.item-lista-elementos:checked {
+	background-color: #D7EBFF;
+}
+
+.lista-elementos {
+	background-color: #F0F3F4;
+	border-radius: 6px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+
+#botao-estrutura-fase {
+	flex-direction: row;
+	justify-content: flex-start;
+	background-color: #F0F3F4;
+	width: 100%;
+	border-radius: 6px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	padding-left: 12px;
+	border-width: 0px;
+}
+
+#botao-estrutura-fase > Image {
+	margin-right: 18px;
+}
+
+#botao-estrutura-fase > Label {
+	color: black;
+	font-size: 16px;
+	cursor: link;
+}

@@ -6,4 +6,5 @@
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
     <engine:TextField name="input-texto" class="input-padrao"/>
+    <engine:VisualElement name="regiao-tooltip-titulo"/>
 </engine:UXML>

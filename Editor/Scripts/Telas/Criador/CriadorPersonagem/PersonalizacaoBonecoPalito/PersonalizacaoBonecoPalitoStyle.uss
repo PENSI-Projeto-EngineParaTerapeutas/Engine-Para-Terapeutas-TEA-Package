@@ -1,0 +1,25 @@
+:root {
+	flex: 1;
+	justify-content: space-between;
+	padding-bottom: 12px;
+}
+
+#regiao-carregamento-botoes-confirmacao {
+	flex-direction: row;
+}
+
+#regiao-input-cor {
+	flex-grow: 1;
+	margin-left: 15px;
+	margin-top: 21px;
+}
+
+#regiao-input-cor > TemplateContainer  {
+	flex-direction: row;
+	align-items: center;
+}
+
+#regiao-input-cor > TemplateContainer {
+	color: black;
+	font-size: 15px;
+}

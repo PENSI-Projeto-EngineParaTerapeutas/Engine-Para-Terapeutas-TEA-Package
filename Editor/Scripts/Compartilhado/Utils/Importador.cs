@@ -1,4 +1,6 @@
 using System.IO;
+using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
@@ -24,6 +26,36 @@ namespace Autis.Editor.Utils {
 
         public static StyleSheet ImportarUSS(string caminho) {
             return AssetDatabase.LoadAssetAtPath<StyleSheet>(Path.Combine(ConstantesEditor.CaminhoPastaScriptsEditor, caminho));
+        }
+
+        public static List<Texture> ImportarSpriteCompletoPersonagensAvatar() {
+            return ImportarSpriteCompletoPersonagens("Personagens/Avatar/");
+        }
+
+        public static List<Texture> ImportarSpriteCompletoPersonagensLudicos() {
+            return ImportarSpriteCompletoPersonagens("Personagens/Ludicos/");
+        }
+
+        private static List<Texture> ImportarSpriteCompletoPersonagens(string caminhoPastaTipo) {
+            List<Texture> imagensPersonagens = new();
+            string[] pastasPersonagens = Directory.GetDirectories(Path.Combine(ConstantesEditor.CaminhoPastaAssetsRuntime, caminhoPastaTipo));
+
+            foreach(string pasta in pastasPersonagens) {
+                string caminhoFormatado = pasta.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+                string nomePasta = caminhoFormatado.Split(Path.AltDirectorySeparatorChar).Last();
+
+                string[] spritesPersonagem = Directory.GetFiles(caminhoFormatado);
+                foreach(string sprite in spritesPersonagem) {
+                    if(Path.GetExtension(sprite) == ExtensoesEditor.Meta || Path.GetFileNameWithoutExtension(sprite) != nomePasta) {
+                        continue;
+                    }
+
+                    Texture spriteCompletoPersonagem = AssetDatabase.LoadAssetAtPath<Texture>(sprite);
+                    imagensPersonagens.Add(spriteCompletoPersonagem);
+                }
+            }
+
+            return imagensPersonagens;
         }
     }
 }

@@ -5,8 +5,13 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:VisualElement name="regiao-botoes-confirmacao">
-        <engine:Button name="botao-confirmar" text="Confirmar"/>
-        <engine:Button name="botao-cancelar" text="Cancelar"/>
-    </engine:VisualElement>
+    <engine:Button name="botao-confirmar" class="botao-padrao">
+        <engine:Image name="imagem-icone-confirmar"/>
+        <engine:Label name="label-botao-confirmar" text="Confirmar"/>
+    </engine:Button>
+
+    <engine:Button name="botao-cancelar" class="ghost-botao-padrao">
+        <engine:Image name="imagem-icone-cancelar"/>
+        <engine:Label name="label-botao-cancelar" text="Cancelar"/>
+    </engine:Button>
 </engine:UXML>

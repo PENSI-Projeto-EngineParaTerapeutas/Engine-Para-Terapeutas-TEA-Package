@@ -23,5 +23,11 @@ namespace Autis.Runtime.Telas {
             }
         }
         private VisualElement root;
+
+        protected virtual void Awake() {
+            Root.styleSheets.Add(style);
+
+            return;
+        }
     }
 }

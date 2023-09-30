@@ -5,19 +5,36 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:VisualElement name="grupo-botoes-criadores">
-        <engine:Label name="label-espelhar" class="label-padrao" text="Defina os elementos da fase"/>
+    <engine:VisualElement name="conteudo-principal">
+        <engine:Label name="label-descricao-botoes-atores" class="label-padrao" text="Defina os componentes da fase. Todos os componentes são opcionais."/>
+        <engine:VisualElement name="grupo-botoes-criadores">
+            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-cenario">
+                <engine:Label text="Cenário"/>
+            </engine:Button>
+            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-instrucao">
+                <engine:Label text="Instrução"/>
+            </engine:Button>
+            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-objeto-interacao">
+                <engine:Label text="Elemento"/>
+            </engine:Button>
+            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-personagem">
+                <engine:Label text="Personagem"/>
+            </engine:Button>
+            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-reforco">
+                <engine:Label text="Reforço"/>
+            </engine:Button>
+            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-apoio">
+                <engine:Label text="Apoio"/>
+            </engine:Button>
+        </engine:VisualElement>
 
-        <engine:Button name="botao-carregar-secao-cenario" text="Cenário"/>
-        <engine:Button name="botao-carregar-secao-instrucao" text="Instrução"/>
-        <engine:Button name="botao-carregar-secao-objeto-interacao" text="Objeto interação"/>
-        <engine:Button name="botao-carregar-secao-personagem" text="Personagem"/>
-        <engine:Button name="botao-carregar-secao-reforco" text="Reforço"/>
-        <engine:Button name="botao-carregar-secao-apoio" text="Apoio"/>
+        <engine:Label name="label-descricao-botao-estrutura-fase" class="label-padrao" text="Estruture a fase, de acordo com os componentes definidos."/>
+        <engine:VisualElement name="grupo-botoes-informacoes-fase">
+            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-informacoes-fase" text="Estrutura da fase"/>
+        </engine:VisualElement>
     </engine:VisualElement>
-
-    <engine:VisualElement name="grupo-botoes-informacoes-fase">
-        <engine:Label name="label-espelhar" class="label-padrao" text="Estruture a fase, de acordo com os elementos definidos"/>
-        <engine:Button name="botao-carregar-secao-informacoes-fase" text="Estrutura da fase"/>
+    <engine:VisualElement name="regiao-ajuda">
+        <engine:Label name="label-ajuda" class="label-padrao" text="Precisa de ajuda"/>
+        <engine:Image name="imagem-icone-ajuda"/>
     </engine:VisualElement>
 </engine:UXML>

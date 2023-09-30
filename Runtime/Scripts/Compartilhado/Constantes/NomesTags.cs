@@ -9,5 +9,6 @@ namespace Autis.Runtime.Constantes {
         public static string Instrucoes => "Instrucoes";
         public static string ObjetosInteracao => "ObjetosInteracao";
         public static string Personagem => "Personagem";
+        public static string Gabarito => "Gabarito";
     }
 }

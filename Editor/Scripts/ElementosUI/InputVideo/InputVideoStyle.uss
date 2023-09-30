@@ -1,0 +1,46 @@
+#label-video {
+    margin-right: 0px;
+}
+
+#buscar-video {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    border-radius: 10px;
+    background-color: white;
+    cursor: link;
+    margin: 0px;
+    border-color: #B8BBC2;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+#label-botao {
+    flex-shrink: 1;
+    cursor: link;
+    -unity-font-style: bold;
+    font-size: 16px;
+    margin: 0px 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: noWrap;
+    -unity-text-overflow-position: end;
+}
+
+#cancelar-video {
+    cursor: link;
+    background-color: white;
+    border-width: 0px;
+    -unity-font-style: bold;
+    font-size: 16px;
+}
+
+#imagem-icone-arquivo-video {
+    cursor: link;
+}
+
+#imagem-icone-fechar {
+    cursor: link;
+}

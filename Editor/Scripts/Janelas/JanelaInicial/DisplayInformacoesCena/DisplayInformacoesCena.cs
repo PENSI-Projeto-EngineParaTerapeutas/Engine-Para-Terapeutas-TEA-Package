@@ -60,9 +60,9 @@ namespace Autis.Editor.UI {
         }
 
         private void ConfigurarLabels() {
-            labelNome.text = informacoesCena.NomeExibicao;
-            labelDificuldade.text = informacoesCena.NivelDificuldade.ToString();
-            labelFaixaEtaria.text = informacoesCena.FaixaEtaria.ToString();
+            labelNome.text = informacoesCena.nomeExibicao;
+            labelDificuldade.text = informacoesCena.nivelDificuldade.ToString();
+            labelFaixaEtaria.text = informacoesCena.faixaEtaria.ToString();
 
             return;
         }
@@ -75,7 +75,7 @@ namespace Autis.Editor.UI {
         }
 
         private void HandleClickBotaoAbrirCena() {
-            EditorSceneManager.OpenScene(Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsCenas, informacoesCena.NomeArquivo + ExtensoesEditor.Cena));
+            EditorSceneManager.OpenScene(Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsCenas, informacoesCena.nomeArquivo + ExtensoesEditor.Cena));
             LayoutLoader.CarregarTelaEditor();
             return;
         }

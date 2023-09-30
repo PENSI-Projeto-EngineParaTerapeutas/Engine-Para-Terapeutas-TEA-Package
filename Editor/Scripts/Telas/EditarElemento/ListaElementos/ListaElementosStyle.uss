@@ -1,0 +1,21 @@
+.item-lista-elementos {
+	flex-direction: row;
+	align-items: center;
+	margin-top: 6px;
+	padding-left: 12px;
+}
+
+.item-lista-elementos:hover {
+	background-color: #D7EBFF;
+}
+
+.item-lista-elementos:checked {
+	background-color: #D7EBFF;
+}
+
+.lista-elementos {
+	background-color: #F0F3F4;
+	border-radius: 6px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}

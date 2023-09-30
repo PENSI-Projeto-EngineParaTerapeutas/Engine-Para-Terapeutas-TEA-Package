@@ -2,21 +2,11 @@
 	flex-direction: column;
 }
 
-#input-texto > Label {
-	font-size: 16px;
-	-unity-font-style: bold;
-	margin-bottom: 4px;
+#input-texto > TextInput {
 	color: black;
 }
 
-#input-texto > TextInput {
-	background-color: #F0F3F4;
-	padding-left: 16px;
-	padding-right: 16px;
-	padding-top: 9.5px;
-	padding-bottom: 9.5px;
-	color: black;
-	font-size: 14px;
-	border-radius: 6px;
-	border-width: 0px;
+#regiao-tooltip-titulo {
+	position: absolute;
+	left: 0px;
 }

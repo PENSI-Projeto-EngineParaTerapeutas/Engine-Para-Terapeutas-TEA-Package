@@ -1,0 +1,7 @@
+:root {
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+	flex-direction: row;
+    margin-left: 10px;
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <engine:Label name="titulo-editor" text="Editar elementos da Fase 1"/>
+
+    <engine:VisualElement name="regiao-carregamento-lista-personagens"/>
+    <engine:VisualElement name="regiao-carregamento-lista-cenario"/>
+    <engine:VisualElement name="regiao-carregamento-lista-instrucoes"/>
+    <engine:VisualElement name="regiao-carregamento-lista-elementos-interacao"/>
+    <engine:VisualElement name="regiao-carregamento-lista-reforcos"/>
+    <engine:VisualElement name="regiao-carregamento-lista-apoios"/>
+    <engine:Foldout text="Estrutura Fase:" name="foldout-botao-estrutura-fase" value="true">
+        <engine:Button name="botao-estrutura-fase">
+            <engine:Image name="icone-botao-estrutura-fase"/>
+            <engine:Label name="label-nome-estrutura-fase"/>
+        </engine:Button>
+    </engine:Foldout>
+</engine:UXML>

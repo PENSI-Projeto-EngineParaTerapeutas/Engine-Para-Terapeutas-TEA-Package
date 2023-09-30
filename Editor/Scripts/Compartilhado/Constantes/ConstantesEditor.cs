@@ -8,15 +8,14 @@ namespace Autis.Editor.Constantes {
         public static string CaminhoPastaImagensEditor => Path.Combine(CaminhoPastaAssetsEditor, "Imagens/");
         public static string CaminhoPastaCenasEditor => Path.Combine(CaminhoPastaAssetsEditor, "Cenas/");
         public static string CaminhoPastaEventosEditor => Path.Combine(CaminhoPastaEditor, "Eventos/");
+        public static string CaminhoPastaFontesEditor => Path.Combine(CaminhoPastaAssetsEditor, "Fontes/");
 
         public static string CaminhoPastaRuntime => Path.Combine(ConstantesProjeto.CaminhoAssetDatabaseProjeto, "Runtime/");
         public static string CaminhoPastaAssetsRuntime => Path.Combine(CaminhoPastaRuntime, "Assets/");
-        public static string CaminhoPastaResourcesRuntime => Path.Combine(CaminhoPastaRuntime, "Resources/");
 
         public static string CaminhoArquivoClassesPadroesUSS => "Compartilhado/ClassesPadroesEditorStyle.uss";
 
         public static string CaminhoPastaBuild => "Build/WebGL/";
-        public static string NomePastaLayouts => "Layouts/";
         public static string NomeCenaPadrao => "CenaBasePadrao.unity";
     }
 }

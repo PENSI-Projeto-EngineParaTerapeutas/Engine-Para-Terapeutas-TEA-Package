@@ -6,10 +6,10 @@ using Autis.Runtime.Constantes;
 
 namespace Autis.Runtime.Utils {
     public static class ExploradorArquivos {
-        private static Action<Sprite> callbackAoCarregarImagem;
+        private static Action<Texture2D> callbackAoCarregarImagem;
         private static Action<AudioClip> callbackAoCarregarAudio;
 
-        public static void SelecionarSprite(Action<Sprite> callback) {
+        public static void SelecionarSprite(Action<Texture2D> callback) {
             callbackAoCarregarImagem = callback;
             AdaptadorExploradorArquivosJS.RequisitarSelecaoArquivo(HandleSelecaoArquivoImagemConcluida, ExtensoesRuntime.Imagem);
             return;
@@ -35,7 +35,7 @@ namespace Autis.Runtime.Utils {
                 texture = DownloadHandlerTexture.GetContent(request);
             }
 
-            callbackAoCarregarImagem.Invoke(Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f)));
+            callbackAoCarregarImagem.Invoke(texture);
             yield break;
         }
 

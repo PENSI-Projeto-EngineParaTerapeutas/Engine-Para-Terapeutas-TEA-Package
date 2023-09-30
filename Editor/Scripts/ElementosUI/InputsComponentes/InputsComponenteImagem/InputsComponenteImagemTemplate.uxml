@@ -5,9 +5,13 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:VisualElement name="regiao-input-imagem"/>
-    <editor:ColorField name="input-cor" class="input-padrao" label="Cor" tooltip="Cor que sobrepõem a imagem do ator"/>
 
+    <engine:VisualElement name="regiao-input-cor" tooltip="Cor que sobrepõe a imagem do ator"/>
+    <engine:VisualElement name="regiao-input-imagem"/>
+    
+
+
+    <!--
     <engine:VisualElement name="grupo-input-espelhar">
         <engine:Label name="label-espelhar" class="label-padrao" text="Espelhar"/>
 
@@ -16,4 +20,5 @@
             <engine:Toggle label="Vertical" class="input-padrao" name="input-espelhar-vertical" tooltip="Inverte a imagem do ator verticalmente"/>
         </engine:VisualElement>
     </engine:VisualElement>
+    -->
 </engine:UXML>

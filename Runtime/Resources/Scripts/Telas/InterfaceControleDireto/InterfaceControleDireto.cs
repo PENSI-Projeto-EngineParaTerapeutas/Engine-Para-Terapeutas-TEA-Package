@@ -20,25 +20,25 @@ namespace Autis.Runtime.Telas {
         #endregion
 
         private GameObject personagem;
-        private IdentificadorTipoControle tipoControle;
+        private DadosPersonagem dados;
 
         private Transform parteSelecionada;
         private ControleDireto controlePersonagem;
 
-        private void Awake() {
+        protected override void Awake() {
+            base.Awake();
+
             personagem = GameObject.FindGameObjectWithTag(NomesTags.Personagem);
             if(personagem == null) {
                 gameObject.SetActive(false);
                 return;
             }
 
-            tipoControle = personagem.GetComponent<IdentificadorTipoControle>();
-            if(tipoControle.Tipo != TipoControle.Direto) {
+            dados = personagem.GetComponent<DadosPersonagem>();
+            if(dados.tipoControle != TipoControle.Direto) {
                 gameObject.SetActive(false);
                 return;
             }
-
-            Root.styleSheets.Add(style);
 
             regiaoCarregamentoBoteoes = Root.Query<ScrollView>(NOME_REGIAO_CARREGAMENTO_BOTOES);
 
@@ -56,14 +56,13 @@ namespace Autis.Runtime.Telas {
         }
 
         private void ConfigurarBotoes() {
-            foreach(Transform parte in controlePersonagem.PartesCorpo) {
-                string nomeParte = parte.GetComponent<InformacoesParteControle>().NomeDisplay;
+            foreach(ParteControleDireto membro in controlePersonagem.PartesCorpo) {
                 Button botao = new() {
-                    name = parte.name,
-                    text = nomeParte,
+                    name = membro.NomeDisplay,
+                    text = membro.NomeDisplay,
                 };
 
-                botao.clicked += () => { parteSelecionada = parte; };
+                botao.clicked += () => { parteSelecionada = membro.ParteCorpo; };
 
                 regiaoCarregamentoBoteoes.Add(botao);
             }

@@ -6,7 +6,7 @@ namespace Autis.Editor.Constantes {
     public static class ConstantesProjeto {
         public static string CaminhoDinamicoPacote {
             get {
-                if (!string.IsNullOrWhiteSpace(caminhoDinamicoPacote)) {
+                if(!string.IsNullOrWhiteSpace(caminhoDinamicoPacote)) {
                     return caminhoDinamicoPacote;
                 }
 
@@ -14,7 +14,7 @@ namespace Autis.Editor.Constantes {
                 string caminhoArquivoInicializacao = AssetDatabase.GUIDToAssetPath(assets[0]);
 
                 string caminhoCompletoProjetoUnity = Directory.GetParent(Application.dataPath).FullName;
-                string caminhoCompletoPacoteEngineTEA = Directory.GetParent(Path.GetDirectoryName(Path.GetFullPath(caminhoArquivoInicializacao))).FullName.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+                string caminhoCompletoPacoteEngineTEA = Directory.GetParent(Path.GetDirectoryName(Path.GetFullPath(caminhoArquivoInicializacao))).Parent.FullName.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
                 caminhoDinamicoPacote = Path.GetRelativePath(caminhoCompletoProjetoUnity, caminhoCompletoPacoteEngineTEA);
 
                 return caminhoDinamicoPacote;

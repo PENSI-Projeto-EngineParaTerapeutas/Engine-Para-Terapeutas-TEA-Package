@@ -1,0 +1,9 @@
+:root {
+	flex: 1;
+	justify-content: space-between;
+	padding-bottom: 12px;
+}
+
+#label-campo-dropdown {
+	margin-top: 15px;
+}

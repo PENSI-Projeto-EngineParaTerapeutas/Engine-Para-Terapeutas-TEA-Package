@@ -5,6 +5,12 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <editor:ObjectField name="input-audio" class="input-padrao" label="Audio"/>
-    <engine:Button name="buscar-audio" text="Buscar"/>
+    <editor:ObjectField name="input-audio" class="input-padrao"/>
+    <engine:Button name="buscar-audio" text="">
+        <engine:Image name="imagem-icone-arquivo-audio"/>
+        <engine:Label name="label-botao" text="Selecionar áudio"/>
+        <engine:Button name="cancelar-audio">
+            <engine:Image name="imagem-icone-fechar"/>
+        </engine:Button>
+    </engine:Button>
 </engine:UXML>

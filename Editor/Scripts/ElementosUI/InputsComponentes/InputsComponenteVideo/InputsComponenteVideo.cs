@@ -46,17 +46,17 @@ namespace Autis.Editor.UI {
 
         public InputsComponenteVideo() {
             regiaoInputVideo = Root.Query<VisualElement>(NOME_REGIAO_INPUT_VIDEO);
-            campoReproduzirIniciar = Root.Query<Toggle>(NOME_INPUT_REPRODUZIR_INICIAR);
-            campoReproduzirLoop = Root.Query<Toggle>(NOME_INPUT_REPRODUZIR_LOOP);
-            campoReproduzirSom = Root.Query<Toggle>(NOME_INPUT_REPRODUZIR_SOM);
+            //campoReproduzirIniciar = Root.Query<Toggle>(NOME_INPUT_REPRODUZIR_INICIAR);
+            //campoReproduzirLoop = Root.Query<Toggle>(NOME_INPUT_REPRODUZIR_LOOP);
+            //campoReproduzirSom = Root.Query<Toggle>(NOME_INPUT_REPRODUZIR_SOM);
             campoVelocidade = Root.Query<FloatField>(NOME_INPUT_VELOCIDADE);
 
             inputVideo = new InputVideo();
 
             ConfigurarInputVideo();
-            ConfigurarCampoReproduzirIniciar();
-            ConfigurarCampoReproduzirLoop();
-            ConfigurarCampoReproduzirSom();
+            //ConfigurarCampoReproduzirIniciar();
+            //ConfigurarCampoReproduzirLoop();
+            //ConfigurarCampoReproduzirSom();
             ConfigurarCampoVelocidade();
 
             return;
@@ -104,9 +104,9 @@ namespace Autis.Editor.UI {
             componentePlayer = componenteVideo.Player;
 
             InputVideo.CampoVideo.SetValueWithoutNotify(componenteVideo.nomeArquivoVideo);
-            CampoReproduzirIniciar.SetValueWithoutNotify(componentePlayer.playOnAwake);
-            CampoReproduzirLoop.SetValueWithoutNotify(componentePlayer.isLooping);
-            CampoReproduzirSom.SetValueWithoutNotify(!componenteVideo.PlayerAudio.mute);
+            //CampoReproduzirIniciar.SetValueWithoutNotify(componentePlayer.playOnAwake);
+            //CampoReproduzirLoop.SetValueWithoutNotify(componentePlayer.isLooping);
+            //CampoReproduzirSom.SetValueWithoutNotify(!componenteVideo.PlayerAudio.mute);
             CampoVelocidade.SetValueWithoutNotify(componentePlayer.playbackSpeed);
 
             InputVideo.CampoVideo.RegisterCallback<ChangeEvent<string>>(evt => {
@@ -114,17 +114,17 @@ namespace Autis.Editor.UI {
                 Salvamento.SalvarProjeto();
             });
 
-            CampoReproduzirIniciar.RegisterCallback<ChangeEvent<bool>>(evt => {
-                componentePlayer.playOnAwake = CampoReproduzirIniciar.value;
-            });
+            //CampoReproduzirIniciar.RegisterCallback<ChangeEvent<bool>>(evt => {
+            //    componentePlayer.playOnAwake = CampoReproduzirIniciar.value;
+            //});
 
-            CampoReproduzirLoop.RegisterCallback<ChangeEvent<bool>>(evt => {
-                componentePlayer.isLooping = CampoReproduzirLoop.value;
-            });
+            //CampoReproduzirLoop.RegisterCallback<ChangeEvent<bool>>(evt => {
+            //    componentePlayer.isLooping = CampoReproduzirLoop.value;
+            //});
 
-            CampoReproduzirSom.RegisterCallback<ChangeEvent<bool>>(evt => {
-                componenteVideo.PlayerAudio.mute = CampoReproduzirSom.value;
-            });
+            //CampoReproduzirSom.RegisterCallback<ChangeEvent<bool>>(evt => {
+            //    componenteVideo.PlayerAudio.mute = CampoReproduzirSom.value;
+            //});
 
             CampoVelocidade.RegisterCallback<ChangeEvent<float>>(evt => {
                 if(evt.newValue < 0f) {

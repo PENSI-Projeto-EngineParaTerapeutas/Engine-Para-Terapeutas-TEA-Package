@@ -4,7 +4,13 @@
     xmlns:engine="UnityEngine.UIElements"
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
->   
-    <engine:TextField name="input-video" class="input-padrao" label="Vídeo"/>
-    <engine:Button name="buscar-video" text="Buscar"/>
+>
+    <engine:TextField name="input-video" class="input-padrao"/>
+    <engine:Button name="buscar-video" text="">
+        <engine:Image name="imagem-icone-arquivo-video"/>
+        <engine:Label name="label-botao" text="Selecionar video"/>
+        <engine:Button name="cancelar-video">
+            <engine:Image name="imagem-icone-fechar"/>
+        </engine:Button>
+    </engine:Button>
 </engine:UXML>

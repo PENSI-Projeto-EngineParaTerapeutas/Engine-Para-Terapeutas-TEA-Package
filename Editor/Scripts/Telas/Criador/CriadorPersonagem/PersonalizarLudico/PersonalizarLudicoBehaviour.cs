@@ -1,13 +1,12 @@
 using System;
 using System.IO;
-using System.Linq;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Autis.Editor.Constantes;
 using Autis.Editor.Telas;
 using Autis.Editor.Utils;
+using Autis.Editor.Manipuladores;
 using Autis.Editor.UI;
 
 namespace Autis.Editor.Criadores {
@@ -26,27 +25,26 @@ namespace Autis.Editor.Criadores {
         private const string NOME_REGIAO_TIPOS_PERSONAGEM = "regiao-tipos-personagens";
         private readonly VisualElement regiaoTiposPersonagem;
 
-        private const string NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO = "regiao-carregamento-botoes-confirmacao";
-        private readonly VisualElement regiaoCarregamentoBotoesConfirmacao;
-
-        private readonly BotoesConfirmacao botoesConfirmacao;
+        protected const string NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO = "regiao-carregamento-botoes-confirmacao";
+        protected VisualElement regiaoCarregamentoBotoesConfirmacao;
+        
+        protected BotoesConfirmacao botoesConfirmacao;
 
         #endregion
 
+        public Action OnConfirmarCriacao { get; set; }
+
         private readonly GameObject prefabOriginal;
-        private readonly Action<GameObject> reiniciarCriacaoComPrefabPersonagem;
+        private readonly ManipuladorPersonagemLudico manipuladorPersonagemLudico;
 
         private string nomePrefabAtual = string.Empty;
 
-        public PersonalizarLudicoBehaviour(GameObject prefabAtual, Action<GameObject> callbackReinicarCriacao) {
-            prefabOriginal = prefabAtual;
-            nomePrefabAtual = prefabAtual.name;
-            reiniciarCriacaoComPrefabPersonagem = callbackReinicarCriacao;
-
-            botoesConfirmacao = new BotoesConfirmacao();
+        public PersonalizarLudicoBehaviour(ManipuladorPersonagemLudico manipuladorPersonagemLudico) {
+            this.manipuladorPersonagemLudico = manipuladorPersonagemLudico;
+            prefabOriginal = manipuladorPersonagemLudico.PrefabObjeto;
+            nomePrefabAtual = manipuladorPersonagemLudico.PrefabObjeto.name;
 
             regiaoTiposPersonagem = Root.Query<VisualElement>(NOME_REGIAO_TIPOS_PERSONAGEM);
-            regiaoCarregamentoBotoesConfirmacao = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO);
 
             CarregarTiposPersonagem();
             ConfigurarBotoesConfirmacao();
@@ -55,14 +53,14 @@ namespace Autis.Editor.Criadores {
         }
 
         private void CarregarTiposPersonagem() {
-            List<Texture2D> imagensPersonagens = CarregarImagensPersonagens();
+            List<Texture> imagensPersonagens = Importador.ImportarSpriteCompletoPersonagensLudicos();
 
-            foreach(Texture2D imagemPersonagem in imagensPersonagens) {
+            foreach(Texture imagemPersonagem in imagensPersonagens) {
                 Image displayImagemPersonagem = new() {
                     image = imagemPersonagem,
                 };
 
-                VisualElement botaoSelecaoPersonagem = new();
+                Button botaoSelecaoPersonagem = new();
                 botaoSelecaoPersonagem.Add(displayImagemPersonagem);
 
                 botaoSelecaoPersonagem.RegisterCallback<ClickEvent>(evt => {
@@ -73,28 +71,6 @@ namespace Autis.Editor.Criadores {
             }
 
             return;
-        }
-
-        private List<Texture2D> CarregarImagensPersonagens() {
-            List<Texture2D> imagensPersonagens = new();
-            string[] pastasPersonagens = Directory.GetDirectories(Path.Combine(ConstantesEditor.CaminhoPastaAssetsRuntime, "Personagens/"));
-
-            foreach(string pasta in pastasPersonagens) {
-                string caminhoFormatado = pasta.Replace(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
-                string nomePasta = caminhoFormatado.Split(Path.AltDirectorySeparatorChar).Last();
-
-                string[] spritesPersonagem = Directory.GetFiles(caminhoFormatado);
-                foreach(string sprite in spritesPersonagem) {
-                    if(Path.GetExtension(sprite) == ExtensoesEditor.Meta || Path.GetFileNameWithoutExtension(sprite) != nomePasta) {
-                        continue;
-                    }
-
-                    Texture2D spriteCompletoPersonagem = AssetDatabase.LoadAssetAtPath<Texture2D>(sprite);
-                    imagensPersonagens.Add(spriteCompletoPersonagem);
-                }
-            }
-
-            return imagensPersonagens;
         }
 
         private void AlterarPersonagem(string nomePersonagem) {
@@ -110,24 +86,40 @@ namespace Autis.Editor.Criadores {
                 Debug.LogError(MENSAGEM_ERRO_CARREGAR_PREFAB_PERSONAGEM.Replace("{nome}", nomePersonagem));
             }
 
-            reiniciarCriacaoComPrefabPersonagem.Invoke(prefabPersonagem);
+            manipuladorPersonagemLudico.AlterarPrefab(prefabPersonagem);
+            botoesConfirmacao.BotaoConfirmar.SetEnabled(manipuladorPersonagemLudico.PossuiPersonagemSelecionado());
 
             return;
         }
 
         private void ConfigurarBotoesConfirmacao() {
-            regiaoCarregamentoBotoesConfirmacao.Add(botoesConfirmacao.Root);
+            botoesConfirmacao = new();
+            botoesConfirmacao.BotaoConfirmar.clicked += HandleBotaoConfirmarClick;
             botoesConfirmacao.BotaoCancelar.clicked += HandleBotaoCancelarClick;
+
+            regiaoCarregamentoBotoesConfirmacao = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO);
+            regiaoCarregamentoBotoesConfirmacao.Add(botoesConfirmacao.Root);
+
+            return;
+        }
+
+        private void HandleBotaoConfirmarClick() {
+            OnConfirmarCriacao?.Invoke();
+
+            Navigator.Instance.Voltar();
 
             return;
         }
 
         private void HandleBotaoCancelarClick() {
             if(nomePrefabAtual == prefabOriginal.name) {
+                Navigator.Instance.Voltar();
                 return;
             }
 
-            reiniciarCriacaoComPrefabPersonagem.Invoke(prefabOriginal);
+            manipuladorPersonagemLudico.AlterarPrefab(prefabOriginal);
+            Navigator.Instance.Voltar();
+
             return;
         }
     }

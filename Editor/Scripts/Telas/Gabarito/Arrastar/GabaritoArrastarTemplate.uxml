@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <engine:VisualElement name="regiao-titulo">
+        <engine:Label name="titulo-gabarito" text="Ações Esperadas - Arrastar" class="titulo-padrao"/>
+        <engine:VisualElement name="regiao-carregamento-tooltip-titulo"/>
+    </engine:VisualElement>
+
+    <engine:Label name="descricao-funcionalidades" text="Defina o conjunto de ações esperadas na fase. Para cada elemento que poderá ser arrastado na fase (elemento origem), defina o local que ele deve ser posicionado (elemento destino)." class="label-padrao"/>
+
+    <engine:ScrollView name="regiao-carregamento-associacoes"/>
+
+    <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>
+</engine:UXML>

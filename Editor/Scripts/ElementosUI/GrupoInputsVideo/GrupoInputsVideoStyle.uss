@@ -1,0 +1,14 @@
+#regiao-input-video {
+	margin-bottom: 24px;
+}
+
+#regiao-input-video > TemplateContainer > Button {
+	margin: 0px;
+}
+
+#label-slider-volume {
+	color: black;
+	font-size: 15px;
+	-unity-font-style: bold;
+	margin-bottom: 6px;
+}

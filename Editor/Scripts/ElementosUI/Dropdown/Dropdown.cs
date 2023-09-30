@@ -1,6 +1,9 @@
-using UnityEngine.UIElements;
-using System.Collections.Generic;
+using System;
+using Autis.Editor.Utils;
 using Autis.Editor.Constantes;
+using UnityEngine.UIElements;
+using UnityEditor.UIElements;
+using System.Collections.Generic;
 
 namespace Autis.Editor.UI {
     public class Dropdown : ElementoInterfaceEditor, IReiniciavel {
@@ -20,6 +23,10 @@ namespace Autis.Editor.UI {
 
         private const string NOME_DROPDOWN = "campo-dropdown";
         private readonly DropdownField campo;
+
+        private const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO = "regiao-tooltip-titulo";
+        private readonly InterrogacaoToolTip tooltipTitulo;
+        private VisualElement regiaoCarregamentoTooltipTitulo;
 
         #endregion
 
@@ -43,13 +50,8 @@ namespace Autis.Editor.UI {
         }
 
         public Dropdown(string label, List<string> opcoes) {
-            List<string> opcoesDropdown = new() {
-                VALOR_PADRAO_DROPDOWN,
-            };
-
-            foreach(string opcao in opcoes) {
-                opcoesDropdown.Add(opcao);
-            }
+            List<string> opcoesDropdown = opcoes;
+            opcoesDropdown.Insert(0, VALOR_PADRAO_DROPDOWN);
 
             campo = new(label, opcoesDropdown, 0) {
                 name = NOME_DROPDOWN,
@@ -66,18 +68,18 @@ namespace Autis.Editor.UI {
         }
 
         public Dropdown(string label, string tooltip, List<string> opcoes) {
-            List<string> opcoesDropdown = new() {
-                VALOR_PADRAO_DROPDOWN,
-            };
-
-            foreach(string opcao in opcoes) {
-                opcoesDropdown.Add(opcao);
-            }
+            List<string> opcoesDropdown = opcoes;
+            opcoesDropdown.Insert(0, VALOR_PADRAO_DROPDOWN);
 
             campo = new(label, opcoesDropdown, 0) {
                 name = NOME_DROPDOWN,
                 tooltip = tooltip,
             };
+
+            tooltipTitulo = new InterrogacaoToolTip();
+
+            CarregarTooltipTitulo(tooltip);
+
             campo.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
             campo.AddToClassList(CLASSE_STYLE_PADRAO);
 
@@ -89,6 +91,17 @@ namespace Autis.Editor.UI {
             return;
         }
 
+        private void CarregarTooltipTitulo(string tooltipTexto) {
+            if (!String.IsNullOrEmpty(tooltipTexto)) {
+                regiaoCarregamentoTooltipTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
+                regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);
+
+                tooltipTitulo.SetTexto(tooltipTexto);
+            }
+            
+            return;
+        }
+            
         public void ReiniciarCampos() {
             campo.SetValueWithoutNotify(VALOR_PADRAO_DROPDOWN);
             campo.SendEvent(new ChangeEvent<string>());

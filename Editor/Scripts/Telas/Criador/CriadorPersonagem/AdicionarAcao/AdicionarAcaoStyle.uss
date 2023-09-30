@@ -1,0 +1,53 @@
+:root {
+	flex: 1;
+	justify-content: space-between;
+	padding-bottom: 12px;
+}
+
+#grupo-radio-button {
+	flex-direction: column;
+	background-color: #F0F3F4;
+	padding-right: 10px;
+	padding-bottom: 20px;
+	border-radius: 8px;
+}
+
+#regiao-carregamento-botoes-confirmacao {
+	flex-direction: row;
+}
+
+#regiao-carregamento-input-animacao {
+	flex-grow: 1;
+}
+
+#regiao-radio-button-criar-novo-elemento, #regiao-radio-button-vincular-elemento-existente {
+	margin-left: 10px;
+}
+
+#campo-dropdown {
+	background-color: #E2E8E9;
+	height: 40px;
+}
+
+#campo-dropdown > VisualElement {
+	background-color: #E2E8E9;
+}
+
+#label-regiao-definacao-acao {
+	margin-top: 5%;
+	-unity-font-style: bold;
+	margin-left: 15px;
+}
+
+#botao-criar-elemento {
+	height: 45%;
+	border-radius: 20px;
+	width: 50%;
+	font-size: 15px;
+	align-self: center;
+}
+
+#label-input-animacao {
+	margin-top: 5%;
+	-unity-font-style: bold;
+}

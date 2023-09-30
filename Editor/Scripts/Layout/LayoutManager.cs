@@ -3,7 +3,6 @@ using System.Reflection;
 using Type = System.Type;
 using UnityEngine;
 using Autis.Editor.Constantes;
-using UnityEditor;
 
 namespace Autis.Editor.UI {
     public static class LayoutManager {

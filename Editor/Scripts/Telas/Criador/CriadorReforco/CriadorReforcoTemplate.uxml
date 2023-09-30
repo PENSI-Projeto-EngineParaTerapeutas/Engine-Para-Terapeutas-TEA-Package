@@ -5,14 +5,29 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:VisualElement name="regiao-carregamento-header"/>
-    
-    <editor:EnumField name="input-tipo-reforco" class="input-padrao" label="Tipo" tooltip="Define o tipo do Ator"/>
+    <engine:ScrollView name="regiao-conteudo-principal">
+        <engine:VisualElement name="regiao-titulo" class="regiao-titulo-padrao">
+            <engine:Label name="label-titulo" class="titulo-padrao" text="Defina o reforço"/>
+            <engine:VisualElement name="regiao-tooltip-titulo"/>
+        </engine:VisualElement>
 
-    <engine:VisualElement name="regiao-carregamento-inputs-imagem"/>
-    <engine:VisualElement name="regiao-carregamento-inputs-audio"/>
-    <engine:VisualElement name="regiao-carregamento-inputs-texto"/>
-    <engine:VisualElement name="regiao-carregamento-inputs-video"/>
+        <engine:VisualElement name="regiao-input-nome"/>
+    
+        <engine:VisualElement name="regiao-carregamento-input-tipo-reforco"/>
+
+        <engine:VisualElement name="regiao-carregamento-inputs-imagem"/>
+        <engine:VisualElement name="regiao-carregamento-inputs-audio"/>
+        <engine:VisualElement name="regiao-carregamento-inputs-texto"/>
+        <engine:VisualElement name="regiao-carregamento-inputs-video"/>
+
+        <engine:VisualElement name="regiao-carregamento-tipo-acionamento"/>
+        <engine:VisualElement name="regiao-tempo-acionamento"/>
+
+        <engine:Foldout text="Opções Avançadas (Opcional)" name="foldout-opcoes-avancadas" value="false">
+            <engine:VisualElement name="regiao-carregamento-inputs-posicao"/>
+            <engine:VisualElement name="regiao-carregamento-inputs-tamanho"/>
+        </engine:Foldout>
+    </engine:ScrollView>
 
     <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>
 </engine:UXML>

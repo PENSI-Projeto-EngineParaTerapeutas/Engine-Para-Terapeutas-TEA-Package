@@ -5,8 +5,9 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:Label name="label-titulo" class="label-padrao" text="Personalização do Boneco Palito"/>
-    <editor:ColorField name="input-cor" class="input-padrao" label="Cor do boneco palito" tooltip="Cor que sobrepõem a imagem do ator"/>
+    <engine:Label name="label-titulo" class="titulo-padrao" text="Personalização do Boneco Palito"/>
+
+    <engine:VisualElement name="regiao-input-cor"/>
 
     <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>
 </engine:UXML>

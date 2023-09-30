@@ -1,0 +1,46 @@
+:root {
+	flex: 1;
+	justify-content: space-between;
+	padding-bottom: 12px;
+}
+
+#regiao-carregamento-telas > TemplateContainer {
+	width: 90%;
+	align-self: center;
+}
+
+#regiao-botoes-principais  {
+	width: 80%;
+	align-self: center;
+}
+
+#grupo-radio-button {
+	flex-direction: column;
+}
+
+#regiao-radio-button-cor-unica {
+	flex-direction: row;
+	align-self: flex-start;
+}
+
+#radio-opcao-cor-unica {
+	border-right-width: 40px;
+}
+
+#regiao-carregamento-inputs-imagem {
+	width: 80%;
+	align-self: center;
+}
+
+#buscar-imagem {
+	width: 85%;
+	align-self: center;
+}
+
+#regiao-radio-button-imagem {
+	margin-top: 10px;
+}
+
+#radio-opcao-imagem {
+	margin-bottom: 25px;
+}

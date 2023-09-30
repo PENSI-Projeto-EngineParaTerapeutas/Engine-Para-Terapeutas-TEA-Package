@@ -1,7 +1,41 @@
-#regiao-botoes-principais {
-	flex-direction: row;
+:root, #regiao-carregamento-telas, #main-scrollview {
+	flex: 1;
+    background-color: white;
 }
 
-#regiao-botoes-principais > Button {
+#main-scrollview > VisualElement > VisualElement > VisualElement {
+	height: 100%;
+}
+
+#regiao-botoes-principais {
+	flex-direction: row;
+	background-color: #282828;
+}
+
+#criador-elementos, #editor-elementos {
 	flex: 1;
+	padding: 0px;
+	margin: 0px;
+	border-width: 0px;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+	font-size: 17px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+}
+
+.aba-ativa {
+	color: #1976D2;
+	background-color: white;
+}
+
+.aba-inativa {
+	color: #1A2027;
+	background-color: #E7EAED;
+}
+
+#regiao-carregamento-telas {
+	padding: 12px 21px 12px 21px;
 }

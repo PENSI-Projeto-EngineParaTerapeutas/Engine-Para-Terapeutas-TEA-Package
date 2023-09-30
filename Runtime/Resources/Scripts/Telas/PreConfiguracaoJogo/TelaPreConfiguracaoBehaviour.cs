@@ -5,6 +5,10 @@ using Autis.Runtime.Eventos;
 
 namespace Autis.Runtime.Telas {
     public class TelaPreConfiguracaoBehaviour : TelaJogo {
+        #if UNITY_EDITOR
+        public bool exibirPreConfiguracao = false;
+        #endif
+
         private enum AbasTelaPreConfiguracao {
             Nenhuma,
             ConfigurarCenario,
@@ -54,12 +58,18 @@ namespace Autis.Runtime.Telas {
 
         AbasTelaPreConfiguracao abaAtual = AbasTelaPreConfiguracao.Nenhuma;
 
+        [SerializeField]
         private EventoJogo eventoExibirContextualizacao;
 
-        private void Awake() {
-            Root.styleSheets.Add(style);
+        protected override void Awake() {
+            #if UNITY_EDITOR
+            this.gameObject.SetActive(exibirPreConfiguracao);
+            if(!exibirPreConfiguracao) {
+                return;
+            }
+            #endif
 
-            eventoExibirContextualizacao = Resources.Load<EventoJogo>("ScriptableObjects/EventoApresentarContexto");
+            base.Awake();
 
             secaoConfiguracaoCenario = new ConfiguracaoCenarioBehaviour();
             secaoConfiguracaoApoios = new ConfiguracaoApoioBehaviour();

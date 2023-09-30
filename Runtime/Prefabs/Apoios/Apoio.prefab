@@ -258,4 +258,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4795685ce768ed4baf2c5a9b684fe05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tipoAcionamento: 1
+  eventoErroGeral: {fileID: 11400000, guid: c5232692f13aaea48a5cb236fab4233d, type: 2}
+  eventoErroComOrdem: {fileID: 11400000, guid: 999f9354cc4b86f4187925eb29c53a62, type: 2}

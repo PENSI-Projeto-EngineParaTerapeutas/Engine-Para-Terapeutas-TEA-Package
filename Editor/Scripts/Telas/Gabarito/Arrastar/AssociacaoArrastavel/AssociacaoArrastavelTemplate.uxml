@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <engine:VisualElement name="regiao-elemento-origem">
+        <engine:VisualElement name="regiao-label-elemento-origem">
+            <engine:Label name="label-elemento-origem" text="Elemento origem:" class="label-padrao"/>
+            <engine:VisualElement name="regiao-carregamento-tooltip-elemento-origem"/>
+        </engine:VisualElement>
+
+        <engine:Label name="label-nome-elemento-origem" text="nome-elemento-origem" class="label-padrao"/>
+    </engine:VisualElement>
+
+    <engine:VisualElement name="regiao-carregamento-dropdown-elemento-destino"/>
+</engine:UXML>

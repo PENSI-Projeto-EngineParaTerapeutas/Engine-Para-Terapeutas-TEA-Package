@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <engine:VisualElement name="regiao-input-audio"/>
+    <engine:VisualElement name="regiao-slider-volume">
+        <engine:Label name="label-slider-volume" class="label-padrao" text="Volume"/>
+        <engine:Slider name="input-volume" class="slider-padrao input-padrao" tooltip="Define o volume do áudio que será tocado no jogo."/>
+    </engine:VisualElement>
+</engine:UXML>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <engine:VisualElement name="conteiner-input-texto">
+        <engine:TextField name="input-texto"/>
+    </engine:VisualElement>
+    <engine:Label name="label-configuracao-texto" text="Configuração do texto"/>
+    <engine:VisualElement name="formatacao-texto">
+        <editor:FloatField name="input-tamanho-texto" label="Tamanho" tooltip="Define o tamanho do texto"/>
+
+        <engine:VisualElement name="estilizacao-texto">
+            <engine:Toggle name="input-negrito" tooltip="Define se texto está em negrito"/>
+            <engine:Toggle name="input-italico" tooltip="Define se texto está em itálico"/>
+            <engine:Toggle name="input-sublinhado"  tooltip="Define se texto está sublinhado"/>
+        </engine:VisualElement>
+
+        <engine:VisualElement name="regiao-input-cor" label="Cor" tooltip="Cor do texto exibido no ator"/>
+    </engine:VisualElement>
+</engine:UXML>

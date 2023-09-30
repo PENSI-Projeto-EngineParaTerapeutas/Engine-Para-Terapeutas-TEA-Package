@@ -65,7 +65,7 @@ namespace Autis.Editor.Telas {
 
         private void AdicionarDisplayCena(Cena cena) {
             DisplayInformacoesCena informacoes = new(cena);
-            informacoes.Root.name = cena.NomeExibicao;
+            informacoes.Root.name = cena.nomeExibicao;
             informacoes.CallbackExcluirCena = HandleExclusaoCena;
 
             grupoListaCenas.Add(informacoes.Root);

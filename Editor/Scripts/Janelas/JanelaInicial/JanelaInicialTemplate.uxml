@@ -6,15 +6,28 @@
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
     <engine:ScrollView>
-        <engine:Label name="titulo" text="AUTIS"/>
 
+        <engine:VisualElement name="cabecalho">
+            <engine:Label name="titulo" text="AUTIS"/>
+            <engine:VisualElement name="nome-jogo">
+                <engine:Label name="label-nome-jogo" class="label-padrao" text="Nome do jogo"/>
+                <engine:TextField name="input-nome-jogo" class="input-padrao" tooltip="Escreva aqui o nome do seu jogo"/>
+            </engine:VisualElement>
+            <engine:Button name="botao-baixar-jogo" text="Baixar jogo"/>
+        </engine:VisualElement>
+
+        <engine:Label name="label-descricao" class="label-padrao" text="Esta é a tela inicial para criação de seu jogo. Aqui você também pode gerenciar todas as fases do jogo."/>
+        
         <engine:VisualElement name="lista-cenas"/>
 
         <engine:VisualElement name="aviso-lista-cenas-vazia">
-            <engine:Label name="label-sem-cenas-criadas" text="Nenhuma cena foi criada ainda"/>
-            <engine:Label name="label-descricao-lista-cenas-vazia" text="Clique no botão para criar uma nova cena"/>
+            <engine:Label name="label-sem-cenas-criadas" text="Você ainda não possui fases criadas"/>
+            <engine:Label name="label-descricao-lista-cenas-vazia" text="Comece adicionando uma nova fase  para iniciar a criação de um jogo."/>
         </engine:VisualElement>
 
-        <engine:Button name="botao-criar-cena" text="Nova Cena"/>
+        <engine:VisualElement name="rodape">
+            <engine:Button name="botao-criar-cena" text="Adicionar Fase"/>
+            <engine:Label name="label-descricao" class="label-padrao" text="Se você terminou de criar todas as fases do seu jogo, clique no botão Baixar Jogo."/>
+        </engine:VisualElement> 
     </engine:ScrollView>
 </engine:UXML>

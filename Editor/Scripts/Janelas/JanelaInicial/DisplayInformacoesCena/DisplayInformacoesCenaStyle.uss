@@ -2,9 +2,17 @@
 	flex: 1;
 	flex-direction: row;
 	align-items: center;
+	justify-content: space-between;
 	margin-left: 12px;
+	margin-right: 12px;
 	margin-top: 9px;
 	margin-bottom: 9px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: #F2F2F2;
+	max-width: 630px;
+	width:100%;
+	max-height: 115px;
 }
 
 #informacoes-cenas {
@@ -14,6 +22,7 @@
 #nome-cena {
 	font-size: 12px;
 	margin-bottom: 3px;
+	-unity-font-style: bold;
 }
 
 #informacoes-extras {
@@ -22,10 +31,12 @@
 
 #nivel-dificuldade, #faixa-etaria {
 	font-size: 9px;
+	-unity-font-style: bold;
 }
 
 #nivel-dificuldade {
 	margin-right: 6px;
+	-unity-font-style: bold;
 }
 
 #botoes-controle-cena {

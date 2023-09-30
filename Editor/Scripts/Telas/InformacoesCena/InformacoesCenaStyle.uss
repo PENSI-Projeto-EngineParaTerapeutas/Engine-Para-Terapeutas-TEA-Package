@@ -1,0 +1,65 @@
+:root {
+	flex: 1;
+	justify-content: space-between;
+	padding-bottom: 12px;
+}
+
+#regiao-conteudo-principal {
+	flex-grow: 1;
+}
+
+#regiao-opcoes-tipo-gabarito {
+	flex-direction: row;
+	
+}
+
+#regiao-label-selecao-gabarito {
+	flex-direction: row;
+}
+
+#label-opcoes-gabarito {
+	margin-right: 6px;
+}
+
+#grupo-radio-button {
+	flex-direction: column;
+}
+
+.opcao-radio-button {
+	flex-direction: row-reverse;
+	align-items: center;
+	justify-content: flex-end;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-bottom: 20px;
+	background-color: rgba(1, 1, 1, 0);
+}
+
+.opcao-radio-button > VisualElement {
+	margin-top: 6px;
+}
+
+#regiao-carregamento-botoes-confirmacao {
+	flex-direction: row;
+}
+
+#botao-criar-gabarito {
+	height: 35%;
+	align-self: center;
+	width: 50%;
+}
+
+#input-nome {
+	height: 100%;
+	flex-grow: 1.5;
+	margin-bottom: 15px;
+}
+
+#input-nome > TextInput {
+	border-width: 0px;
+	color: black;
+}
+
+#input-dificuldade > VisualElement > TextElement {
+	margin: 0 0 0 7px;
+}

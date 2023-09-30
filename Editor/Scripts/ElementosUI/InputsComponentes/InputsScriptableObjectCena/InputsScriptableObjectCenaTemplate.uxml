@@ -5,11 +5,7 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:TextField name="input-nome" class="input-padrao" label="Nome cena" tooltip="Define o nome da cena"/>
-    
-    <editor:EnumField name="input-dificuldade" class="input-padrao" label="Dificuldade" tooltip="Define o nível de dificuldade da cena"/>
-    
-    <editor:IntegerField name="input-faixa-etaria" class="input-padrao" label="Faixa etária" tooltip="Define a idade recomendada para a cena"/>
-    
-    <engine:VisualElement name="regiao-input-video"/>
+    <engine:TextField name="input-nome" class="input-padrao" label="Nome" tooltip="Define o nome da cena"/>
+    <editor:EnumField name="input-dificuldade" class="input-padrao enum-field-padrao" label="Dificuldade" tooltip="Define o nível de dificuldade da cena"/>
+    <editor:IntegerField name="input-faixa-etaria" class="input-padrao input-numerico-int" label="Faixa etária" tooltip="Define a idade recomendada para a cena"/>
 </engine:UXML>

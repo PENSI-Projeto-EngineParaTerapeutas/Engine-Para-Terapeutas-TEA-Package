@@ -1,0 +1,53 @@
+:root {
+	background-color: #F0F3F4;
+	border-radius: 6px;
+	padding-top: 9px;
+	padding-bottom: 9px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+#regiao-label-elemento-origem {
+	flex-direction: row;
+}
+
+#label-elemento-origem {
+	margin-right: 6px;
+	margin-bottom: 6px;
+	font-size: 15px;
+	-unity-font-style: bold;
+}
+
+#label-nome-elemento-origem {
+	background-color: #E2E8E9;
+	font-size: 14px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	padding-left: 12px;
+	margin-bottom: 15px;
+	border-radius: 6px;
+}
+
+#regiao-carregamento-dropdown-elemento-destino {
+	background-color: #F0F3F4;
+}
+
+#regiao-carregamento-dropdown-elemento-destino DropdownField {
+	background-color: #F0F3F4;
+	border-radius: 0px;
+}
+
+#regiao-carregamento-dropdown-elemento-destino DropdownField > Label {
+	color: black;
+	font-size: 15px;
+	-unity-font-style: bold;
+	margin-bottom: 6px;
+}
+
+#regiao-carregamento-dropdown-elemento-destino DropdownField > VisualElement {
+	background-color: #E2E8E9;
+}
+
+#regiao-carregamento-dropdown-elemento-destino DropdownField > VisualElement > PopupTextElement {
+	color: black;
+}

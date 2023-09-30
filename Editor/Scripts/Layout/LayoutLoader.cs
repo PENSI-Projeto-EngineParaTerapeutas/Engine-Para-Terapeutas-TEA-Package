@@ -14,11 +14,5 @@ namespace Autis.Editor.UI {
             LayoutManager.CarregarLayout(ConstantesLayouts.NomeLayoutTelaEditor);
             return;
         }
-
-        [MenuItem("AUTIS/Brakeys")]
-        public static void CarregarTelBrakeys() {
-            LayoutManager.CarregarLayout("Brakeys.wlt");
-            return;
-        }
     }
 }

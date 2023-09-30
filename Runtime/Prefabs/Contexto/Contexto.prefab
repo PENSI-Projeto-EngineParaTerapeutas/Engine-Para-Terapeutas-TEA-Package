@@ -43,7 +43,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6768379345252784378}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -95,7 +95,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6768379345252784378}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -191,7 +191,7 @@ VideoPlayer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6768379345252784378}
-  m_Enabled: 1
+  m_Enabled: 0
   m_VideoClip: {fileID: 0}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
@@ -244,3 +244,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5fce8512d6d547439b2c1a8d125361f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nomeArquivoVideoContexto: 
+  eventoExibirContextualizacao: {fileID: 11400000, guid: 9ebdd9e46d20b874ba4931cf275d6b1b, type: 2}
+  eventoExibirInstrucao: {fileID: 11400000, guid: e740abfa834c6844e976f000831adaa7, type: 2}

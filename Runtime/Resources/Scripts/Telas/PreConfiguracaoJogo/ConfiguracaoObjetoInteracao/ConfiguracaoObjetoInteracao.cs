@@ -53,7 +53,9 @@ namespace Autis.Runtime.UI {
                 }
 
                 SpriteRenderer spriteObjetoInteracao = objetoInteracao.GetComponent<SpriteRenderer>();
-                ModificadorImagemDinamico modificadorImagem = new(spriteObjetoInteracao);
+                ModificadorImagemDinamico modificadorImagem = new(spriteObjetoInteracao.sprite, (novaImagem) => {
+                    spriteObjetoInteracao.sprite = Sprite.Create(novaImagem, new Rect(0.0f, 0.0f, novaImagem.width, novaImagem.height), new Vector2(0.5f, 0.5f)); // TODO: Ajustar para não aumentar ou diminuir o tamanho do ator
+                });
 
                 regiaoSelecaoObjetosInteracao.Add(modificadorImagem.Root);
 

@@ -12,10 +12,28 @@
 	border-radius: 20px;
 	background-color: #1976D2;
 	color: white;
+	max-height: 85%;
+	min-height: 20px;
+	max-width: 60%;
+	min-width: 130px;
+	align-self: center;
+}
+
+.botao-habilitado:hover {
+    background-color: #2b6990;
+}
+
+.botao-habilitado:active {
+    background-color: #23597a;
 }
 
 .botao-desabilitado {
 	border-radius: 6px;
 	background-color: #E4E4E4;
 	color: #989899;
+	max-height: 85%;
+	min-height: 20px;
+	max-width: 60%;
+	min-width: 130px;
+	align-self: center;
 }

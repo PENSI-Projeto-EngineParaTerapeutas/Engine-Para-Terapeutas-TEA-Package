@@ -1,12 +1,61 @@
-#grupo-secoes-carregaveis {
+:root {
 	flex: 1;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	justify-content: space-between;
 }
 
-#grupo-secoes-carregaveis > Button {
-	width: 100px;
-	height: 30px;
-	margin-top: 12px;
+#conteudo-principal {
+	flex: 1;
+}
+
+#label-descricao-botoes-atores, #label-descricao-botao-estrutura-fase {
+	font-size: 16px;
+	color: #554D56;
+}
+
+#label-descricao-botoes-atores {
+	margin-bottom: 3%;
+}
+
+#grupo-botoes-criadores {
+	height: 50%;
+	justify-content: space-around;
+	align-items: center;
+	margin-bottom: 72px;
+}
+
+.botao-lista {
+    height: 40px;
+	width: 55%;
+	min-width: 200px;
+	font-size: 15px;
+	flex-direction: row;
+	justify-content: center;
+}
+
+#label-descricao-botao-estrutura-fase {
+	border-top-width: 1px;
+	border-top-color: #808080;
+	padding-top: 36px;
+	margin-bottom: 6%;
+}
+
+#botao-carregar-secao-informacoes-fase {
+	align-self: center;
+}
+
+#regiao-ajuda {
+	width: 100%;
+	justify-content: flex-end;
+	flex-direction: row;
+}
+
+#label-ajuda {
+	margin-right: 6px;
+	font-size: 15px;
+	color: #1976D2;
+	-unity-font-style: bold;
+}
+
+#label-ajuda, #imagem-icone-ajuda, .botao-lista, .botao-lista > Label, .botao-lista > Image {
+	cursor: link;
 }

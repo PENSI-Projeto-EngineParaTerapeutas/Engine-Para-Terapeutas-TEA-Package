@@ -1,5 +1,5 @@
 using UnityEngine.UIElements;
-using Autis.Editor.Telas;
+using Autis.Editor.Utils;
 
 namespace Autis.Editor.UI {
     public class BotoesConfirmacao : ElementoInterfaceEditor {
@@ -12,36 +12,41 @@ namespace Autis.Editor.UI {
         public Button BotaoCancelar { get => botaoCancelar; }
 
         private const string NOME_BOTAO_CONFIRMAR = "botao-confirmar";
-        private readonly Button botaoConfirmar;
+        private Button botaoConfirmar;
+
+        private const string NOME_IMAGEM_BOTAO_CONFIRMAR = "imagem-icone-confirmar";
+        private Image imagemBotaoConfirmar;
 
         private const string NOME_BOTAO_CANCELAR = "botao-cancelar";
-        private readonly Button botaoCancelar;
+        private Button botaoCancelar;
+
+        private const string NOME_IMAGEM_BOTAO_CANCELAR = "imagem-icone-cancelar";
+        private Image imagemBotaoCancelar;
 
         #endregion
 
         public BotoesConfirmacao() {
-            botaoConfirmar = Root.Query<Button>(NOME_BOTAO_CONFIRMAR);
-            botaoCancelar = Root.Query<Button>(NOME_BOTAO_CANCELAR);
-
-            ConfigurarBotoesConfirmacao();
+            ConfigurarBotaoConfirmar();
+            ConfigurarBotaoCancelar();
 
             return;
         }
 
-        private void ConfigurarBotoesConfirmacao() {
-            botaoConfirmar.clicked += HandleBotaoConfirmarClick;
-            botaoCancelar.clicked += HandleBotaoCancelarClick;
+        private void ConfigurarBotaoConfirmar() {
+            botaoConfirmar = root.Query<Button>(NOME_BOTAO_CONFIRMAR);
+            
+            imagemBotaoConfirmar = root.Query<Image>(NOME_IMAGEM_BOTAO_CONFIRMAR);
+            imagemBotaoConfirmar.image = Importador.ImportarImagem("icone-confirmar.png");
 
             return;
         }
 
-        private void HandleBotaoCancelarClick() {
-            Navigator.Instance.Voltar();
-            return;
-        }
+        private void ConfigurarBotaoCancelar() {
+            botaoCancelar = root.Query<Button>(NOME_BOTAO_CANCELAR);
+            
+            imagemBotaoCancelar = root.Query<Image>(NOME_IMAGEM_BOTAO_CANCELAR);
+            imagemBotaoCancelar.image = Importador.ImportarImagem("icone-cancelar.png");
 
-        private void HandleBotaoConfirmarClick() {
-            Navigator.Instance.Voltar();
             return;
         }
     }

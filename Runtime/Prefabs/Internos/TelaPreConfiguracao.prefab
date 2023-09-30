@@ -63,3 +63,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiDocument: {fileID: 6546346914436877481}
   style: {fileID: 7433441132597879392, guid: 1dd957f5953b309438a7026df52c032e, type: 3}
+  eventoExibirContextualizacao: {fileID: 11400000, guid: 9ebdd9e46d20b874ba4931cf275d6b1b, type: 2}

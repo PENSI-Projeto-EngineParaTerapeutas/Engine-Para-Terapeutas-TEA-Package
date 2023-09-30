@@ -1,0 +1,38 @@
+#unity-internal-color-field {
+    min-height: 18px;
+    min-width: 18px;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    flex-grow: 0;
+}
+
+#label-cor {
+    display: None;
+
+}
+
+.color-field {
+    align-items: center;
+}
+
+.color-field__input {
+    width: 30px; 
+    height: 30px; 
+    justify-content: space-around; 
+    align-items: stretch;
+    margin-left: 5px; 
+    margin-right: 5px; 
+    margin-top: 5px; 
+    margin-bottom: 5px;    
+    border-width: 1px;
+    border-color: black;
+    border-radius: 5px;
+}
+
+.color-field__input:hover,
+.color-field__input:focus,
+.color-field:focus > .color-field__input,
+.color-field:hover > .color-field__input {
+    border-color: grey;
+}

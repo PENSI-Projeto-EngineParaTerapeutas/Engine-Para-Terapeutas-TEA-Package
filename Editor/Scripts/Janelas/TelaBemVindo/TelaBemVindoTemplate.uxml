@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <!-- 
+        O UXML não permite usar '<' e '>' pra fazer tags de rich text, como a 
+        tag de color usada. Em vez disso, usa-se '&lt;' e '&gt'. 
+    -->
+    <engine:Label name="titulo-autis" text="Bem-vindo ao &lt;color=#005BB5&gt;AUTIS" class="titulo"/> 
+
+    <engine:VisualElement name="container-caixas">
+        <engine:Box name="caixa-gerenciamento" class="caixa-feature">
+            <engine:Label text="Gerencie várias fases do seu jogo" class="subtitulo"/>
+            <engine:Label text="Seu jogo pode ter apenas uma fase ou várias, gerencie cada uma delas na tela inicial de forma simples e independente."/>
+        </engine:Box>
+
+        <engine:Box name="caixa-criacao" class="caixa-feature">
+            <engine:Label text="Criação do início ao fim" class="subtitulo"/>
+            <engine:Label text="Crie um jogo desde a adição do cenário até a ação do personagem, na aba criar elemento."/>
+        </engine:Box>
+    
+        <engine:Box name="caixa-personalizacao" class="caixa-feature">
+            <engine:Label text="Personalize do seu jeito" class="subtitulo"/>
+            <engine:Label text="Mude o personagem, o cenário, os objetos e muito mais, a qualquer momento na aba de editar elemento."/>
+        </engine:Box>
+    </engine:VisualElement>
+
+    <engine:Button name="botao-comecar" text="COMEÇAR" class="botao"/>
+
+</engine:UXML>                          

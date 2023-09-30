@@ -1,11 +1,18 @@
+.template-container-padrao {
+    height: 100%;
+}
+
 .container-horizontal {
     flex-direction: row;
 }
 
 .label-input-padrao {
     padding: 0 0 0 0;
-    margin: 0 3% 0 0;
+    margin: 1% 3% 0 0;
 	min-width: 0%;
+    color: #313144;   
+    font-size: 17px;
+    -unity-font-style: bold;
 }
 
 .input-padrao {
@@ -16,9 +23,305 @@
 
 .label-padrao {
     padding: 0 0 0 0;
-    margin: 0 0 0 0;
+    margin: 0% 0 0 0;
+    color: black;   
+    font-size: 17px;
+    white-space: normal;
+    -unity-font-style: normal;
 }
 
 .display-none {
     display: none;
+}
+
+.regiao-titulo-padrao {
+    align-self: flex-start;
+    margin-top: 7%;
+    margin-bottom: 6%;
+}
+
+.titulo-padrao {
+    color: black;
+    -unity-font-style: bold;
+    font-size: 24px;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    margin-left: 0;
+}
+
+.slider-padrao > VisualElement > #unity-drag-container {
+    margin-right: 15px;
+}
+
+.slider-padrao > VisualElement > #unity-drag-container > #unity-dragger-border {
+    background-color: rgba(1, 1, 1, 0);
+}
+
+.slider-padrao > VisualElement > #unity-drag-container > #unity-dragger {
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
+    background-color: #1976D2;
+    border-color: #1976D2;
+}
+
+.slider-padrao > VisualElement > #unity-drag-container > #unity-tracker {
+    background-color: #D9D9D9;
+    height: 6px;
+    border-radius: 3px;
+    margin: 0px;
+    top: 7px;
+}
+
+.radio-button-padrao {
+    flex-direction: row-reverse;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.radio-button-padrao > Label {
+    padding: 0 0 0 0;
+    margin: 1% 3% 0 1%;
+	min-width: 0%;
+    color: #313144;   
+    font-size: 17px;
+}
+
+.radio-button-padrao > VisualElement {
+    flex-grow: 0;
+}
+
+.radio-button-padrao > VisualElement > VisualElement {
+    height: 15px;
+    width: 15px;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.radio-button-padrao > VisualElement > VisualElement > VisualElement {
+    width: 9px;
+    height: 9px;
+    border-radius: 9px;
+    background-color: #1976D2;
+}
+
+.container-faixa-numerica {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 50%;
+    margin-top: 1%;
+    background-color: #d9d9d9;
+    border-radius: 7px;
+}
+
+.botao-padrao, .ghost-botao-padrao {
+    font-size: 15px;
+	-unity-font-style: bold;
+	padding-left: 37px;
+	padding-right: 37px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-width: 1.5px;
+    border-radius: 25px;
+	background-color: #E4E4E4;
+    border-color: #E4E4E4;
+	color: #989899;
+    margin-top: 1%;
+}
+
+.botao-padrao:enabled {
+    border-radius: 20px;
+	background-color: #1976D2;
+    border-color: #1976D2;
+	color: white;
+}
+
+.ghost-botao-padrao {
+    background-color: white;
+	color: #1976D2;
+}
+
+.ghost-botao-padrao:enabled {
+    border-color: #1976D2;
+}
+
+.checkbox-padrao {
+    flex: 1;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.checkbox-padrao > VisualElement {
+    flex-grow: 0;
+    height: 20px;
+    cursor: link;
+}
+
+.checkbox-padrao > Label {
+    font-size: 15px;
+    margin-left: 6px;
+    color: black;
+}
+
+.checkbox-padrao > VisualElement > VisualElement {
+    height: 20px;
+    width: 20px;
+    background-image: url('imagens/unchecked.png');
+    cursor: link;
+}
+
+.checkbox-padrao:checked > VisualElement > VisualElement {
+    background-image: url('imagens/checked.png');
+}
+
+.grupo-botoes {
+    justify-content: space-between;
+    margin: auto;
+	width: 50%;
+    max-width: 500px;
+}
+
+.enum-field-padrao {
+    flex-direction: column;
+}
+
+.enum-field-padrao > VisualElement {
+    background-color: #F0F3F4;
+    border-bottom-color: rgba(1, 1, 1, 0);
+    border-top-color: rgba(1, 1, 1, 0);
+    border-left-color: rgba(1, 1, 1, 0);
+    border-right-color: rgba(1, 1, 1, 0);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.enum-field-padrao > VisualElement > TextElement {
+    flex-shrink: 1;
+    cursor: link;
+    -unity-font-style: bold;
+    font-size: 15px;
+    margin: 10px 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: noWrap;
+    -unity-text-overflow-position: end;
+    color: #313144;
+}
+
+.enum-field-padrao > Label {
+    -unity-font-style: bold;
+}
+
+Foldout {
+    color: black;
+}
+
+Foldout > Toggle > VisualElement > VisualElement {
+    -unity-background-image-tint-color: #7E7E7E;
+}
+
+#regiao-carregamento-inputs-posicao {
+    margin-left: 0;
+}
+
+#regiao-carregamento-inputs-posicao > TemplateContainer > TemplateContainer > #input-numerico {
+    margin-left: 0;
+    
+}
+
+#foldout-opcoes-avancadas {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+#foldout-opcoes-avancadas > #unity-content {
+    margin-left: 0;
+    width: 95%;
+}
+
+#foldout-opcoes-avancadas > Toggle > VisualElement > VisualElement {
+    -unity-background-image-tint-color: rgba(1, 1, 1, 0);
+    width: 0;
+    margin: 0 0 0 0;
+}
+
+#foldout-opcoes-avancadas > Toggle > VisualElement > Label {
+    font-size: 15px;
+    color: #1976D2;
+    -unity-font-style: bold;
+    margin-left: 0;
+}
+
+.input-texto {
+	flex-direction: column;
+    border-radius: 12px;
+    background-color: rgba(1,1,1,0);
+}
+
+.input-texto > Label {
+	-unity-font-style: bold;
+	margin-bottom: 4px;
+	color: black;
+}
+
+.input-texto > TextInput {
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-top: 9.5px;
+	padding-bottom: 9.5px;
+	font-size: 14px;
+	border-width: 0px;
+	height: 45px;
+	background-color: #F0F3F4;
+	border-radius: 12px;
+}
+
+.input-numerico {
+    flex-direction: column;
+}
+
+.input-numerico > FloatInput {
+    background-color: #F0F3F4;
+    border-bottom-color: rgba(1, 1, 1, 0);
+    border-top-color: rgba(1, 1, 1, 0);
+    border-left-color: rgba(1, 1, 1, 0);
+    border-right-color: rgba(1, 1, 1, 0);
+    color: black;
+}
+
+.input-numerico > Label {
+    font-size: 15px;
+	-unity-font-style: bold;
+	margin-bottom: 4px;
+	color: black;
+	align-self: flex-start;
+}
+
+.input-numerico-int {
+    flex-direction: column;
+}
+
+.input-numerico-int > IntegerInput {
+    background-color: #F0F3F4;
+    border-bottom-color: rgba(1, 1, 1, 0);
+    border-top-color: rgba(1, 1, 1, 0);
+    border-left-color: rgba(1, 1, 1, 0);
+    border-right-color: rgba(1, 1, 1, 0);
+    color: black;
+}
+
+.input-numerico-int > Label {
+    font-size: 15px;
+	-unity-font-style: bold;
+	margin-bottom: 4px;
+	color: black;
+	align-self: flex-start;
+}
+
+#regiao-conteudo-principal {
+    flex-grow: 1;
 }

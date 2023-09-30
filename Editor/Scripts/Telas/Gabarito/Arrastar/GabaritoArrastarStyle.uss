@@ -1,0 +1,34 @@
+:root {
+	flex: 1;
+	height: 100%;
+	padding: 12px;
+}
+
+#regiao-titulo {
+	flex-direction: row;
+	align-items: center;
+	margin-left: 6px;
+	margin-bottom: 9px;
+}
+
+#descricao-funcionalidades {
+	font-size: 13px;
+	margin-bottom: 18px;
+}
+
+#regiao-carregamento-associacoes {
+	flex: 1;
+	padding: 6px;
+	border-color: rgba(128, 128, 128, 0.57);
+	border-width: 1px;
+	border-radius: 6px;
+	margin-bottom: 21px;
+}
+
+.associacao-elemento {
+	margin-bottom: 21px;
+}
+
+#regiao-carregamento-botoes-confirmacao {
+	flex-direction: row;
+}

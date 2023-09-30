@@ -5,21 +5,28 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:VisualElement name="regiao-carregamento-header"/>
-
-    <editor:EnumField name="input-tipo-obejto-interacao" class="input-padrao" label="Tipo" tooltip="Define o tipo do Ator"/>
-    
-    <engine:VisualElement name="regiao-carregamento-inputs-imagem"/>
-    <engine:VisualElement name="regiao-carregamento-inputs-texto"/>
-    <engine:VisualElement name="regiao-carregamento-inputs-tipo-acao"/>
-
-    <engine:RadioButtonGroup label="Deseja criar um apoio para este objeto? (opcional)" name="grupo-radio-button" value="-1">
-        <engine:VisualElement name="regiao-opcao-sim">
-            <engine:RadioButton class="input-padrao opcao-radio-button" label="Sim" name="radio-opcao-sim"/>
-            <engine:Button name="botao-configurar-apoio" text="Configurar apoio para o objeto"/>
+    <engine:ScrollView name="regiao-conteudo-principal">
+        <engine:VisualElement name="regiao-titulo" class="regiao-titulo-padrao">
+            <engine:Label name="label-titulo" class="titulo-padrao" text="Defina o elemento:"/>
+            <engine:VisualElement name="regiao-tooltip-titulo"/>
         </engine:VisualElement>
-        <engine:RadioButton class="input-padrao opcao-radio-button" label="Não" name="radio-opcao-nao"/>
-    </engine:RadioButtonGroup>
+
+        <engine:VisualElement name="regiao-input-nome"/>
+
+        <engine:VisualElement name="regiao-carregamento-input-tipo"/>
+
+        <engine:VisualElement name="regiao-carregamento-inputs-imagem"/>
+        <engine:VisualElement name="regiao-carregamento-inputs-texto"/>
+
+        <engine:VisualElement name="regiao-carregamento-tipo-acao"/>
+
+        <engine:Toggle name="input-desfazer-acao" class="checkbox-padrao" label="Desfazer ação em caso de erro"/>
+
+        <engine:Foldout text="Opções Avançadas (Opcional)" name="foldout-opcoes-avancadas" value="false">
+            <engine:VisualElement name="regiao-carregamento-inputs-posicao"/>
+            <engine:VisualElement name="regiao-carregamento-inputs-tamanho"/>
+        </engine:Foldout>
+    </engine:ScrollView>
 
     <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>
 </engine:UXML>

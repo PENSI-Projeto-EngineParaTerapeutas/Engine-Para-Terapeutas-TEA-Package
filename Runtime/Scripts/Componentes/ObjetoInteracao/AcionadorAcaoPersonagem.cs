@@ -7,7 +7,8 @@ namespace Autis.Runtime.ComponentesGameObjects {
     public class AcionadorAcaoPersonagem : MonoBehaviour {
         public AnimationClip animacaoAcionada;
 
-        private EventoAcionarAcaoPersonagem eventoAcionarAcaoPersonagem;
+        [SerializeField]
+        private EventoAnimationClip eventoAcionarAcaoPersonagem;
 
         private bool temPersonagem = false;
 
@@ -17,8 +18,6 @@ namespace Autis.Runtime.ComponentesGameObjects {
                 this.enabled = false;
                 return;
             }
-
-            eventoAcionarAcaoPersonagem = Resources.Load<EventoAcionarAcaoPersonagem>("ScriptableObjects/EventoAcionarAcaoPersonagem");
 
             return;
         }

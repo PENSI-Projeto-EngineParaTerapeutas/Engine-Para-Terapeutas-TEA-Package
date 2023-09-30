@@ -1,0 +1,85 @@
+:root {
+	flex: 1;
+	height: 100%;
+	padding: 12px;
+}
+
+#regiao-titulo {
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 12px;
+}
+
+#descricao-uso-tela {
+	margin-bottom: 15px;
+	font-size: 12px;
+}
+
+#regiao-dropdown-objetos-selecionaveis {
+	margin-bottom: 12px;
+}
+
+#botao-adicionar-objeto {
+	margin-bottom: 30px;
+	width: 70%;
+	height: 36px;
+	font-size: 14px;
+	align-self: center;
+}
+
+#label-list-view {
+	font-size: 15px;
+	margin-bottom: 6px;
+}
+
+#scrollview-lista-selecao {
+	margin-bottom: 21px;
+}
+
+#lista-objetos-selecionaveis {
+	background-color: #F0F3F4;
+	padding: 9px;
+	border-radius: 6px;
+}
+
+#regiao-checkbox-ordem {
+	margin-bottom: 48px;
+	background-color: #F0F3F4;
+	padding: 9px;
+	border-radius: 6px;
+}
+
+.container-list-view {
+	height: 100%;
+	width: 100%;
+	justify-content: center;
+	align-items: stretch;
+	align-self: stretch;
+}
+
+.container-list-view:hover {
+	background-color: #D7EBFF;
+}
+
+.container-list-view:checked {
+	background-color: #D7EBFF;
+}
+
+#regiao-toggle-ordem {
+	flex-direction: row;
+	margin-bottom: 12px;
+}
+
+#explicacao-radio-ordem {
+	font-size: 12px;
+	margin-left: 21px;
+}
+
+#regiao-carregamento-botoes-confirmacao {
+	flex-direction: row;
+	align-self: flex-end;
+}
+
+#unity-list-view__reorderable-item:hover {
+	background-color: #D7EBFF;
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <engine:Label name="label-titulo" text="Definição da ação" class="titulo-padrao"/>
+    <engine:Label name="label-descricao" text="Para cada ação, defina o elemento e a animação que será exibida no jogo quando esse elemento for selecionado." class="label-padrao"/>
+
+    <engine:Label name="label-regiao-definacao-acao" text="Elemento que a ação será vinculada:" class="label-padrao"/>
+    <engine:RadioButtonGroup name="grupo-radio-button">
+        <engine:VisualElement name="regiao-radio-button-vincular-elemento-existente">
+            <engine:RadioButton class="input-padrao radio-button-padrao" label="Vincular a elemento existente:" name="radio-opcao-selecionar-objeto-existente"/>
+            <engine:VisualElement name="regiao-carregamento-selecao-elemento-existente"/>
+        </engine:VisualElement>
+
+        <engine:VisualElement name="regiao-radio-button-criar-novo-elemento">
+            <engine:RadioButton class="input-padrao radio-button-padrao" label="Vincular a novo elemento:" name="radio-opcao-criar-novo-objeto"/>
+            <engine:Button name="botao-criar-elemento" text="Criar Elemento" class="botao-padrao"/>
+        </engine:VisualElement>
+    </engine:RadioButtonGroup>
+
+    <engine:Label name="label-input-animacao" text="Animação:" class="label-padrao"/>
+    <engine:VisualElement name="regiao-carregamento-input-animacao"/>
+
+    <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>
+</engine:UXML>

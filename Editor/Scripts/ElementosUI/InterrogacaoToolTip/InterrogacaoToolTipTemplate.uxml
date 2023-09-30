@@ -6,7 +6,7 @@
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
     <engine:Image name="imagem-interrogacao"/>
-    <engine:VisualElement name="regiao-texto-tooltip">
+    <engine:VisualElement name="regiao-texto-tooltip" class="regiao-tooltip">
         <engine:Label name="texto-tooltip" class="label-padrao"/>
     </engine:VisualElement>
 </engine:UXML>

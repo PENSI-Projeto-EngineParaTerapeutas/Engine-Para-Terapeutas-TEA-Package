@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEditor.UIElements;
 using Autis.Editor.Constantes;
 
 namespace Autis.Editor.UI {
@@ -9,80 +8,51 @@ namespace Autis.Editor.UI {
         protected override string CaminhoStyle => "ElementosUI/InputsComponentes/InputsComponentePosicao/InputsComponentePosicaoStyle.uss";
 
         #region .: Elementos :.
-        public FloatField CampoPosicaoX { get => campoPosicaoX; }
-        public FloatField CampoPosicaoY { get => campoPosicaoY; }
-        public FloatField CampoTamanhoX { get => campoTamanhoX; }
-        public FloatField CampoTamanhoY { get => campoTamanhoY; }
-        public FloatField CampoRotacao { get => campoRotacao; }
+        public GrupoInputsPosicao GrupoInputsPosicao { get => grupoInputsPosicao; }
+        public GrupoInputsTamanho GrupoInputsTamanho { get => grupoInputsTamanho; }
+        public InputNumerico CampoRotacao { get => campoRotacao; }
 
-        private const string NOME_LABEL_POSICAO_X = "label-posicao-x";
-        private const string NOME_INPUT_POSICAO_X = "input-posicao-x";
-        private readonly FloatField campoPosicaoX;
+        private readonly GrupoInputsPosicao grupoInputsPosicao;
+        private readonly GrupoInputsTamanho grupoInputsTamanho;
 
-        private const string NOME_LABEL_POSICAO_Y = "label-posicao-y";
-        private const string NOME_INPUT_POSICAO_Y = "input-posicao-y";
-        private readonly FloatField campoPosicaoY;
+        private const string GRUPO_INPUTS_POSICAO = "grupo-inputs-posicao";
+        private readonly VisualElement campoGrupoInputsPosicao;
 
-        private const string NOME_LABEL_TAMANHO_X = "label-tamanho-x";
-        private const string NOME_INPUT_TAMANHO_X = "input-tamanho-x";
-        private readonly FloatField campoTamanhoX;
-
-        private const string NOME_LABEL_TAMANHO_Y = "label-tamanho-y";
-        private const string NOME_INPUT_TAMANHO_Y = "input-tamanho-y";
-        private readonly FloatField campoTamanhoY;
+        private const string GRUPO_INPUTS_TAMANHO = "grupo-inputs-tamanho";
+        private readonly VisualElement campoGrupoInputsTamanho;
 
         private const string NOME_LABEL_ROTACAO = "label-rotacao";
         private const string NOME_INPUT_ROTACAO = "input-rotacao";
-        private readonly FloatField campoRotacao;
+        private readonly InputNumerico campoRotacao;
+
+
 
         #endregion
 
         private Transform transformVinculado;
 
         public InputsComponentePosicao() {
-            campoPosicaoX = Root.Query<FloatField>(NOME_INPUT_POSICAO_X);
-            campoPosicaoY = Root.Query<FloatField>(NOME_INPUT_POSICAO_Y);
 
-            campoTamanhoX = Root.Query<FloatField>(NOME_INPUT_TAMANHO_X);
-            campoTamanhoY = Root.Query<FloatField>(NOME_INPUT_TAMANHO_Y);
+            campoGrupoInputsPosicao = Root.Query<VisualElement>(GRUPO_INPUTS_POSICAO);
+            campoGrupoInputsTamanho = Root.Query<VisualElement>(GRUPO_INPUTS_TAMANHO);
 
-            campoRotacao = Root.Query<FloatField>(NOME_INPUT_ROTACAO);
+            grupoInputsPosicao = new GrupoInputsPosicao();
+            grupoInputsTamanho = new GrupoInputsTamanho();
+            campoRotacao = new InputNumerico("Rotação", "Gira o ator no sentido anti-horário", 360, 0);
 
-            ConfigurarCamposPosicao();
-            ConfigurarCampoTamanho();
+            campoGrupoInputsPosicao.Add(grupoInputsPosicao.Root);
+            campoGrupoInputsTamanho.Add(grupoInputsTamanho.Root);
+            Root.Add(campoRotacao.Root);
+
             ConfigurarCampoRotacao();
 
             return;
         }
 
-        private void ConfigurarCamposPosicao() {
-            CampoPosicaoX.labelElement.name = NOME_LABEL_POSICAO_X;
-            CampoPosicaoX.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
-            CampoPosicaoX.SetValueWithoutNotify(0);
-
-            CampoPosicaoY.labelElement.name = NOME_LABEL_POSICAO_Y;
-            CampoPosicaoY.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
-            CampoPosicaoY.SetValueWithoutNotify(0);
-
-            return;
-        }
-
-        private void ConfigurarCampoTamanho() {
-            CampoTamanhoX.labelElement.name = NOME_LABEL_TAMANHO_X;
-            CampoTamanhoX.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
-            CampoTamanhoX.SetValueWithoutNotify(0);
-
-            CampoTamanhoY.labelElement.name = NOME_LABEL_TAMANHO_Y;
-            CampoTamanhoY.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
-            CampoTamanhoY.SetValueWithoutNotify(0);
-
-            return;
-        }
-
         private void ConfigurarCampoRotacao() {
-            CampoRotacao.labelElement.name = NOME_LABEL_ROTACAO;
-            CampoRotacao.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
-            CampoRotacao.SetValueWithoutNotify(0);
+            CampoRotacao.CampoNumerico.labelElement.name = NOME_LABEL_ROTACAO;
+            CampoRotacao.CampoNumerico.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
+            CampoRotacao.CampoNumerico.SetValueWithoutNotify(0);
 
             return;
         }
@@ -90,45 +60,45 @@ namespace Autis.Editor.UI {
         public void VincularDados(Transform componente) {
             transformVinculado = componente;
 
-            CampoPosicaoX.SetValueWithoutNotify(transformVinculado.position.x);
-            CampoPosicaoY.SetValueWithoutNotify(transformVinculado.position.y);
+            GrupoInputsPosicao.CampoPosicaoX.CampoNumerico.SetValueWithoutNotify(transformVinculado.position.x);
+            GrupoInputsPosicao.CampoPosicaoY.CampoNumerico.SetValueWithoutNotify(transformVinculado.position.y);
 
-            CampoTamanhoX.SetValueWithoutNotify(transformVinculado.localScale.x);
-            CampoTamanhoY.SetValueWithoutNotify(transformVinculado.localScale.y);
+            GrupoInputsTamanho.CampoTamanhoX.CampoNumerico.SetValueWithoutNotify(transformVinculado.localScale.x);
+            GrupoInputsTamanho.CampoTamanhoY.CampoNumerico.SetValueWithoutNotify(transformVinculado.localScale.y);
 
-            CampoRotacao.SetValueWithoutNotify(transformVinculado.rotation.z);
+            CampoRotacao.CampoNumerico.SetValueWithoutNotify(transformVinculado.rotation.z);
 
-            CampoPosicaoX.RegisterCallback<ChangeEvent<float>>(evt => {
-                transformVinculado.position = new Vector3(CampoPosicaoX.value, transformVinculado.position.y, 0);
+            GrupoInputsPosicao.CampoPosicaoX.CampoNumerico.RegisterCallback<ChangeEvent<float>>(evt => {
+                transformVinculado.position = new Vector3(grupoInputsPosicao.CampoPosicaoX.CampoNumerico.value, transformVinculado.position.y, 0);
             });
 
-            CampoPosicaoY.RegisterCallback<ChangeEvent<float>>(evt => {
-                transformVinculado.position = new Vector3(transformVinculado.position.x, CampoPosicaoY.value, 0);
+            GrupoInputsPosicao.CampoPosicaoY.CampoNumerico.RegisterCallback<ChangeEvent<float>>(evt => {
+                transformVinculado.position = new Vector3(transformVinculado.position.x, grupoInputsPosicao.CampoPosicaoY.CampoNumerico.value, 0);
             });
 
-            CampoTamanhoX.RegisterCallback<ChangeEvent<float>>(evt => {
-                transformVinculado.localScale = new Vector3(CampoTamanhoX.value, transformVinculado.localScale.y, 0);
+            GrupoInputsTamanho.CampoTamanhoX.CampoNumerico.RegisterCallback<ChangeEvent<float>>(evt => {
+                transformVinculado.localScale = new Vector3(GrupoInputsTamanho.CampoTamanhoX.CampoNumerico.value, transformVinculado.localScale.y, 0);
             });
 
-            CampoTamanhoY.RegisterCallback<ChangeEvent<float>>(evt => {
-                transformVinculado.localScale = new Vector3(transformVinculado.localScale.x, CampoTamanhoY.value, 0);
+            GrupoInputsTamanho.CampoTamanhoY.CampoNumerico.RegisterCallback<ChangeEvent<float>>(evt => {
+                transformVinculado.localScale = new Vector3(transformVinculado.localScale.x, GrupoInputsTamanho.CampoTamanhoY.CampoNumerico.value, 0);
             });
 
-            CampoRotacao.RegisterCallback<ChangeEvent<float>>(evt => {
-                transformVinculado.rotation = new Quaternion(0, 0, campoRotacao.value, transformVinculado.rotation.w);
+            CampoRotacao.CampoNumerico.RegisterCallback<ChangeEvent<float>>(evt => {
+                transformVinculado.rotation = new Quaternion(0, 0, campoRotacao.CampoNumerico.value, transformVinculado.rotation.w);
             });
 
             return;
         }
 
         public void ReiniciarCampos() {
-            CampoPosicaoX.SetValueWithoutNotify(0);
-            CampoPosicaoY.SetValueWithoutNotify(0);
+            GrupoInputsPosicao.CampoPosicaoX.CampoNumerico.SetValueWithoutNotify(0);
+            GrupoInputsPosicao.CampoPosicaoY.CampoNumerico.SetValueWithoutNotify(0);
 
-            CampoTamanhoX.SetValueWithoutNotify(0);
-            CampoTamanhoY.SetValueWithoutNotify(0);
+            GrupoInputsTamanho.CampoTamanhoX.CampoNumerico.SetValueWithoutNotify(0);
+            GrupoInputsTamanho.CampoTamanhoY.CampoNumerico.SetValueWithoutNotify(0);
 
-            CampoRotacao.SetValueWithoutNotify(0);
+            CampoRotacao.CampoNumerico.SetValueWithoutNotify(0);
 
             return;
         }
@@ -138,13 +108,13 @@ namespace Autis.Editor.UI {
                 return;
             }
 
-            CampoPosicaoX?.SetValueWithoutNotify(transformVinculado.position.x);
-            CampoPosicaoY?.SetValueWithoutNotify(transformVinculado.position.y);
+            GrupoInputsPosicao.CampoPosicaoX?.CampoNumerico.SetValueWithoutNotify(transformVinculado.position.x);
+            GrupoInputsPosicao.CampoPosicaoY?.CampoNumerico.SetValueWithoutNotify(transformVinculado.position.y);
 
-            CampoTamanhoX?.SetValueWithoutNotify(transformVinculado.localScale.x);
-            CampoTamanhoY?.SetValueWithoutNotify(transformVinculado.localScale.y);
+            GrupoInputsTamanho.CampoTamanhoX?.CampoNumerico.SetValueWithoutNotify(transformVinculado.localScale.x);
+            GrupoInputsTamanho.CampoTamanhoY?.CampoNumerico.SetValueWithoutNotify(transformVinculado.localScale.y);
 
-            CampoRotacao?.SetValueWithoutNotify(transformVinculado.rotation.z);
+            CampoRotacao.CampoNumerico?.SetValueWithoutNotify(transformVinculado.rotation.z);
 
             return;
         }

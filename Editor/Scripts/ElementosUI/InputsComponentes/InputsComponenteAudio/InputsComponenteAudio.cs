@@ -10,7 +10,7 @@ namespace Autis.Editor.UI {
 
         #region .: Elementos :.
         public VisualElement RegiaoInputImagem { get => regiaoInputAudio; }
-        public FloatField CampoVolume { get => campoVolume; }
+        public Slider CampoVolume { get => campoVolume; }
         public Toggle CampoMudo { get => campoMudo; }
         public Toggle CampoTocarAoIniciar { get => campoTocarAoIniciar; }
         public InputAudio InputAudio { get => inputAudio; }
@@ -20,7 +20,7 @@ namespace Autis.Editor.UI {
 
         private const string NOME_LABEL_VOLUME = "label-volume";
         private const string NOME_INPUT_VOLUME = "input-volume";
-        private readonly FloatField campoVolume;
+        private readonly Slider campoVolume;
 
         private const string NOME_LABEL_MUDO = "label-mudo";
         private const string NOME_INPUT_MUDO = "input-mudo";
@@ -38,16 +38,16 @@ namespace Autis.Editor.UI {
 
         public InputsComponenteAudio() {
             regiaoInputAudio = Root.Query<VisualElement>(NOME_REGIAO_INPUT_AUDIO);
-            campoVolume = Root.Query<FloatField>(NOME_INPUT_VOLUME);
+            campoVolume = Root.Query<Slider>(NOME_INPUT_VOLUME);
             campoMudo = Root.Query<Toggle>(NOME_INPUT_MUDO);
             campoTocarAoIniciar = Root.Query<Toggle>(NOME_INPUT_TOCAR_AO_INICIAR);
 
             inputAudio = new InputAudio();
 
             ConfigurarCampoArquivoSom();
-            ConfigurarCampoMudo();
+            //ConfigurarCampoMudo();
             ConfigurarCamposVolume();
-            ConfigurarCampoTocarAoIniciaor();
+            //ConfigurarCampoTocarAoIniciaor();
 
             return;
         }
@@ -58,8 +58,6 @@ namespace Autis.Editor.UI {
         }
 
         private void ConfigurarCamposVolume() {
-            CampoVolume.labelElement.name = NOME_LABEL_VOLUME;
-            CampoVolume.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
 
             CampoVolume.SetValueWithoutNotify(0);
 
@@ -110,8 +108,8 @@ namespace Autis.Editor.UI {
 
         public void ReiniciarCampos() {
             InputAudio.CampoAudio.SetValueWithoutNotify(null);
-            CampoMudo.SetValueWithoutNotify(false);
-            CampoTocarAoIniciar.SetValueWithoutNotify(false);
+            //CampoMudo.SetValueWithoutNotify(false);
+            //CampoTocarAoIniciar.SetValueWithoutNotify(false);
             CampoVolume.SetValueWithoutNotify(0);
 
             return;
@@ -120,28 +118,28 @@ namespace Autis.Editor.UI {
         public void VincularDados(AudioSource componente) {
             audioSourceVinculado = componente;
 
-            InputAudio.CampoAudio.SetValueWithoutNotify(audioSourceVinculado.clip);
-            CampoMudo.SetValueWithoutNotify(audioSourceVinculado.mute);
-            CampoTocarAoIniciar.SetValueWithoutNotify(audioSourceVinculado.playOnAwake);
+            InputAudio.VincularDados(audioSourceVinculado.clip);
+            //CampoMudo.SetValueWithoutNotify(audioSourceVinculado.mute);
+            //CampoTocarAoIniciar.SetValueWithoutNotify(audioSourceVinculado.playOnAwake);
             CampoVolume.SetValueWithoutNotify(audioSourceVinculado.volume);
 
             InputAudio.CampoAudio.RegisterCallback<ChangeEvent<Object>>(evt => {
                 audioSourceVinculado.clip = InputAudio.CampoAudio.value as AudioClip;
             });
 
-            CampoMudo.RegisterCallback<ChangeEvent<bool>>(evt => {
-                audioSourceVinculado.mute = CampoMudo.value;
-            });
+            //CampoMudo.RegisterCallback<ChangeEvent<bool>>(evt => {
+            //    audioSourceVinculado.mute = CampoMudo.value;
+            //});
 
-            CampoTocarAoIniciar.RegisterCallback<ChangeEvent<bool>>(evt => {
-                audioSourceVinculado.playOnAwake = CampoTocarAoIniciar.value;
-            });
+            //CampoTocarAoIniciar.RegisterCallback<ChangeEvent<bool>>(evt => {
+            //    audioSourceVinculado.playOnAwake = CampoTocarAoIniciar.value;
+            //});
 
             CampoVolume.RegisterCallback<ChangeEvent<float>>(evt => {
                 audioSourceVinculado.volume = CampoVolume.value;
             });
 
-            AlterarVisibilidadeCamposDependentes(CampoMudo.value);
+            //AlterarVisibilidadeCamposDependentes(CampoMudo.value);
 
             return;
         }

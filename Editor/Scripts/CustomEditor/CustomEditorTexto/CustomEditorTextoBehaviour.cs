@@ -14,7 +14,7 @@ namespace Autis.Editor.CustomEditorComponentesGameObjects {
         private const string REGIAO_CARREGAMENTO_INPUTS_PADROES_TEXTO = "regiao-carregamento-inputs-padroes-texto";
         private VisualElement regiaoCarregamentosInputsPadroesTexto;
 
-        private InputsComponenteTexto grupoInputsTexto;
+        private GrupoInputsTexto grupoInputsTexto;
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace Autis.Editor.CustomEditorComponentesGameObjects {
         protected override void OnRenderizarInterface() {
             componente = target as Texto;
 
-            grupoInputsTexto = new InputsComponenteTexto();
+            grupoInputsTexto = new GrupoInputsTexto();
             ConfigurarInputsTexto();
 
             return;
@@ -33,7 +33,7 @@ namespace Autis.Editor.CustomEditorComponentesGameObjects {
             regiaoCarregamentosInputsPadroesTexto = root.Query<VisualElement>(REGIAO_CARREGAMENTO_INPUTS_PADROES_TEXTO);
             regiaoCarregamentosInputsPadroesTexto.Add(grupoInputsTexto.Root);
 
-            grupoInputsTexto.VincularDados(componente);
+            //grupoInputsTexto.VincularDados(componente);
 
             return;
         }

@@ -6,16 +6,9 @@
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
     <engine:Label name="label-posicao" class="label-padrao" text="Posição"/>
-    <engine:VisualElement name="gupro-inputs-posicao" class="container-horizontal">
-        <editor:FloatField name="input-posicao-x" class="input-padrao" label="X" tooltip="Altera a posição do ator horizontalmente"/>
-        <editor:FloatField name="input-posicao-y" class="input-padrao" label="Y" tooltip="Altera a posição do ator verticalmente"/>
-    </engine:VisualElement>
+    <engine:VisualElement name="grupo-inputs-posicao" class="container-horizontal"/>
 
     <engine:Label name="label-tamanho" class="label-padrao" text="Tamanho"/>
-    <engine:VisualElement name="gupro-inputs-tamanho" class="container-horizontal">
-        <editor:FloatField name="input-tamanho-x" class="input-padrao" label="X" tooltip="Altera a largura do ator"/>
-        <editor:FloatField name="input-tamanho-y" class="input-padrao" label="Y" tooltip="Altera a altura do ator"/>
-    </engine:VisualElement>
+    <engine:VisualElement name="grupo-inputs-tamanho" class="container-horizontal"/>
 
-    <editor:FloatField name="input-rotacao" class="input-padrao" label="Rotação" tooltip="Gira o ator no sentido anti-horário"/>
 </engine:UXML>

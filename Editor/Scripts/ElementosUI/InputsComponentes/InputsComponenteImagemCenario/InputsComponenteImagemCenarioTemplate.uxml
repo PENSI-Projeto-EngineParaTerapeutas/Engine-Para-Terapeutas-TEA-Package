@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
+>
+
+    <engine:RadioButtonGroup name="grupo-radio-button">
+        <engine:VisualElement name="regiao-radio-button-cor-unica">
+            <engine:RadioButton class="input-padrao opcao-radio-button radio-button-padrao" label="Cor única" name="radio-opcao-cor-unica"/>
+            <engine:VisualElement name="regiao-input-cor" tooltip="Cor que sobrepõe a imagem do babababab ator"/>
+        </engine:VisualElement>
+
+        <engine:VisualElement name="regiao-radio-button-imagem">
+            <engine:RadioButton class="input-padrao opcao-radio-button radio-button-padrao" label="Imagem" name="radio-opcao-imagem"/>
+            <engine:VisualElement name="regiao-input-imagem"/>
+        </engine:VisualElement>
+
+    </engine:RadioButtonGroup>
+    
+
+
+    <!--
+    <engine:VisualElement name="grupo-input-espelhar">
+        <engine:Label name="label-espelhar" class="label-padrao" text="Espelhar"/>
+
+        <engine:VisualElement>
+            <engine:Toggle label="Horizontal" class="input-padrao" name="input-espelhar-horizontal" tooltip="Inverte a imagem do ator horizontalmente"/>
+            <engine:Toggle label="Vertical" class="input-padrao" name="input-espelhar-vertical" tooltip="Inverte a imagem do ator verticalmente"/>
+        </engine:VisualElement>
+    </engine:VisualElement>
+    -->
+</engine:UXML>

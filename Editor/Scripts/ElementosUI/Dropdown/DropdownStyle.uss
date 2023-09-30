@@ -1,4 +1,47 @@
 .estilo-dropdown {
 	flex-direction: column;
 	margin-right: 0px;
+	background-color: white;
+	border-radius: 10px;
+	color: black;
+	margin-top: 20px;
+}
+
+.estilo-dropdown > Label {
+	-unity-font-style: bold;
+	margin-bottom: 4px;
+	color: black;
+	align-self: flex-start;
+	font-size: 19px;
+}
+
+.estilo-dropdown > VisualElement > PopupTextElement {
+	color: #313144;
+	flex-shrink: 1;
+    cursor: link;
+    -unity-font-style: bold;
+    font-size: 14px;
+    margin: 0px 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: noWrap;
+    -unity-text-overflow-position: end;
+}
+
+.unity-base-field__input {
+	background-color: #F0F3F4;
+	height: 40px;
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-top: 9.5px;
+	padding-bottom: 9.5px;
+	color: black;
+	font-size: 14px;
+	border-radius: 8px;
+	border-width: 0px;
+}
+
+#regiao-tooltip-titulo {
+	position: absolute;
+	right: 0px;
 }

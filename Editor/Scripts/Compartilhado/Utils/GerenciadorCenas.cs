@@ -46,21 +46,21 @@ namespace Autis.Editor.Utils {
 
             Cena novaCena = ScriptableObject.CreateInstance<Cena>();
             novaCena.AssociarValores(arquivoCena);
-            novaCena.NomeArquivo = nomeNovaCena;
+            novaCena.nomeArquivo = nomeNovaCena;
 
-            if(!Directory.Exists(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas)) {
-                Directory.CreateDirectory(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas);
+            if(!Directory.Exists(ConstantesProjetoUnity.CaminhoUnityAssetsCenas)) {
+                Directory.CreateDirectory(ConstantesProjetoUnity.CaminhoUnityAssetsCenas);
             }
 
-            AssetDatabase.CreateAsset(novaCena, Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas, nomeNovaCena + ExtensoesEditor.ScriptableObject));
+            AssetDatabase.CreateAsset(novaCena, Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsCenas, nomeNovaCena + ExtensoesEditor.ScriptableObject));
             Salvamento.SalvarAssets();
 
             return novaCena;
         }
 
         public static void DeletarCena(Cena cena) {
-            string caminhoScriptableObjectCenaAlvo = Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas, cena.NomeArquivo + ExtensoesEditor.ScriptableObject);
-            string caminhoArquivoCenaAlvo = Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsCenas, cena.NomeArquivo + ExtensoesEditor.Cena);
+            string caminhoScriptableObjectCenaAlvo = Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsCenas, cena.nomeArquivo + ExtensoesEditor.ScriptableObject);
+            string caminhoArquivoCenaAlvo = Path.Combine(ConstantesProjetoUnity.CaminhoUnityAssetsCenas, cena.nomeArquivo + ExtensoesEditor.Cena);
 
             AssetDatabase.DeleteAsset(caminhoScriptableObjectCenaAlvo);
             AssetDatabase.DeleteAsset(caminhoArquivoCenaAlvo);
@@ -70,12 +70,12 @@ namespace Autis.Editor.Utils {
         }
 
         public static List<Cena> GetTodasCenasCriadas() {
-            if(!Directory.Exists(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas)) {
-                Directory.CreateDirectory(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas);
+            if(!Directory.Exists(ConstantesProjetoUnity.CaminhoUnityAssetsCenas)) {
+                Directory.CreateDirectory(ConstantesProjetoUnity.CaminhoUnityAssetsCenas);
                 return new List<Cena>();
             }
 
-            string[] arquivos = Directory.GetFiles(ConstantesProjetoUnity.CaminhoUnityAssetsScriptableObjectsCenas);
+            string[] arquivos = Directory.GetFiles(ConstantesProjetoUnity.CaminhoUnityAssetsCenas);
             List<Cena> cenas = new();
 
             foreach(string arquivo in arquivos) {

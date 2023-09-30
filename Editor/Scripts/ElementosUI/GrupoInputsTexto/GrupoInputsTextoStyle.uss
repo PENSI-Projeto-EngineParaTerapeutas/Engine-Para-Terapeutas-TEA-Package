@@ -1,0 +1,113 @@
+#conteiner-input-texto {
+    padding: 12px;
+    border-color: #B8BBC2;
+    border-width: 1.5px;
+    border-radius: 20px;
+    margin: 9% 0 0;
+    padding: 0px;
+}
+
+#input-texto {
+    border-radius: 20px;
+    margin: 0px
+}
+
+#input-texto > TextInput {
+    height: 110px;
+    padding: 12px;
+    border-width: 0px;
+    font-size: 13px;
+    background-color: white;
+    color: #313144;
+    -unity-font-style: bold;
+}
+
+#input-tamanho-texto {
+	flex-direction: column;
+	margin: 0px 30px 10px 15px;
+    height: 60px;
+}
+
+#input-tamanho-texto, #input-tamanho-texto > FloatInput {
+    font-size: 13px;
+}
+
+#label-configuracao-texto {
+    -unity-font-style: bold;
+    font-size: 15px;
+    margin: 13px 5px 15px;
+    color: black;
+}
+
+#label-tamanho-texto {
+    font-size: 13px;
+}
+
+#formatacao-texto {
+	flex-direction: row;
+    align-items: center;
+    align-self: center;
+    width: 90%;
+}
+
+#estilizacao-texto {
+    flex-direction: row;
+    margin-right: 18px;
+}
+
+#estilizacao-texto > Toggle > VisualElement > VisualElement {
+    width: 20px;
+    height: 20px;
+}
+
+#input-tamanho-texto > Label {
+	font-size: 13px;
+	-unity-font-style: bold;
+	margin-bottom: 4px;
+	color: black;
+}
+
+#input-tamanho-texto > FloatInput {
+	background-color: #F0F3F4;
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-top: 9.5px;
+	padding-bottom: 9.5px;
+	color: black;
+	border-radius: 10px;
+	border-width: 0px;
+	height: 45px;
+    max-width: 65px;
+    -unity-text-align: middle-center;
+}
+
+#input-negrito > VisualElement > VisualElement {
+    background-image: url('project://Engine-Para-Terapeutas-TEA/Packages/com.pensi.engine-para-terapeutas-tea/Editor/Assets/Imagens/negrito.png');
+    border-radius: 5px;
+    cursor: link;
+}
+
+#input-italico > VisualElement > VisualElement {
+    background-image: url('project://Engine-Para-Terapeutas-TEA/Packages/com.pensi.engine-para-terapeutas-tea/Editor/Assets/Imagens/italico.png'); 
+    border-radius: 5px;
+    cursor: link;
+}
+
+#input-sublinhado > VisualElement > VisualElement {
+    background-image: url('project://Engine-Para-Terapeutas-TEA/Packages/com.pensi.engine-para-terapeutas-tea/Editor/Assets/Imagens/sublinhado.png'); 
+    border-radius: 5px;
+    cursor: link;
+}
+
+#input-negrito:hover > VisualElement > VisualElement,
+#input-italico:hover > VisualElement > VisualElement,
+#input-sublinhado:hover > VisualElement > VisualElement {
+    border-width: 1px;
+    border-color: #1976D2;
+}
+
+#input-negrito:checked > VisualElement > VisualElement,
+#input-italico:checked > VisualElement > VisualElement,
+#input-sublinhado:checked > VisualElement > VisualElement {
+    background-color: #D3E5F5;
+}

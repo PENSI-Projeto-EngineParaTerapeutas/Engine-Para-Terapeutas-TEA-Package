@@ -5,6 +5,22 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:VisualElement name="regiao-carregamento-inputs-cena"/>
+    <engine:ScrollView name="regiao-conteudo-principal">
+        <engine:VisualElement name="regiao-carregamento-inputs-cena"/>
+        <engine:VisualElement name="regiao-carregamento-inputs-video"/>
+
+        <engine:VisualElement name="regiao-label-selecao-gabarito">
+            <engine:Label name="label-opcoes-gabarito" class="label-padrao" text="Gabarito (opcional)"/>
+            <engine:VisualElement name="regiao-tooltip-tipo-gabarito"/>
+        </engine:VisualElement>
+        <engine:VisualElement name="regiao-opcoes-tipo-gabarito">
+            <engine:RadioButtonGroup name="grupo-radio-button">
+                <engine:RadioButton class="input-padrao opcao-radio-button radio-button-padrao" label="Selecionar" name="radio-opcao-selecionar"/>
+                <engine:RadioButton class="input-padrao opcao-radio-button radio-button-padrao" label="Arrastar" name="radio-opcao-arrastar"/>
+            </engine:RadioButtonGroup>
+            <engine:Button name="botao-criar-gabarito" class="botao-padrao" text="Criar Gabarito"/>
+        </engine:VisualElement>
+    </engine:ScrollView>
+    
     <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>
 </engine:UXML>

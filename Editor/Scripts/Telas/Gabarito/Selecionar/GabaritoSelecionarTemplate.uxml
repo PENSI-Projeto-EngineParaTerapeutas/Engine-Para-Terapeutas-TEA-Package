@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <engine:VisualElement name="regiao-titulo">
+        <engine:Label name="titulo-gabarito" text="Ações Esperadas - Selecionar" class="titulo-padrao"/>
+        <engine:VisualElement name="regiao-carregamento-tooltip-titulo"/>
+    </engine:VisualElement>
+    <engine:Label name="descricao-uso-tela" text="Defina o conjunto de elementos (um ou vários) que devem ser selecionados na fase." class="label-padrao"/>
+
+    <engine:VisualElement name="regiao-dropdown-objetos-selecionaveis"/>
+    <engine:Button name="botao-adicionar-objeto" text="Adicionar Elemento" class="botao-padrao"/>
+
+    <engine:ScrollView name="scrollview-lista-selecao">
+        <engine:Label name="label-list-view" text="Lista de elementos que devem ser selecionados na fase:" class="label-padrao"/>
+        <engine:ListView name="lista-objetos-selecionaveis"/>
+    </engine:ScrollView>
+
+    <engine:VisualElement name="regiao-checkbox-ordem">
+        <engine:VisualElement name="regiao-toggle-ordem">
+            <engine:Toggle name="input-ordem-importa" class="checkbox-padrao" label="A ordem de seleção importa" tooltip="Define se a ordem em que os objetos serão selecionados no jogo é importante ou não."/>
+            <engine:VisualElement name="regiao-carregamento-tooltip-ordem-selecao"/>
+        </engine:VisualElement>
+        <engine:Label name="explicacao-radio-ordem" class="label-padrao" text="Na lista de elementos selecionados, arraste os elementos e posicione-os na ordem correta."/>
+    </engine:VisualElement>
+
+    <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>
+</engine:UXML>

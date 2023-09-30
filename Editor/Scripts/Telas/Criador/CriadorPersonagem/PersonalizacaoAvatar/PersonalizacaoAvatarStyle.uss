@@ -1,0 +1,76 @@
+:root {
+	flex: 1;
+	justify-content: space-between;
+	padding-bottom: 12px;
+}
+
+#regiao-tipos-persoangens {
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+#regiao-tipos-persoangens > Button {
+	height: 106px;
+	width: 106px;
+	padding: 3px;
+	margin-left: 9px;
+	margin-top: 9px;
+	margin-bottom: 9px;
+	border-color: black;
+	border-radius: 6px;
+	border-width: 1.2px;
+}
+
+#label-regiao-caracteristicas-persongem {
+	margin-bottom: 15px;
+}
+
+.input-cor, .input-dropdown, #regiao-input-upload-imagem-rosto {
+	margin-left: 21px;
+	margin-bottom: 6px;
+}
+
+.input-cor > TemplateContainer, .input-dropdown > TemplateContainer > DropdownField {
+	flex-direction: row;
+	align-items: center;
+}
+
+.input-dropdown > TemplateContainer > DropdownField > Label {
+	align-self: center;
+}
+
+#label-input-upload-imagem-rosto, .input-cor, .input-dropdown > TemplateContainer > DropdownField > Label {
+	color: #554D56;
+	font-size: 13px;
+	-unity-font-style: bold;
+}
+
+#regiao-tipos-persoangens > Button {
+	height: 106px;
+	width: 106px;
+	padding: 3px;
+	margin-left: 9px;
+	margin-top: 9px;
+	background-color: rgba(0, 0, 0, 0);
+	margin-bottom: 9px;
+	border-color: black;
+	border-radius: 6px;
+	border-width: 1.5px;
+}
+
+#regiao-conteudo-principal {
+	flex-grow: 1;
+	margin-bottom: 15px;
+}
+
+#label-input-upload-imagem-rosto {
+	margin-bottom: 12px;
+}
+
+#buscar-imagem {
+	align-self: center;
+    margin-top: 3%;
+	width: 70%;
+}

@@ -1,3 +1,9 @@
+:root {
+	flex: 1;
+	justify-content: space-between;
+	padding-bottom: 12px;
+}
+
 #regiao-tipos-personagens {
 	flex-direction: row;
 	justify-content: center;
@@ -5,14 +11,33 @@
 	flex-wrap: wrap;
 }
 
-#regiao-tipos-personagens > VisualElement {
+#regiao-tipos-personagens > Button {
 	height: 106px;
 	width: 106px;
 	padding: 3px;
 	margin-left: 9px;
 	margin-top: 9px;
+	background-color: rgba(0, 0, 0, 0);
 	margin-bottom: 9px;
 	border-color: black;
 	border-radius: 6px;
-	border-width: 1.2px;
+	border-width: 1.5px;
+}
+
+#regiao-carregamento-botoes-confirmacao {
+	flex-direction: row;
+}
+
+#label-titulo {
+	-unity-font-style: bold;
+	font-size: 20px;
+	margin-bottom: 7%;
+}
+
+#label-selecao {
+	-unity-font-style: bold;
+}
+
+#regiao-conteudo-principal {
+	flex-grow: 1;
 }

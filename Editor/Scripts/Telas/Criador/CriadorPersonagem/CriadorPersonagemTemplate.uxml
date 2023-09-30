@@ -5,29 +5,36 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:VisualElement name="regiao-titulo">
-        <engine:Label name="label-titulo" class="label-padrao" text="Defina o personagem"/>
-        <engine:VisualElement name="regiao-tooltip-titulo"/>
-    </engine:VisualElement>
-
-    <engine:VisualElement name="regiao-carregamento-header"/>
-    <engine:VisualElement name="regiao-carregamento-tipo-personagem"/>
-
-    <engine:Image name="imagem-personagem"/>
-    <engine:Button name="botao-personalizar-personagem" text="Personalizar personagem"/>
-
-    <engine:VisualElement name="regiao-label-selecao-controle">
-        <engine:Label name="label-titulo" class="label-padrao" text="Forma de controle"/>
-        <engine:VisualElement name="regiao-tooltip-forma-controle"/>
-    </engine:VisualElement>
-    <engine:RadioButtonGroup name="grupo-radio-button">
-        <engine:RadioButton class="input-padrao opcao-radio-button" label="Direto" name="radio-opcao-controle-direto"/>
-
-        <engine:VisualElement name="regiao-opcao-controle-indireto">
-            <engine:RadioButton class="input-padrao opcao-radio-button" label="Indireto" name="radio-opcao-controle-indireto"/>
-            <engine:Button name="botao-configurar-controle-indireto" text="Configurar controle indireto"/>
+    <engine:ScrollView name="regiao-conteudo-principal">
+        <engine:VisualElement name="regiao-titulo" class="regiao-titulo-padrao">
+            <engine:Label name="label-titulo" class="titulo-padrao" text="Defina o personagem"/>
+            <engine:VisualElement name="regiao-tooltip-titulo"/>
         </engine:VisualElement>
-    </engine:RadioButtonGroup>
+
+        <engine:VisualElement name="regiao-carregamento-nome"/>
+        <engine:VisualElement name="regiao-carregamento-tipo-personagem"/>
+
+        <engine:Image name="imagem-personagem"/>
+        <engine:Button name="botao-personalizar-personagem" text="Personalizar\npersonagem"/>
+
+        <engine:VisualElement name="regiao-label-selecao-controle">
+            <engine:Label name="label-selecao-controle" class="label-input-padrao" text="Forma de controle"/>
+            <engine:VisualElement name="regiao-tooltip-forma-controle"/>
+        </engine:VisualElement>
+        <engine:RadioButtonGroup name="grupo-radio-button">
+            <engine:RadioButton class="radio-button-padrao" label="Direto" name="radio-opcao-controle-direto"/>
+
+            <engine:VisualElement name="regiao-opcao-controle-indireto">
+                <engine:RadioButton class="radio-button-padrao" label="Indireto" name="radio-opcao-controle-indireto"/>
+                <engine:Button name="botao-configurar-controle-indireto" class="botao-padrao" text="Configurar controle indireto"/>
+            </engine:VisualElement>
+        </engine:RadioButtonGroup>
+
+        <engine:Foldout text="Opções Avançadas (Opcional)" name="foldout-opcoes-avancadas" value="false">
+            <engine:VisualElement name="regiao-carregamento-inputs-posicao"/>
+            <engine:VisualElement name="regiao-carregamento-inputs-tamanho"/>
+        </engine:Foldout>
+    </engine:ScrollView>
 
     <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>
 </engine:UXML>

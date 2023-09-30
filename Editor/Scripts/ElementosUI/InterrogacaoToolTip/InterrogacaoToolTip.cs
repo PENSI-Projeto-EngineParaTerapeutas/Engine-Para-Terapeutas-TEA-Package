@@ -24,6 +24,8 @@ namespace Autis.Editor.UI {
         private const string NOME_TEXTO_TOOLTIP = "texto-tooltip";
         private readonly Label textoTooltip;
 
+        private bool labelAtivada = false;
+
         #endregion
 
         public InterrogacaoToolTip() {
@@ -31,20 +33,40 @@ namespace Autis.Editor.UI {
             regiaoTextoTooltip = Root.Query<VisualElement>(NOME_REGIAO_TEXTO_TOOLTIP);
             textoTooltip = Root.Query<Label>(NOME_TEXTO_TOOLTIP);
 
+            regiaoTextoTooltip.AddToClassList("regiao-tooltip");
+
+            ConfigurarEventosMouse();
             ConfigurarImagemToolTip();
             OcultarTooltip();
             return;
         }
 
+        private void ConfigurarEventosMouse() {
+            imagemTooltip.RegisterCallback<ClickEvent>(EventoClicar);
+
+            SetTexto("Teste da tooltip"); // DEBUG - DELETAR DEPOIS
+        }
         private void ConfigurarImagemToolTip() {
             imagemTooltip.image = Importador.ImportarImagem("interrogacao.png");
             return;
         }
 
         public void SetTexto(string conteudo) {
-            imagemTooltip.tooltip = conteudo;
+            //imagemTooltip.tooltip = conteudo;
             //TODO: TextoTooltip.text = conteudo;
+            TextoTooltip.text = conteudo; // DEBUG - DELETAR DEPOIS
             return;
+        }
+
+        void EventoClicar(ClickEvent evt) {
+            if (labelAtivada) {
+                OcultarTooltip();
+                labelAtivada = false;
+            }
+            else {
+                ExibirTooltip();
+                labelAtivada = true;
+            }
         }
 
         public void ExibirTooltip() {
