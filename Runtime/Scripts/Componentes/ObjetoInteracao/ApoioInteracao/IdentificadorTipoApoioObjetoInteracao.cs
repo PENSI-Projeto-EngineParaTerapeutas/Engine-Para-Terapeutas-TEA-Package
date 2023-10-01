@@ -32,8 +32,6 @@ namespace Autis.Runtime.ComponentesGameObjects {
         #endif
 
         public override void DesabilitarComponentes() {
-            transform.position = Vector3.zero;
-
             spriteRenderer.enabled = false;
             audioSource.enabled = false;
 
