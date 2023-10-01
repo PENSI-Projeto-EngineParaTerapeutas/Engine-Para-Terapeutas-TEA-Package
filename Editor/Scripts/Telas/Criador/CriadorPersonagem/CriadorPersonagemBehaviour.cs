@@ -342,7 +342,7 @@ namespace Autis.Editor.Criadores {
         }
 
         protected virtual void HandleBotaoConfigurarControleIndiretoClick() {
-            Navigator.Instance.IrPara(new ConfigurarControleIndiretoBehaviour(manipuladorPersonagem));
+            Navigator.Instance.IrPara(new ControleIndiretoBehaviour(manipuladorPersonagem));
             return;
         }
 

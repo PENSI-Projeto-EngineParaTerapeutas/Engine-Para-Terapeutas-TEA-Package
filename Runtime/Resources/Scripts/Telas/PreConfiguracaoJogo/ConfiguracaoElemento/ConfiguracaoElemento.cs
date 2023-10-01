@@ -7,9 +7,9 @@ using Autis.Runtime.ComponentesGameObjects;
 using Autis.Runtime.DTOs;
 
 namespace Autis.Runtime.UI {
-    public class ConfiguracaoObjetoInteracao : ElementoInterfaceJogo {
-        protected override string CaminhoTemplate => "Scripts/Telas/PreConfiguracaoJogo/ConfiguracaoObjetoInteracao/ConfiguracaoObjetoInteracaoTemplate";
-        protected override string CaminhoStyle => "Scripts/Telas/PreConfiguracaoJogo/ConfiguracaoObjetoInteracao/ConfiguracaoObjetoInteracaoStyle";
+    public class ConfiguracaoElemento : ElementoInterfaceJogo {
+        protected override string CaminhoTemplate => "Scripts/Telas/PreConfiguracaoJogo/ConfiguracaoElemento/ConfiguracaoElementoTemplate";
+        protected override string CaminhoStyle => "Scripts/Telas/PreConfiguracaoJogo/ConfiguracaoElemento/ConfiguracaoElementoStyle";
 
         #region .: Elementos :.
 
@@ -23,7 +23,7 @@ namespace Autis.Runtime.UI {
 
         private readonly List<GameObject> objetosInteracao = new();
 
-        public ConfiguracaoObjetoInteracao() {
+        public ConfiguracaoElemento() {
             objetosInteracao = GameObject.FindGameObjectsWithTag(NomesTags.ObjetosInteracao).ToList();
 
             regiaoSelecaoObjetosInteracao = Root.Query<VisualElement>(NOME_REGIAO_SELECAO_OBJETOS_INTERACAO);

@@ -4,15 +4,15 @@ using Autis.Editor.DTOs;
 using Autis.Editor.Utils;
 
 namespace Autis.Editor.UI {
-    public class DisplayAcaoPersonagem : ElementoInterfaceEditor {
-        protected override string CaminhoTemplate => "Telas/Criador/CriadorPersonagem/ConfigurarControleIndireto/DisplayAcaoPersonagem/DisplayAcaoPersonagemTemplate.uxml";
-        protected override string CaminhoStyle => "Telas/Criador/CriadorPersonagem/ConfigurarControleIndireto/DisplayAcaoPersonagem/DisplayAcaoPersonagemStyle.uss";
+    public class DisplayAcao : ElementoInterfaceEditor {
+        protected override string CaminhoTemplate => "Telas/Criador/CriadorPersonagem/ControleIndireto/DisplayAcao/DisplayAcaoTemplate.uxml";
+        protected override string CaminhoStyle => "Telas/Criador/CriadorPersonagem/ControleIndireto/DisplayAcao/DisplayAcaoStyle.uss";
 
-        public Action<DisplayAcaoPersonagem> CallbackExcluirAcao { get => callbackExcluirAcao; set => callbackExcluirAcao = value; }
-        private Action<DisplayAcaoPersonagem> callbackExcluirAcao;
+        public Action<DisplayAcao> CallbackExcluirAcao { get => callbackExcluirAcao; set => callbackExcluirAcao = value; }
+        private Action<DisplayAcao> callbackExcluirAcao;
 
-        public Action<DisplayAcaoPersonagem> CallbackEditarAcao { get => callbackEditarAcao; set => callbackEditarAcao = value; }
-        private Action<DisplayAcaoPersonagem> callbackEditarAcao;
+        public Action<DisplayAcao> CallbackEditarAcao { get => callbackEditarAcao; set => callbackEditarAcao = value; }
+        private Action<DisplayAcao> callbackEditarAcao;
 
         public AcaoPersonagem AcaoVinculada { get => acaoVinculada; }
         private readonly AcaoPersonagem acaoVinculada;
@@ -30,7 +30,7 @@ namespace Autis.Editor.UI {
 
         #endregion
 
-        public DisplayAcaoPersonagem(AcaoPersonagem acaoPersonagem) {
+        public DisplayAcao(AcaoPersonagem acaoPersonagem) {
             acaoVinculada = acaoPersonagem;
 
             iconeAnimacao = Root.Query<Image>(NOME_IMAGEM_ICONE_ANIMACAO);

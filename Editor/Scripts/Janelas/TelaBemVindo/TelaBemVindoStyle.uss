@@ -56,6 +56,7 @@ Label {
 }
 
 #container-caixas {
-    flex-flow: column nowrap;
+    flex-direction: column;
+    flex-wrap: nowrap;
     justify-content: space-around;
 }

@@ -6,9 +6,9 @@ using Autis.Editor.Constantes;
 using Autis.Editor.Manipuladores;
 
 namespace Autis.Editor.Telas {
-    public class ConfigurarControleIndiretoBehaviour : Tela {
-        protected override string CaminhoTemplate => "Telas/Criador/CriadorPersonagem/ConfigurarControleIndireto/ConfigurarControleIndiretoTemplate.uxml";
-        protected override string CaminhoStyle => "Telas/Criador/CriadorPersonagem/ConfigurarControleIndireto/ConfigurarControleIndiretoStyle.uss";
+    public class ControleIndiretoBehaviour : Tela {
+        protected override string CaminhoTemplate => "Telas/Criador/CriadorPersonagem/ControleIndireto/ControleIndiretoTemplate.uxml";
+        protected override string CaminhoStyle => "Telas/Criador/CriadorPersonagem/ControleIndireto/ControleIndiretoStyle.uss";
 
         #region .: Elementos :.
 
@@ -28,11 +28,11 @@ namespace Autis.Editor.Telas {
         #endregion
 
         private readonly ManipuladorPersonagens manipuladorPersonagem;
-        private readonly List<DisplayAcaoPersonagem> displaysInformacoesAcao = new();
+        private readonly List<DisplayAcao> displaysInformacoesAcao = new();
 
-        private DisplayAcaoPersonagem displayAcaoEditada = null;
+        private DisplayAcao displayAcaoEditada = null;
 
-        public ConfigurarControleIndiretoBehaviour(ManipuladorPersonagens manipuladorPersonagens) {
+        public ControleIndiretoBehaviour(ManipuladorPersonagens manipuladorPersonagens) {
             manipuladorPersonagem = manipuladorPersonagens;
 
             regiaoListaAnimacoes = Root.Query<ScrollView>(NOME_REGIAO_LISTA_ANIMACOES);
@@ -48,7 +48,7 @@ namespace Autis.Editor.Telas {
 
         private void CarregarAssociacoesJaEstabelecidas() {
             foreach(AcaoPersonagem acaoAssociada in manipuladorPersonagem.AssociacoesAcoesControleIndireto) {
-                DisplayAcaoPersonagem displayAcao = new(acaoAssociada) {
+                DisplayAcao displayAcao = new(acaoAssociada) {
                     CallbackEditarAcao = HandleEditarAcao,
                     CallbackExcluirAcao = HandleExcluirAcao,
                 };
@@ -80,7 +80,7 @@ namespace Autis.Editor.Telas {
         }
 
         private void HandleConfirmarAdicionarAcao(AcaoPersonagem acaoAdicionada) {
-            DisplayAcaoPersonagem acaoRepetida = displaysInformacoesAcao.Find(displayInformacao => displayInformacao.AcaoVinculada.ObjetoGatilho == acaoAdicionada.ObjetoGatilho);
+            DisplayAcao acaoRepetida = displaysInformacoesAcao.Find(displayInformacao => displayInformacao.AcaoVinculada.ObjetoGatilho == acaoAdicionada.ObjetoGatilho);
             if(acaoRepetida != null) {
                 acaoRepetida.AcaoVinculada.Animacao = acaoAdicionada.Animacao;
                 acaoRepetida.AtualizarInformacoesLabel();
@@ -88,7 +88,7 @@ namespace Autis.Editor.Telas {
                 return;
             }
 
-            DisplayAcaoPersonagem novoDisplayAcao = new(acaoAdicionada) {
+            DisplayAcao novoDisplayAcao = new(acaoAdicionada) {
                 CallbackExcluirAcao = HandleExcluirAcao,
                 CallbackEditarAcao = HandleEditarAcao,
             };
@@ -115,7 +115,7 @@ namespace Autis.Editor.Telas {
             return;
         }
 
-        private void HandleExcluirAcao(DisplayAcaoPersonagem displayInformacoesAcao) {
+        private void HandleExcluirAcao(DisplayAcao displayInformacoesAcao) {
             manipuladorPersonagem.RemoverAcaoControleIndireto(displayInformacoesAcao.AcaoVinculada);
 
             displaysInformacoesAcao.Remove(displayInformacoesAcao);
@@ -126,7 +126,7 @@ namespace Autis.Editor.Telas {
             return;
         }
 
-        private void HandleEditarAcao(DisplayAcaoPersonagem displayInformacoesAcao) {
+        private void HandleEditarAcao(DisplayAcao displayInformacoesAcao) {
             displayAcaoEditada = displayInformacoesAcao;
             Navigator.Instance.IrPara(new AdicionarAcaoBehaviour(manipuladorPersonagem, displaysInformacoesAcao, displayInformacoesAcao.AcaoVinculada) {
                 OnFinalizarCriacao = HandleFinalizarEdicao,
@@ -159,7 +159,7 @@ namespace Autis.Editor.Telas {
 
         private void HandleBotaoConfirmarClick() {
             manipuladorPersonagem.LimparAcoesControleIndireto();
-            foreach(DisplayAcaoPersonagem informacoesAcao in displaysInformacoesAcao) {
+            foreach(DisplayAcao informacoesAcao in displaysInformacoesAcao) {
                 manipuladorPersonagem.AdicionarAcaoControleIndireto(informacoesAcao.AcaoVinculada);
             }
 

@@ -52,7 +52,7 @@ namespace Autis.Runtime.Telas {
         private ConfiguracaoApoioBehaviour secaoConfiguracaoApoios;
         private ConfiguracaoReforcoBehaviour secaoConfiguracaoReforcos;
         private ConfiguracaoInstrucao secaoConfiguracaoInstrucoes;
-        private ConfiguracaoObjetoInteracao secaoConfiguracaoObjetoInteracao;
+        private ConfiguracaoElemento secaoConfiguracaoObjetoInteracao;
 
         #endregion
 
@@ -75,7 +75,7 @@ namespace Autis.Runtime.Telas {
             secaoConfiguracaoApoios = new ConfiguracaoApoioBehaviour();
             secaoConfiguracaoReforcos = new ConfiguracaoReforcoBehaviour();
             secaoConfiguracaoInstrucoes = new ConfiguracaoInstrucao();
-            secaoConfiguracaoObjetoInteracao = new ConfiguracaoObjetoInteracao();
+            secaoConfiguracaoObjetoInteracao = new ConfiguracaoElemento();
 
             return;
         }

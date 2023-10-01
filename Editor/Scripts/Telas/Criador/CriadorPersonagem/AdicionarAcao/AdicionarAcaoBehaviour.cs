@@ -59,9 +59,9 @@ namespace Autis.Editor.Telas {
         private GameObject elementoInteracaoSelecionado = null;
         private AnimationClip animacaoSelecionada = null;
 
-        private readonly List<DisplayAcaoPersonagem> acoesJaCriadas;
+        private readonly List<DisplayAcao> acoesJaCriadas;
 
-        public AdicionarAcaoBehaviour(ManipuladorPersonagens manipulador, List<DisplayAcaoPersonagem> acoesJaCriadas) {
+        public AdicionarAcaoBehaviour(ManipuladorPersonagens manipulador, List<DisplayAcao> acoesJaCriadas) {
             this.manipulador = manipulador;
             this.acoesJaCriadas = acoesJaCriadas;
 
@@ -75,7 +75,7 @@ namespace Autis.Editor.Telas {
             return;
         }
 
-        public AdicionarAcaoBehaviour(ManipuladorPersonagens manipulador, List<DisplayAcaoPersonagem> acoesJaCriadas, AcaoPersonagem acaoEditada) {
+        public AdicionarAcaoBehaviour(ManipuladorPersonagens manipulador, List<DisplayAcao> acoesJaCriadas, AcaoPersonagem acaoEditada) {
             this.manipulador = manipulador;
             this.acoesJaCriadas = acoesJaCriadas;
 
