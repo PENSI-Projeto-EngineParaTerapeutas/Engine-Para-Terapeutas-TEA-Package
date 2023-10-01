@@ -69,8 +69,6 @@ namespace Autis.Editor.Criadores {
 
         #endregion
 
-        protected readonly TiposReforcos tipoPadrao = TiposReforcos.Texto;
-
         protected ManipuladorReforco manipulador;
 
         protected Dictionary<string, TiposReforcos> associacaoValoresDropdownTipoReforocos;
@@ -97,9 +95,9 @@ namespace Autis.Editor.Criadores {
             ConfigurarRegiaoOpcoesAvancadas();
             ConfigurarBotoesConfirmacao();
 
-            AlterarVisibilidadeCamposComBaseTipo(tipoPadrao);
             VincularCamposAoNovoObjeto();
 
+            OcultarCampos();
             return;
         }
 
@@ -379,7 +377,7 @@ namespace Autis.Editor.Criadores {
             grupoInputsPosicao.ReiniciarCampos();
             grupoInputsTamanho.ReiniciarCampos();
 
-            AlterarVisibilidadeCamposComBaseTipo(tipoPadrao);
+            OcultarCampos();
 
             return;
         }

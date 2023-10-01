@@ -278,7 +278,8 @@ namespace Autis.Editor.Criadores {
         protected virtual void ExibirCamposApoioSeta() {
             regiaoCarregamentoInputsAudio.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
             regiaoCarregamentoInputsTexto.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-            dropdownTempoExibicao.Root.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            
+            dropdownTempoExibicao.Root.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
 
             foldoutOpcoesAvancadas.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
             grupoInputsTamanho.Root.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
@@ -289,6 +290,7 @@ namespace Autis.Editor.Criadores {
         protected virtual void ExibirCamposApoioAudio() {
             regiaoCarregamentoInputsAudio.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
             regiaoCarregamentoInputsTexto.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            
             dropdownTempoExibicao.Root.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
 
             foldoutOpcoesAvancadas.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
@@ -299,6 +301,7 @@ namespace Autis.Editor.Criadores {
         protected virtual void ExibirCamposApoioTexto() {
             regiaoCarregamentoInputsAudio.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
             regiaoCarregamentoInputsTexto.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            
             dropdownTempoExibicao.Root.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
 
             foldoutOpcoesAvancadas.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);

@@ -49,7 +49,6 @@ namespace Autis.Editor.Criadores
 
         #endregion
 
-        protected readonly TiposIntrucoes tipoPadrao = TiposIntrucoes.Texto;
         protected ManipuladorInstrucoes manipulador;
 
         public CriadorInstrucoesBehaviour() {
@@ -60,11 +59,11 @@ namespace Autis.Editor.Criadores
             CarregarRegiaoInputsVideo();
             CarregarRegiaoInputsAudio();
             CarregarRegiaoInputsTexto();
-
             ConfigurarCampoTipoInstrucao();
-            AlterarVisibilidadeCamposComBaseTipo(tipoPadrao);
 
             ConfigurarBotoesConfirmacao();
+
+            OcultarCampos();
 
             return;
         }
@@ -145,19 +144,19 @@ namespace Autis.Editor.Criadores
         protected virtual void AlterarVisibilidadeCamposComBaseTipo(TiposIntrucoes tipo) {
             OcultarCampos();
 
-            switch (tipo) {
-                case (TiposIntrucoes.Audio): {
-                        ExibirCamposAudio();
-                        break;
-                    }
-                case (TiposIntrucoes.Texto): {
-                        ExibirCamposTexto();
-                        break;
-                    }
-                case (TiposIntrucoes.Video): {
-                        ExibirCamposVideo();
-                        break;
-                    }
+            switch(tipo) {
+                case(TiposIntrucoes.Audio): {
+                    ExibirCamposAudio();
+                    break;
+                }
+                case(TiposIntrucoes.Texto): {
+                    ExibirCamposTexto();
+                    break;
+                }
+                case(TiposIntrucoes.Video): {
+                    ExibirCamposVideo();
+                    break;
+                }
             }
 
             return;
@@ -228,7 +227,7 @@ namespace Autis.Editor.Criadores
             grupoInputsAudio.ReiniciarCampos();
             grupoInputsTexto.ReiniciarCampos();
 
-            AlterarVisibilidadeCamposComBaseTipo(tipoPadrao);
+            OcultarCampos();
 
             return;
         }
