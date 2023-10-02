@@ -40,7 +40,8 @@ namespace Autis.Editor.Telas {
             JanelaPrincipalBehaviour janela = GetWindow<JanelaPrincipalBehaviour>();
             janela.titleContent = new GUIContent(titulo);
             janela.minSize = new Vector2(350, 680);
-
+            janela.maxSize = janela.minSize;
+           
             return;
         }
 

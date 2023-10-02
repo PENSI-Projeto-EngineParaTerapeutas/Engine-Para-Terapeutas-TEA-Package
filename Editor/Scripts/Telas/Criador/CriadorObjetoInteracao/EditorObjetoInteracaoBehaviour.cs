@@ -31,7 +31,7 @@ namespace Autis.Editor.Telas {
         private void CarregarDados() {
             campoNome.CampoTexto.SetValueWithoutNotify(manipulador.ObjetoAtual.name);
 
-            grupoInputsImagem.VincularDados(manipulador.ComponenteSpriteRenderer);
+            inputsImagem.VincularDados(manipulador.ManipuladorSpriteRenderer.GetImagem());
             grupoInputsTexto.VincularDados(manipulador.ManipuladorTexto);
 
             dropdownTipo.Campo.SetValueWithoutNotify(manipulador.GetTipo().ToString());

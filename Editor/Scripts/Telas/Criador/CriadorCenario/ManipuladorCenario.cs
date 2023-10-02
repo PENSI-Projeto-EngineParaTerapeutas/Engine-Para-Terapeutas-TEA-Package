@@ -35,6 +35,7 @@ namespace Autis.Editor.Manipuladores {
 
         public override void Editar(GameObject objetoAlvo) {
             base.Editar(objetoAlvo);
+            objetoAlvo.name = "Cenário";
 
             componenteCenarioResize = objeto.GetComponent<CenarioResize>();
             componenteSpriteRenderer = objeto.GetComponent<SpriteRenderer>();

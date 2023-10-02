@@ -3,6 +3,7 @@
 	justify-content: space-around;
 	align-items: center;
 	width: 100%;
+	padding-top: 24px;
 }
 
 #botao-confirmar, #botao-cancelar {

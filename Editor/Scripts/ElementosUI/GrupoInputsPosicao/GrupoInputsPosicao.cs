@@ -25,8 +25,8 @@ namespace Autis.Editor.UI {
         private ManipuladorObjetos manipulador;
 
         public GrupoInputsPosicao() {
-            campoPosicaoX = new InputNumerico("Vertical");
-            campoPosicaoY = new InputNumerico("Horizontal");
+            campoPosicaoX = new InputNumerico("Horizontal");
+            campoPosicaoY = new InputNumerico("Vertical");
 
             root.Add(campoPosicaoX.Root);
             root.Add(campoPosicaoY.Root);

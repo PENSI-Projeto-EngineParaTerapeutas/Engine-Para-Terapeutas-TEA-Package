@@ -11,17 +11,24 @@ namespace Autis.Editor.Criadores {
 
         #region .: Elementos :.
 
-        protected const string NOME_REGIAO_CARREGAMENTO_INPUT_NOME = "regiao-input-nome";
-        protected VisualElement regiaoCarregamenteInputNome;
+        protected readonly string NOME_RADIO_IMAGEM = "radio-opcao-imagem";
+        protected RadioButton radioButtonImagem;
 
-        protected const string NOME_REGIAO_CARREGAMENTO_INPUTS_IMAGEM = "regiao-carregamento-inputs-imagem";
-        protected VisualElement regiaoCarregamentoInputsImagem;
+        protected const string NOME_REGIAO_INPUT_IMAGEM = "regiao-input-imagem";
+        protected VisualElement regiaoInputImagem;
+
+        protected const string NOME_REGIAO_INPUT_COR = "regiao-input-cor";
+        protected VisualElement regiaoInputCor;
+
+        protected readonly string NOME_RADIO_COR_UNICA = "radio-opcao-cor-unica";
+        protected RadioButton radioButtonCorUnica;
 
         protected const string NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO = "regiao-carregamento-botoes-confirmacao";
         protected VisualElement regiaoCarregamentoBotoesConfirmacao;
 
-        protected InputTexto campoNome;
-        protected readonly InputsComponenteImagemCenario grupoInputsImagem;
+        protected InputImagem inputImagem;
+        protected InputCor inputCor;
+
         protected BotoesConfirmacao botoesConfirmacao;
 
         #endregion
@@ -29,34 +36,61 @@ namespace Autis.Editor.Criadores {
         protected readonly ManipuladorCenario manipulador;
 
         public CriadorCenarioBehaviour() {
-            grupoInputsImagem = new InputsComponenteImagemCenario();
-            
             manipulador = new ManipuladorCenario();
             manipulador.Criar();
 
-            CarregarRegiaoInputsImagem();
+            CarregarRegiaoInputImagem();
+            CarregarRegiaoInputsCor();
+
             ConfigurarBotoesConfirmacao();
-            VincularCamposAoNovoObjeto();
 
             return;
         }
 
-        protected virtual void ConfigurarCampoNome() {
-            campoNome = new InputTexto("Nome:");
+        protected virtual void CarregarRegiaoInputImagem() {
+            inputImagem = new InputImagem();
+            inputImagem.Root.SetEnabled(false);
 
-            campoNome.CampoTexto.RegisterCallback<ChangeEvent<string>>(evt => {
-                manipulador.SetNome(evt.newValue);
+            radioButtonImagem = Root.Query<RadioButton>(NOME_RADIO_IMAGEM);
+            radioButtonImagem.RegisterCallback<ChangeEvent<bool>>(evt => {
+                if(!evt.newValue) {
+                    return;
+                }
+
+                inputImagem.Root.SetEnabled(true);
+                inputCor.Root.SetEnabled(false);
             });
 
-            regiaoCarregamenteInputNome = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUT_NOME);
-            regiaoCarregamenteInputNome.Add(campoNome.Root);
+            inputImagem.CampoImagem.RegisterCallback<ChangeEvent<Object>>(evt => {
+                manipulador.SetImagem(evt.newValue as Sprite);
+            });
+
+            regiaoInputImagem = Root.Query<VisualElement>(NOME_REGIAO_INPUT_IMAGEM);
+            regiaoInputImagem.Add(inputImagem.Root);
 
             return;
         }
 
-        protected virtual void CarregarRegiaoInputsImagem() {
-            regiaoCarregamentoInputsImagem = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_IMAGEM);
-            regiaoCarregamentoInputsImagem.Add(grupoInputsImagem.Root);
+        protected virtual void CarregarRegiaoInputsCor() {
+            inputCor = new InputCor();
+            inputCor.Root.SetEnabled(false);
+
+            radioButtonCorUnica = root.Query<RadioButton>(NOME_RADIO_COR_UNICA);
+            radioButtonCorUnica.RegisterCallback<ChangeEvent<bool>>(evt => {
+                if(!evt.newValue) {
+                    return;
+                }
+
+                inputImagem.Root.SetEnabled(false);
+                inputCor.Root.SetEnabled(true);
+            });
+
+            inputCor.CampoCor.RegisterCallback<ChangeEvent<Color>>(evt => {
+                manipulador.SetCorSolida(evt.newValue);
+            });
+
+            regiaoInputCor = Root.Query<VisualElement>(NOME_REGIAO_INPUT_COR);
+            regiaoInputCor.Add(inputCor.Root);
 
             return;
         }
@@ -86,20 +120,14 @@ namespace Autis.Editor.Criadores {
             return;
         }
 
-        protected virtual void VincularCamposAoNovoObjeto() {
-            grupoInputsImagem.InputCor.CampoCor.RegisterCallback<ChangeEvent<Color>>(evt => {
-                manipulador.SetCorSolida(evt.newValue);
-            });
-
-            grupoInputsImagem.InputImagem.CampoImagem.RegisterCallback<ChangeEvent<Object>>(evt => {
-                manipulador.SetImagem(evt.newValue as Sprite);
-            });
-
-            return;
-        }
-
         public void ReiniciarCampos() {
-            grupoInputsImagem.ReiniciarCampos();
+            radioButtonImagem.SetValueWithoutNotify(false);
+            inputImagem.ReiniciarCampos();
+            inputImagem.Root.SetEnabled(false);
+
+            radioButtonCorUnica.SetValueWithoutNotify(false);
+            inputCor.ReiniciarCampos();
+            inputCor.Root.SetEnabled(false);
 
             return;
         }

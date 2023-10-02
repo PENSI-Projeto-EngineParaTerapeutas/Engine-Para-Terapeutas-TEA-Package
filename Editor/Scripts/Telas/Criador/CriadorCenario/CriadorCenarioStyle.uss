@@ -4,16 +4,6 @@
 	padding-bottom: 12px;
 }
 
-#regiao-carregamento-telas > TemplateContainer {
-	width: 90%;
-	align-self: center;
-}
-
-#regiao-botoes-principais  {
-	width: 80%;
-	align-self: center;
-}
-
 #grupo-radio-button {
 	flex-direction: column;
 }
@@ -21,15 +11,11 @@
 #regiao-radio-button-cor-unica {
 	flex-direction: row;
 	align-self: flex-start;
+	align-items: center;
 }
 
 #radio-opcao-cor-unica {
-	border-right-width: 40px;
-}
-
-#regiao-carregamento-inputs-imagem {
-	width: 80%;
-	align-self: center;
+	margin-right: 12px;
 }
 
 #buscar-imagem {

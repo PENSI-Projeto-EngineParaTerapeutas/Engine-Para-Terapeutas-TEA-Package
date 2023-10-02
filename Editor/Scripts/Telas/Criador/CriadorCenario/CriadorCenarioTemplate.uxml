@@ -11,7 +11,17 @@
             <engine:VisualElement name="regiao-tooltip-titulo"/>
         </engine:VisualElement>
 
-        <engine:VisualElement name="regiao-carregamento-inputs-imagem"/>
+        <engine:RadioButtonGroup name="grupo-radio-button">
+            <engine:VisualElement name="regiao-radio-button-cor-unica">
+                <engine:RadioButton class="input-padrao opcao-radio-button radio-button-padrao" label="Cor única" name="radio-opcao-cor-unica"/>
+                <engine:VisualElement name="regiao-input-cor" tooltip="Cor que sobrepõe a imagem do babababab ator"/>
+            </engine:VisualElement>
+
+            <engine:VisualElement name="regiao-radio-button-imagem">
+                <engine:RadioButton class="input-padrao opcao-radio-button radio-button-padrao" label="Imagem" name="radio-opcao-imagem"/>
+                <engine:VisualElement name="regiao-input-imagem"/>
+            </engine:VisualElement>
+        </engine:RadioButtonGroup>
     </engine:ScrollView>
 
     <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>

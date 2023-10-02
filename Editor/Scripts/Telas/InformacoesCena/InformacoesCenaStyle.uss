@@ -4,6 +4,32 @@
 	padding-bottom: 12px;
 }
 
+#regiao-titulo {
+	margin-bottom: 21px;
+}
+
+#regiao-titulo > Label {
+	font-size: 21px;
+}
+
+#regiao-titulo,  #regiao-label-input-faixa-etaria, #regiao-label-input-video, #regiao-subtitulo-gabarito {
+	flex-direction: row;
+	align-items: center;
+}
+
+#regiao-titulo > Label,  #regiao-label-input-faixa-etaria > Label, #regiao-label-input-video > Label, #regiao-subtitulo-gabarito > Label {
+	margin-right: 6px;
+	-unity-font-style: bold;
+}
+
+#label-input-video-contexto, #regiao-carregamento-dropdown-nivel-dificuldade > TemplateContainer > DropdownField > Label, #label-faixa-etaria {
+	font-size: 17px;
+}
+
+#label-faixa-superior, #label-faixa-inferior {
+	font-size: 15px;
+}
+
 #regiao-conteudo-principal {
 	flex-grow: 1;
 }
@@ -11,10 +37,6 @@
 #regiao-opcoes-tipo-gabarito {
 	flex-direction: row;
 	
-}
-
-#regiao-label-selecao-gabarito {
-	flex-direction: row;
 }
 
 #label-opcoes-gabarito {
@@ -62,4 +84,36 @@
 
 #input-dificuldade > VisualElement > TextElement {
 	margin: 0 0 0 7px;
+}
+
+#regiao-inputs-faixa-etaria {
+	flex-direction: row;
+}
+
+#regiao-faixa-etaria-inferior, #regiao-faixa-etaria-superior {
+	flex-direction: row;
+	align-items: center;
+}
+
+#regiao-carregamento-inputs-video {
+	margin-top: 3px;
+}
+
+#regiao-carregamento-inputs-video > TemplateContainer > Button {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+#regiao-carregamento-input-nome, #regiao-carregamento-inputs-video, #regiao-carregamento-dropdown-nivel-dificuldade, #regiao-faixa-etaria {
+	margin-bottom: 27px;
+}
+
+#label-descricao-gabarito {
+	font-size: 15px;
+}
+
+#botao-criar-gabarito {
+	flex: 1;
+	height: 50px;
+	margin-left: 12px;
 }

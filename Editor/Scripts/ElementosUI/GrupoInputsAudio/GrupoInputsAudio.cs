@@ -36,6 +36,8 @@ namespace Autis.Editor.UI {
             campoVolume.lowValue = 0;
             campoVolume.highValue = 1;
 
+            campoVolume.SetValueWithoutNotify(campoVolume.highValue);
+
             return;
         }
 
@@ -54,7 +56,7 @@ namespace Autis.Editor.UI {
 
         public void ReiniciarCampos() {
             inputAudio.ReiniciarCampos();
-            campoVolume.value = campoVolume.lowValue;
+            campoVolume.value = campoVolume.highValue;
             
             return;
         }

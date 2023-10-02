@@ -5,6 +5,6 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:TextField name="input-texto" class="input-padrao"/>
+    <engine:TextField name="input-texto" class="input-texto"/>
     <engine:VisualElement name="regiao-tooltip-titulo"/>
 </engine:UXML>

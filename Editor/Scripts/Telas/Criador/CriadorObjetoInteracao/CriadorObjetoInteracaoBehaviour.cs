@@ -7,6 +7,7 @@ using Autis.Editor.Constantes;
 using Autis.Editor.UI;
 using Autis.Editor.Telas;
 using Autis.Editor.Manipuladores;
+using Object = UnityEngine.Object;
 
 namespace Autis.Editor.Criadores {
     public class CriadorObjetoInteracaoBehaviour : Tela, IReiniciavel {
@@ -50,7 +51,7 @@ namespace Autis.Editor.Criadores {
 
         protected InputTexto campoNome;
 
-        protected InputsComponenteImagem grupoInputsImagem;
+        protected InputImagem inputsImagem;
         protected GrupoInputsTexto grupoInputsTexto;
 
         protected Dropdown dropdownTipo;
@@ -103,12 +104,13 @@ namespace Autis.Editor.Criadores {
         }
 
         protected virtual void CarregarRegiaoInputsImagem() {
-            grupoInputsImagem = new InputsComponenteImagem();
-            grupoInputsImagem.VincularDados(manipulador.ComponenteSpriteRenderer);
-            grupoInputsImagem.RegiaoInputCor.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            inputsImagem = new InputImagem();
+            inputsImagem.CampoImagem.RegisterCallback<ChangeEvent<Object>>(evt => {
+                manipulador.ManipuladorSpriteRenderer.SetImagem(evt.newValue as Sprite);
+            });
 
             regiaoCarregamentoInputsImagem = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_IMAGEM);
-            regiaoCarregamentoInputsImagem.Add(grupoInputsImagem.Root);
+            regiaoCarregamentoInputsImagem.Add(inputsImagem.Root);
             regiaoCarregamentoInputsImagem.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
 
             return;
@@ -291,7 +293,7 @@ namespace Autis.Editor.Criadores {
 
         public void ReiniciarCampos() {
             campoNome.ReiniciarCampos();
-            grupoInputsImagem.ReiniciarCampos();
+            inputsImagem.ReiniciarCampos();
             grupoInputsTexto.ReiniciarCampos();
 
             dropdownTiposAcoes.ReiniciarCampos();

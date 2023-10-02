@@ -26,9 +26,15 @@ namespace Autis.Editor.Telas {
         }
 
         private void CarregarDados() {
-            // TODO: Adaptar a tela refatorada ao figma
-            campoNome.CampoTexto.SetValueWithoutNotify(manipulador.ObjetoAtual.name);
-            grupoInputsImagem.VincularDados(manipulador.ComponenteSpriteRenderer);
+            if(manipulador.EhCorSolida()) {
+                radioButtonCorUnica.SetValueWithoutNotify(true);
+                inputCor.CampoCor.SetValueWithoutNotify(manipulador.GetCor());
+            }
+            else {
+                radioButtonImagem.SetValueWithoutNotify(true);
+                inputImagem.CampoImagem.SetValueWithoutNotify(manipulador.GetImagem());
+            }
+
             return;
         }
 

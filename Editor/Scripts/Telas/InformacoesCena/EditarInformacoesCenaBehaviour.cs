@@ -13,7 +13,13 @@ namespace Autis.Editor.Telas {
         }
 
         private void CarregarDados() {
-            inputVideo.VincularDados(manipuladorContexto.GetNomeArquivoVideo());
+            campoNome.CampoTexto.SetValueWithoutNotify(manipuladorCena.GetNome());
+            campoVideoContexto.VincularDados(manipuladorCena.GetNome());
+
+            dropdownDificuldade.Campo.SetValueWithoutNotify(manipuladorCena.GetDificuldade().ToString());
+            /* TODO: Implementar faixa
+            faixaEtariaInferior.CampoNumerico.SetValueWithoutNotify();
+            faixaEtariaSuperior.CampoNumerico.SetValueWithoutNotify();*/
             
             if(manipuladorCena.GetTipoGabarito() == TipoGabarito.Selecionar) {
                 opcaoRadioSelecionar.SetValueWithoutNotify(true);

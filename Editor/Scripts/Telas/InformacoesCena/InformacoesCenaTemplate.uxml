@@ -6,19 +6,59 @@
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
     <engine:ScrollView name="regiao-conteudo-principal">
-        <engine:VisualElement name="regiao-carregamento-inputs-cena"/>
-        <engine:VisualElement name="regiao-carregamento-inputs-video"/>
+        <engine:VisualElement name="regiao-titulo">
+            <engine:Label name="label-titulo" class="label-padrao" text="Estrutura da fase"/>
+            <engine:VisualElement name="regiao-tooltip-titulo"/>
+        </engine:VisualElement>
+
+        <engine:VisualElement name="regiao-carregamento-input-nome"/>
+
+        <engine:VisualElement name="regiao-contexto">
+            <engine:VisualElement name="regiao-label-input-video">
+                <engine:Label name="label-input-video-contexto" class="label-padrao" text="Contexto: (opcional)"/>
+                <engine:VisualElement name="regiao-carregamento-tooltip-input-video"/>
+            </engine:VisualElement>
+
+            <engine:VisualElement name="regiao-carregamento-inputs-video"/>
+        </engine:VisualElement>
+
+        <engine:VisualElement name="regiao-carregamento-dropdown-nivel-dificuldade"/>
+
+        <engine:VisualElement name="regiao-faixa-etaria">
+            <engine:VisualElement name="regiao-label-input-faixa-etaria">
+                <engine:Label name="label-faixa-etaria" class="label-padrao" text="Faixa etária recomendada: (opcional)"/>
+                <engine:VisualElement name="regiao-carregamento-tooltip-faixa-etaria"/>
+            </engine:VisualElement>
+
+            <engine:VisualElement name="regiao-inputs-faixa-etaria">
+                <engine:VisualElement name="regiao-faixa-etaria-inferior">
+                    <engine:Label name="label-faixa-inferior" class="label-padrao" text="De"/>
+                    <engine:VisualElement name="regiao-input-faixa-etaria-inferior"/>
+                </engine:VisualElement>
+
+                <engine:VisualElement name="regiao-faixa-etaria-superior">
+                    <engine:Label name="label-faixa-superior" class="label-padrao" text="a"/>
+                    <engine:VisualElement name="regiao-input-faixa-etaria-superior"/>
+                </engine:VisualElement>
+            </engine:VisualElement>
+        </engine:VisualElement>
 
         <engine:VisualElement name="regiao-label-selecao-gabarito">
-            <engine:Label name="label-opcoes-gabarito" class="label-padrao" text="Gabarito (opcional)"/>
-            <engine:VisualElement name="regiao-tooltip-tipo-gabarito"/>
+            <engine:VisualElement name="regiao-subtitulo-gabarito">
+                <engine:Label name="label-subtitulo-gabarito" class="label-padrao" text="Ações Esperadas (opcional)"/>
+                <engine:VisualElement name="regiao-carregamento-tooltip-acao-esperada"/>
+            </engine:VisualElement>
+
+            <engine:Label name="label-descricao-gabarito" class="label-padrao" text="Selecione para qual tipo de ação serão definidas as ações esperadas"/>
         </engine:VisualElement>
+
         <engine:VisualElement name="regiao-opcoes-tipo-gabarito">
             <engine:RadioButtonGroup name="grupo-radio-button">
                 <engine:RadioButton class="input-padrao opcao-radio-button radio-button-padrao" label="Selecionar" name="radio-opcao-selecionar"/>
                 <engine:RadioButton class="input-padrao opcao-radio-button radio-button-padrao" label="Arrastar" name="radio-opcao-arrastar"/>
             </engine:RadioButtonGroup>
-            <engine:Button name="botao-criar-gabarito" class="botao-padrao" text="Criar Gabarito"/>
+
+            <engine:Button name="botao-criar-gabarito" class="botao-padrao" text="Configurar ações\nesperadas"/>
         </engine:VisualElement>
     </engine:ScrollView>
     

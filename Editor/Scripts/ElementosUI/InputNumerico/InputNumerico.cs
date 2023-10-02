@@ -24,7 +24,7 @@ namespace Autis.Editor.UI {
 
         #endregion
 
-        public InputNumerico(string label, string tooltipTexto = SEM_TOOLTIP, float max = 100, float min = 0) {
+        public InputNumerico(string label, string tooltipTexto = SEM_TOOLTIP, float max = float.MaxValue, float min = float.MinValue) {
 
             campoNumerico = Root.Query<FloatField>(NOME_INPUT_NUMERICO);
             tooltipTitulo = new InterrogacaoToolTip();
