@@ -1,7 +1,6 @@
 :root {
 	flex: 1;
 	height: 100%;
-	padding: 12px;
 }
 
 #regiao-titulo {
@@ -73,11 +72,6 @@
 #explicacao-radio-ordem {
 	font-size: 12px;
 	margin-left: 21px;
-}
-
-#regiao-carregamento-botoes-confirmacao {
-	flex-direction: row;
-	align-self: flex-end;
 }
 
 #unity-list-view__reorderable-item:hover {
