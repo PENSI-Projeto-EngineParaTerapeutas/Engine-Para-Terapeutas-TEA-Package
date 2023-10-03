@@ -38,6 +38,9 @@ namespace Autis.Editor.UI {
             ConfigurarEventosMouse();
             ConfigurarImagemToolTip();
             OcultarTooltip();
+
+            root.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+
             return;
         }
 
@@ -52,21 +55,21 @@ namespace Autis.Editor.UI {
         }
 
         public void SetTexto(string conteudo) {
-            //imagemTooltip.tooltip = conteudo;
-            //TODO: TextoTooltip.text = conteudo;
-            TextoTooltip.text = conteudo; // DEBUG - DELETAR DEPOIS
+            imagemTooltip.tooltip = conteudo;
             return;
         }
 
         void EventoClicar(ClickEvent evt) {
-            if (labelAtivada) {
+            return;
+
+            /*if(labelAtivada) {
                 OcultarTooltip();
                 labelAtivada = false;
             }
             else {
                 ExibirTooltip();
                 labelAtivada = true;
-            }
+            }*/
         }
 
         public void ExibirTooltip() {
