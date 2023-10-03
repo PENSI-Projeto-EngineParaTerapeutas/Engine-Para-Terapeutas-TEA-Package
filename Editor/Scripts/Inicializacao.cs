@@ -35,7 +35,7 @@ namespace Autis {
             CriarPastasProjeto();
             ConfigurarProjectSettings();
 
-            LayoutLoader.CarregarTelaInicial();
+            LayoutLoader.CarregarTelaBoasVindas();
             return;
         }
 

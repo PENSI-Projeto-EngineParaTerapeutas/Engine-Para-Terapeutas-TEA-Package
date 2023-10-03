@@ -18,8 +18,6 @@ public class TelaBemVindoBehaviour : JanelaEditor
     public static void ShowTelaBemVindo() {
         const string TITULO = "Bem-Vindo";
 
-        LayoutManager.CarregarLayout(ConstantesLayouts.NomeLayoutTelaBemVindo);
-
         TelaBemVindoBehaviour janela = GetWindow<TelaBemVindoBehaviour>();
         janela.titleContent = new GUIContent(TITULO);
 

@@ -14,5 +14,11 @@ namespace Autis.Editor.UI {
             LayoutManager.CarregarLayout(ConstantesLayouts.NomeLayoutTelaEditor);
             return;
         }
+
+        [MenuItem("AUTIS/Carregar Boas Vindas")]
+        public static void CarregarTelaBoasVindas() {
+            LayoutManager.CarregarLayout(ConstantesLayouts.NomeLayoutTelaBemVindo);
+            return;
+        }
     }
 }
