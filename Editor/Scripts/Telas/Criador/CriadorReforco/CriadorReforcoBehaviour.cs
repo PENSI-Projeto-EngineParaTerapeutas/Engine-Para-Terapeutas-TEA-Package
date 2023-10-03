@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UIElements;
 using Autis.Runtime.DTOs;
 using Autis.Editor.Constantes;
@@ -53,10 +54,10 @@ namespace Autis.Editor.Criadores {
 
         protected InputTexto campoNome;
 
-        protected readonly InputsComponenteImagem grupoInputsImagem; // TODO: Remover referência de inputs de componentes
-        protected readonly GrupoInputsAudio grupoInputsAudio;
-        protected readonly GrupoInputsTexto grupoInputsTexto;
-        protected readonly GrupoInputsVideo grupoInputsVideo;
+        protected InputImagem inputImagem;
+        protected GrupoInputsAudio grupoInputsAudio;
+        protected GrupoInputsTexto grupoInputsTexto;
+        protected GrupoInputsVideo grupoInputsVideo;
 
         protected Dropdown dropdownTipoReforco;
         protected Dropdown dropdownTipoAcionamento;
@@ -76,11 +77,6 @@ namespace Autis.Editor.Criadores {
         protected Dictionary<string, float> associacoesTemposExibicao;
 
         public CriadorReforcoBehaviour() {
-            grupoInputsImagem = new InputsComponenteImagem();
-            grupoInputsAudio = new GrupoInputsAudio();
-            grupoInputsTexto = new GrupoInputsTexto();
-            grupoInputsVideo = new GrupoInputsVideo();
-
             manipulador = new ManipuladorReforco();
             manipulador.Criar();
 
@@ -95,16 +91,12 @@ namespace Autis.Editor.Criadores {
             ConfigurarRegiaoOpcoesAvancadas();
             ConfigurarBotoesConfirmacao();
 
-            VincularCamposAoNovoObjeto();
-
             OcultarCampos();
             return;
         }
 
         protected virtual void ConfigurarCampoNome() {
             campoNome = new InputTexto("Nome:");
-            campoNome.CampoTexto.AddToClassList("input-texto");
-
             campoNome.CampoTexto.RegisterCallback<ChangeEvent<string>>(evt => {
                 manipulador.SetNome(evt.newValue);
             });
@@ -116,15 +108,20 @@ namespace Autis.Editor.Criadores {
         }
 
         protected virtual void CarregarRegiaoInputsImagem() {
+            inputImagem = new InputImagem();
+            inputImagem.CampoImagem.RegisterCallback<ChangeEvent<Object>>(evt => {
+                manipulador.ManipuladorComponenteSpriteRenderer.SetImagem(evt.newValue as Sprite);
+            });
+            
             regiaoCarregamentoInputsImagem = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_IMAGEM);
-            regiaoCarregamentoInputsImagem.Add(grupoInputsImagem.Root);
+            regiaoCarregamentoInputsImagem.Add(inputImagem.Root);
             regiaoCarregamentoInputsImagem.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-            grupoInputsImagem.RegiaoInputCor.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
 
             return;
         }
 
         protected virtual void CarregarRegiaoInputsAudio() {
+            grupoInputsAudio = new GrupoInputsAudio();
             grupoInputsAudio.VincularDados(manipulador.ManipuladorComponenteAudioSource);
 
             regiaoCarregamentoInputsAudio = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_AUDIO);
@@ -135,6 +132,9 @@ namespace Autis.Editor.Criadores {
         }
 
         protected virtual void CarregarRegiaoInputsTexto() {
+            grupoInputsTexto = new GrupoInputsTexto();
+            grupoInputsTexto.VincularDados(manipulador.ManipuladorComponenteTexto);
+
             regiaoCarregamentoInputsTexto = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_TEXTO);
             regiaoCarregamentoInputsTexto.Add(grupoInputsTexto.Root);
             regiaoCarregamentoInputsTexto.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
@@ -143,6 +143,9 @@ namespace Autis.Editor.Criadores {
         }
 
         protected virtual void CarregarRegiaoInputsVideo() {
+            grupoInputsVideo = new GrupoInputsVideo();
+            grupoInputsVideo.VincularDados(manipulador.ManipuladorComponenteVideo);
+
             regiaoCarregamentoInputsVideo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_VIDEO);
             regiaoCarregamentoInputsVideo.Add(grupoInputsVideo.Root);
             regiaoCarregamentoInputsVideo.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
@@ -353,19 +356,10 @@ namespace Autis.Editor.Criadores {
             return;
         }
 
-        protected virtual void VincularCamposAoNovoObjeto() {
-            grupoInputsImagem.VincularDados(manipulador.ComponenteSpriteRenderer);
-            grupoInputsAudio.VincularDados(manipulador.ManipuladorComponenteAudioSource);
-            grupoInputsTexto.VincularDados(manipulador.ManipuladorComponenteTexto);
-            grupoInputsVideo.VincularDados(manipulador.ManipuladorComponenteVideo);
-
-            return;
-        }
-
         public void ReiniciarCampos() {
             campoNome.ReiniciarCampos();
 
-            grupoInputsImagem.ReiniciarCampos();
+            inputImagem.ReiniciarCampos();
             grupoInputsAudio.ReiniciarCampos();
             grupoInputsTexto.ReiniciarCampos();
             grupoInputsVideo.ReiniciarCampos();

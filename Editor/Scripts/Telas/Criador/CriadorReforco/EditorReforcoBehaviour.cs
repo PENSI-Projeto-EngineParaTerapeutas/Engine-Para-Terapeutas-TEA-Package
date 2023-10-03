@@ -31,7 +31,7 @@ namespace Autis.Editor.Telas {
             campoNome.CampoTexto.SetValueWithoutNotify(manipulador.ObjetoAtual.name);
 
             grupoInputsAudio.VincularDados(manipulador.ManipuladorComponenteAudioSource);
-            grupoInputsImagem.VincularDados(manipulador.ComponenteSpriteRenderer);
+            inputImagem.VincularDados(manipulador.ManipuladorComponenteSpriteRenderer.GetImagem());
             grupoInputsTexto.VincularDados(manipulador.ManipuladorComponenteTexto);
             grupoInputsVideo.VincularDados(manipulador.ManipuladorComponenteVideo);
 

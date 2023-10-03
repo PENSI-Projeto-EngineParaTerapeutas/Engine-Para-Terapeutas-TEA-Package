@@ -59,6 +59,7 @@ namespace Autis.Editor.Manipuladores {
 
         public override void Editar(GameObject objetoAlvo) {
             base.Editar(objetoAlvo);
+            objetoAlvo.name = "Personagem";
 
             dados = objeto.GetComponent<DadosPersonagem>();
             

@@ -76,7 +76,7 @@ namespace Autis.Editor.Telas {
             botaoPersonalizarPersonagem.SetEnabled(true);
             radioOpcaoControleDireto.SetEnabled(true);
             radioOpcaoControleIndireto.SetEnabled(true);
-            botoesConfirmacao.Root.SetEnabled(true);
+            botoesConfirmacao.BotaoConfirmar.SetEnabled(true);
 
             return;
         }
