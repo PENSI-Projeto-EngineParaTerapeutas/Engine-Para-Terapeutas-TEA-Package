@@ -34,11 +34,18 @@
 
 #regiao-carregamento-selecao-objeto-pai > TemplateContainer > DropdownField {
 	margin-top: 3px;
-	background-color: #E2E8E9;
 }
 
-#regiao-carregamento-selecao-objeto-pai > TemplateContainer > #campo-dropdown > VisualElement {
-	background-color: #F0F3F4;
+#regiao-carregamento-selecao-objeto-pai > TemplateContainer > DropdownField:disabled {
+	background-color: #A9A9A9;
+}
+
+#regiao-carregamento-selecao-objeto-pai > TemplateContainer > DropdownField:enabled > VisualElement {
+	background-color: #E3E3E3;
+}
+
+#label-selecao-objeto-pai {
+	margin-top: 20px;
 }
 
 #label-selecao-objeto-pai, .opcao-radio-button {

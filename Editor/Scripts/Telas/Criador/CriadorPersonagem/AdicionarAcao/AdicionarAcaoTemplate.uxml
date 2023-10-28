@@ -8,7 +8,11 @@
     <engine:Label name="label-titulo" text="Definição da ação" class="titulo-padrao"/>
     <engine:Label name="label-descricao" text="Para cada ação, defina o elemento e a animação que será exibida no jogo quando esse elemento for selecionado." class="label-padrao"/>
 
-    <engine:Label name="label-regiao-definacao-acao" text="Elemento que a ação será vinculada:" class="label-padrao"/>
+    <engine:VisualElement name="regiao-label-definicao-acao" class="regiao-label-input-padrao">
+        <engine:Label name="label-definicao-acao" text="Elemento que a ação será vinculada:" class="label-padrao"/>
+        <engine:VisualElement name="regiao-tooltip-definicao-acao" class="regiao-tooltip-padrao"/>
+    </engine:VisualElement>
+
     <engine:RadioButtonGroup name="grupo-radio-button">
         <engine:VisualElement name="regiao-radio-button-vincular-elemento-existente">
             <engine:RadioButton class="input-padrao radio-button-padrao" label="Vincular a elemento existente:" name="radio-opcao-selecionar-objeto-existente"/>
@@ -21,7 +25,11 @@
         </engine:VisualElement>
     </engine:RadioButtonGroup>
 
-    <engine:Label name="label-input-animacao" text="Animação:" class="label-padrao"/>
+    <engine:VisualElement name="regiao-label-definicao-animacao" class="regiao-label-input-padrao">
+        <engine:Label name="label-input-animacao" text="Animação:" class="label-padrao"/>
+        <engine:VisualElement name="regiao-tooltip-definicao-animacao" class="regiao-tooltip-padrao"/>
+    </engine:VisualElement>
+    
     <engine:VisualElement name="regiao-carregamento-input-animacao"/>
 
     <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>

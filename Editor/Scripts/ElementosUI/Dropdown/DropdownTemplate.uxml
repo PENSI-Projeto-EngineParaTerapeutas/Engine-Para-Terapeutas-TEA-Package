@@ -5,5 +5,8 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:VisualElement name="regiao-tooltip-titulo"/>
+    <engine:VisualElement name="regiao-carregamento-titulo" class="regiao-label-input-padrao">
+        <engine:Label name="label-campo-dropdown"/>
+        <engine:VisualElement name="regiao-tooltip-titulo"/>
+    </engine:VisualElement>
 </engine:UXML>

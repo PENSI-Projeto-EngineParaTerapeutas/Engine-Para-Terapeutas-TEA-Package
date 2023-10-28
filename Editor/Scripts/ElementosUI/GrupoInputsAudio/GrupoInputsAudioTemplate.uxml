@@ -8,6 +8,6 @@
     <engine:VisualElement name="regiao-input-audio"/>
     <engine:VisualElement name="regiao-slider-volume">
         <engine:Label name="label-slider-volume" class="label-padrao" text="Volume"/>
-        <engine:Slider name="input-volume" class="slider-padrao input-padrao" tooltip="Define o volume do áudio que será tocado no jogo."/>
+        <engine:Slider name="input-volume" class="slider-padrao input-padrao"/>
     </engine:VisualElement>
 </engine:UXML>

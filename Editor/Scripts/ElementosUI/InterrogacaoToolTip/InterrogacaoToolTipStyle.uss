@@ -1,5 +1,0 @@
-.regiao-tooltip {
-    border-radius: 6px;
-    margin: 5px;
-    background-color: red;
-}

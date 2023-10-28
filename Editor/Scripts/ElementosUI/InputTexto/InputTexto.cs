@@ -24,18 +24,29 @@ namespace Autis.Editor.UI {
         private readonly InterrogacaoToolTip tooltipTitulo;
         private VisualElement regiaoCarregamentoTooltipTitulo;
 
+        private const string NOME_REGIAO_CARREGAMENTO_TITULO = "regiao-carregamento-titulo";
+        private VisualElement regiaoCarregamentoTitulo;
+
+        private Label labelTitulo;
+
         #endregion
 
         public InputTexto(string label, string tooltipTexto = SEM_TOOLTIP) {
-            campoTexto = Root.Query<TextField>(NOME_INPUT_TEXTO);
+            labelTitulo = Root.Query<Label>(NOME_LABEL_INPUT_TEXTO);
 
-            campoTexto.label = label;
-            campoTexto.labelElement.name = NOME_LABEL_INPUT_TEXTO;
-            campoTexto.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
+            labelTitulo.name = NOME_LABEL_INPUT_TEXTO;
+            labelTitulo.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
+            labelTitulo.text = label;
+
+            regiaoCarregamentoTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TITULO); 
 
             tooltipTitulo = new InterrogacaoToolTip();
             CarregarTooltipTitulo(tooltipTexto);
 
+            campoTexto = Root.Query<TextField>(NOME_INPUT_TEXTO);
+
+            root.Add(regiaoCarregamentoTitulo);
+            root.Add(campoTexto);
             return;
         }
 

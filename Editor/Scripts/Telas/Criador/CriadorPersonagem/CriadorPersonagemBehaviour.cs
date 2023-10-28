@@ -20,9 +20,10 @@ namespace Autis.Editor.Criadores {
 
         #region .: Mensagens :.
 
-        protected const string TOOLTIP_TITULO = "Tipo especial de objeto interativo, que interage com outros objetos do jogo. Os personagens devem ter uma representação visual com perspectiva em primeira ou terceira pessoa, e sua movimentação deve ser controlada pelo usuário por meio de manipulação direta ou indireta (e.g., após a ação do usuário é exibidauma animação com o personagem). Opcionalmente, o personagem pode ter acapacidade de se comunicar por meio de texto ou áudio.";
-        protected const string TOOLTIP_TIPO_CONTROLE = "Texto de teste.";
-        protected const string TOOLTIP_TIPO_PERSONAGEM = "Define o tipo de Personagem";
+        protected const string MENSAGEM_TOOLTIP_TITULO = "Cada fase poderá ter um único personagem.";
+        private const string MENSAGEM_TOOLTIP_INPUT_NOME = "Digite um nome para o Personagem. Cada componente deve ter um nome exclusivo (que não se repete em outro componente)";
+        protected const string TOOLTIP_TIPO_CONTROLE = "Forma como o personagem será controlado:\n\n1) Direto: os movimentos corporais do personagem serão controlados pelo usuário.\n\n2) Indireto: serão apresentadas animações com o personagem, quando o usuário selecionar determinados Elementos do jogo.";
+        protected const string TOOLTIP_TIPO_PERSONAGEM = "Forma do personagem.";
 
         #endregion
 
@@ -30,9 +31,6 @@ namespace Autis.Editor.Criadores {
 
         protected const string NOME_REGIAO_CARREGAMENTO_INPUT_NOME = "regiao-carregamento-nome";
         protected VisualElement regiaoCarregamentoInputNome;
-
-        protected const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO = "regiao-tooltip-titulo";
-        protected VisualElement regiaoCarregamentoTooltipTitulo;
 
         protected const string NOME_REIGAO_CARREGAMENTO_DROPDOWN_TIPO_PERSONAGEM = "regiao-carregamento-tipo-personagem";
         protected VisualElement regiaoCarregamentoDropdownTipoPersonagem;
@@ -64,7 +62,6 @@ namespace Autis.Editor.Criadores {
         protected const string NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO = "regiao-carregamento-botoes-confirmacao";
         protected VisualElement regiaoCarregamentoBotoesConfirmacao;
 
-        protected InterrogacaoToolTip tooltipTitulo;
         protected InterrogacaoToolTip tooltipTipoControle;
 
         protected InputTexto inputNome;
@@ -73,6 +70,11 @@ namespace Autis.Editor.Criadores {
         protected InputNumerico inputTamanho;
 
         protected BotoesConfirmacao botoesConfirmacao;
+
+        protected const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO = "regiao-tooltip-titulo";
+        protected VisualElement regiaoCarregamentoTooltipTitulo;
+
+        protected InterrogacaoToolTip tooltipTitulo;
 
         #endregion
 
@@ -87,8 +89,8 @@ namespace Autis.Editor.Criadores {
         public CriadorPersonagemBehaviour() {
             CarregarPrefabs();
 
+            ConfigurarTooltipTitulo();
             ConfigurarInputNome();
-            CarregarTooltipTitulo();
             ConfigurarDropdownTipoPersonagem();
             ConfigurarImagemPersonagem();
             ConfigurarBotaoPersonalizarPersonagem();
@@ -97,6 +99,15 @@ namespace Autis.Editor.Criadores {
             ConfigurarCampoPosicao();
             ConfigurarCampoTamanho();
             ConfigurarBotoesConfirmacao();
+
+            return;
+        }
+
+        protected virtual void ConfigurarTooltipTitulo() {
+            tooltipTitulo = new InterrogacaoToolTip(MENSAGEM_TOOLTIP_TITULO);
+
+            regiaoCarregamentoTooltipTitulo = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
+            regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);
 
             return;
         }
@@ -110,7 +121,7 @@ namespace Autis.Editor.Criadores {
         }
 
         protected virtual void ConfigurarInputNome() {
-            inputNome = new InputTexto("Nome");
+            inputNome = new InputTexto("Nome", MENSAGEM_TOOLTIP_INPUT_NOME);
             inputNome.CampoTexto.AddToClassList("input-texto");
 
             inputNome.CampoTexto.RegisterCallback<ChangeEvent<string>>(evt => {
@@ -119,17 +130,6 @@ namespace Autis.Editor.Criadores {
 
             regiaoCarregamentoInputNome = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUT_NOME);
             regiaoCarregamentoInputNome.Add(inputNome.Root);
-
-            return;
-        }
-
-        protected virtual void CarregarTooltipTitulo() {
-            tooltipTitulo = new InterrogacaoToolTip();
-
-            regiaoCarregamentoTooltipTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
-            regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);
-
-            tooltipTitulo.SetTexto(TOOLTIP_TITULO);
 
             return;
         }

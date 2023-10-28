@@ -16,7 +16,9 @@ namespace Autis.Editor.Criadores
 
         #region .: Mensagens :.
 
-        private const string MENSAGEM_TOOLTIP_DROPDOWN_TIPO_INSTRUCAO = "[TODO]: Adicionar";
+        private const string MENSAGEM_TOOLTIP_INPUT_NOME = "Digite um nome para a Instrução. Cada componente deve ter um nome exclusivo (que não se repete em outro componente)";
+        private const string MENSAGEM_TOOLTIP_DROPDOWN_TIPO_INSTRUCAO = "Forma que a instrução será apresentada. Opções: áudio, texto ou vídeo.";
+        protected const string MENSAGEM_TOOLTIP_TITULO = "A instrução é um componente que pode ser usado para transmitir informações sobre a fase para o jogador.";
 
         #endregion
 
@@ -47,6 +49,11 @@ namespace Autis.Editor.Criadores
         protected GrupoInputsTexto grupoInputsTexto;
         protected BotoesConfirmacao botoesConfirmacao;
 
+        protected const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO = "regiao-tooltip-titulo";
+        protected VisualElement regiaoCarregamentoTooltipTitulo;
+
+        protected InterrogacaoToolTip tooltipTitulo;
+
         #endregion
 
         protected ManipuladorInstrucoes manipulador;
@@ -55,6 +62,7 @@ namespace Autis.Editor.Criadores
             manipulador = new ManipuladorInstrucoes();
             manipulador.Criar();
 
+            ConfigurarTooltipTitulo();
             ConfigurarCampoNome();
             CarregarRegiaoInputsVideo();
             CarregarRegiaoInputsAudio();
@@ -68,8 +76,17 @@ namespace Autis.Editor.Criadores
             return;
         }
 
+        protected virtual void ConfigurarTooltipTitulo() {
+            tooltipTitulo = new InterrogacaoToolTip(MENSAGEM_TOOLTIP_TITULO);
+
+            regiaoCarregamentoTooltipTitulo = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
+            regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);
+
+            return;
+        }
+
         protected virtual void ConfigurarCampoNome() {
-            campoNome = new InputTexto("Nome:");
+            campoNome = new InputTexto("Nome:", MENSAGEM_TOOLTIP_INPUT_NOME);
 
             campoNome.CampoTexto.AddToClassList("input-texto");
 

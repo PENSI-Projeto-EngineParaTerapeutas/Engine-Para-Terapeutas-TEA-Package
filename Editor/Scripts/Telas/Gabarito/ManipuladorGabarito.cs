@@ -7,7 +7,7 @@ namespace Autis.Editor.Manipuladores {
     public abstract class ManipuladorGabarito : ManipuladorObjetos {
         #region .: Mensagens :.
 
-        protected const string MENSAGEM_ERRO_GABARITO_NAO_ENCONTRADO = "[ERRO]: N�o foi poss�vel encontrar o Game Object do gabarito. Garanta que ele existe na hierarquia do projeto.";
+        protected const string MENSAGEM_ERRO_GABARITO_NAO_ENCONTRADO = "[ERRO]: Não foi possível encontrar o Game Object do gabarito. Garanta que ele existe na hierarquia do projeto.";
 
         #endregion
 

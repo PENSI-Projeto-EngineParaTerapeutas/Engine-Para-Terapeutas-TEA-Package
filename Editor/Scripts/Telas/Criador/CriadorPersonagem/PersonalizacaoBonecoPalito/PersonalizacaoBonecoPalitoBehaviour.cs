@@ -40,7 +40,6 @@ namespace Autis.Editor.Criadores {
 
         private void ConfigurarInputCor() {
             inputCor = new InputCor("Cor do boneco palito:");
-            inputCor.CampoCor.tooltip = "Cor que sobrepõe a imagem do ator";
 
             regiaoInputCor = Root.Query<VisualElement>(NOME_REGIAO_INPUT_COR);
             regiaoInputCor.Add(inputCor.Root);

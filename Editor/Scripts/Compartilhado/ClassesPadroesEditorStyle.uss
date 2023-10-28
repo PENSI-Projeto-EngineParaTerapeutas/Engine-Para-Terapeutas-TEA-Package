@@ -8,7 +8,7 @@
 
 .label-input-padrao {
     padding: 0 0 0 0;
-    margin: 1% 3% 0 0;
+    margin: 1% 0 0 0;
 	min-width: 0%;
     color: #313144;   
     font-size: 17px;
@@ -38,6 +38,8 @@
     align-self: flex-start;
     margin-top: 7%;
     margin-bottom: 6%;
+    flex-direction: row;
+	align-items: center;
 }
 
 .titulo-padrao {
@@ -47,6 +49,7 @@
     margin-bottom: 1%;
     margin-top: 1%;
     margin-left: 0;
+    margin-right: 5px;
 }
 
 .slider-padrao > VisualElement > #unity-drag-container {
@@ -216,6 +219,12 @@
     -unity-font-style: bold;
 }
 
+.regiao-tooltip-padrao {
+    position: relative;
+    justify-content: flex-end;
+    margin-left: 13px;
+}
+
 Foldout {
     color: black;
 }
@@ -324,4 +333,14 @@ Foldout > Toggle > VisualElement > VisualElement {
 
 #regiao-conteudo-principal {
     flex-grow: 1;
+}
+
+.regiao-label-input-padrao {
+    flex-direction: row;
+}
+
+.regiao-label-input-padrao > #regiao-tooltip-titulo {
+    position: relative;
+	justify-content: flex-end;
+    margin-left: 13px;
 }

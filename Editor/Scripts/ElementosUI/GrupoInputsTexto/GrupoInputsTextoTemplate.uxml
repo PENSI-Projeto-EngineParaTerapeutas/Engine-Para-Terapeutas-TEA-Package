@@ -8,7 +8,12 @@
     <engine:VisualElement name="conteiner-input-texto">
         <engine:TextField name="input-texto"/>
     </engine:VisualElement>
-    <engine:Label name="label-configuracao-texto" text="Configuração do texto"/>
+    
+    <engine:VisualElement name="regiao-label-configuracao-texto" class="regiao-label-input-padrao">
+        <engine:Label name="label-configuracao-texto" text="Configuração do texto" class="label-padrao"/>
+        <engine:VisualElement name="regiao-tooltip-configuracao-texto" class="regiao-tooltip-padrao"/>
+    </engine:VisualElement>
+
     <engine:VisualElement name="formatacao-texto">
         <editor:FloatField name="input-tamanho-texto" label="Tamanho" tooltip="Define o tamanho do texto"/>
 
@@ -18,6 +23,6 @@
             <engine:Toggle name="input-sublinhado"  tooltip="Define se texto está sublinhado"/>
         </engine:VisualElement>
 
-        <engine:VisualElement name="regiao-input-cor" label="Cor" tooltip="Cor do texto exibido no ator"/>
+        <engine:VisualElement name="regiao-input-cor" label="Cor" tooltip="Define a cor da fonte do texto"/>
     </engine:VisualElement>
 </engine:UXML>

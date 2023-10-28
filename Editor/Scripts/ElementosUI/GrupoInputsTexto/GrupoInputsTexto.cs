@@ -10,6 +10,12 @@ namespace Autis.Editor.UI {
         protected override string CaminhoTemplate => "ElementosUI/GrupoInputsTexto/GrupoInputsTextoTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/GrupoInputsTexto/GrupoInputsTextoStyle.uss";
 
+        #region .: Mensagens :.
+
+        private const string MENSAGEM_TOOLTIP_CONFIGURACAO_TEXTO = "Formatação da fonte do texto.";
+
+        #endregion
+
         #region .: Elementos :.
         public TextField CampoConteudoTexto { get => campoConteudoTexto; }
         public VisualElement RegiaoCampoTamanhoTexto { get => regiaoCampoTamanhoTexto; }
@@ -50,6 +56,15 @@ namespace Autis.Editor.UI {
         private const string NOME_INPUT_COR = "input-cor";
         private readonly InputCor inputCor;
 
+        private const string NOME_LABEL_CONFIGURACAO_TEXTO = "label-configuracao-texto";
+        private Label labelConfiguracaoTexto;
+
+        private const string NOME_REGIAO_LABEL_CONFIGURACAO_TEXTO = "regiao-label-configuracao-texto";
+        private VisualElement regiaoLabelConfiguracaoTexto;
+        private VisualElement regiaoCarregamentoTooltipConfiguracaoTexto;
+        private InterrogacaoToolTip tooltipConfiguracaoTexto;
+        private const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_CONFIGURACAO_TEXTO = "regiao-tooltip-configuracao-texto";
+
         #endregion
 
         private ManipuladorTexto manipulador;
@@ -72,6 +87,33 @@ namespace Autis.Editor.UI {
             ConfigurarInputCor();
 
             return;
+        }
+
+        private void ConfigurarLabelConfiguracaoTexto() {
+            regiaoLabelConfiguracaoTexto = root.Query<VisualElement>(NOME_REGIAO_LABEL_CONFIGURACAO_TEXTO);
+            labelConfiguracaoTexto = Root.Query<Label>(NOME_LABEL_CONFIGURACAO_TEXTO);
+
+            regiaoLabelConfiguracaoTexto.Add(labelConfiguracaoTexto);
+
+            tooltipConfiguracaoTexto = new InterrogacaoToolTip();
+            tooltipConfiguracaoTexto.SetTexto(MENSAGEM_TOOLTIP_CONFIGURACAO_TEXTO);
+
+            regiaoCarregamentoTooltipConfiguracaoTexto = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_CONFIGURACAO_TEXTO);
+            regiaoCarregamentoTooltipConfiguracaoTexto.Add(tooltipConfiguracaoTexto.Root);
+
+            regiaoLabelConfiguracaoTexto.Add(regiaoCarregamentoTooltipConfiguracaoTexto);
+
+            root.Add(regiaoLabelConfiguracaoTexto);
+        }
+
+        private void ConfigurarTooltipLabelConfiguracaoTexto() {
+            tooltipConfiguracaoTexto = new InterrogacaoToolTip();
+            tooltipConfiguracaoTexto.SetTexto(MENSAGEM_TOOLTIP_CONFIGURACAO_TEXTO);
+
+            regiaoCarregamentoTooltipConfiguracaoTexto = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_CONFIGURACAO_TEXTO);
+            regiaoCarregamentoTooltipConfiguracaoTexto.Add(tooltipConfiguracaoTexto.Root);
+
+            regiaoLabelConfiguracaoTexto.Add(regiaoCarregamentoTooltipConfiguracaoTexto);
         }
 
         private void ConfigurarConteudoTexto() {

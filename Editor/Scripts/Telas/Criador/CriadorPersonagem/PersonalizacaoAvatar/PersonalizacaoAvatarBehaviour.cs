@@ -16,7 +16,7 @@ namespace Autis.Editor.Criadores {
 
         #region .: Mensagens :.
 
-        private const string MENSAGEM_ERRO_CARREGAR_PREFAB_PERSONAGEM = "[ERROR]: Não foi possível carregar o prefab para o Avatar {nome}. Certifique-se de que o prefab está localizado em: <Pacote>/Prefabs/Personagens/Ludico_{nome}.prefab. Além disso, garanta que o nome do sprite completo para o Personagem Lúdico equivale ao final do nome no prefab.";
+        private const string MENSAGEM_ERRO_CARREGAR_PREFAB_PERSONAGEM = "[ERROR]: NÃ£o foi possÃ­vel carregar o prefab para o Avatar {nome}. Certifique-se de que o prefab estÃ¡ localizado em: <Pacote>/Prefabs/Personagens/Ludico_{nome}.prefab. AlÃ©m disso, garanta que o nome do sprite completo para o Personagem LÃºdico equivale ao final do nome no prefab.";
 
         private const string MENSAGEM_TOOLTIP_DROPDOWN_CABELOS = "[TODO]: Adicionar mensagem.";
         private const string MENSAGEM_TOOLTIP_DROPDOWN_ROUPAS = "[TODO]: Adicionar mensagem.";
@@ -88,7 +88,6 @@ namespace Autis.Editor.Criadores {
             ConfigurarDropdownRoupas();
             ConfigurarInputCorRoupaSuperior();
             ConfigurarInputCorRoupaInferior();
-            ConfigurarInputImagemRosto();
             ConfigurarBotoesConfirmacao();
 
             if(manipuladorAvatar.PossuiPersonagemSelecionado()) {

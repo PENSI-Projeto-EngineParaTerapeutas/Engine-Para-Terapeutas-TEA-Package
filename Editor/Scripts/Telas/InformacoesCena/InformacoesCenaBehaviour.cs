@@ -13,12 +13,12 @@ namespace Autis.Editor.Telas {
 
         #region .: Mensagens :.
 
-        protected const string MENSAGEM_TOOLTIP_TITULO = "[TODO]: Adicionar.";
+        protected const string MENSAGEM_TOOLTIP_TITULO = "A fase representa uma atividade do jogo. Defina as configurações da fase (nome, contexto, nível de dificuldade, faixa etária, ações esperadas)";
         protected const string MENSAGEM_TOOLTIP_CAMPO_NOME = "[TODO]: Adicionar.";
-        protected const string MENSAGEM_TOOLTIP_INPUT_VIDEO_CONTEXTO = "[TODO]: Adicionar.";
-        protected const string MENSAGEM_TOOLTIP_DROPDOWN_DIFICULDADE = "[TODO]: Adicionar.";
-        protected const string MENSAGEM_TOOLTIP_INPUT_FAIXA_ETARIA = "[TODO]: Adicionar.";
-        protected const string MENSAGEM_TOOLTIP_ACAO_ESPERADA = "[TODO]: Adicionar.";
+        protected const string MENSAGEM_TOOLTIP_INPUT_VIDEO_CONTEXTO = "Vídeo para contextualizar a atividade abordada na fase. O vídeo será apresentado no início da fase.";
+        protected const string MENSAGEM_TOOLTIP_DROPDOWN_DIFICULDADE = "Classificação do nível de dificuldade da fase do jogo.";
+        protected const string MENSAGEM_TOOLTIP_INPUT_FAIXA_ETARIA = "Faixa etária que a fase do jogo é recomendada.";
+        protected const string MENSAGEM_TOOLTIP_ACAO_ESPERADA = "Definição das ações dos jogadores que são consideradas corretas no contexto do jogo, ou seja, quais ações os jogadores devem realizar para atingir o sucesso no jogo.";
 
         #endregion
 
@@ -128,7 +128,7 @@ namespace Autis.Editor.Telas {
                 NiveisDificuldade.Dificil.ToString(),
             };
 
-            dropdownDificuldade = new Dropdown("N�vel de dificuldade: (opcional)", MENSAGEM_TOOLTIP_DROPDOWN_DIFICULDADE, opcoes);
+            dropdownDificuldade = new Dropdown("Nível de dificuldade: (opcional)", MENSAGEM_TOOLTIP_DROPDOWN_DIFICULDADE, opcoes);
             dropdownDificuldade.Campo.RegisterCallback<ChangeEvent<string>>(evt => {
                 if(evt.newValue == Dropdown.VALOR_PADRAO_DROPDOWN) {
                     return;

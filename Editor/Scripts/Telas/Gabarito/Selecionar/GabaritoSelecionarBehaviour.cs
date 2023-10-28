@@ -11,9 +11,9 @@ namespace Autis.Editor.Telas {
 
         #region .: Mensagens :.
 
-        protected const string MENSAGEM_TOOLTIP_TITULO = "TODO: Inserir tooltip titulo";
-        protected const string MENSAGEM_TOOLTIP_TOGGLE_ORDEM = "TODO: Inserir tooltip toggle ordem";
-        protected const string MENSAGEM_TOOLTIP_DROPDOWN = "TODO: Inserir tooltip dropdown";
+        protected const string MENSAGEM_TOOLTIP_TITULO = "Indicação do conjunto de Elementos que é esperado que o usuário selecione durante o jogo";
+        protected const string MENSAGEM_TOOLTIP_TOGGLE_ORDEM = "Indica que durante o jogo é esperado que o jogador selecione os Elementos em uma ordem específica.";
+        protected const string MENSAGEM_TOOLTIP_DROPDOWN = "Elemento que é esperado que o usuário selecione durante o jogo";
 
         #endregion
 

@@ -15,11 +15,10 @@ namespace Autis.Editor.UI {
 
         #region .: Elementos :.
 
-        public Label Label { get => label; }
+        public Label Label { get => labelTitulo; }
         public DropdownField Campo { get => campo; }
 
         private const string NOME_LABEL = "label-campo-dropdown";
-        private readonly Label label;
 
         private const string NOME_DROPDOWN = "campo-dropdown";
         private readonly DropdownField campo;
@@ -28,6 +27,11 @@ namespace Autis.Editor.UI {
         private readonly InterrogacaoToolTip tooltipTitulo;
         private VisualElement regiaoCarregamentoTooltipTitulo;
 
+        private const string NOME_REGIAO_CARREGAMENTO_TITULO = "regiao-carregamento-titulo";
+        private VisualElement regiaoCarregamentoTitulo;
+
+        private Label labelTitulo;
+
         #endregion
 
         public Dropdown(string label) {
@@ -35,15 +39,19 @@ namespace Autis.Editor.UI {
                 VALOR_PADRAO_DROPDOWN,
             };
 
-            campo = new(label, opcoes, 0) {
+            campo = new(opcoes, 0) {
                 name = NOME_DROPDOWN,
             };
             campo.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
             campo.AddToClassList(CLASSE_STYLE_PADRAO);
 
-            campo.labelElement.name = NOME_LABEL;
-            campo.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
+            labelTitulo = Root.Query<Label>(NOME_LABEL);
 
+            labelTitulo.name = NOME_LABEL;
+            labelTitulo.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
+            labelTitulo.text = label;
+
+            root.Add(labelTitulo);
             root.Add(campo);
 
             return;
@@ -53,15 +61,19 @@ namespace Autis.Editor.UI {
             List<string> opcoesDropdown = opcoes;
             opcoesDropdown.Insert(0, VALOR_PADRAO_DROPDOWN);
 
-            campo = new(label, opcoesDropdown, 0) {
+            campo = new(opcoesDropdown, 0) {
                 name = NOME_DROPDOWN,
             };
             campo.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
             campo.AddToClassList(CLASSE_STYLE_PADRAO);
 
-            campo.labelElement.name = NOME_LABEL;
-            campo.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
+            labelTitulo = Root.Query<Label>(NOME_LABEL);
 
+            labelTitulo.name = NOME_LABEL;
+            labelTitulo.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
+            labelTitulo.text = label;
+
+            root.Add(labelTitulo);
             root.Add(campo);
 
             return;
@@ -71,7 +83,7 @@ namespace Autis.Editor.UI {
             List<string> opcoesDropdown = opcoes;
             opcoesDropdown.Insert(0, VALOR_PADRAO_DROPDOWN);
 
-            campo = new(label, opcoesDropdown, 0) {
+            campo = new(opcoesDropdown, 0) {
                 name = NOME_DROPDOWN,
                 tooltip = tooltip,
             };
@@ -83,9 +95,15 @@ namespace Autis.Editor.UI {
             campo.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
             campo.AddToClassList(CLASSE_STYLE_PADRAO);
 
-            campo.labelElement.name = NOME_LABEL;
-            campo.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
+            labelTitulo = Root.Query<Label>(NOME_LABEL);
 
+            labelTitulo.name = NOME_LABEL;
+            labelTitulo.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
+            labelTitulo.text = label;
+
+            regiaoCarregamentoTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TITULO); 
+
+            root.Add(regiaoCarregamentoTitulo);
             root.Add(campo);
 
             return;

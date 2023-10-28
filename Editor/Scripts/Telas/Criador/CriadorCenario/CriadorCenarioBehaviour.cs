@@ -9,6 +9,12 @@ namespace Autis.Editor.Criadores {
         protected override string CaminhoTemplate => "Telas/Criador/CriadorCenario/CriadorCenarioTemplate.uxml";
         protected override string CaminhoStyle => "Telas/Criador/CriadorCenario/CriadorCenarioStyle.uss";
 
+        #region .: Mensagens :.
+
+        protected const string MENSAGEM_TOOLTIP_TITULO = "O cenário é o plano de fundo da fase do jogo.";
+
+        #endregion
+
         #region .: Elementos :.
 
         protected readonly string NOME_RADIO_IMAGEM = "radio-opcao-imagem";
@@ -31,6 +37,11 @@ namespace Autis.Editor.Criadores {
 
         protected BotoesConfirmacao botoesConfirmacao;
 
+        protected const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO = "regiao-tooltip-titulo";
+        protected VisualElement regiaoCarregamentoTooltipTitulo;
+
+        protected InterrogacaoToolTip tooltipTitulo;
+
         #endregion
 
         protected readonly ManipuladorCenario manipulador;
@@ -39,6 +50,7 @@ namespace Autis.Editor.Criadores {
             manipulador = new ManipuladorCenario();
             manipulador.Criar();
 
+            ConfigurarTooltipTitulo();
             CarregarRegiaoInputImagem();
             CarregarRegiaoInputsCor();
 
@@ -46,6 +58,16 @@ namespace Autis.Editor.Criadores {
 
             return;
         }
+
+        protected virtual void ConfigurarTooltipTitulo() {
+            tooltipTitulo = new InterrogacaoToolTip(MENSAGEM_TOOLTIP_TITULO);
+
+            regiaoCarregamentoTooltipTitulo = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
+            regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);
+
+            return;
+        }
+
 
         protected virtual void CarregarRegiaoInputImagem() {
             inputImagem = new InputImagem();

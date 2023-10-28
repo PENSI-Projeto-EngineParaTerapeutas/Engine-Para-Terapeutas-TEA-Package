@@ -1,7 +1,5 @@
-using UnityEngine;
 using UnityEngine.UIElements;
 using Autis.Editor.Utils;
-using Autis.Editor.Constantes;
 
 namespace Autis.Editor.UI {
 
@@ -12,73 +10,33 @@ namespace Autis.Editor.UI {
         #region .: Elementos :.
 
         public Image ImagemTooltip { get => imagemTooltip; }
-        public VisualElement RegiaoTextoTooltip { get => regiaoTextoTooltip; }
-        public Label TextoTooltip { get => textoTooltip; }
 
         private const string NOME_IMAGEM_TOOLTIP = "imagem-interrogacao";
-        private readonly Image imagemTooltip;
-
-        private const string NOME_REGIAO_TEXTO_TOOLTIP = "regiao-texto-tooltip";
-        private readonly VisualElement regiaoTextoTooltip;
-
-        private const string NOME_TEXTO_TOOLTIP = "texto-tooltip";
-        private readonly Label textoTooltip;
-
-        private bool labelAtivada = false;
+        private Image imagemTooltip;
 
         #endregion
 
         public InterrogacaoToolTip() {
-            imagemTooltip = Root.Query<Image>(NOME_IMAGEM_TOOLTIP);
-            regiaoTextoTooltip = Root.Query<VisualElement>(NOME_REGIAO_TEXTO_TOOLTIP);
-            textoTooltip = Root.Query<Label>(NOME_TEXTO_TOOLTIP);
-
-            regiaoTextoTooltip.AddToClassList("regiao-tooltip");
-
-            ConfigurarEventosMouse();
             ConfigurarImagemToolTip();
-            OcultarTooltip();
+            return;
+        }
 
-            root.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+        public InterrogacaoToolTip(string conteudo) {
+            ConfigurarImagemToolTip();
+            SetTexto(conteudo);
 
             return;
         }
 
-        private void ConfigurarEventosMouse() {
-            imagemTooltip.RegisterCallback<ClickEvent>(EventoClicar);
-
-            SetTexto("Teste da tooltip"); // DEBUG - DELETAR DEPOIS
-        }
         private void ConfigurarImagemToolTip() {
+            imagemTooltip = Root.Query<Image>(NOME_IMAGEM_TOOLTIP);
             imagemTooltip.image = Importador.ImportarImagem("interrogacao.png");
+
             return;
         }
 
         public void SetTexto(string conteudo) {
             imagemTooltip.tooltip = conteudo;
-            return;
-        }
-
-        void EventoClicar(ClickEvent evt) {
-            return;
-
-            /*if(labelAtivada) {
-                OcultarTooltip();
-                labelAtivada = false;
-            }
-            else {
-                ExibirTooltip();
-                labelAtivada = true;
-            }*/
-        }
-
-        public void ExibirTooltip() {
-            regiaoTextoTooltip.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-            return;
-        }
-
-        public void OcultarTooltip() {
-            regiaoTextoTooltip.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
             return;
         }
     }

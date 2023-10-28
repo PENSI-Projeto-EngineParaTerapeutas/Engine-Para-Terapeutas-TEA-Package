@@ -10,7 +10,7 @@ namespace Autis.Editor.Telas {
 
         #region .: Mensagens :.
 
-        protected const string MENSAGEM_TOOLTIP_TITULO = "TODO: Adicionar tooltip";
+        protected const string MENSAGEM_TOOLTIP_TITULO = "Indicação do local que é esperado que cada Elemento arrastável seja posicionado.";
 
         #endregion
 

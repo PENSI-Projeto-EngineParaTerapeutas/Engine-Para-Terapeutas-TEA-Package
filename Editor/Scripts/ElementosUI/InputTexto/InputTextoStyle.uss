@@ -5,8 +5,3 @@
 #input-texto > TextInput {
 	color: black;
 }
-
-#regiao-tooltip-titulo {
-	position: absolute;
-	left: 0px;
-}

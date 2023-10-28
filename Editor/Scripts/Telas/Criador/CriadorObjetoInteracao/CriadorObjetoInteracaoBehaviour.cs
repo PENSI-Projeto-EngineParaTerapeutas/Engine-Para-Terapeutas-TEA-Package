@@ -18,8 +18,11 @@ namespace Autis.Editor.Criadores {
 
         #region .: Mensagens :.
 
-        private const string MENSAGEM_TOOLTIP_DROPDOWN_TIPO_OBJETO_INTERACAO = "[TODO]: Adicionar";
-        private const string MENSAGEM_TOOLTIP_DROPDOWN_TIPO_ACOES = "[TODO]: Adicionar";
+        protected const string MENSAGEM_TOOLTIP_TITULO = "Elemento (imagem ou texto) que podem ser adicionados na fase do jogo. Um elemento poderá ser estático OU o usuário poderá interagir com ele.";
+        protected const string MENSAGEM_TOOLTIP_INPUT_NOME = "Digite um nome para o Elemento. Cada componente deve ter um nome exclusivo (que não se repete em outro componente)";
+        private const string MENSAGEM_TOOLTIP_DROPDOWN_TIPO_OBJETO_INTERACAO = "Forma que o Elemento será representado na fase.";
+        private const string MENSAGEM_TOOLTIP_DROPDOWN_TIPO_ACOES = "Forma que o jogador poderá interagir com o Elemento durante o jogo.";
+        private const string MENSAGEM_TOOLTIP_DESFAZER_ACAO = "Permitir que o Elemento volte para sua posição inicial caso ele seja arrastado para um local incorreto.";
 
         #endregion
 
@@ -62,6 +65,20 @@ namespace Autis.Editor.Criadores {
 
         protected BotoesConfirmacao botoesConfirmacao;
 
+        protected const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO = "regiao-tooltip-titulo";
+        protected VisualElement regiaoCarregamentoTooltipTitulo;
+
+        protected InterrogacaoToolTip tooltipTitulo;
+
+        private const string NOME_REGIAO_DESFAZER_ACAO = "regiao-input-desfazer-acao";
+        private VisualElement regiaoDesfazerAcao;
+
+        private const string NOME_REGIAO_LABEL_DESFAZER_ACAO = "regiao-label-desfazer-acao";
+        private VisualElement regiaoLabelDesfazerAcao;
+        private VisualElement regiaoCarregamentoTooltipDesfazerAcao;
+        private InterrogacaoToolTip tooltipDesfazerAcao;
+        private const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_DESFAZER_ACAO = "regiao-tooltip-desfazer-acao";
+
         #endregion
 
         protected Dictionary<string, TiposAcoes> associacaoValoresDropdownTipoAcoes;
@@ -73,6 +90,7 @@ namespace Autis.Editor.Criadores {
             manipulador = new ManipuladorObjetoInteracao();
             manipulador.Criar();
 
+            ConfigurarTooltipTitulo();
             ConfigurarCampoNome();
             CarregarRegiaoInputsImagem();
             CarregarRegiaoInputsTexto();
@@ -89,8 +107,17 @@ namespace Autis.Editor.Criadores {
             return;
         }
 
+        protected virtual void ConfigurarTooltipTitulo() {
+            tooltipTitulo = new InterrogacaoToolTip(MENSAGEM_TOOLTIP_TITULO);
+
+            regiaoCarregamentoTooltipTitulo = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
+            regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);
+
+            return;
+        }
+
         protected virtual void ConfigurarCampoNome() {
-            campoNome = new InputTexto("Nome:");
+            campoNome = new InputTexto("Nome:", MENSAGEM_TOOLTIP_INPUT_NOME);
 
             campoNome.CampoTexto.AddToClassList("input-texto");
             campoNome.CampoTexto.RegisterCallback<ChangeEvent<string>>(evt => {
@@ -133,7 +160,7 @@ namespace Autis.Editor.Criadores {
                 TiposObjetosInteracao.Texto.ToString(),
             };
 
-            dropdownTipo = new Dropdown("Representa��o Visual:", MENSAGEM_TOOLTIP_DROPDOWN_TIPO_OBJETO_INTERACAO, opcoes );
+            dropdownTipo = new Dropdown("Representação Visual:", MENSAGEM_TOOLTIP_DROPDOWN_TIPO_OBJETO_INTERACAO, opcoes );
             dropdownTipo.Campo.RegisterCallback<ChangeEvent<string>>(evt => {
                 if(evt.newValue == Dropdown.VALOR_PADRAO_DROPDOWN) {
                     OcultarCampos();
@@ -211,7 +238,7 @@ namespace Autis.Editor.Criadores {
                 opcoes.Add(associacao.Key);
             }
 
-            dropdownTiposAcoes = new Dropdown("A��o (opcional)", MENSAGEM_TOOLTIP_DROPDOWN_TIPO_ACOES, opcoes);
+            dropdownTiposAcoes = new Dropdown("Ação (opcional)", MENSAGEM_TOOLTIP_DROPDOWN_TIPO_ACOES, opcoes);
             dropdownTiposAcoes.Campo.RegisterCallback<ChangeEvent<string>>(evt => {
                 if(evt.newValue == Dropdown.VALOR_PADRAO_DROPDOWN) {
                     manipulador.SetTipoInteracao(TiposAcoes.Nenhuma);
@@ -239,6 +266,8 @@ namespace Autis.Editor.Criadores {
         }
 
         protected virtual void ConfigurarCheckboxDesfazerAcao() {
+            regiaoDesfazerAcao = root.Query<VisualElement>(NOME_REGIAO_DESFAZER_ACAO);
+
             checkboxDesfazerAcao = root.Query<Toggle>(NOME_CHECKBOX_DESFAZER_ACAO);
 
             checkboxDesfazerAcao.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
@@ -246,7 +275,19 @@ namespace Autis.Editor.Criadores {
                 manipulador.SetDeveDesfazerAcao(evt.newValue);
             });
 
+            regiaoDesfazerAcao.Add(checkboxDesfazerAcao);
+
             return;
+        }
+
+        private void ConfigurarTooltipLabelConfiguracaoTexto() {
+            tooltipDesfazerAcao = new InterrogacaoToolTip();
+            tooltipDesfazerAcao.SetTexto(MENSAGEM_TOOLTIP_DESFAZER_ACAO);
+
+            regiaoCarregamentoTooltipDesfazerAcao = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_DESFAZER_ACAO);
+            regiaoCarregamentoTooltipDesfazerAcao.Add(tooltipDesfazerAcao.Root);
+
+            regiaoDesfazerAcao.Add(regiaoCarregamentoTooltipDesfazerAcao);
         }
 
         protected virtual void ConfigurarRegiaoOpcoesAvancadas() {

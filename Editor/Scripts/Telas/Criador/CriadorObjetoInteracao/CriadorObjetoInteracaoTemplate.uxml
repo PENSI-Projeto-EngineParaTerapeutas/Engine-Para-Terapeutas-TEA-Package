@@ -20,7 +20,10 @@
 
         <engine:VisualElement name="regiao-carregamento-tipo-acao"/>
 
-        <engine:Toggle name="input-desfazer-acao" class="checkbox-padrao" label="Desfazer ação em caso de erro"/>
+        <engine:VisualElement name="regiao-input-desfazer-acao" class="regiao-label-input-padrao">
+            <engine:Toggle name="input-desfazer-acao" class="checkbox-padrao" label="Desfazer ação em caso de erro"/>
+            <engine:VisualElement name="regiao-tooltip-desfazer-acao" class="regiao-tooltip-padrao"/>
+        </engine:VisualElement>
 
         <engine:Foldout text="Opções Avançadas (Opcional)" name="foldout-opcoes-avancadas" value="false">
             <engine:VisualElement name="regiao-carregamento-inputs-posicao"/>

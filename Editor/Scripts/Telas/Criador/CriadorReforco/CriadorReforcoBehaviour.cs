@@ -14,8 +14,10 @@ namespace Autis.Editor.Criadores {
 
         #region .: Mensagens :.
 
-        private const string MENSAGEM_TOOLTIP_DROPDOWN_TIPO_REFORCO = "[TODO]: Adicionar tooltip";
-        private const string MENSAGEM_TOOLTIP_DROPDOWN_TIPO_ACIONAMENTO = "[TODO]: Adicionar tooltip";
+        protected const string MENSAGEM_TOOLTIP_TITULO = "Reforço é um feedback ou recompensa que serão apresentadas no jogo.";
+        private const string MENSAGEM_TOOLTIP_INPUT_NOME = "Digite um nome para o Reforço. Cada componente deve ter um nome exclusivo (que não se repete em outro componente)";
+        private const string MENSAGEM_TOOLTIP_DROPDOWN_TIPO_REFORCO = "Forma que o reforço será apresentado.";
+        private const string MENSAGEM_TOOLTIP_DROPDOWN_TIPO_ACIONAMENTO = "Definição do que fará o reforço ser apresentado na fase do jogo.";
         protected const string MENSAGEM_TOOLTIP_DROPDOWN_TEMPO_EXIBICAO = "[TODO]: Adicionar tooltip";
 
         #endregion
@@ -68,6 +70,11 @@ namespace Autis.Editor.Criadores {
 
         protected BotoesConfirmacao botoesConfirmacao;
 
+        protected const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO = "regiao-tooltip-titulo";
+        protected VisualElement regiaoCarregamentoTooltipTitulo;
+
+        protected InterrogacaoToolTip tooltipTitulo;
+
         #endregion
 
         protected ManipuladorReforco manipulador;
@@ -80,6 +87,7 @@ namespace Autis.Editor.Criadores {
             manipulador = new ManipuladorReforco();
             manipulador.Criar();
 
+            ConfigurarTooltipTitulo();
             ConfigurarCampoNome();
             CarregarRegiaoInputsImagem();
             CarregarRegiaoInputsAudio();
@@ -95,8 +103,17 @@ namespace Autis.Editor.Criadores {
             return;
         }
 
+        protected virtual void ConfigurarTooltipTitulo() {
+            tooltipTitulo = new InterrogacaoToolTip(MENSAGEM_TOOLTIP_TITULO);
+
+            regiaoCarregamentoTooltipTitulo = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
+            regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);
+
+            return;
+        }
+
         protected virtual void ConfigurarCampoNome() {
-            campoNome = new InputTexto("Nome:");
+            campoNome = new InputTexto("Nome:", MENSAGEM_TOOLTIP_INPUT_NOME);
             campoNome.CampoTexto.RegisterCallback<ChangeEvent<string>>(evt => {
                 manipulador.SetNome(evt.newValue);
             });
@@ -155,10 +172,10 @@ namespace Autis.Editor.Criadores {
 
         protected virtual void ConfigurarCampoTipoReforco() {
             associacaoValoresDropdownTipoReforocos = new() {
-                { "Apresentar �udio", TiposReforcos.Audio },
+                { "Apresentar áudio", TiposReforcos.Audio },
                 { "Apresentar Imagem", TiposReforcos.Imagem },
                 { "Apresentar Texto", TiposReforcos.Texto },
-                { "Apresentar V�deo", TiposReforcos.Video },
+                { "Apresentar Vídeo", TiposReforcos.Video },
             };
 
             List<string> opcoes = new();
@@ -166,7 +183,7 @@ namespace Autis.Editor.Criadores {
                 opcoes.Add(associacao.Key);
             }
 
-            dropdownTipoReforco = new Dropdown("Tipo de refor�o:", MENSAGEM_TOOLTIP_DROPDOWN_TIPO_REFORCO, opcoes);
+            dropdownTipoReforco = new Dropdown("Tipo de reforço:", MENSAGEM_TOOLTIP_DROPDOWN_TIPO_REFORCO, opcoes);
             dropdownTipoReforco.Campo.RegisterCallback<ChangeEvent<string>>(evt => {
                 if(evt.newValue == Dropdown.VALOR_PADRAO_DROPDOWN) {
                     manipulador.DesabilitarComponentes();
@@ -270,9 +287,9 @@ namespace Autis.Editor.Criadores {
 
         protected virtual void ConfigurarCampoAcionamento() {
             associacoesOpcaoValorDropdown = new() {
-                { "Autom�tico, em caso de acerto", TipoAcionamentoReforco.Acerto },
-                { "Autom�tico, em caso de erro", TipoAcionamentoReforco.Erro },
-                { "Autom�tico, no final da fase", TipoAcionamentoReforco.FimJogo },
+                { "Automático, em caso de acerto", TipoAcionamentoReforco.Acerto },
+                { "Automático, em caso de erro", TipoAcionamentoReforco.Erro },
+                { "Automático, no final da fase", TipoAcionamentoReforco.FimJogo },
             };
 
             List<string> opcoes = new();
@@ -318,7 +335,7 @@ namespace Autis.Editor.Criadores {
                 opcoes.Add(associacao.Key);
             }
 
-            dropdownTempoExibicao = new Dropdown("Tempo de exibi��o:", MENSAGEM_TOOLTIP_DROPDOWN_TEMPO_EXIBICAO, opcoes);
+            dropdownTempoExibicao = new Dropdown("Tempo de exibição:", MENSAGEM_TOOLTIP_DROPDOWN_TEMPO_EXIBICAO, opcoes);
             dropdownTempoExibicao.Root.RegisterCallback<ChangeEvent<string>>(evt => {
                 float tempoEspera = associacoesTemposExibicao[evt.newValue];
                 manipulador.SetTempoExibicao(tempoEspera);

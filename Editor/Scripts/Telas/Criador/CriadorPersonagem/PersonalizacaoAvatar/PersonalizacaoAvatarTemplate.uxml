@@ -25,11 +25,6 @@
             <engine:VisualElement name="regiao-carregamento-dropdown-roupas" class="input-dropdown"/>
             <engine:VisualElement name="regiao-carregamento-cor-roupa-superior" class="input-cor"/>
             <engine:VisualElement name="regiao-carregamento-cor-roupa-inferior" class="input-cor"/>
-
-            <engine:VisualElement name="regiao-input-upload-imagem-rosto">
-                <engine:Label name="label-input-upload-imagem-rosto" text="Rosto (opcional)"/>
-                <engine:VisualElement name="regiao-carregamento-upload-imagem-rosto"/>
-            </engine:VisualElement>
         </engine:VisualElement>
     </engine:ScrollView>
 

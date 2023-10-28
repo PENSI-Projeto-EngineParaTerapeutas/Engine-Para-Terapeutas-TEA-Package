@@ -27,22 +27,24 @@
 	border-radius: 10px;
 }
 
-#foldout-lista-animacoes {
-	margin-top: 13%;
+#label-lista-animacoes {
+	margin-top: 9%;
 	flex-grow: 1;
+	font-size: 21px;
+	margin-bottom: 1%;
 }
 
-#foldout-lista-animacoes > #unity-content {
+#label-lista-animacoes > #unity-content {
 	margin-left: 0;
 	flex-grow: 1;
 }
 
-#foldout-lista-animacoes > Toggle > VisualElement > Label {
+#label-lista-animacoes > Toggle > VisualElement > Label {
 	-unity-font-style: bold;
 	font-size: 20px;
 }
 
-#foldout-lista-animacoes > Toggle > VisualElement > VisualElement {
+#label-lista-animacoes > Toggle > VisualElement > VisualElement {
 	-unity-background-image-tint-color: rgba(1, 1, 1, 0);
 	width: 0;
 }
