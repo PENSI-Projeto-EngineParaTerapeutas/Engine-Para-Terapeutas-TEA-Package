@@ -8,11 +8,13 @@ using Autis.Runtime.ComponentesGameObjects;
 using Autis.Editor.Constantes;
 
 namespace Autis.Editor.Manipuladores {
-    public class ManipuladorPersonagemLudico : ManipuladorPersonagens, IExcluir {
+    public class ManipuladorPersonagemLudico : ManipuladorPersonagens {
         public DadosPersonagemLudico DadosPersonagemLudico { get => dadosPersonagemLudico; }
         protected DadosPersonagemLudico dadosPersonagemLudico;
 
-        public ManipuladorPersonagemLudico(GameObject prefabObjeto) : base(prefabObjeto) { }
+        public ManipuladorPersonagemLudico() : base() {}
+
+        public ManipuladorPersonagemLudico(GameObject prefabObjeto) : base(prefabObjeto) {}
 
         public override void Editar(GameObject objetoAlvo) {
             base.Editar(objetoAlvo);
@@ -22,7 +24,7 @@ namespace Autis.Editor.Manipuladores {
             return;
         }
 
-        public void Excluir() {
+        protected override void ExcluirInterno() {
             GameObject.DestroyImmediate(objeto);
 
             objeto = null;

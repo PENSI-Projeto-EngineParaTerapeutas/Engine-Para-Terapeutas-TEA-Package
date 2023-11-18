@@ -8,3 +8,11 @@
 	-unity-font-style: bold;
 	margin-bottom: 6px;
 }
+
+#regiao-label-slider-volume {
+	flex-direction: row;
+}
+
+#regiao-tooltip-slider-volume {
+	margin-left: 8px;
+}

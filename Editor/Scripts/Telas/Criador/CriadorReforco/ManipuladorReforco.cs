@@ -94,7 +94,7 @@ namespace Autis.Editor.Manipuladores {
             return;
         }
 
-        public override void Finalizar() {
+        protected override void FinalizarInterno() {
             objeto.tag = NomesTags.Reforcos;
             objeto.layer = LayersProjeto.Default.Index;
             componenteSpriteRenderer.sortingOrder = OrdemRenderizacao.Reforco;

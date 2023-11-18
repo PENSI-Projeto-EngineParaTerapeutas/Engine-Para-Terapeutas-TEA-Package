@@ -7,13 +7,29 @@ using Autis.Runtime.Constantes;
 using Autis.Editor.Editores;
 using Autis.Editor.Manipuladores;
 using Autis.Editor.Utils;
+using Autis.Runtime.Eventos;
 
 namespace Autis.Editor.Telas {
     public class EditarElementoBehaviour : Tela {
         protected override string CaminhoTemplate => "Telas/EditarElemento/EditarElementoTemplate.uxml";
         protected override string CaminhoStyle => "Telas/EditarElemento/EditarElementoStyle.uss";
 
+        #region .: Mensagens :.
+
+        private const string MENSAGEM_ERRO_TIPO_PERSONAGEM_NAO_ENCONTRADO = "[ERRO]: O tipo do personagem não encontrado.";
+
+        #endregion
+
+        #region .: Eventos :.
+
+        protected static EventoJogo eventoIniciarEdicao;
+
+        #endregion
+
         #region .: Elementos :.
+
+        private const string NOME_REGIAO_CONTEUDO_PRINCIPAL = "regiao-conteudo-principal";
+        private ScrollView scrollViewConteudoPrincipal;
 
         private const string NOME_REGIAO_CARREGAMENTO_LISTA_PERSONAGEM = "regiao-carregamento-lista-personagens";
         private VisualElement regiaoCarregamentoListaPersonagem;
@@ -71,6 +87,9 @@ namespace Autis.Editor.Telas {
         private ManipuladorCena manipuladorCena;
 
         public EditarElementoBehaviour() {
+            eventoIniciarEdicao = Importador.ImportarEvento("EventoIniciarEdicao");
+
+            ConfigurarRegiaoConteudoPrincipal();
             ConfigurarBotaoEditarCenario();
             ConfigurarBotaoEditarPersonagem();
             ConfigurarListaApoios();
@@ -78,6 +97,15 @@ namespace Autis.Editor.Telas {
             ConfigurarListaInstrucoes();
             ConfigurarListaReforcos();
             ConfigurarBotaoEstruturaFase();
+
+            return;
+        }
+        
+        private void ConfigurarRegiaoConteudoPrincipal() {
+            scrollViewConteudoPrincipal = root.Query<ScrollView>(NOME_REGIAO_CONTEUDO_PRINCIPAL);
+            scrollViewConteudoPrincipal.mode = ScrollViewMode.Vertical;
+            scrollViewConteudoPrincipal.horizontalScrollerVisibility = ScrollerVisibility.Hidden;
+            scrollViewConteudoPrincipal.nestedInteractionKind = ScrollView.NestedInteractionKind.StopScrolling;
 
             return;
         }
@@ -101,6 +129,7 @@ namespace Autis.Editor.Telas {
                 ItemListaElementosBehaviour item = new(listaCenario.Objetos[index]);
                 
                 item.OnEditarClick = (() => {
+                    eventoIniciarEdicao.AcionarCallbacks();
                     Navigator.Instance.IrPara(new EditorCenarioBehaviour(listaCenario.Objetos[index]) {
                         OnConfirmarEdicao = ((novoObjeto) => {
                             listaCenario.Objetos[index] = novoObjeto;
@@ -148,6 +177,7 @@ namespace Autis.Editor.Telas {
                 ItemListaElementosBehaviour item = new(listaPersonagens.Objetos[index]);
                 
                 item.OnEditarClick = (() => {
+                    eventoIniciarEdicao.AcionarCallbacks();
                     Navigator.Instance.IrPara(new EditorPersonagemBehaviour(listaPersonagens.Objetos[index]) {
                         OnConfirmarEdicao = ((novoObjeto) => {
                             listaPersonagens.Objetos[index] = novoObjeto;
@@ -157,7 +187,16 @@ namespace Autis.Editor.Telas {
                 });
 
                 item.OnExcluirClick = (() => {
-                    Debug.Log("Ajustar implementação");
+                    ManipuladorPersonagens manipuladorPersonagen = ManipuladorPersonagens.GetManipuladorPersonagem(item.ObjetoVinculado);
+
+                    if(manipuladorPersonagen == null) {
+                        Debug.Log(MENSAGEM_ERRO_TIPO_PERSONAGEM_NAO_ENCONTRADO);
+                    }
+
+                    manipuladorPersonagen.SetObjeto(item.ObjetoVinculado);
+                    manipuladorPersonagen.Excluir();
+
+                    listaPersonagens.RemoverItem(item.ObjetoVinculado);
                 });
 
                 elemento.Add(item.Root);
@@ -184,6 +223,7 @@ namespace Autis.Editor.Telas {
                 ItemListaElementosBehaviour item = new(listaInstrucoes.Objetos[index]);
 
                 item.OnEditarClick = (() => {
+                    eventoIniciarEdicao.AcionarCallbacks();
                     Navigator.Instance.IrPara(new EditorInstrucoesBehaviour(listaInstrucoes.Objetos[index]) {
                         OnConfirmarEdicao = ((novoObjeto) => {
                             listaInstrucoes.Objetos[index] = novoObjeto;
@@ -225,6 +265,7 @@ namespace Autis.Editor.Telas {
                 ItemListaElementosBehaviour item = new(listaElementosInteracao.Objetos[index]);
 
                 item.OnEditarClick = (() => {
+                    eventoIniciarEdicao.AcionarCallbacks();
                     Navigator.Instance.IrPara(new EditorObjetoInteracaoBehaviour(listaElementosInteracao.Objetos[index]) {
                         OnConfirmarEdicao = ((novoObjeto) => {
                             listaElementosInteracao.Objetos[index] = novoObjeto;
@@ -275,6 +316,7 @@ namespace Autis.Editor.Telas {
                 ItemListaElementosBehaviour item = new(listaReforcos.Objetos[index]);
 
                 item.OnEditarClick = (() => {
+                    eventoIniciarEdicao.AcionarCallbacks();
                     Navigator.Instance.IrPara(new EditorReforcoBehaviour(listaReforcos.Objetos[index]) {
                         OnConfirmarEdicao = ((novoObjeto) => {
                             listaReforcos.Objetos[index] = novoObjeto;
@@ -316,6 +358,7 @@ namespace Autis.Editor.Telas {
                 ItemListaElementosBehaviour item = new(listaApoios.Objetos[index]);
 
                 item.OnEditarClick = (() => {
+                    eventoIniciarEdicao.AcionarCallbacks();
                     Navigator.Instance.IrPara(new EditorApoioBehaviour(listaApoios.Objetos[index]) {
                         OnConfirmarEdicao = ((novoObjeto) => {
                             listaApoios.Objetos[index] = novoObjeto;
@@ -351,7 +394,8 @@ namespace Autis.Editor.Telas {
             iconeBotaoEstruturaFase.image = Importador.ImportarImagem("Cubo.png");
 
             labelEstruturaFase = root.Query<Label>(NOME_LABEL_ESTRUTURA_FASE);
-            labelEstruturaFase.text = manipuladorCena.GetNome();
+            labelEstruturaFase.text = "Fase atual";
+            // TODO: labelEstruturaFase.text = manipuladorCena.GetNome();
 
             botaoEstruturaFase = root.Query<Button>(NOME_BOTAO_ESTRUTURA_FASE);
             botaoEstruturaFase.clicked += HandleBotaoEstruturaFaseClick;
@@ -360,6 +404,7 @@ namespace Autis.Editor.Telas {
         }
 
         private void HandleBotaoEstruturaFaseClick() {
+            eventoIniciarEdicao.AcionarCallbacks();
             Navigator.Instance.IrPara(new EditarInformacoesCenaBehaviour() {
                 OnConfirmarEdicao = ((manipuladorCena) => {
                     labelEstruturaFase.text = manipuladorCena.GetNome();

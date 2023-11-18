@@ -31,6 +31,10 @@ namespace Autis.Runtime.Eventos {
             return;
         }
 
+        public bool ContemCallback(UnityAction callback) {
+            return callbacks.Contains(callback);
+        }
+
         public void LimparListaCallbacks() {
             callbacks.Clear();
             return;

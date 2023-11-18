@@ -20,15 +20,8 @@ namespace Autis.Editor.Telas {
             /* TODO: Implementar faixa
             faixaEtariaInferior.CampoNumerico.SetValueWithoutNotify();
             faixaEtariaSuperior.CampoNumerico.SetValueWithoutNotify();*/
-            
-            if(manipuladorCena.GetTipoGabarito() == TipoGabarito.Selecionar) {
-                opcaoRadioSelecionar.SetValueWithoutNotify(true);
-                botaoCriarGabarito.SetEnabled(true);
-            }
-            else if(manipuladorCena.GetTipoGabarito() == TipoGabarito.Arrastar) {
-                opcaoRadioArrastar.SetValueWithoutNotify(true);
-                botaoCriarGabarito.SetEnabled(true);
-            }
+
+            CarregarOpcaoGabarito();
 
             return;
         }
@@ -50,6 +43,19 @@ namespace Autis.Editor.Telas {
             if(opcaoRadioSelecionar.value) {
                 Navigator.Instance.IrPara(new EditarGabaritoSelecionavelBehaviour());
                 return;
+            }
+
+            return;
+        }
+
+        protected override void CarregarOpcaoGabarito() {
+            if(manipuladorCena.GetTipoGabarito() == TipoGabarito.Selecionar) {
+                opcaoRadioSelecionar.SetValueWithoutNotify(true);
+                botaoCriarGabarito.SetEnabled(true);
+            }
+            else if(manipuladorCena.GetTipoGabarito() == TipoGabarito.Arrastar) {
+                opcaoRadioArrastar.SetValueWithoutNotify(true);
+                botaoCriarGabarito.SetEnabled(true);
             }
 
             return;

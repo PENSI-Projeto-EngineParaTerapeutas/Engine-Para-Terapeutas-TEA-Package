@@ -84,7 +84,7 @@ namespace Autis.Editor.Manipuladores {
             return;
         }
 
-        public override void Finalizar() {
+        protected override void FinalizarInterno() {
             return;
         }
 

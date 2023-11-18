@@ -3,7 +3,7 @@
     border-color: #B8BBC2;
     border-width: 1.5px;
     border-radius: 20px;
-    margin: 9% 0 0;
+    margin: 9px 0 6px;
     padding: 0px;
 }
 
@@ -110,4 +110,8 @@
 #input-italico:checked > VisualElement > VisualElement,
 #input-sublinhado:checked > VisualElement > VisualElement {
     background-color: #D3E5F5;
+}
+
+#regiao-tooltip-configuracao-texto {
+    justify-content: center;
 }

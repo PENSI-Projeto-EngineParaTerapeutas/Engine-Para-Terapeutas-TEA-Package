@@ -13,37 +13,39 @@ namespace Autis.Editor.UI {
         public InputNumerico CampoPosicaoY { get => campoPosicaoY; }
 
         private const string NOME_LABEL_POSICAO_X = "label-posicao-x";
-        private const string NOME_INPUT_POSICAO_X = "input-posicao-x";
-        private readonly InputNumerico campoPosicaoX;
+        private InputNumerico campoPosicaoX;
 
         private const string NOME_LABEL_POSICAO_Y = "label-posicao-y";
-        private const string NOME_INPUT_POSICAO_Y = "input-posicao-y";
-        private readonly InputNumerico campoPosicaoY;
+        private InputNumerico campoPosicaoY;
+
+        private const string NOME_REGIAO_CONTEUDO_PRINCIPAL = "regiao-conteudo";
+        private VisualElement regiaoConteudoPrincipal;
 
         #endregion
 
         private ManipuladorObjetos manipulador;
 
         public GrupoInputsPosicao() {
-            campoPosicaoX = new InputNumerico("Horizontal");
-            campoPosicaoY = new InputNumerico("Vertical");
-
-            root.Add(campoPosicaoX.Root);
-            root.Add(campoPosicaoY.Root);
-
             ConfigurarCamposPosicao();
-
             return;
         }
 
         private void ConfigurarCamposPosicao() {
+            regiaoConteudoPrincipal = root.Query<VisualElement>(NOME_REGIAO_CONTEUDO_PRINCIPAL);
+
+            campoPosicaoX = new InputNumerico("Horizontal");
             campoPosicaoX.CampoNumerico.labelElement.name = NOME_LABEL_POSICAO_X;
             campoPosicaoX.CampoNumerico.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
             campoPosicaoX.CampoNumerico.SetValueWithoutNotify(0);
 
+            regiaoConteudoPrincipal.Add(campoPosicaoX.Root);
+
+            campoPosicaoY = new InputNumerico("Vertical");
             campoPosicaoY.CampoNumerico.labelElement.name = NOME_LABEL_POSICAO_Y;
             campoPosicaoY.CampoNumerico.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
             campoPosicaoY.CampoNumerico.SetValueWithoutNotify(0);
+
+            regiaoConteudoPrincipal.Add(campoPosicaoY.Root);
 
             return;
         }

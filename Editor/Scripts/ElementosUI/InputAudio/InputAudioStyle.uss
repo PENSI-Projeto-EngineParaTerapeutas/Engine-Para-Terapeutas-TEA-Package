@@ -13,6 +13,7 @@
     cursor: link;
     margin: 0px;
     border-color: #B8BBC2;
+    margin-top: 5%;
 }
 
 #label-botao {
@@ -25,6 +26,10 @@
     overflow: hidden;
     white-space: noWrap;
     -unity-text-overflow-position: end;
+}
+
+.arquivo-selecionado {
+    color: #1976D2;
 }
 
 #cancelar-audio {

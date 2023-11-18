@@ -58,6 +58,7 @@ namespace Autis.Runtime.ComponentesGameObjects {
             }
 
             if(ehOpcaoCorreta && ordemImporta && gabarito.NumeroEtapaAtual != numeroOrdemSelecao) {
+                eventoErro.AcionarCallbacks();
                 eventoErroComOrdem.AcionarCallbacks(gabarito.NumeroEtapaAtual);
                 return;
             }

@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
+using UnityEditor;
 using Autis.Runtime.DTOs;
 using Autis.Editor.UI;
 using Autis.Editor.Constantes;
 using Autis.Editor.Manipuladores;
 using Autis.Editor.Telas;
+using Autis.Editor.Excecoes;
+using Autis.Runtime.Eventos;
+using Autis.Editor.Utils;
 
-namespace Autis.Editor.Criadores
-{
-    public class CriadorInstrucoesBehaviour : Tela, IReiniciavel
-    {
+namespace Autis.Editor.Criadores {
+    public class CriadorInstrucoesBehaviour : Tela, IReiniciavel {
         protected override string CaminhoTemplate => "Telas/Criador/CriadorInstrucoes/CriadorInstrucoesTemplate.uxml";
         protected override string CaminhoStyle => "Telas/Criador/CriadorInstrucoes/CriadorInstrucoesStyle.uss";
 
@@ -19,6 +21,12 @@ namespace Autis.Editor.Criadores
         private const string MENSAGEM_TOOLTIP_INPUT_NOME = "Digite um nome para a Instrução. Cada componente deve ter um nome exclusivo (que não se repete em outro componente)";
         private const string MENSAGEM_TOOLTIP_DROPDOWN_TIPO_INSTRUCAO = "Forma que a instrução será apresentada. Opções: áudio, texto ou vídeo.";
         protected const string MENSAGEM_TOOLTIP_TITULO = "A instrução é um componente que pode ser usado para transmitir informações sobre a fase para o jogador.";
+
+        #endregion
+
+        #region .: Eventos :.
+
+        protected static EventoJogo eventoFinalizarCriacao;
 
         #endregion
 
@@ -44,7 +52,7 @@ namespace Autis.Editor.Criadores
 
         protected InputTexto campoNome;
         protected Dropdown dropdownTipoInstrucao;
-        protected InputsComponenteVideo grupoInputsVideo;
+        protected GrupoInputsVideo grupoInputsVideo;
         protected GrupoInputsAudio grupoInputsAudio;
         protected GrupoInputsTexto grupoInputsTexto;
         protected BotoesConfirmacao botoesConfirmacao;
@@ -62,6 +70,8 @@ namespace Autis.Editor.Criadores
             manipulador = new ManipuladorInstrucoes();
             manipulador.Criar();
 
+            eventoFinalizarCriacao = Importador.ImportarEvento("EventoFinalizarCriacao");
+
             ConfigurarTooltipTitulo();
             ConfigurarCampoNome();
             CarregarRegiaoInputsVideo();
@@ -72,6 +82,33 @@ namespace Autis.Editor.Criadores
             ConfigurarBotoesConfirmacao();
 
             OcultarCampos();
+
+            return;
+        }
+
+        public override void OnEditorUpdate() {
+            DefinirFerramenta();
+
+            if(Selection.activeObject != manipulador?.ObjetoAtual) {
+                Selection.activeObject = manipulador?.ObjetoAtual;
+            }
+
+            return;
+        }
+
+        private void DefinirFerramenta() {
+            if(manipulador?.ObjetoAtual && manipulador?.GetTipo() == TiposIntrucoes.Texto) { 
+                if(Tools.current != Tool.Move) {
+                    Tools.current = Tool.Move;
+                }
+                
+                return;
+            }
+
+            if(Tools.current != Tool.Rect) {
+                Tools.current = Tool.Rect;
+                return;
+            }
 
             return;
         }
@@ -101,8 +138,8 @@ namespace Autis.Editor.Criadores
         }
 
         protected virtual void CarregarRegiaoInputsVideo() {
-            grupoInputsVideo = new InputsComponenteVideo();
-            grupoInputsVideo.VincularDados(manipulador.ComponenteVideo);
+            grupoInputsVideo = new GrupoInputsVideo();
+            //grupoInputsVideo.VincularDados(manipulador.ComponenteVideo);
 
             regiaoCarregamentoInputsVideo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_VIDEO);
             regiaoCarregamentoInputsVideo.Add(grupoInputsVideo.Root);
@@ -223,16 +260,83 @@ namespace Autis.Editor.Criadores
         }
 
         protected virtual void HandleBotaoConfirmarClick() {
-            manipulador.Finalizar();
+            try {
+                VerificarCamposObrigatorios();
+            }
+            catch(ExcecaoCamposObrigatoriosVazios excecao) {
+                PopupAvisoBehaviour.ShowPopupAviso(excecao.Message);
+                return;
+            }
 
+            try {
+                manipulador.Finalizar();
+            }
+            catch(ExcecaoObjetoDuplicado excecao) {
+                PopupAvisoBehaviour.ShowPopupAviso(MensagensGerais.MENSAGEM_ATOR_DUPLICADO.Replace("{nome}", excecao.NomeObjetoDuplicado));
+                return;
+            }
+
+            eventoFinalizarCriacao.AcionarCallbacks();
             Navigator.Instance.Voltar();
             return;
+        }
+
+        protected virtual void VerificarCamposObrigatorios() {
+            string mensagem = string.Empty;
+
+            if(campoNome.EstaVazio()) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_NAO_PREENCHIDO.Replace("{nome_campo}", campoNome.LabelCampoTexto.text);
+            }
+
+            if(dropdownTipoInstrucao.EstaVazio()) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_NAO_PREENCHIDO.Replace("{nome_campo}", dropdownTipoInstrucao.Label.text);
+                throw new ExcecaoCamposObrigatoriosVazios(mensagem);
+            }
+
+            switch(manipulador.GetTipo()) {
+                case(TiposIntrucoes.Audio): {
+                    mensagem += VerificarCamposObrigatoriosAudio();
+                    break;
+                }
+                case(TiposIntrucoes.Video): {
+                    mensagem += VerificarCamposObrigatoriosVideo();
+                    break;
+                }
+            }
+
+            if(mensagem != string.Empty) {
+                throw new ExcecaoCamposObrigatoriosVazios(mensagem);
+            }
+
+            return;
+        }
+
+        protected virtual string VerificarCamposObrigatoriosAudio() {
+            string mensagem = string.Empty;
+
+            if(grupoInputsAudio.CampoArquivoAudio.EstaVazio()) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_ARQUIVO_AUDIO_NAO_PREENCHIDO;
+            }
+
+            return mensagem;
+        }
+
+        protected virtual string VerificarCamposObrigatoriosVideo() {
+            string mensagem = string.Empty;
+
+            if(grupoInputsVideo.CampoArquivoVideo.EstaVazio()) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_ARQUIVO_VIDEO_NAO_PREENCHIDO;
+            }
+
+            return mensagem;
         }
 
         protected virtual void HandleBotaoCancelarClick() {
             manipulador.Cancelar();
 
+            eventoFinalizarCriacao.AcionarCallbacks();
             Navigator.Instance.Voltar();
+
             return;
         }
 

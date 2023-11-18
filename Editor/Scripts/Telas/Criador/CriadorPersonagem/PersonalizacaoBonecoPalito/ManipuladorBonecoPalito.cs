@@ -7,10 +7,12 @@ using Autis.Runtime.Constantes;
 using Autis.Editor.Constantes;
 
 namespace Autis.Editor.Manipuladores {
-    public class ManipuladorBonecoPalito : ManipuladorPersonagens, IExcluir {
+    public class ManipuladorBonecoPalito : ManipuladorPersonagens {
         public Color Cor { get => spritesPersonagem.First().color; }
 
-        public ManipuladorBonecoPalito(GameObject prefab) : base(prefab) { }
+        public ManipuladorBonecoPalito() : base() {}
+
+        public ManipuladorBonecoPalito(GameObject prefab) : base(prefab) {}
 
         public override void Editar(GameObject objetoAlvo) {
             base.Editar(objetoAlvo);
@@ -19,7 +21,7 @@ namespace Autis.Editor.Manipuladores {
             return;
         }
 
-        public void Excluir() {
+        protected override void ExcluirInterno() {
             GameObject.DestroyImmediate(objeto);
 
             objeto = null;

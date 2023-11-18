@@ -1,12 +1,10 @@
 using System;
-using Autis.Editor.Utils;
 using Autis.Editor.Constantes;
 using UnityEngine.UIElements;
-using UnityEditor.UIElements;
 using System.Collections.Generic;
 
 namespace Autis.Editor.UI {
-    public class Dropdown : ElementoInterfaceEditor, IReiniciavel {
+    public class Dropdown : ElementoInterfaceEditor, IReiniciavel, IEstaVazio {
         public const string VALOR_PADRAO_DROPDOWN = "Selecione";
         private const string CLASSE_STYLE_PADRAO = "estilo-dropdown";
 
@@ -39,7 +37,8 @@ namespace Autis.Editor.UI {
                 VALOR_PADRAO_DROPDOWN,
             };
 
-            campo = new(opcoes, 0) {
+            campo = new(opcoes, 0)
+            {
                 name = NOME_DROPDOWN,
             };
             campo.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
@@ -50,6 +49,8 @@ namespace Autis.Editor.UI {
             labelTitulo.name = NOME_LABEL;
             labelTitulo.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
             labelTitulo.text = label;
+
+            EsconderTituloSeVazio(label);
 
             root.Add(labelTitulo);
             root.Add(campo);
@@ -61,7 +62,8 @@ namespace Autis.Editor.UI {
             List<string> opcoesDropdown = opcoes;
             opcoesDropdown.Insert(0, VALOR_PADRAO_DROPDOWN);
 
-            campo = new(opcoesDropdown, 0) {
+            campo = new(opcoesDropdown, 0)
+            {
                 name = NOME_DROPDOWN,
             };
             campo.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
@@ -72,6 +74,8 @@ namespace Autis.Editor.UI {
             labelTitulo.name = NOME_LABEL;
             labelTitulo.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
             labelTitulo.text = label;
+
+            EsconderTituloSeVazio(label);
 
             root.Add(labelTitulo);
             root.Add(campo);
@@ -101,7 +105,7 @@ namespace Autis.Editor.UI {
             labelTitulo.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
             labelTitulo.text = label;
 
-            regiaoCarregamentoTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TITULO); 
+            regiaoCarregamentoTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TITULO);
 
             root.Add(regiaoCarregamentoTitulo);
             root.Add(campo);
@@ -119,12 +123,25 @@ namespace Autis.Editor.UI {
             
             return;
         }
-            
+
+        private void EsconderTituloSeVazio(string label) {
+            if (String.IsNullOrEmpty(label)) {
+                regiaoCarregamentoTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TITULO);
+                regiaoCarregamentoTitulo.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+
+                labelTitulo.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            }
+        }
+
         public void ReiniciarCampos() {
             campo.SetValueWithoutNotify(VALOR_PADRAO_DROPDOWN);
             campo.SendEvent(new ChangeEvent<string>());
 
             return;
+        }
+
+        public bool EstaVazio() {
+            return Campo.value == Dropdown.VALOR_PADRAO_DROPDOWN;
         }
     }
 }

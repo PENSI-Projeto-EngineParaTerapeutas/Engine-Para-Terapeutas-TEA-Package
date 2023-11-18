@@ -1,3 +1,7 @@
+:root {
+	flex: 1;
+}
+
 .item-lista-elementos {
 	flex-direction: row;
 	align-items: center;
@@ -14,8 +18,19 @@
 }
 
 .lista-elementos {
+	flex: 1;
 	background-color: #F0F3F4;
 	border-radius: 6px;
 	padding-top: 6px;
 	padding-bottom: 6px;
+	max-height: 100px;
+}
+
+.foldout-lista-elementos-interno > Toggle > VisualElement > VisualElement {
+	margin-top: 0px;
+	align-self: center;
+}
+
+.foldout-lista-elementos-interno > Toggle > VisualElement > Label {
+	font-size: 15px;
 }

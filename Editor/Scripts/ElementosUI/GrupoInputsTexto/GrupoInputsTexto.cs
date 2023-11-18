@@ -28,33 +28,33 @@ namespace Autis.Editor.UI {
 
         private const string NOME_LABEL_CONTEUDO_TEXTO = "label-texto";
         private const string NOME_INPUT_CONTEUDO_TEXTO = "input-texto";
-        private readonly TextField campoConteudoTexto;
+        private TextField campoConteudoTexto;
 
         private const string NOME_REGIAO_TAMANHO_TEXTO = "regiao-campo-tamanho-texto";
-        private readonly VisualElement regiaoCampoTamanhoTexto;
+        private VisualElement regiaoCampoTamanhoTexto;
 
         private const string NOME_LABEL_TAMANHO_TEXTO = "label-tamanho-texto";
         private const string NOME_INPUT_TAMANHO_TEXTO = "input-tamanho-texto";
-        private readonly FloatField campoTamanhoTexto;
+        private FloatField campoTamanhoTexto;
 
         private const string NOME_LABEL_NEGRITIO = "label-negrito";
         private const string NOME_INPUT_NEGRITO= "input-negrito";
-        private readonly Toggle campoNegrito;
+        private Toggle campoNegrito;
 
         private const string NOME_LABEL_ITALICO = "label-italico";
         private const string NOME_INPUT_ITALICO = "input-italico";
-        private readonly Toggle campoItalico;
+        private Toggle campoItalico;
 
         private const string NOME_LABEL_SUBLINHADO = "label-sublinhado";
         private const string NOME_INPUT_SUBLINHADO = "input-sublinhado";
-        private readonly Toggle campoSublinhado;
+        private Toggle campoSublinhado;
 
         private const string NOME_REGIAO_INPUT_COR = "regiao-input-cor";
-        private readonly VisualElement regiaoInputCor;
+        private VisualElement regiaoInputCor;
 
         private const string NOME_LABEL_COR = "label-cor";
         private const string NOME_INPUT_COR = "input-cor";
-        private readonly InputCor inputCor;
+        private InputCor inputCor;
 
         private const string NOME_LABEL_CONFIGURACAO_TEXTO = "label-configuracao-texto";
         private Label labelConfiguracaoTexto;
@@ -70,15 +70,7 @@ namespace Autis.Editor.UI {
         private ManipuladorTexto manipulador;
 
         public GrupoInputsTexto() {
-            campoConteudoTexto = Root.Query<TextField>(NOME_INPUT_CONTEUDO_TEXTO);
-            campoTamanhoTexto = Root.Query<FloatField>(NOME_INPUT_TAMANHO_TEXTO);
-            regiaoCampoTamanhoTexto = Root.Query<VisualElement>(NOME_REGIAO_TAMANHO_TEXTO);
-            campoNegrito = Root.Query<Toggle>(NOME_INPUT_NEGRITO);
-            campoItalico = Root.Query<Toggle>(NOME_INPUT_ITALICO);
-            campoSublinhado = Root.Query<Toggle>(NOME_INPUT_SUBLINHADO);
-            regiaoInputCor = Root.Query<VisualElement>(NOME_REGIAO_INPUT_COR);
-            inputCor = new InputCor();
-
+            ConfigurarTooltipLabelConfiguracaoTexto();
             ConfigurarConteudoTexto();
             ConfigurarTamanhoTexto();
             ConfigurarNegrito();
@@ -89,23 +81,6 @@ namespace Autis.Editor.UI {
             return;
         }
 
-        private void ConfigurarLabelConfiguracaoTexto() {
-            regiaoLabelConfiguracaoTexto = root.Query<VisualElement>(NOME_REGIAO_LABEL_CONFIGURACAO_TEXTO);
-            labelConfiguracaoTexto = Root.Query<Label>(NOME_LABEL_CONFIGURACAO_TEXTO);
-
-            regiaoLabelConfiguracaoTexto.Add(labelConfiguracaoTexto);
-
-            tooltipConfiguracaoTexto = new InterrogacaoToolTip();
-            tooltipConfiguracaoTexto.SetTexto(MENSAGEM_TOOLTIP_CONFIGURACAO_TEXTO);
-
-            regiaoCarregamentoTooltipConfiguracaoTexto = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_CONFIGURACAO_TEXTO);
-            regiaoCarregamentoTooltipConfiguracaoTexto.Add(tooltipConfiguracaoTexto.Root);
-
-            regiaoLabelConfiguracaoTexto.Add(regiaoCarregamentoTooltipConfiguracaoTexto);
-
-            root.Add(regiaoLabelConfiguracaoTexto);
-        }
-
         private void ConfigurarTooltipLabelConfiguracaoTexto() {
             tooltipConfiguracaoTexto = new InterrogacaoToolTip();
             tooltipConfiguracaoTexto.SetTexto(MENSAGEM_TOOLTIP_CONFIGURACAO_TEXTO);
@@ -113,10 +88,13 @@ namespace Autis.Editor.UI {
             regiaoCarregamentoTooltipConfiguracaoTexto = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_CONFIGURACAO_TEXTO);
             regiaoCarregamentoTooltipConfiguracaoTexto.Add(tooltipConfiguracaoTexto.Root);
 
-            regiaoLabelConfiguracaoTexto.Add(regiaoCarregamentoTooltipConfiguracaoTexto);
+            return;
         }
 
         private void ConfigurarConteudoTexto() {
+            regiaoLabelConfiguracaoTexto = root.Query<VisualElement>(NOME_REGIAO_LABEL_CONFIGURACAO_TEXTO);
+            campoConteudoTexto = Root.Query<TextField>(NOME_INPUT_CONTEUDO_TEXTO);
+
             CampoConteudoTexto.labelElement.name = NOME_LABEL_CONTEUDO_TEXTO;
             CampoConteudoTexto.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
             CampoConteudoTexto.SetValueWithoutNotify("Digite o texto aqui");
@@ -126,6 +104,9 @@ namespace Autis.Editor.UI {
         }
 
         private void ConfigurarTamanhoTexto() {
+            regiaoCampoTamanhoTexto = Root.Query<VisualElement>(NOME_REGIAO_TAMANHO_TEXTO);
+            campoTamanhoTexto = Root.Query<FloatField>(NOME_INPUT_TAMANHO_TEXTO);
+
             CampoTamanhoTexto.labelElement.name = NOME_LABEL_TAMANHO_TEXTO;
             CampoTamanhoTexto.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
             CampoTamanhoTexto.SetValueWithoutNotify(1f);
@@ -134,6 +115,8 @@ namespace Autis.Editor.UI {
         }
 
         private void ConfigurarNegrito() {
+            campoNegrito = Root.Query<Toggle>(NOME_INPUT_NEGRITO);
+
             CampoNegrito.labelElement.name = NOME_LABEL_NEGRITIO;
             CampoNegrito.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
             CampoNegrito.SetValueWithoutNotify(false);
@@ -142,6 +125,8 @@ namespace Autis.Editor.UI {
         }
 
         private void ConfigurarItalico() {
+            campoItalico = Root.Query<Toggle>(NOME_INPUT_ITALICO);
+
             CampoItalico.labelElement.name = NOME_LABEL_ITALICO;
             CampoItalico.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
             CampoItalico.SetValueWithoutNotify(false);
@@ -150,6 +135,8 @@ namespace Autis.Editor.UI {
         }
 
         private void ConfigurarSublinhado() {
+            campoSublinhado = Root.Query<Toggle>(NOME_INPUT_SUBLINHADO);
+
             CampoSublinhado.labelElement.name = NOME_LABEL_SUBLINHADO;
             CampoSublinhado.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
             CampoSublinhado.SetValueWithoutNotify(false);
@@ -158,7 +145,10 @@ namespace Autis.Editor.UI {
         }
 
         private void ConfigurarInputCor() {
-            InputCor.CampoCor.SetValueWithoutNotify(Color.black);
+            regiaoInputCor = Root.Query<VisualElement>(NOME_REGIAO_INPUT_COR);
+            inputCor = new InputCor();
+
+            InputCor.CampoCor.SetValueWithoutNotify(Color.blue);
             InputCor.CampoCor.name = NOME_INPUT_COR;
             inputCor.LabelCampoCor.name = NOME_LABEL_COR;
 
@@ -210,7 +200,7 @@ namespace Autis.Editor.UI {
             CampoNegrito.SetValueWithoutNotify(false);
             CampoItalico.SetValueWithoutNotify(false);
             CampoSublinhado.SetValueWithoutNotify(false);
-            InputCor.CampoCor.SetValueWithoutNotify(Color.black);
+            InputCor.CampoCor.SetValueWithoutNotify(Color.blue);
 
             return;
         }

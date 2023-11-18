@@ -60,3 +60,12 @@
 	width: 50%;
 	align-self: center;
 }
+
+#regiao-label-selecao-objeto-pai {
+	flex-direction: row;
+}
+
+#regiao-carregamento-tooltip-label-selecao-objeto-pai {
+	justify-content: flex-end;
+	margin-left: 8px;
+}

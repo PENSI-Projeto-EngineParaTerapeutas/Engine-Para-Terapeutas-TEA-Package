@@ -28,6 +28,10 @@
     -unity-text-overflow-position: end;
 }
 
+.arquivo-selecionado {
+    color: #1976D2;
+}
+
 #cancelar-imagem {
     cursor: link;
     background-color: white;

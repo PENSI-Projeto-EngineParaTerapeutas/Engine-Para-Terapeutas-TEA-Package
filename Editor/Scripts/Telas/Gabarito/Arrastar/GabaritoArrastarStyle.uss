@@ -1,7 +1,6 @@
 :root {
 	flex: 1;
 	height: 100%;
-	padding: 12px;
 }
 
 #regiao-titulo {
@@ -16,6 +15,10 @@
 	margin-bottom: 18px;
 }
 
+#regiao-conteudo-principal, #regiao-conteudo-principal > VisualElement > VisualElement > VisualElement {
+	flex: 1;
+}
+
 #regiao-carregamento-associacoes {
 	flex: 1;
 	padding: 6px;
@@ -26,9 +29,28 @@
 }
 
 .associacao-elemento {
-	margin-bottom: 21px;
+	margin-bottom: 12%;
 }
 
 #regiao-carregamento-botoes-confirmacao {
 	flex-direction: row;
+}
+
+#input-desfazer-acao {
+	flex: 0.05;
+}
+
+#regiao-carregamento-botoes-confirmacao > TemplateContainer {
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#regiao-carregamento-botoes-confirmacao > TemplateContainer > #botao-confirmar {
+	border-radius: 15px;
+}
+
+#regiao-carregamento-botoes-confirmacao > TemplateContainer > #botao-cancelar {
+	border-width: 0px;
+	margin-top: 6px;
 }

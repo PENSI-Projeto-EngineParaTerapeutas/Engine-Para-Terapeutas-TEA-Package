@@ -1,18 +1,29 @@
 using System;
 using System.Collections.Generic;
-using Autis.Editor.Constantes;
+using UnityEngine;
 using Autis.Editor.Criadores;
 using Autis.Runtime.DTOs;
-using UnityEngine;
+using Autis.Editor.Constantes;
+using Autis.Editor.Excecoes;
+using Autis.Runtime.Eventos;
+using Autis.Editor.Utils;
 
 namespace Autis.Editor.Telas {
     public class EditorObjetoInteracaoBehaviour : CriadorObjetoInteracaoBehaviour {
+
+        #region .: Eventos :.
+
         public Action<GameObject> OnConfirmarEdicao { get; set; }
+        protected static EventoJogo eventoFinalizarEdicao;
+
+        #endregion
 
         private readonly GameObject objetoOriginal;
         private readonly GameObject objetoEditado;
 
         public EditorObjetoInteracaoBehaviour(GameObject reforcoEditado) {
+            eventoFinalizarEdicao = Importador.ImportarEvento("EventoFinalizarEdicao");
+
             objetoOriginal = reforcoEditado;
 
             objetoEditado = GameObject.Instantiate(objetoOriginal);
@@ -42,11 +53,6 @@ namespace Autis.Editor.Telas {
                 }
 
                 dropdownTiposAcoes.Campo.SetValueWithoutNotify(associacao.Key);
-
-                if(associacao.Value == TiposAcoes.Arrastavel) {
-                    checkboxDesfazerAcao.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-                    checkboxDesfazerAcao.SetValueWithoutNotify(manipulador.DeveDesfazerAcao());
-                }
             }
 
             switch(manipulador.GetTipo()) {
@@ -64,10 +70,26 @@ namespace Autis.Editor.Telas {
         }
 
         protected override void HandleBotaoConfirmarClick() {
-            manipulador.Finalizar();
+            try {
+                VerificarCamposObrigatorios();
+            }
+            catch(ExcecaoCamposObrigatoriosVazios excecao) {
+                PopupAvisoBehaviour.ShowPopupAviso(excecao.Message);
+                return;
+            }
+
+            try {
+                manipulador.Finalizar();
+            }
+            catch(ExcecaoObjetoDuplicado excecao) {
+                PopupAvisoBehaviour.ShowPopupAviso(MensagensGerais.MENSAGEM_ATOR_DUPLICADO.Replace("{nome}", excecao.NomeObjetoDuplicado));
+                return;
+            }
+
             GameObject.DestroyImmediate(objetoOriginal);
 
             OnConfirmarEdicao?.Invoke(objetoEditado);
+            eventoFinalizarEdicao.AcionarCallbacks();
             Navigator.Instance.Voltar();
 
             return;
@@ -77,6 +99,7 @@ namespace Autis.Editor.Telas {
             manipulador.Cancelar();
             objetoOriginal.SetActive(true);
 
+            eventoFinalizarEdicao.AcionarCallbacks();
             Navigator.Instance.Voltar();
 
             return;

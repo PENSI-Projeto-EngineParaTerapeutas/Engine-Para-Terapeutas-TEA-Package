@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 using Autis.Runtime.Constantes;
 using Autis.Editor.Criadores;
 using Autis.Editor.Utils;
+using Autis.Runtime.Eventos;
 
 namespace Autis.Editor.Telas {
     public class MenuPrincipalBehaviour : Tela {
@@ -11,7 +12,13 @@ namespace Autis.Editor.Telas {
 
         #region .: Mensagens :.
 
-        private const string MENSAGEM_AVISO_ATOR_SINGLETON = "AVISO: SÛ pode haver um {tipo} por jogo. Caso queira alterar o {tipo}, acesse a aba de ediÁ„o";
+        private const string MENSAGEM_AVISO_ATOR_SINGLETON = "S√≥ pode haver um {tipo} por fase do jogo. Para editar o {tipo} j√° criado, clique na aba Edi√ß√£o.";
+
+        #endregion
+
+        #region .: Eventos :.
+
+        protected static EventoJogo eventoIniciarCriacao;
 
         #endregion
 
@@ -47,10 +54,12 @@ namespace Autis.Editor.Telas {
         #endregion
 
         public MenuPrincipalBehaviour() {
+            eventoIniciarCriacao = Importador.ImportarEvento("EventoIniciarCriacao");
+
             ConfigurarBotaoCarregarCenario();
             ConfigurarBotaoCarregarPersonagem();
-            ConfigurarBotaoCarregarReforco();
             ConfigurarBotaoCarregarApoio();
+            ConfigurarBotaoCarregarReforco();
             ConfigurarBotaoCarregarElementoInteracao();
             ConfigurarBotaoCarregarInstrucao();
             ConfigurarBotaoCarregarInformacoesFase();
@@ -132,10 +141,11 @@ namespace Autis.Editor.Telas {
         private void HandleBotaoCarregarSecaoCenarioClick() {
             GameObject cenario = GameObject.FindGameObjectWithTag(NomesTags.Cenario);
             if(cenario != null) {
-                PopupAvisoBehaviour.ShowPopupAviso(MENSAGEM_AVISO_ATOR_SINGLETON.Replace("{tipo}", "Cen·rio"));
+                PopupAvisoBehaviour.ShowPopupAviso(MENSAGEM_AVISO_ATOR_SINGLETON.Replace("{tipo}", "Cen√°rio"));
                 return;
             }
 
+            eventoIniciarCriacao.AcionarCallbacks();
             Navigator.Instance.IrPara(new CriadorCenarioBehaviour());
             return;
         }
@@ -147,31 +157,37 @@ namespace Autis.Editor.Telas {
                 return;
             }
 
+            eventoIniciarCriacao.AcionarCallbacks();
             Navigator.Instance.IrPara(new CriadorPersonagemBehaviour());
             return;
         }
 
         private void HandleBotaoCarregarSecaoReforcoClick() {
+            eventoIniciarCriacao.AcionarCallbacks();
             Navigator.Instance.IrPara(new CriadorReforcoBehaviour());
             return;
         }
 
         private void HandleBotaoCarregarSecaoApoioClick() {
+            eventoIniciarCriacao.AcionarCallbacks();
             Navigator.Instance.IrPara(new CriadorApoioBehaviour());
             return;
         }
 
         private void HandleBotaoCarregarSecaoObjetoInteracaoClick() {
+            eventoIniciarCriacao.AcionarCallbacks();
             Navigator.Instance.IrPara(new CriadorObjetoInteracaoBehaviour());
             return;
         }
 
         private void HandleBotaoCarregarSecaoInstrucaoClick() {
+            eventoIniciarCriacao.AcionarCallbacks();
             Navigator.Instance.IrPara(new CriadorInstrucoesBehaviour());
             return;
         }
 
         private void HandleBotaoCarregarSecaoInformacoesFaseClick() {
+            eventoIniciarCriacao.AcionarCallbacks();
             Navigator.Instance.IrPara(new InformacoesCenaBehaviour());
             return;
         }

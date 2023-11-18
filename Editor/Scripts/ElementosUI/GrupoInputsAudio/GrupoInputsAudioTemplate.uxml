@@ -7,7 +7,11 @@
 >
     <engine:VisualElement name="regiao-input-audio"/>
     <engine:VisualElement name="regiao-slider-volume">
-        <engine:Label name="label-slider-volume" class="label-padrao" text="Volume"/>
+        <engine:VisualElement name="regiao-label-slider-volume">
+            <engine:Label name="label-slider-volume" class="label-padrao" text="Volume"/>
+            <engine:VisualElement name="regiao-tooltip-slider-volume"/>
+        </engine:VisualElement>
+
         <engine:Slider name="input-volume" class="slider-padrao input-padrao"/>
     </engine:VisualElement>
 </engine:UXML>

@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine.UIElements;
 using Autis.Editor.UI;
 using Autis.Editor.Manipuladores;
-using System.Collections.Generic;
 
 namespace Autis.Editor.Telas {
     public class GabaritoArrastarBehaviour : Tela {
@@ -22,6 +22,9 @@ namespace Autis.Editor.Telas {
         protected const string NOME_REIGAO_CARREGAMENTO_ASSOCIACOES = "regiao-carregamento-associacoes";
         protected ScrollView scrollviewAssociacoes;
 
+        protected const string NOME_CHECKBOX_DESFAZER_ACAO = "input-desfazer-acao";
+        protected Toggle checkboxDesfazerAcao;
+
         protected const string NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO = "regiao-carregamento-botoes-confirmacao";
         protected VisualElement regiaoCarregamentoBotoesConfirmacao;
 
@@ -38,6 +41,7 @@ namespace Autis.Editor.Telas {
 
             ConfigurarTooltipTitulo();
             ConfigurarScrollviewAssociacoes();
+            ConfigurarCheckboxDesfazerAcao();
             ConfigurarBotoesConfirmacao();
 
             return;
@@ -68,9 +72,26 @@ namespace Autis.Editor.Telas {
             return;
         }
 
+        protected virtual void ConfigurarCheckboxDesfazerAcao() {
+            checkboxDesfazerAcao = root.Query<Toggle>(NOME_CHECKBOX_DESFAZER_ACAO);
+            checkboxDesfazerAcao.RegisterCallback<ChangeEvent<bool>>(evt => {
+                foreach(ManipuladorObjetoInteracao manipuladorElemento in manipuladorGabaritoArrastar.ElementosInteracaoArrastaveis) {
+                    manipuladorElemento.SetDeveDesfazerAcao(evt.newValue);
+                }
+            });
+
+            return;
+        }
+
         protected virtual void ConfigurarBotoesConfirmacao() {
             botoesConfirmacao = new();
+
+            botoesConfirmacao.BotaoConfirmar.Clear();
+            botoesConfirmacao.BotaoConfirmar.text = "Salvar Gabarito\r\nArrastar";
             botoesConfirmacao.BotaoConfirmar.clicked += HandleBotaoConfirmarClick;
+
+            botoesConfirmacao.BotaoCancelar.Clear();
+            botoesConfirmacao.BotaoCancelar.text = "Cancelar Gabarito Arrastar";
             botoesConfirmacao.BotaoCancelar.clicked += HandleBotaoCancelarClick;
 
             regiaoCarregamentoBotoesConfirmacao = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO);

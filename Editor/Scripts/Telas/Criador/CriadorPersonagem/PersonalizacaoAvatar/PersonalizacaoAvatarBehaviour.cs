@@ -8,6 +8,7 @@ using Autis.Editor.UI;
 using Autis.Editor.Utils;
 using Autis.Editor.Constantes;
 using Autis.Editor.Manipuladores;
+using Autis.Editor.Excecoes;
 
 namespace Autis.Editor.Criadores {
     public class PersonalizacaoAvatarBehaviour : Tela, IReiniciavel {
@@ -20,6 +21,10 @@ namespace Autis.Editor.Criadores {
 
         private const string MENSAGEM_TOOLTIP_DROPDOWN_CABELOS = "[TODO]: Adicionar mensagem.";
         private const string MENSAGEM_TOOLTIP_DROPDOWN_ROUPAS = "[TODO]: Adicionar mensagem.";
+
+        private const string MENSAGEM_ERRO_TIPO_PERSONAGEM_NAO_SELECIONADO = "Selecione o tipo de personagem.\n";
+        private const string MENSAGEM_ERRO_TIPO_CABELO_NAO_SELECIONADO = "Selecione o tipo de cabelo do personagem.\n";
+        private const string MENSAGEM_ERRO_TIPO_ROUPA_NAO_SELECIONADO = "Selecione o tipo das roupas do personagem.\n";
 
         #endregion
 
@@ -51,6 +56,9 @@ namespace Autis.Editor.Criadores {
 
         private const string NOME_REGIAO_CARREGAMENTO_INPUT_IMAGEM_ROSTO = "regiao-carregamento-upload-imagem-rosto";
         private VisualElement regiaoCarregamentoInputImagemRosto;
+
+        private const string NOME_REGIAO_PERSONALIZACAO = "regiao-personalizacao";
+        private VisualElement regiaoPersonalizacao;
 
         protected const string NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO = "regiao-carregamento-botoes-confirmacao";
         protected VisualElement regiaoCarregamentoBotoesConfirmacao;
@@ -89,9 +97,13 @@ namespace Autis.Editor.Criadores {
             ConfigurarInputCorRoupaSuperior();
             ConfigurarInputCorRoupaInferior();
             ConfigurarBotoesConfirmacao();
+            ConfigurarInputImagemRosto();
 
             if(manipuladorAvatar.PossuiPersonagemSelecionado()) {
                 CarregarValoresJaDefinidos();
+            }
+            else {
+                OcultarCamposPersonalizacao();
             }
 
             return;
@@ -146,15 +158,16 @@ namespace Autis.Editor.Criadores {
             ReiniciarCampos();
 
             botoesConfirmacao.BotaoConfirmar.SetEnabled(manipuladorAvatar.PossuiPersonagemSelecionado());
+            regiaoPersonalizacao.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
 
             return;
         }
 
         private void ConfigurarInputsTiposCabelos() {
             List<string> opcoesCabelos = new() {
-                "Cabelo 1",
-                "Cabelo 2",
-                "Cabelo 3",
+                "Cacheado e curto",
+                "Cacheado e amarrado",
+                "Liso e curto",
             };
 
             dropdownCabelos = new Dropdown("Cabelos:", MENSAGEM_TOOLTIP_DROPDOWN_CABELOS, opcoesCabelos);
@@ -209,8 +222,8 @@ namespace Autis.Editor.Criadores {
 
         private void ConfigurarDropdownRoupas() {
             List<string> opcoesRoupas = new() {
-                "Conjunto 1",
-                "Conjunto 2",
+                "Camisa e bermuda",
+                "Vestido",
             };
 
             dropdownRoupas = new Dropdown("Roupas:", MENSAGEM_TOOLTIP_DROPDOWN_ROUPAS, opcoesRoupas);
@@ -257,12 +270,27 @@ namespace Autis.Editor.Criadores {
             regiaoCarregamentoInputImagemRosto.Add(inputImagemRosto.Root);
             regiaoCarregamentoInputImagemRosto.AddToClassList("input-com-label");
 
+            VisualElement regiaoInputRosto = root.Query<VisualElement>("regiao-input-upload-imagem-rosto");
+            regiaoInputRosto.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+
+            return;
+        }
+
+        private void OcultarCamposPersonalizacao() {
+            regiaoPersonalizacao = root.Query<VisualElement>(NOME_REGIAO_PERSONALIZACAO);
+            regiaoPersonalizacao.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+
             return;
         }
 
         private void ConfigurarBotoesConfirmacao() {
             botoesConfirmacao = new();
+            botoesConfirmacao.BotaoConfirmar.Clear();
+            botoesConfirmacao.BotaoConfirmar.text = "Salvar\r\nPersonalização";
             botoesConfirmacao.BotaoConfirmar.clicked += HandleBotaoConfirmarClick;
+
+            botoesConfirmacao.BotaoCancelar.Clear();
+            botoesConfirmacao.BotaoCancelar.text = "Cancelar Personalização";
             botoesConfirmacao.BotaoCancelar.clicked += HandleBotaoCancelarClick;
 
             regiaoCarregamentoBotoesConfirmacao = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO);
@@ -272,10 +300,41 @@ namespace Autis.Editor.Criadores {
         }
 
         private void HandleBotaoConfirmarClick() {
+            try {
+                VerificarCamposObrigatorios();
+            }
+            catch(ExcecaoCamposObrigatoriosVazios excecao) {
+                PopupAvisoBehaviour.ShowPopupAviso(excecao.Message);
+                return;
+            }
+
             GameObject.DestroyImmediate(avatarOriginal);
             OnConfirmarCriacao?.Invoke();
 
             Navigator.Instance.Voltar();
+
+            return;
+        }
+
+        private void VerificarCamposObrigatorios() {
+            string mensagem = string.Empty;
+
+            if(!manipuladorAvatar.PossuiPersonagemSelecionado()) {
+                mensagem += MENSAGEM_ERRO_TIPO_PERSONAGEM_NAO_SELECIONADO;
+                throw new ExcecaoCamposObrigatoriosVazios(mensagem);
+            }
+
+            if(dropdownCabelos.EstaVazio()) {
+                mensagem += MENSAGEM_ERRO_TIPO_CABELO_NAO_SELECIONADO;
+            }
+
+            if(dropdownRoupas.EstaVazio()) {
+                mensagem += MENSAGEM_ERRO_TIPO_ROUPA_NAO_SELECIONADO;
+            }
+
+            if(mensagem != string.Empty) {
+                throw new ExcecaoCamposObrigatoriosVazios(mensagem);
+            }
 
             return;
         }
@@ -297,7 +356,7 @@ namespace Autis.Editor.Criadores {
             inputCorPele.ReiniciarCampos();
             inputCorRoupaInferior.ReiniciarCampos();
             inputCorRoupaSuperior.ReiniciarCampos();
-            inputImagemRosto.ReiniciarCampos();
+            //inputImagemRosto.ReiniciarCampos();
             dropdownRoupas.ReiniciarCampos();
 
             return;

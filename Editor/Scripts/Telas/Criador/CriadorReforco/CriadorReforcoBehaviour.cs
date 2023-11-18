@@ -1,11 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEditor;
 using Autis.Runtime.DTOs;
 using Autis.Editor.Constantes;
 using Autis.Editor.UI;
 using Autis.Editor.Telas;
 using Autis.Editor.Manipuladores;
+using Autis.Editor.Excecoes;
+using Autis.Runtime.Eventos;
+using Autis.Editor.Utils;
 
 namespace Autis.Editor.Criadores {
     public class CriadorReforcoBehaviour : Tela, IReiniciavel {
@@ -14,11 +18,17 @@ namespace Autis.Editor.Criadores {
 
         #region .: Mensagens :.
 
-        protected const string MENSAGEM_TOOLTIP_TITULO = "Reforço é um feedback ou recompensa que serão apresentadas no jogo.";
+        protected const string MENSAGEM_TOOLTIP_TITULO = "Reforço é um feedback ou recompensa que será apresentado na fase do jogo.";
         private const string MENSAGEM_TOOLTIP_INPUT_NOME = "Digite um nome para o Reforço. Cada componente deve ter um nome exclusivo (que não se repete em outro componente)";
         private const string MENSAGEM_TOOLTIP_DROPDOWN_TIPO_REFORCO = "Forma que o reforço será apresentado.";
         private const string MENSAGEM_TOOLTIP_DROPDOWN_TIPO_ACIONAMENTO = "Definição do que fará o reforço ser apresentado na fase do jogo.";
         protected const string MENSAGEM_TOOLTIP_DROPDOWN_TEMPO_EXIBICAO = "[TODO]: Adicionar tooltip";
+
+        #endregion
+
+        #region .: Eventos :.
+
+        protected static EventoJogo eventoFinalizarCriacao;
 
         #endregion
 
@@ -87,6 +97,8 @@ namespace Autis.Editor.Criadores {
             manipulador = new ManipuladorReforco();
             manipulador.Criar();
 
+            eventoFinalizarCriacao = Importador.ImportarEvento("EventoFinalizarCriacao");
+
             ConfigurarTooltipTitulo();
             ConfigurarCampoNome();
             CarregarRegiaoInputsImagem();
@@ -100,6 +112,33 @@ namespace Autis.Editor.Criadores {
             ConfigurarBotoesConfirmacao();
 
             OcultarCampos();
+            return;
+        }
+
+        public override void OnEditorUpdate() {
+            DefinirFerramenta();
+
+            if(Selection.activeObject != manipulador?.ObjetoAtual) {
+                Selection.activeObject = manipulador?.ObjetoAtual;
+            }
+
+            return;
+        }
+
+        private void DefinirFerramenta() {
+            if(manipulador?.ObjetoAtual && manipulador?.GetTipo() == TiposReforcos.Texto) {
+                if (Tools.current != Tool.Move) {
+                    Tools.current = Tool.Move;
+                }
+
+                return;
+            }
+
+            if(Tools.current != Tool.Rect) {
+                Tools.current = Tool.Rect;
+                return;
+            }
+
             return;
         }
 
@@ -299,6 +338,10 @@ namespace Autis.Editor.Criadores {
 
             dropdownTipoAcionamento = new("Forma de acionamento:", MENSAGEM_TOOLTIP_DROPDOWN_TIPO_ACIONAMENTO, opcoes);
             dropdownTipoAcionamento.Campo.RegisterCallback<ChangeEvent<string>>(evt => {
+                if(evt.newValue == Dropdown.VALOR_PADRAO_DROPDOWN) {
+                    return;
+                }
+
                 manipulador.SetTipoAcionamento(associacoesOpcaoValorDropdown[evt.newValue]);
             });
 
@@ -328,6 +371,10 @@ namespace Autis.Editor.Criadores {
             associacoesTemposExibicao = new() {
                 { "5 segundos", 5f },
                 { "7 segundos", 7f },
+                { "10 segundos", 10f },
+                { "30 segundos", 30f },
+                { "60 segundos", 60f },
+                { "90 segundos", 90f },
             };
 
             List<string> opcoes = new();
@@ -337,6 +384,10 @@ namespace Autis.Editor.Criadores {
 
             dropdownTempoExibicao = new Dropdown("Tempo de exibição:", MENSAGEM_TOOLTIP_DROPDOWN_TEMPO_EXIBICAO, opcoes);
             dropdownTempoExibicao.Root.RegisterCallback<ChangeEvent<string>>(evt => {
+                if(evt.newValue == Dropdown.VALOR_PADRAO_DROPDOWN) {
+                    return;
+                }
+
                 float tempoEspera = associacoesTemposExibicao[evt.newValue];
                 manipulador.SetTempoExibicao(tempoEspera);
             });
@@ -360,14 +411,118 @@ namespace Autis.Editor.Criadores {
         }
 
         protected virtual void HandleBotaoConfirmarClick() {
-            manipulador.Finalizar();
+            try {
+                VerificarCamposObrigatorios();
+            }
+            catch(ExcecaoCamposObrigatoriosVazios excecao) {
+                PopupAvisoBehaviour.ShowPopupAviso(excecao.Message);
+                return;
+            }
+
+            try {
+                manipulador.Finalizar();
+            } 
+            catch(ExcecaoObjetoDuplicado excecao) {
+                PopupAvisoBehaviour.ShowPopupAviso(MensagensGerais.MENSAGEM_ATOR_DUPLICADO.Replace("{nome}", excecao.NomeObjetoDuplicado));
+                return;
+            }
+
+            eventoFinalizarCriacao.AcionarCallbacks();
             Navigator.Instance.Voltar();
 
             return;
         }
 
+        protected virtual void VerificarCamposObrigatorios() {
+            string mensagem = string.Empty;
+
+            if(campoNome.EstaVazio()) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_NAO_PREENCHIDO.Replace("{nome_campo}", campoNome.LabelCampoTexto.text);
+            }
+
+            if(dropdownTipoReforco.EstaVazio()) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_NAO_PREENCHIDO.Replace("{nome_campo}", dropdownTipoReforco.Label.text);
+                throw new ExcecaoCamposObrigatoriosVazios(mensagem);
+            }
+
+            switch(manipulador.GetTipo()) {
+                case(TiposReforcos.Audio): {
+                    mensagem += VerificarCamposObrigatoriosAudio();
+                    break;
+                }
+                case(TiposReforcos.Imagem): {
+                    mensagem += VerificarCamposObrigatoriosImagem();
+                    break;
+                }
+                case(TiposReforcos.Texto): {
+                    mensagem += VerificarCamposObrigatoriosTexto();
+                    break;
+                }
+                case(TiposReforcos.Video): {
+                    mensagem += VerificarCamposObrigatoriosVideo();
+                    break;
+                }
+            }
+
+            if(dropdownTipoAcionamento.EstaVazio()) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_NAO_PREENCHIDO.Replace("{nome_campo}", dropdownTipoAcionamento.Label.text);
+            }
+
+            if(mensagem != string.Empty) {
+                throw new ExcecaoCamposObrigatoriosVazios(mensagem);
+            }
+
+            return;
+        }
+
+        protected virtual string VerificarCamposObrigatoriosAudio() {
+            string mensagem = string.Empty;
+
+            if(grupoInputsAudio.CampoArquivoAudio.EstaVazio()) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_ARQUIVO_AUDIO_NAO_PREENCHIDO;
+            }
+
+            return mensagem;
+        }
+
+        protected virtual string VerificarCamposObrigatoriosImagem() {
+            string mensagem = string.Empty;
+
+            if(inputImagem.EstaVazio()) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_ARQUIVO_IMAGEM_NAO_PREENCHIDO;
+            }
+
+            if(dropdownTempoExibicao.EstaVazio()) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_NAO_PREENCHIDO.Replace("{nome_campo}", dropdownTempoExibicao.Label.text);
+            }
+
+            return mensagem;
+        }
+
+        protected virtual string VerificarCamposObrigatoriosTexto() {
+            string mensagem = string.Empty;
+
+            if(dropdownTempoExibicao.EstaVazio()) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_NAO_PREENCHIDO.Replace("{nome_campo}", dropdownTempoExibicao.Label.text);
+            }
+
+            return mensagem;
+        }
+
+        protected virtual string VerificarCamposObrigatoriosVideo() {
+            string mensagem = string.Empty;
+
+            if(grupoInputsVideo.CampoArquivoVideo.EstaVazio()) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_ARQUIVO_VIDEO_NAO_PREENCHIDO;
+            }
+
+            return mensagem;
+        }
+
         protected virtual void HandleBotaoCancelarClick() {
             manipulador.Cancelar();
+
+            eventoFinalizarCriacao.AcionarCallbacks();
             Navigator.Instance.Voltar();
             
             return;

@@ -38,7 +38,7 @@ namespace Autis.Editor.Manipuladores {
             return;
         }
 
-        public override void Finalizar() {
+        protected override void FinalizarInterno() {
             int quantidadeAcertos = 0;
 
             foreach(KeyValuePair<ManipuladorObjetoInteracao, ManipuladorObjetoInteracao> associacao in associacoesOrigemDestino) {

@@ -67,6 +67,13 @@ namespace Autis.Editor.Manipuladores {
             manipuladorComponenteTexto = new ManipuladorTexto(componenteTexto);
             manipualdorComponenteAudioSource = new ManipuladorAudioSource(componenteAudioSource);
 
+            if(ObjetoAtual.transform.parent != null) {
+                ManipuladorObjetoInteracao manipulador = new();
+                manipulador.SetObjeto(ObjetoAtual.transform.parent.gameObject);
+
+                manipuladorElementoInteracaoVinculado = manipulador;
+            }
+
             return;
         }
 
@@ -77,7 +84,7 @@ namespace Autis.Editor.Manipuladores {
             return;
         }
 
-        public override void Finalizar() {
+        protected override void FinalizarInterno() {
             objeto.tag = NomesTags.Apoios;
             objeto.layer = LayersProjeto.Default.Index;
             componenteSpriteRenderer.sortingOrder = OrdemRenderizacao.Apoio;
@@ -231,8 +238,8 @@ namespace Autis.Editor.Manipuladores {
                 return;
             }
 
-            objeto.transform.SetParent(null);
             manipuladorElementoInteracaoVinculado.HabilitarAcionamentoApoios(false);
+            objeto.transform.SetParent(null);
 
             manipuladorElementoInteracaoVinculado = null;
 

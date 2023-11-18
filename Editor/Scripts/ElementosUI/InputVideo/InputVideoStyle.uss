@@ -29,6 +29,10 @@
     -unity-text-overflow-position: end;
 }
 
+.arquivo-selecionado {
+    color: #1976D2;
+}
+
 #cancelar-video {
     cursor: link;
     background-color: white;

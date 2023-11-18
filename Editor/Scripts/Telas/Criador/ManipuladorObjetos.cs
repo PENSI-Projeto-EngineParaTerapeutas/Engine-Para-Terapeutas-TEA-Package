@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using Autis.Runtime.Constantes;
+using Autis.Editor.Excecoes;
 
 namespace Autis.Editor.Manipuladores {
     public abstract class ManipuladorObjetos {
@@ -12,6 +13,7 @@ namespace Autis.Editor.Manipuladores {
 
         #region .: Mensagens :.
 
+        private const string MENSAGEM_ERRO_ATOR_COM_MESMO_NOME = "[ERROR]: Um Ator com o nome '{nome}' já existe.";
         private const string MENSAGEM_ERRO_CRIACAO_SEM_PREFAB = "[ERROR]: A criação de um objeto foi iniciada sem ter um prefab de referência.";
 
         #endregion
@@ -74,7 +76,22 @@ namespace Autis.Editor.Manipuladores {
             return;
         }
 
-        public abstract void Finalizar();
+        public void Finalizar() {
+            GameObject[] objetos = (GameObject[]) Resources.FindObjectsOfTypeAll(typeof(GameObject));
+
+            foreach(GameObject objeto in objetos) {
+                if(objeto.name.ToLower() == ObjetoAtual.name.ToLower() && objeto != ObjetoAtual && objeto.activeInHierarchy) {
+                    throw new ExcecaoObjetoDuplicado(MENSAGEM_ERRO_ATOR_COM_MESMO_NOME.Replace("{nome}", ObjetoAtual.name)) {
+                        NomeObjetoDuplicado = ObjetoAtual.name,
+                    };
+                }
+            }
+
+            FinalizarInterno();
+            return;
+        }
+
+        protected abstract void FinalizarInterno();
 
         public void SetNome(string nome) {
             if(objeto == null) {

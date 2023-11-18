@@ -14,7 +14,8 @@
 #label-elemento-origem {
 	margin-right: 6px;
 	margin-bottom: 6px;
-	font-size: 15px;
+	color: #313144;   
+	font-size: 17px;
 	-unity-font-style: bold;
 }
 
@@ -24,12 +25,16 @@
 	padding-top: 12px;
 	padding-bottom: 12px;
 	padding-left: 12px;
-	margin-bottom: 15px;
+	margin-bottom: 0px;
 	border-radius: 6px;
 }
 
 #regiao-carregamento-dropdown-elemento-destino {
 	background-color: #F0F3F4;
+}
+
+#regiao-carregamento-dropdown-elemento-destino > TemplateContainer > #regiao-carregamento-titulo {
+	margin-top: 10px;
 }
 
 #regiao-carregamento-dropdown-elemento-destino DropdownField {

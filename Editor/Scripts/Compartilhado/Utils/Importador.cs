@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
 using Autis.Editor.Constantes;
+using Autis.Runtime.Eventos;
 
 namespace Autis.Editor.Utils {
     public static class Importador {
@@ -56,6 +57,10 @@ namespace Autis.Editor.Utils {
             }
 
             return imagensPersonagens;
+        }
+
+        public static EventoJogo ImportarEvento(string nomeEvento) {
+            return AssetDatabase.LoadAssetAtPath<EventoJogo>(Path.Combine(ConstantesEditor.CaminhoPastaEventosEditor, nomeEvento + ExtensoesEditor.ScriptableObject));
         }
     }
 }

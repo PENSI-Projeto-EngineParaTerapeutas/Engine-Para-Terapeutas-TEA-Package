@@ -2,6 +2,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Autis.Editor.Constantes;
+using Autis.Runtime.Eventos;
+using Autis.Editor.Utils;
 
 namespace Autis.Editor.Telas {
     public class JanelaPrincipalBehaviour : JanelaEditor {
@@ -12,6 +14,16 @@ namespace Autis.Editor.Telas {
 
         private const string CLASSE_ABA_ATIVA = "aba-ativa";
         private const string CLASSE_ABA_INATIVA = "aba-inativa";
+
+        #endregion
+
+        #region .: Eventos :.
+
+        protected static EventoJogo eventoIniciarCriacao;
+        protected static EventoJogo eventoFinalizarCriacao;
+
+        protected static EventoJogo eventoIniciarEdicao;
+        protected static EventoJogo eventoFinalizarEdicao;
 
         #endregion
 
@@ -63,10 +75,48 @@ namespace Autis.Editor.Telas {
             Navigator.Instance.IrPara(new MenuPrincipalBehaviour());
             estadoAtual = Estado.Criar;
 
+            ConfigurarEventos();
+
             ConfigurarBotaoCriarElementos();
             ConfigurarBotaoEditarElementos();
             ConfigurarRegiaoCarregamentoTelas();
 
+            return;
+        }
+
+        private void ConfigurarEventos() {
+            eventoIniciarCriacao = Importador.ImportarEvento("EventoIniciarCriacao");
+            eventoFinalizarCriacao = Importador.ImportarEvento("EventoFinalizarCriacao");
+
+            eventoIniciarEdicao = Importador.ImportarEvento("EventoIniciarEdicao");
+            eventoFinalizarEdicao = Importador.ImportarEvento("EventoFinalizarEdicao");
+
+            eventoIniciarCriacao.AdicionarCallback(HandleIniciarCriacao);
+            eventoFinalizarCriacao.AdicionarCallback(HandleFinalizarCriacao);
+
+            eventoIniciarEdicao.AdicionarCallback(HandleIniciarEdicao);
+            eventoFinalizarEdicao.AdicionarCallback(HandleFinalizarEdicao);
+
+            return;
+        }
+
+        private void HandleIniciarCriacao() {
+            botaoEditarElementos.SetEnabled(false);
+            return;
+        }
+
+        private void HandleFinalizarCriacao() {
+            botaoEditarElementos.SetEnabled(true);
+            return;
+        }
+
+        private void HandleIniciarEdicao() {
+            botaoCriarElementos.SetEnabled(false);
+            return;
+        }
+
+        private void HandleFinalizarEdicao() {
+            botaoCriarElementos.SetEnabled(true);
             return;
         }
 

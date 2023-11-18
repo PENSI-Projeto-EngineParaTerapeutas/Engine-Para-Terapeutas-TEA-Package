@@ -25,6 +25,9 @@
 	background-color: #F0F3F4;
 	height: 100%;
 	border-radius: 10px;
+	justify-content: center;
+	margin-bottom: 6%;
+	flex: 1;
 }
 
 #label-lista-animacoes {
@@ -59,11 +62,17 @@
 	border-radius: 25px;
 }
 
-#regiao-lista-animacoes-vazia {
-	justify-content: center;
-	margin-bottom: 6%;
-}
-
 #regiao-lista-animacoes-vazia > Label {
 	-unity-text-align: middle-center;
+}
+
+#regiao-carregamento-botoes-confirmacao > TemplateContainer {
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#regiao-carregamento-botoes-confirmacao > TemplateContainer > #botao-cancelar {
+	border-width: 0px;
+	margin-top: 6px;
 }

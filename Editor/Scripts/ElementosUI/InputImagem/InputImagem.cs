@@ -8,11 +8,12 @@ using Autis.Editor.Constantes;
 using Autis.Runtime.Constantes;
 
 namespace Autis.Editor.UI {
-    public class InputImagem : ElementoInterfaceEditor, IReiniciavel, IVinculavel<Sprite> {
+    public class InputImagem : ElementoInterfaceEditor, IReiniciavel, IVinculavel<Sprite>, IEstaVazio {
         protected override string CaminhoTemplate => "ElementosUI/InputImagem/InputImagemTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/InputImagem/InputImagemStyle.uss";
 
         private const string LABEL_TEXT = "Selecionar Imagem";
+        private const string CLASS_ARQUIVO_SELECIONADO = "arquivo-selecionado";
 
         #region .: Elementos :.
         public ObjectField CampoImagem { get => campoImagem; }
@@ -102,7 +103,7 @@ namespace Autis.Editor.UI {
             CampoImagem.value = imagemCarregada;
             CampoImagem.SendEvent(new ChangeEvent<Object>());
 
-            AlterarEstadoImagemCarregada();
+            AlterarEstadoImagemCarregada(nomeArquivo);
             return;
         }
 
@@ -125,8 +126,10 @@ namespace Autis.Editor.UI {
             return;
         }
 
-        private void AlterarEstadoImagemCarregada() {
-            LabelBotao.text = CampoImagem.value.name;
+        private void AlterarEstadoImagemCarregada(string label) {
+            LabelBotao.text = label;
+            LabelBotao.AddToClassList(CLASS_ARQUIVO_SELECIONADO);
+
             iconeArquivoImagem.style.display = DisplayStyle.None;
             botaoCancelarImagem.style.display = DisplayStyle.Flex;
             botaoBuscarImagem.style.justifyContent = Justify.SpaceBetween;
@@ -153,6 +156,8 @@ namespace Autis.Editor.UI {
 
         private void AlterarEstadoImagemNaoCarregada() {
             LabelBotao.text = LABEL_TEXT;
+            LabelBotao.RemoveFromClassList(CLASS_ARQUIVO_SELECIONADO);
+
             iconeArquivoImagem.style.display = DisplayStyle.Flex;
             botaoCancelarImagem.style.display = DisplayStyle.None;
             botaoBuscarImagem.style.justifyContent = Justify.Center;
@@ -175,9 +180,15 @@ namespace Autis.Editor.UI {
             }
 
             CampoImagem.SetValueWithoutNotify(sprite);
-            AlterarEstadoImagemCarregada();
+
+            string nomeSprite = Path.GetFileName(AssetDatabase.GetAssetPath(sprite.GetInstanceID()));
+            AlterarEstadoImagemCarregada(nomeSprite);
 
             return;
+        }
+
+        public bool EstaVazio() {
+            return CampoImagem.value == null;
         }
     }
 }

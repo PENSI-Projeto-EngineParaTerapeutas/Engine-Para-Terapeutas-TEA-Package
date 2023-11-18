@@ -10,7 +10,13 @@
         <engine:Label name="label-nome-elemento" text="-" class="label-padrao"/>
     </engine:VisualElement>
 
-    <engine:Button name="botao-excluir">
-        <engine:Image name="icone-excluir"/>
-    </engine:Button>
+    <engine:VisualElement name="regiao-botoes">
+        <engine:Button name="botao-editar">
+            <engine:Image name="icone-editar"/>
+        </engine:Button>
+
+        <engine:Button name="botao-excluir">
+            <engine:Image name="icone-excluir"/>
+        </engine:Button>
+    </engine:VisualElement>
 </engine:UXML>

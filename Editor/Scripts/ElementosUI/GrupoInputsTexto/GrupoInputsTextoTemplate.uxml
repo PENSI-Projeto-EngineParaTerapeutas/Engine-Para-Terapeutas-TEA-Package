@@ -5,15 +5,15 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:VisualElement name="conteiner-input-texto">
-        <engine:TextField name="input-texto"/>
-    </engine:VisualElement>
-    
     <engine:VisualElement name="regiao-label-configuracao-texto" class="regiao-label-input-padrao">
         <engine:Label name="label-configuracao-texto" text="Configuração do texto" class="label-padrao"/>
         <engine:VisualElement name="regiao-tooltip-configuracao-texto" class="regiao-tooltip-padrao"/>
     </engine:VisualElement>
 
+    <engine:VisualElement name="conteiner-input-texto">
+        <engine:TextField name="input-texto"/>
+    </engine:VisualElement>
+    
     <engine:VisualElement name="formatacao-texto">
         <editor:FloatField name="input-tamanho-texto" label="Tamanho" tooltip="Define o tamanho do texto"/>
 

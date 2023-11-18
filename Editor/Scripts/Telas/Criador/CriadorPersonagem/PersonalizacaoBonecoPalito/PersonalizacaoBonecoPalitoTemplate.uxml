@@ -5,9 +5,10 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:Label name="label-titulo" class="titulo-padrao" text="Personalização do Boneco Palito"/>
-
-    <engine:VisualElement name="regiao-input-cor"/>
+    <engine:ScrollView name="regiao-conteudo-principal">
+        <engine:Label name="label-titulo" class="titulo-padrao" text="Personalização do Boneco Palito"/>
+        <engine:VisualElement name="regiao-input-cor"/>
+    </engine:ScrollView>
 
     <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>
 </engine:UXML>

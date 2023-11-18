@@ -14,17 +14,24 @@
         </engine:VisualElement>
 
         <engine:VisualElement name="regiao-caracteristicas-persongem">
-            <engine:Label name="label-regiao-caracteristicas-persongem" text="Defina as características do avatar:" class="label-input-padrao"/>
+            <engine:VisualElement name="regiao-personalizacao">
+                <engine:Label name="label-regiao-caracteristicas-persongem" text="Defina as características do avatar:" class="label-input-padrao"/>
 
-            <engine:VisualElement name="regiao-carregamento-cor-pele" class="input-cor"/>
-            <engine:VisualElement name="regiao-carregamento-cor-olhos" class="input-cor"/>
+                <engine:VisualElement name="regiao-carregamento-cor-pele" class="input-cor"/>
+                <engine:VisualElement name="regiao-carregamento-cor-olhos" class="input-cor"/>
 
-            <engine:VisualElement name="regiao-carregamento-dropdown-cabelos" class="input-dropdown"/>
-            <engine:VisualElement name="regiao-carregamento-cor-cabelo" class="input-cor"/>
+                <engine:VisualElement name="regiao-carregamento-dropdown-cabelos" class="input-dropdown"/>
+                <engine:VisualElement name="regiao-carregamento-cor-cabelo" class="input-cor"/>
 
-            <engine:VisualElement name="regiao-carregamento-dropdown-roupas" class="input-dropdown"/>
-            <engine:VisualElement name="regiao-carregamento-cor-roupa-superior" class="input-cor"/>
-            <engine:VisualElement name="regiao-carregamento-cor-roupa-inferior" class="input-cor"/>
+                <engine:VisualElement name="regiao-carregamento-dropdown-roupas" class="input-dropdown"/>
+                <engine:VisualElement name="regiao-carregamento-cor-roupa-superior" class="input-cor"/>
+                <engine:VisualElement name="regiao-carregamento-cor-roupa-inferior" class="input-cor"/>
+            </engine:VisualElement>
+
+            <engine:VisualElement name="regiao-input-upload-imagem-rosto">
+                <engine:Label name="label-input-upload-imagem-rosto" text="Rosto (opcional)"/>
+                <engine:VisualElement name="regiao-carregamento-upload-imagem-rosto"/>
+            </engine:VisualElement>
         </engine:VisualElement>
     </engine:ScrollView>
 

@@ -8,6 +8,8 @@ using Autis.Runtime.Constantes;
 using Autis.Editor.Manipuladores;
 using Autis.Editor.DTOs;
 using Autis.Editor.Criadores;
+using Autis.Runtime.Eventos;
+using Autis.Editor.Utils;
 
 namespace Autis.Editor.Telas {
     public class AdicionarAcaoBehaviour : Tela {
@@ -20,6 +22,15 @@ namespace Autis.Editor.Telas {
         private const string MENSAGEM_TOOLTIP_DROPDOWN_ANIMACOES = "Anima√ß√£o com o personagem que ser√° apresentada quando um determinado Elemento for selecionado.";
 
         private const string MENSAGEM_AVISO_CONFIRMAR_SEM_SELECIONAR_CAMPOS_OBRIGATORIOS = "[AVISO]: √â necess√°rio que o campo {nome-campo} esteja preenchido antes de confirmar.";
+
+        #endregion
+
+        #region .: Eventos :.
+
+        public Action<AcaoPersonagem> OnFinalizarCriacao { get; set; }
+        
+        protected static EventoJogo eventoIniciarCriacao;
+        protected static EventoJogo eventoFinalizarCriacao;
 
         #endregion
 
@@ -61,8 +72,6 @@ namespace Autis.Editor.Telas {
 
         #endregion
 
-        public Action<AcaoPersonagem> OnFinalizarCriacao { get; set; }
-
         private readonly ManipuladorPersonagens manipulador;
         
         private List<AnimationClip> clipsAnimacoes;
@@ -76,6 +85,9 @@ namespace Autis.Editor.Telas {
         public AdicionarAcaoBehaviour(ManipuladorPersonagens manipulador, List<DisplayAcao> acoesJaCriadas) {
             this.manipulador = manipulador;
             this.acoesJaCriadas = acoesJaCriadas;
+
+            eventoIniciarCriacao = Importador.ImportarEvento("EventoIniciarCriacao");
+            eventoFinalizarCriacao = Importador.ImportarEvento("EventoFinalizarCriacao");
 
             CarregarListas();
             ConfigurarDropdownElementoInteracao();
@@ -182,10 +194,19 @@ namespace Autis.Editor.Telas {
         }
 
         private void HandleBotaoCriarElementoClick() {
+            if(!eventoFinalizarCriacao.ContemCallback(HandleEventoFinalizarCriacaoObjetoIntercacao)) {
+                eventoFinalizarCriacao.AdicionarCallback(HandleEventoFinalizarCriacaoObjetoIntercacao);
+            }
+
             Navigator.Instance.IrPara(new CriadorObjetoInteracaoBehaviour() {
                 OnFinalizarCriacao = HandleFinalizarCriacao,
             });
 
+            return;
+        }
+
+        private void HandleEventoFinalizarCriacaoObjetoIntercacao() {
+            eventoIniciarCriacao.AcionarCallbacks();
             return;
         }
 
@@ -259,7 +280,13 @@ namespace Autis.Editor.Telas {
 
         private void ConfigurarBotoesConfirmacao() {
             botoesConfirmacao = new();
+
+            botoesConfirmacao.BotaoConfirmar.Clear();
+            botoesConfirmacao.BotaoConfirmar.text = "Salvar AÁ„o";
             botoesConfirmacao.BotaoConfirmar.clicked += HandleBotaoConfirmarClick;
+
+            botoesConfirmacao.BotaoCancelar.Clear();
+            botoesConfirmacao.BotaoCancelar.text = "Cancelar AÁ„o";
             botoesConfirmacao.BotaoCancelar.clicked += HandleBotaoCancelarClick;
 
             regiaoCarregamentoBotoesConfirmacao = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO);
@@ -284,13 +311,20 @@ namespace Autis.Editor.Telas {
                 ObjetoGatilho = elementoInteracaoSelecionado,
             });
 
+            if(eventoFinalizarCriacao.ContemCallback(HandleEventoFinalizarCriacaoObjetoIntercacao)) {
+                eventoFinalizarCriacao.RemoverCallback(HandleEventoFinalizarCriacaoObjetoIntercacao);
+            }
             Navigator.Instance.Voltar();
 
             return;
         }
 
         protected virtual void HandleBotaoCancelarClick() {
+            if(eventoFinalizarCriacao.ContemCallback(HandleEventoFinalizarCriacaoObjetoIntercacao)) {
+                eventoFinalizarCriacao.RemoverCallback(HandleEventoFinalizarCriacaoObjetoIntercacao);
+            }
             Navigator.Instance.Voltar();
+
             return;
         }
     }

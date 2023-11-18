@@ -250,6 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nomeArquivoVideo: 
+  habilitado: 1
 --- !u!1001 &6546346914688196488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -573,6 +574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventoAcerto: {fileID: 11400000, guid: 12be10958d140fd4b8b22b7cfa46dd67, type: 2}
+  eventoAcionarReforcosAcerto: {fileID: 11400000, guid: 7c1d8e41f08051e45aa9bda1049c5078, type: 2}
   eventoFimJogo: {fileID: 11400000, guid: d2e9ccfdf8cd9b042b5dc46677f74021, type: 2}
   maximoAcertos: 0
   possuiLimiteAcertos: 0

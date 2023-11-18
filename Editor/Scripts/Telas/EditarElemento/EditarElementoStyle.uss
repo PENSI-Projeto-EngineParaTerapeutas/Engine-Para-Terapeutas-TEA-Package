@@ -1,23 +1,16 @@
-.item-lista-elementos {
-	flex-direction: row;
-	align-items: center;
-	margin-top: 6px;
-	padding-left: 12px;
+:root {
+	flex: 1;
+	height: 100%;
 }
 
-.item-lista-elementos:hover {
-	background-color: #D7EBFF;
+#titulo-editor {
+	font-size: 18px;
+	margin-bottom: 18px;
 }
 
-.item-lista-elementos:checked {
-	background-color: #D7EBFF;
-}
-
-.lista-elementos {
-	background-color: #F0F3F4;
-	border-radius: 6px;
-	padding-top: 6px;
-	padding-bottom: 6px;
+.container-lista-elementos {
+	flex-grow: 1;
+	margin-bottom: 15px;
 }
 
 #botao-estrutura-fase {
@@ -40,4 +33,12 @@
 	color: black;
 	font-size: 16px;
 	cursor: link;
+}
+
+#foldout-botao-estrutura-fase > Toggle > VisualElement > VisualElement {
+	align-self: center;
+}
+
+#foldout-botao-estrutura-fase > Toggle > VisualElement > Label {
+	font-size: 15px;
 }

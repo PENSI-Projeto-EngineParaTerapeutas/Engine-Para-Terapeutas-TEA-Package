@@ -42,7 +42,7 @@ namespace Autis.Editor.UI {
         }
 
         private void ConfigurarInputCor() {
-            CampoCor.SetValueWithoutNotify(Color.white);
+            CampoCor.SetValueWithoutNotify(Color.blue);
             CampoCor.showEyeDropper = false;
             CampoCor.showAlpha = false;
             CampoCor.AddToClassList("color-field__input");
@@ -51,7 +51,7 @@ namespace Autis.Editor.UI {
         }
 
         public void ReiniciarCampos() {
-            CampoCor.SetValueWithoutNotify(Color.white);
+            CampoCor.SetValueWithoutNotify(Color.blue);
             return;
         }
     }

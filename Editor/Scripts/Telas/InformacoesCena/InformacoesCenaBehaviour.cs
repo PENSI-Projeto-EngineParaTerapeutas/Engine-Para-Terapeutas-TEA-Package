@@ -1,10 +1,16 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UIElements;
 using Autis.Editor.Constantes;
 using Autis.Editor.UI;
 using Autis.Editor.Manipuladores;
 using Autis.Runtime.DTOs;
+using Autis.Runtime.Constantes;
+using Autis.Editor.Excecoes;
+using Autis.Runtime.Eventos;
+using Autis.Editor.Utils;
 
 namespace Autis.Editor.Telas {
     public class InformacoesCenaBehaviour : Tela {
@@ -19,6 +25,12 @@ namespace Autis.Editor.Telas {
         protected const string MENSAGEM_TOOLTIP_DROPDOWN_DIFICULDADE = "Classificação do nível de dificuldade da fase do jogo.";
         protected const string MENSAGEM_TOOLTIP_INPUT_FAIXA_ETARIA = "Faixa etária que a fase do jogo é recomendada.";
         protected const string MENSAGEM_TOOLTIP_ACAO_ESPERADA = "Definição das ações dos jogadores que são consideradas corretas no contexto do jogo, ou seja, quais ações os jogadores devem realizar para atingir o sucesso no jogo.";
+
+        #endregion
+
+        #region .: Eventos :.
+
+        protected static EventoJogo eventoFinalizarCriacao;
 
         #endregion
 
@@ -87,6 +99,8 @@ namespace Autis.Editor.Telas {
             manipuladorCena = new ManipuladorCena();
             manipuladorContexto = new ManipuladorContexto();
 
+            eventoFinalizarCriacao = Importador.ImportarEvento("EventoFinalizarCriacao");
+
             ConfigurarCampoNome();
             ConfigurarCampoInputVideoContexto();
             ConfigurarCampoDropdownDificuldade();
@@ -100,11 +114,13 @@ namespace Autis.Editor.Telas {
             ConfigurarTooltipInputVideo();
             ConfigurarTooltipFaixaEtaria();
 
+            CarregarOpcaoGabarito();
+
             return;
         }
 
         protected virtual void ConfigurarCampoNome() {
-            campoNome = new InputTexto("Nome");
+            campoNome = new InputTexto("Nome da fase");
             
             regiaoCarregamentoCampoNome = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_CAMPO_NOME);
             regiaoCarregamentoCampoNome.Add(campoNome.Root);
@@ -195,6 +211,52 @@ namespace Autis.Editor.Telas {
             return;
         }
 
+        protected virtual void CarregarOpcaoGabarito() {
+            List<GameObject> gameObjectsElementosInteracao = GameObject.FindGameObjectsWithTag(NomesTags.ObjetosInteracao).ToList();
+            List<ManipuladorObjetoInteracao> elementosInteracao = new();
+
+            foreach(GameObject elementoInteracao in gameObjectsElementosInteracao) {
+                ManipuladorObjetoInteracao manipuladorObjetoInteracao = new();
+                manipuladorObjetoInteracao.SetObjeto(elementoInteracao);
+
+                elementosInteracao.Add(manipuladorObjetoInteracao);
+            }
+
+            bool todosElementosSaoSelecionar = true;
+            foreach(ManipuladorObjetoInteracao elementoInteracao in elementosInteracao) {
+                if(elementoInteracao.GetTipoInteracao() == TiposAcoes.Arrastavel) {
+                    todosElementosSaoSelecionar = false;
+                    break;
+                }
+            }
+
+            if(todosElementosSaoSelecionar) {
+                opcaoRadioSelecionar.SetValueWithoutNotify(true);
+                botaoCriarGabarito.SetEnabled(true);
+                manipuladorCena.SetTipoGabarito(TipoGabarito.Selecionar);
+
+                return;
+            }
+
+            bool todosElementosSaoArrastar = true;
+            foreach(ManipuladorObjetoInteracao elementoInteracao in elementosInteracao) {
+                if(elementoInteracao.GetTipoInteracao() == TiposAcoes.Selecionavel) {
+                    todosElementosSaoArrastar = false;
+                    break;
+                }
+            }
+
+            if(todosElementosSaoArrastar) {
+                opcaoRadioArrastar.SetValueWithoutNotify(true);
+                botaoCriarGabarito.SetEnabled(true);
+                manipuladorCena.SetTipoGabarito(TipoGabarito.Arrastar);
+
+                return;
+            }
+
+            return;
+        }
+
         protected virtual void CarregarBotoesConfirmacao() {
             botoesConfirmacao = new();
             botoesConfirmacao.BotaoConfirmar.clicked += HandleBotaoConfirmarClick;
@@ -207,12 +269,38 @@ namespace Autis.Editor.Telas {
         }
 
         protected virtual void HandleBotaoConfirmarClick() {
+            try {
+                VerificarCamposObrigatorios();
+            }
+            catch(ExcecaoCamposObrigatoriosVazios excecao) {
+                PopupAvisoBehaviour.ShowPopupAviso(excecao.Message);
+                return;
+            }
+
+            eventoFinalizarCriacao.AcionarCallbacks();
             Navigator.Instance.Voltar();
+
+            return;
+        }
+
+        protected virtual void VerificarCamposObrigatorios() {
+            string mensagem = string.Empty;
+
+            if(campoNome.EstaVazio()) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_NAO_PREENCHIDO.Replace("{nome_campo}", campoNome.LabelCampoTexto.text);
+            }
+
+            if(mensagem != string.Empty) {
+                throw new ExcecaoCamposObrigatoriosVazios(mensagem);
+            }
+
             return;
         }
 
         protected virtual void HandleBotaoCancelarClick() {
+            eventoFinalizarCriacao.AcionarCallbacks();
             Navigator.Instance.Voltar();
+
             return;
         }
 

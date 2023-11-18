@@ -4,10 +4,6 @@
 	padding-bottom: 12px;
 }
 
-#regiao-conteudo-principal {
-	flex-grow: 1;
-}
-
 #regiao-carregamento-botoes-confirmacao {
 	flex-direction: row;
 }

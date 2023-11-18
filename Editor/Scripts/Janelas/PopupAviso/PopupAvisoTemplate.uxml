@@ -6,5 +6,5 @@
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
     <engine:Label name="mensagem-aviso" text="conteudo-mensagem"/>
-    <engine:Button name="botao-confirmacao" text="Fechar"/>
+    <engine:Button name="botao-confirmacao" text="OK" class="botao-padrao"/>
 </engine:UXML>

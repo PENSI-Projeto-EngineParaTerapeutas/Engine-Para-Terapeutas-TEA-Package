@@ -9,6 +9,9 @@ namespace Autis.Runtime.ComponentesGameObjects {
         private EventoJogo eventoAcerto;
 
         [SerializeField]
+        private EventoJogo eventoAcionarReforcosAcerto;
+
+        [SerializeField]
         private EventoJogo eventoFimJogo;
 
         #endregion
@@ -26,6 +29,11 @@ namespace Autis.Runtime.ComponentesGameObjects {
 
         private void IncrementarContadorAcertos() {
             contadorAcertos++;
+
+            if(contadorAcertos < maximoAcertos) {
+                eventoAcionarReforcosAcerto.AcionarCallbacks();
+                return;
+            } 
 
             if(contadorAcertos >= maximoAcertos && possuiLimiteAcertos) {
                 eventoFimJogo.AcionarCallbacks();

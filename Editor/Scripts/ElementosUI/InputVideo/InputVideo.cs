@@ -7,11 +7,12 @@ using Autis.Editor.Constantes;
 using Autis.Runtime.Constantes;
 
 namespace Autis.Editor.UI {
-    public class InputVideo : ElementoInterfaceEditor, IReiniciavel, IVinculavel<string> {
+    public class InputVideo : ElementoInterfaceEditor, IReiniciavel, IVinculavel<string>, IEstaVazio {
         protected override string CaminhoTemplate => "ElementosUI/InputVideo/InputVideoTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/InputVideo/InputVideoStyle.uss";
 
         private const string LABEL_TEXT = "Selecionar vídeo";
+        private const string CLASS_ARQUIVO_SELECIONADO = "arquivo-selecionado";
 
         #region .: Elementos :.
         public TextField CampoVideo { get => campoVideo; }
@@ -104,12 +105,14 @@ namespace Autis.Editor.UI {
             CampoVideo.value = nomeArquivo;
             CampoVideo.SendEvent(new ChangeEvent<string>());
 
-            AlterarEstadoVideoCarregado();
+            AlterarEstadoVideoCarregado(nomeArquivo);
             return;
         }
 
-        private void AlterarEstadoVideoCarregado() {
-            LabelBotao.text = CampoVideo.value;
+        private void AlterarEstadoVideoCarregado(string label) {
+            LabelBotao.text = label;
+            LabelBotao.AddToClassList(CLASS_ARQUIVO_SELECIONADO);
+
             iconeArquivoVideo.style.display = DisplayStyle.None;
             botaoCancelarVideo.style.display = DisplayStyle.Flex;
             botaoBuscarVideo.style.justifyContent = Justify.SpaceBetween;
@@ -127,6 +130,8 @@ namespace Autis.Editor.UI {
 
         private void AlterarEstadoVideoNaoCarregado() {
             LabelBotao.text = LABEL_TEXT;
+            LabelBotao.RemoveFromClassList(CLASS_ARQUIVO_SELECIONADO);
+
             iconeArquivoVideo.style.display = DisplayStyle.Flex;
             botaoCancelarVideo.style.display = DisplayStyle.None;
             botaoBuscarVideo.style.justifyContent = Justify.Center;
@@ -167,9 +172,13 @@ namespace Autis.Editor.UI {
             }
 
             campoVideo.SetValueWithoutNotify(nomeVideo);
-            AlterarEstadoVideoCarregado();
+            AlterarEstadoVideoCarregado(nomeVideo);
 
             return;
+        }
+
+        public bool EstaVazio() {
+            return CampoVideo.value == string.Empty;
         }
     }
 }

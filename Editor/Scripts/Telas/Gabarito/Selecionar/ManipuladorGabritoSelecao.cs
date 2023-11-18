@@ -34,7 +34,7 @@ namespace Autis.Editor.Manipuladores {
             return;
         }
 
-        public override void Finalizar() {
+        protected override void FinalizarInterno() {
             int quantidadeOpcoesCorretas = 0;
             
             foreach(ManipuladorObjetoInteracao manipulador in elementosInteracaoSelecionaveis) {

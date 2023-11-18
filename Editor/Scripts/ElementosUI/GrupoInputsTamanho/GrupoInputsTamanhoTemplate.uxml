@@ -5,4 +5,6 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
+    <engine:Label name="label-inputs-tamanho" class="label-padrao" text="Tamanho"/>
+    <engine:VisualElement name="regiao-conteudo"/>
 </engine:UXML>

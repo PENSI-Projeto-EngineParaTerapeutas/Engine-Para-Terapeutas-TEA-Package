@@ -9,7 +9,7 @@ using Autis.Runtime.DTOs;
 using Autis.Runtime.ComponentesGameObjects;
 
 namespace Autis.Editor.Manipuladores {
-    public abstract class ManipuladorPersonagens : ManipuladorObjetos {
+    public abstract class ManipuladorPersonagens : ManipuladorObjetos, IExcluir {
         #region .: Mensagens :.
 
         protected const string MENSAGEM_ERRO_CARREGAR_CONTROLLER_PERSONAGEM = "[ERROR]: Não foi possível achar a referência para o Controlador de Animação para o Personagem. Certifique-se de que o arquivo {nome-controller} ControllerAvatar.controller está localizado em {local}.";
@@ -47,6 +47,28 @@ namespace Autis.Editor.Manipuladores {
 
         protected static readonly List<AcaoPersonagem> associacaoAcoesOriginal = new();
 
+        public static ManipuladorPersonagens GetManipuladorPersonagem(GameObject objeto) {
+            ManipuladorPersonagens manipuladorPersonagem = null;
+
+            TiposPersonagem tipoPersonagem = objeto.GetComponent<DadosPersonagem>().tipoPersonagem;
+            switch(tipoPersonagem) {
+                case(TiposPersonagem.Avatar): {
+                    manipuladorPersonagem = new ManipuladorAvatar();
+                    break;
+                }
+                case(TiposPersonagem.BonecoPalito): {
+                    manipuladorPersonagem = new ManipuladorBonecoPalito();
+                    break;
+                }
+                case(TiposPersonagem.Ludico): {
+                    manipuladorPersonagem = new ManipuladorPersonagemLudico();
+                    break;
+                }
+            }
+
+            return manipuladorPersonagem;
+        }
+
         public ManipuladorPersonagens() {
             associacoesAcoesControleIndireto = new List<AcaoPersonagem>();
             return;
@@ -56,6 +78,14 @@ namespace Autis.Editor.Manipuladores {
             associacoesAcoesControleIndireto = new List<AcaoPersonagem>();
             return;
         }
+
+        public void Excluir() {
+            ExcluirInterno();
+            // TODO: Remover objetos de interação com ações do controle indireto
+            return;
+        }
+
+        protected abstract void ExcluirInterno();
 
         public override void Editar(GameObject objetoAlvo) {
             base.Editar(objetoAlvo);
@@ -100,7 +130,7 @@ namespace Autis.Editor.Manipuladores {
             return;
         }
 
-        public override void Finalizar() {
+        protected override void FinalizarInterno() {
             objeto.tag = NomesTags.Personagem;
             objeto.layer = LayersProjeto.Default.Index;
             sortingGroupComponente.sortingOrder = OrdemRenderizacao.Personagem;

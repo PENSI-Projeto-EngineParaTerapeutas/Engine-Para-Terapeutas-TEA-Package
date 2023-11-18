@@ -2,6 +2,10 @@
     height: 100%;
 }
 
+#regiao-conteudo-principal > VisualElement > Scroller {
+	right: -15px;
+}
+
 .container-horizontal {
     flex-direction: row;
 }
@@ -252,10 +256,21 @@ Foldout > Toggle > VisualElement > VisualElement {
     width: 95%;
 }
 
+#foldout-opcoes-avancadas > Toggle > VisualElement {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+}
+
 #foldout-opcoes-avancadas > Toggle > VisualElement > VisualElement {
-    -unity-background-image-tint-color: rgba(1, 1, 1, 0);
-    width: 0;
-    margin: 0 0 0 0;
+    -unity-background-image-tint-color: rgba(25, 118, 210, 1);
+    margin-top: 6px;
+    rotate: 30deg;
+}
+
+#foldout-opcoes-avancadas > Toggle:checked > VisualElement:checked > VisualElement {
+    margin-top: 3px;
+    rotate: 120deg;
 }
 
 #foldout-opcoes-avancadas > Toggle > VisualElement > Label {

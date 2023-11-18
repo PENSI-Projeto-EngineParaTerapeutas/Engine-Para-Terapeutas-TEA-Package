@@ -22,6 +22,12 @@ namespace Autis.Editor.UI {
         private const string NOME_ICONE_EXCLUIR = "icone-excluir";
         private Image iconeExcluir;
 
+        private const string NOME_BOTAO_EDITAR = "botao-editar";
+        private Button botaoEditar;
+
+        private const string NOME_ICONE_EDITAR = "icone-editar";
+        private Image iconeEditar;
+
         #endregion
 
         public GameObject ObjetoVinculado { get => objetoVinculado; }
@@ -36,6 +42,7 @@ namespace Autis.Editor.UI {
             ConfigurarLabelElemento();
             ConfigurarIconeElemento();
             ConfigurarIconeExcluir();
+            ConfigurarIconeEditar();
            
             return;
         }
@@ -43,8 +50,6 @@ namespace Autis.Editor.UI {
         private void ConfigurarLabelElemento() {
             labelNomeElemento = root.Query<Label>(NOME_LABEL_NOME_ELEMENTO);
             labelNomeElemento.text = objetoVinculado.name;
-
-            labelNomeElemento.RegisterCallback<ClickEvent>(HandleEventoSelecao);
 
             return;
         }
@@ -73,7 +78,17 @@ namespace Autis.Editor.UI {
             return;
         }
 
-        private void HandleEventoSelecao(ClickEvent evt) {
+        private void ConfigurarIconeEditar() {
+            iconeEditar = Root.Query<Image>(NOME_ICONE_EDITAR);
+            iconeEditar.image = Importador.ImportarImagem("icone-editar.png");
+
+            botaoEditar = Root.Query<Button>(NOME_BOTAO_EDITAR);
+            botaoEditar.clicked += HandleEventoSelecao;
+
+            return;
+        }
+        
+        private void HandleEventoSelecao() {
             OnEditarClick?.Invoke();
             return;
         }

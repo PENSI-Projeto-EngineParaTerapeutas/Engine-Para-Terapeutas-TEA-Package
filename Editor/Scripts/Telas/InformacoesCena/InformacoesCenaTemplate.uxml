@@ -7,7 +7,7 @@
 >
     <engine:ScrollView name="regiao-conteudo-principal">
         <engine:VisualElement name="regiao-titulo">
-            <engine:Label name="label-titulo" class="label-padrao" text="Estrutura da fase"/>
+            <engine:Label name="label-titulo" class="label-padrao" text="Configuração da fase"/>
             <engine:VisualElement name="regiao-tooltip-titulo"/>
         </engine:VisualElement>
 
@@ -60,6 +60,8 @@
 
             <engine:Button name="botao-criar-gabarito" class="botao-padrao" text="Configurar ações\nesperadas"/>
         </engine:VisualElement>
+
+        
     </engine:ScrollView>
     
     <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>

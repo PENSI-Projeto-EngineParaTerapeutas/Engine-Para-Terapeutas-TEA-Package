@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 using Autis.Editor.Constantes;
 
 namespace Autis.Editor.UI {
-    public class InputTexto : ElementoInterfaceEditor, IReiniciavel {
+    public class InputTexto : ElementoInterfaceEditor, IReiniciavel, IEstaVazio {
         protected override string CaminhoTemplate => "ElementosUI/InputTexto/InputTextoTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/InputTexto/InputTextoStyle.uss";
 
@@ -64,6 +64,10 @@ namespace Autis.Editor.UI {
         public void ReiniciarCampos() {
             campoTexto.value = string.Empty;
             return;
+        }
+
+        public bool EstaVazio() {
+            return campoTexto.value == string.Empty;
         }
     }
 }

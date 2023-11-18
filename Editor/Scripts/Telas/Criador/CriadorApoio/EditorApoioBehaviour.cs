@@ -4,10 +4,13 @@ using UnityEngine;
 using Autis.Editor.Criadores;
 using Autis.Editor.Telas;
 using Autis.Runtime.DTOs;
+using Autis.Editor.Constantes;
+using Autis.Editor.Excecoes;
+using Autis.Runtime.Eventos;
+using Autis.Editor.Utils;
 
 namespace Autis.Editor.Editores {
     public class EditorApoioBehaviour : CriadorApoioBehaviour {
-        public Action<GameObject> OnConfirmarEdicao { get; set; }
 
         #region .: Mensagens :.
 
@@ -15,10 +18,19 @@ namespace Autis.Editor.Editores {
 
         #endregion
 
+        #region .: Eventos :.
+
+        public Action<GameObject> OnConfirmarEdicao { get; set; }
+        protected static EventoJogo eventoFinalizarEdicao;
+
+        #endregion
+
         private readonly GameObject objetoOriginal;
         private readonly GameObject objetoEditado;
 
         public EditorApoioBehaviour(GameObject apoioEditado) {
+            eventoFinalizarEdicao = Importador.ImportarEvento("EventoFinalizarEdicao");
+
             objetoOriginal = apoioEditado;
 
             objetoEditado = GameObject.Instantiate(objetoOriginal, objetoOriginal.transform.parent);
@@ -98,10 +110,26 @@ namespace Autis.Editor.Editores {
         }
 
         protected override void HandleBotaoConfirmarClick() {
-            manipulador.Finalizar();
+            try {
+                VerificarCamposObrigatorios();
+            }
+            catch(ExcecaoCamposObrigatoriosVazios excecao) {
+                PopupAvisoBehaviour.ShowPopupAviso(excecao.Message);
+                return;
+            }
+
+            try {
+                manipulador.Finalizar();
+            }
+            catch(ExcecaoObjetoDuplicado excecao) {
+                PopupAvisoBehaviour.ShowPopupAviso(MensagensGerais.MENSAGEM_ATOR_DUPLICADO.Replace("{nome}", excecao.NomeObjetoDuplicado));
+                return;
+            }
+
             GameObject.DestroyImmediate(objetoOriginal);
 
             OnConfirmarEdicao?.Invoke(objetoEditado);
+            eventoFinalizarEdicao.AcionarCallbacks();
             Navigator.Instance.Voltar();
 
             return;
@@ -111,6 +139,7 @@ namespace Autis.Editor.Editores {
             manipulador.Cancelar();
             objetoOriginal.SetActive(true);
 
+            eventoFinalizarEdicao.AcionarCallbacks();
             Navigator.Instance.Voltar();
 
             return;

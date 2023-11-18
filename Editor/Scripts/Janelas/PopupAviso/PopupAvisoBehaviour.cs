@@ -24,7 +24,7 @@ namespace Autis.Editor.Telas {
         public static void ShowPopupAviso() {
             const string TITULO = "AVISO!";
 
-            Vector2 tamanhoJanela = new(400, 150);
+            Vector2 tamanhoJanela = new(600, 250);
             Vector2 posicaoJenela = new((EditorGUIUtility.GetMainWindowPosition().width - tamanhoJanela.x) / 2, (EditorGUIUtility.GetMainWindowPosition().height - tamanhoJanela.y) / 2);
 
             PopupAvisoBehaviour janela = GetWindow<PopupAvisoBehaviour>();

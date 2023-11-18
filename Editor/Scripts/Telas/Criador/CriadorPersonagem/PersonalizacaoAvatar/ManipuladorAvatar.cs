@@ -8,21 +8,26 @@ using Autis.Runtime.Constantes;
 using Autis.Editor.Constantes;
 
 namespace Autis.Editor.Manipuladores {
-    public class ManipuladorAvatar : ManipuladorPersonagens, IExcluir {
+    public class ManipuladorAvatar : ManipuladorPersonagens {
         private const string NOME_ANIMATOR_CONTROLLER = "ControllerPersonagemAvatarFeminino.controller";
 
-        private PartesPersonalizaveis partesAvatar;
+        private PersonalizacaoPartes componentePersonalizacaoPartes;
+        private PersonalizacaoCores componentePersonalizacaoCores;
+
+        public ManipuladorAvatar() : base() {}
 
         public ManipuladorAvatar(GameObject prefab) : base(prefab) {}
 
         public override void Editar(GameObject objetoEditado) {
             base.Editar(objetoEditado);
-            partesAvatar = objeto.GetComponent<PartesPersonalizaveis>();
+
+            componentePersonalizacaoPartes = objeto.GetComponent<PersonalizacaoPartes>();
+            componentePersonalizacaoCores = objeto.GetComponent<PersonalizacaoCores>();
 
             return;
         }
 
-        public void Excluir() {
+        protected override void ExcluirInterno() {
             GameObject.DestroyImmediate(objeto);
 
             objeto = null;
@@ -40,7 +45,7 @@ namespace Autis.Editor.Manipuladores {
             controleDiretoComponente = null;
             controleIndiretoComponente = null;
             
-            partesAvatar = null;
+            componentePersonalizacaoPartes = null;
 
             LimparAcoesControleIndireto();
             associacaoAcoesOriginal.Clear();
@@ -65,12 +70,12 @@ namespace Autis.Editor.Manipuladores {
                 return;
             }
 
-            partesAvatar.Olhos.color = cor;
+            componentePersonalizacaoCores.SetCorOlhos(cor);
             return;
         }
 
         public Color GetCorOlhos() {
-            return partesAvatar.Olhos.color;
+            return componentePersonalizacaoCores.CorOlhos;
         }
 
         public void SetCorPele(Color cor) {
@@ -78,15 +83,12 @@ namespace Autis.Editor.Manipuladores {
                 return;
             }
 
-            foreach(SpriteRenderer parteCorpo in partesAvatar.PartesCorpo) {;
-                parteCorpo.color = cor;
-            }
-
+            componentePersonalizacaoCores.SetCorPele(cor);
             return;
         }
 
         public Color GetCorPele() {
-            return partesAvatar.PartesCorpo.First().color;
+            return componentePersonalizacaoCores.CorPele;
         }
 
         public void SetCorCabelo(Color cor) {
@@ -94,15 +96,12 @@ namespace Autis.Editor.Manipuladores {
                 return;
             }
 
-            foreach(SpriteRenderer cabelo in partesAvatar.Cabelos) {
-                cabelo.color = cor;
-            }
-
+            componentePersonalizacaoCores.SetCorCabelo(cor);
             return;
         }
 
         public Color GetCorCabelo() {
-            return partesAvatar.Cabelos.First().color;
+            return componentePersonalizacaoCores.CorCabelo;
         }
 
         public void SetCorRoupaSuperior(Color cor) {
@@ -110,15 +109,12 @@ namespace Autis.Editor.Manipuladores {
                 return;
             }
 
-            foreach(SpriteRenderer roupa in partesAvatar.RoupasSuperiores) {
-                roupa.color = cor;
-            }
-
+            componentePersonalizacaoCores.SetCorRoupaSuperior(cor);
             return;
         }
 
         public Color GetCorRoupaSuperior() {
-            return partesAvatar.RoupasSuperiores.First().color;
+            return componentePersonalizacaoCores.CorRoupaSuperior;
         }
 
         public void SetCorRoupaInferior(Color cor) {
@@ -126,40 +122,29 @@ namespace Autis.Editor.Manipuladores {
                 return;
             }
 
-            foreach(SpriteRenderer roupa in partesAvatar.RoupasInferiores) {
-                roupa.color = cor;
-            }
-
+            componentePersonalizacaoCores.SetCorRoupaInferior(cor);
             return;
         }
 
         public Color GetCorRoupaInferior() {
-            return partesAvatar.RoupasInferiores.First().color;
+            return componentePersonalizacaoCores.CorRoupaInferior;
         }
 
         public void SetConjuntoRoupas(int indexConjunto) {
-            if(!PossuiPersonagemSelecionado() || indexConjunto >= partesAvatar.Roupas.Count) {
+            if(!PossuiPersonagemSelecionado() || indexConjunto >= componentePersonalizacaoPartes.Roupas.Count) {
                 return;
             }
 
-            for(int i = 0; i < partesAvatar.Roupas.Count; i++) {
-                bool estaAtivo = i == indexConjunto;
-                partesAvatar.Roupas[i].SetActive(estaAtivo);
-            }
-
+            componentePersonalizacaoPartes.SetConjuntoRoupa(indexConjunto);
             return;
         }
 
         public void SetCabelo(int indexCabelo) {
-            if(!PossuiPersonagemSelecionado() || indexCabelo < 0 || indexCabelo >= partesAvatar.Cabelos.Count) {
+            if(!PossuiPersonagemSelecionado() || indexCabelo < 0 || indexCabelo >= componentePersonalizacaoPartes.Cabelos.Count) {
                 return;
             }
 
-            for(int i = 0; i < partesAvatar.Cabelos.Count; i++) {
-                bool estaAtivo = i == indexCabelo;
-                partesAvatar.Cabelos[i].gameObject.SetActive(estaAtivo);
-            }
-
+            componentePersonalizacaoPartes.SetCabelo(indexCabelo);
             return;
         }
 

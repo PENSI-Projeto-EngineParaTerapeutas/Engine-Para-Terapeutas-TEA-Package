@@ -5,7 +5,7 @@
 	width: 100%;
 }
 
-#regiao-label-elemento {
+#regiao-label-elemento, #regiao-botoes {
 	flex-direction: row;
 }
 
@@ -13,13 +13,18 @@
 	margin-right: 18px;
 }
 
-#label-nome-elemento, #botao-excluir > Image {
+#botao-excluir > Image, #botao-editar > Image {
 	cursor: link;
 }
 
-#botao-excluir {
+#botao-excluir, #botao-editar {
 	background-color: rgba(0, 0, 0, 0.0);
 	border-width: 0px;
 	margin-right: 15px;
 	cursor: link;
+}
+
+#botao-editar {
+	padding: 0px;
+	margin-right: 6px;
 }

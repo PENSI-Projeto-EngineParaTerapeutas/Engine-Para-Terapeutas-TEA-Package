@@ -77,3 +77,18 @@
 #unity-list-view__reorderable-item:hover {
 	background-color: #D7EBFF;
 }
+
+#regiao-carregamento-botoes-confirmacao > TemplateContainer {
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#regiao-carregamento-botoes-confirmacao > TemplateContainer > #botao-confirmar {
+	border-radius: 15px;
+}
+
+#regiao-carregamento-botoes-confirmacao > TemplateContainer > #botao-cancelar {
+	border-width: 0px;
+	margin-top: 6px;
+}

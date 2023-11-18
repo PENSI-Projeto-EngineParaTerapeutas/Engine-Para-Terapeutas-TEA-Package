@@ -51,3 +51,24 @@
 	margin-top: 5%;
 	-unity-font-style: bold;
 }
+
+#regiao-carregamento-botoes-confirmacao > TemplateContainer {
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#regiao-carregamento-botoes-confirmacao > TemplateContainer > #botao-confirmar {
+	border-radius: 15px;
+}
+
+#regiao-carregamento-botoes-confirmacao > TemplateContainer > #botao-cancelar {
+	border-width: 0px;
+	margin-top: 6px;
+}
+}
+
+#regiao-label-definicao-acao {
+	margin-top: 5%;
+	margin-bottom: 1.5%;
+}

@@ -5,12 +5,10 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:ScrollView name="main-scrollview">
-        <engine:VisualElement name="regiao-botoes-principais">
-            <engine:Button name="criador-elementos" text="Criação" class="aba-ativa"/>
-            <engine:Button name="editor-elementos" text="Edição" class="aba-inativa"/>
-        </engine:VisualElement>
+    <engine:VisualElement name="regiao-botoes-principais">
+        <engine:Button name="criador-elementos" text="Criação" class="aba-ativa"/>
+        <engine:Button name="editor-elementos" text="Edição" class="aba-inativa"/>
+    </engine:VisualElement>
 
-        <engine:VisualElement name="regiao-carregamento-telas"/>
-    </engine:ScrollView>
+    <engine:VisualElement name="regiao-carregamento-telas"/>
 </engine:UXML>

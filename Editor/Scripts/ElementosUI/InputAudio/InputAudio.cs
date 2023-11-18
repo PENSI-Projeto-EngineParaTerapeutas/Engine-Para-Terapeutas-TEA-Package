@@ -8,11 +8,12 @@ using Autis.Editor.Constantes;
 using Autis.Runtime.Constantes;
 
 namespace Autis.Editor.UI {
-    public class InputAudio : ElementoInterfaceEditor, IReiniciavel, IVinculavel<AudioClip> {
+    public class InputAudio : ElementoInterfaceEditor, IReiniciavel, IVinculavel<AudioClip>, IEstaVazio {
         protected override string CaminhoTemplate => "ElementosUI/InputAudio/InputAudioTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/InputAudio/InputAudioStyle.uss";
 
         private const string LABEL_TEXT = "Selecionar áudio";
+        private const string CLASS_ARQUIVO_SELECIONADO = "arquivo-selecionado";
 
         #region .: Elementos :.
         public ObjectField CampoAudio { get => campoAudio; }
@@ -102,7 +103,7 @@ namespace Autis.Editor.UI {
             CampoAudio.value = audioCarregado;
             CampoAudio.SendEvent(new ChangeEvent<Object>());
 
-            AlterarEstadoAudioCarregado();
+            AlterarEstadoAudioCarregado(nomeArquivo);
             return;
         }
 
@@ -125,8 +126,9 @@ namespace Autis.Editor.UI {
             return;
         }
 
-        private void AlterarEstadoAudioCarregado() {
-            LabelBotao.text = campoAudio.value.name;
+        private void AlterarEstadoAudioCarregado(string label) {
+            LabelBotao.text = label;
+            LabelBotao.AddToClassList(CLASS_ARQUIVO_SELECIONADO);
 
             iconeArquivoAudio.style.display = DisplayStyle.None;
             botaoCancelarAudio.style.display = DisplayStyle.Flex;
@@ -154,6 +156,8 @@ namespace Autis.Editor.UI {
 
         private void AlterarEstadoAudioNaoCarregado() {
             LabelBotao.text = LABEL_TEXT;
+            LabelBotao.RemoveFromClassList(CLASS_ARQUIVO_SELECIONADO);
+
             iconeArquivoAudio.style.display = DisplayStyle.Flex;
             botaoCancelarAudio.style.display = DisplayStyle.None;
             botaoBuscarAudio.style.justifyContent = Justify.Center;
@@ -170,7 +174,9 @@ namespace Autis.Editor.UI {
             }
 
             CampoAudio.SetValueWithoutNotify(clip);
-            AlterarEstadoAudioCarregado();
+
+            string nomeClip = Path.GetFileName(AssetDatabase.GetAssetPath(clip.GetInstanceID()));
+            AlterarEstadoAudioCarregado(nomeClip);
 
             return;
         }
@@ -179,6 +185,10 @@ namespace Autis.Editor.UI {
             CampoAudio.SetValueWithoutNotify(null);
             AlterarEstadoAudioNaoCarregado();
             return;
+        }
+
+        public bool EstaVazio() {
+            return CampoAudio.value == null;
         }
     }
 }

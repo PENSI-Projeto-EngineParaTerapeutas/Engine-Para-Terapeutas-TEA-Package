@@ -36,7 +36,6 @@
 
 #regiao-opcoes-tipo-gabarito {
 	flex-direction: row;
-	
 }
 
 #label-opcoes-gabarito {
@@ -116,4 +115,8 @@
 	flex: 1;
 	height: 50px;
 	margin-left: 12px;
+}
+
+#regiao-label-selecao-gabarito {
+	margin-top: 15px;
 }

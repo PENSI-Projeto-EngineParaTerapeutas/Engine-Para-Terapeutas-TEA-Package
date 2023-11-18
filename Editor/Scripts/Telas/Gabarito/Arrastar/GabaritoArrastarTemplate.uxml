@@ -5,14 +5,18 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:VisualElement name="regiao-titulo">
-        <engine:Label name="titulo-gabarito" text="Ações Esperadas - Arrastar" class="titulo-padrao"/>
-        <engine:VisualElement name="regiao-carregamento-tooltip-titulo"/>
-    </engine:VisualElement>
+    <engine:ScrollView name="regiao-conteudo-principal">
+        <engine:VisualElement name="regiao-titulo">
+            <engine:Label name="titulo-gabarito" text="Ações Esperadas - Arrastar" class="titulo-padrao"/>
+            <engine:VisualElement name="regiao-carregamento-tooltip-titulo"/>
+        </engine:VisualElement>
 
-    <engine:Label name="descricao-funcionalidades" text="Defina o conjunto de ações esperadas na fase. Para cada elemento que poderá ser arrastado na fase (elemento origem), defina o local que ele deve ser posicionado (elemento destino)." class="label-padrao"/>
+        <engine:Label name="descricao-funcionalidades" text="Defina o conjunto de ações esperadas na fase. Para cada elemento que poderá ser arrastado na fase (elemento origem), defina o local que ele deve ser posicionado (elemento destino)." class="label-padrao"/>
 
-    <engine:ScrollView name="regiao-carregamento-associacoes"/>
+        <engine:ScrollView name="regiao-carregamento-associacoes"/>
+
+        <engine:Toggle name="input-desfazer-acao" class="checkbox-padrao" label="Desfazer ação em caso de erro"/>
+    </engine:ScrollView>
 
     <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>
 </engine:UXML>

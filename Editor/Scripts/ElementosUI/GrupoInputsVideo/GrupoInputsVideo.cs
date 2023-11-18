@@ -1,15 +1,24 @@
 using UnityEngine.UIElements;
 using Autis.Editor.Manipuladores;
+using System;
 
 namespace Autis.Editor.UI {
     public class GrupoInputsVideo : ElementoInterfaceEditor, IReiniciavel, IVinculavel<ManipuladorVideo> {
         protected override string CaminhoTemplate => "ElementosUI/GrupoInputsVideo/GrupoInputsVideoTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/GrupoInputsVideo/GrupoInputsVideoStyle.uss";
 
+        #region .: Mensagens :.
+
+        private const string MENSAGEM_TOOLTIP_VOLUME = "Volume que o vídeo será reproduzido no jogo.";
+
+        #endregion
+
         #region .: Elementos :.
 
         public Slider CampoVolume { get => campoVolume; }
         public InputVideo CampoArquivoVideo { get => inputVideo; }
+
+        private const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_VOLUME = "regiao-tooltip-slider-volume";
 
         private const string NOME_SLIDER_VOLUME = "input-volume";
         private Slider campoVolume;
@@ -24,8 +33,21 @@ namespace Autis.Editor.UI {
         private ManipuladorVideo manipulador;
 
         public GrupoInputsVideo() {
+            CarregarTooltipTitulo(MENSAGEM_TOOLTIP_VOLUME);
             ConfigurarCampoVideo();
             ConfigurarCampoVolume();
+
+            return;
+        }
+
+        private void CarregarTooltipTitulo(string tooltipTexto) {
+            if (!String.IsNullOrEmpty(tooltipTexto)) {
+                VisualElement regiaoCarregamentoTooltipTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_VOLUME); ;
+                InterrogacaoToolTip tooltipTitulo = new InterrogacaoToolTip();
+                regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);
+
+                tooltipTitulo.SetTexto(tooltipTexto);
+            }
 
             return;
         }

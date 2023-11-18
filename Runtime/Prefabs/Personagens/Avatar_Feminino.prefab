@@ -100,7 +100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7700237112603370766
 Transform:
   m_ObjectHideFlags: 0
@@ -218,7 +218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7743115880852673066
 Transform:
   m_ObjectHideFlags: 0
@@ -1285,7 +1285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5145279458639332492
 Transform:
   m_ObjectHideFlags: 0
@@ -2449,7 +2449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6530731609947973479
 Transform:
   m_ObjectHideFlags: 0
@@ -3000,7 +3000,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5875662449709562227
 Transform:
   m_ObjectHideFlags: 0
@@ -3118,7 +3118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &410077424920223337
 Transform:
   m_ObjectHideFlags: 0
@@ -4214,7 +4214,103 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5238693539030694353, guid: 6348472175b37134a961ba436d406d2f, type: 3}
   m_PrefabInstance: {fileID: 8539388447718243966}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4436781659836931675
+--- !u!82 &1406483292534730992
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4481526416724133807}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2300895249739046033
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4223,14 +4319,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4481526416724133807}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a045a94cd18e6947aa5fc4f1cad1396, type: 3}
+  m_Script: {fileID: 11500000, guid: 1adc954c907c2444a9b759273a61ff4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  olhos: {fileID: 4657836474697559258}
+  olhos:
+  - {fileID: 4657836474697559258}
+  - {fileID: 4588660226736059221}
+  corOlhos: {r: 1, g: 1, b: 1, a: 1}
   cabelos:
   - {fileID: 8389290513697992187}
   - {fileID: 3933375571483677946}
   - {fileID: 7855501199483119023}
+  - {fileID: 4588660228332406184}
+  corCabelo: {r: 1, g: 1, b: 1, a: 1}
   partesCorpo:
   - {fileID: 1998465694393769700}
   - {fileID: 409060542799717113}
@@ -4244,15 +4345,48 @@ MonoBehaviour:
   - {fileID: 2931322487064087421}
   - {fileID: 5202320809479784288}
   - {fileID: 2251155620122787212}
+  - {fileID: 4588660226696906894}
+  - {fileID: 162500366745047576}
+  corPele: {r: 1, g: 1, b: 1, a: 1}
   roupasSuperiores:
   - {fileID: 8294604690841865563}
   - {fileID: 3890251129793032029}
   - {fileID: 5662733959371460464}
   - {fileID: 4651437317512775855}
+  corRoupaSuperior: {r: 1, g: 1, b: 1, a: 1}
   roupasInferiores:
   - {fileID: 2462591288542436722}
   - {fileID: 5729855322476907329}
   - {fileID: 5927226877149236653}
+  corRoupaInferior: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &3718673005238589324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4481526416724133807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e22d69abf1e12146ab8ad6a9cb91c65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4436781659836931675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4481526416724133807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a045a94cd18e6947aa5fc4f1cad1396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cabelos:
+  - {fileID: 8389290513697992187}
+  - {fileID: 3933375571483677946}
+  - {fileID: 7855501199483119023}
   roupas:
   - roupas:
     - {fileID: 8294604690841865563}
@@ -4263,20 +4397,6 @@ MonoBehaviour:
     - {fileID: 5927226877149236653}
   - roupas:
     - {fileID: 4651437317512775855}
---- !u!114 &7026903512638387430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4481526416724133807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba582a2216be70a4a95adee8ce54a5c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tipoPersonagem: 1
-  tipoControle: 0
 --- !u!4 &8735164853220533251 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1133652200472320637, guid: 6348472175b37134a961ba436d406d2f, type: 3}

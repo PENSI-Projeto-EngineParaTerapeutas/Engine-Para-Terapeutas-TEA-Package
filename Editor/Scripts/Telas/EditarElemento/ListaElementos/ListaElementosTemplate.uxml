@@ -5,7 +5,7 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:Foldout text="label-foldout" name="foldout-lista" value="true">
+    <engine:Foldout text="label-foldout" name="foldout-lista" value="true" class="foldout-lista-elementos-interno">
         <engine:ListView name="lista-elementos" class="lista-elementos"/>
     </engine:Foldout>
 </engine:UXML>

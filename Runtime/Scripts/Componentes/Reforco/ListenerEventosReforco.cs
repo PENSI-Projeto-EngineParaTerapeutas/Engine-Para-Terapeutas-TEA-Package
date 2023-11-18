@@ -10,9 +10,11 @@ namespace Autis.Runtime.ComponentesGameObjects {
         private TipoAcionamentoReforco tipoAcionamento;
 
         [SerializeField]
-        protected EventoJogo eventoAcerto;
+        protected EventoJogo eventoAcionarReforcoAcerto;
+
         [SerializeField]
         protected EventoJogo eventoFimJogo;
+
         [SerializeField]
         protected EventoJogo eventoErro;
 
@@ -31,7 +33,7 @@ namespace Autis.Runtime.ComponentesGameObjects {
         private void Start() {
             switch(tipoAcionamento) {
                 case(TipoAcionamentoReforco.Acerto): {
-                    eventoAcerto.AdicionarCallback(AcionarComponentes);
+                    eventoAcionarReforcoAcerto.AdicionarCallback(AcionarComponentes);
                     break;
                 }
                 case(TipoAcionamentoReforco.Erro): {

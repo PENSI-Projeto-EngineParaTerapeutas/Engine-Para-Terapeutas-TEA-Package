@@ -105,7 +105,7 @@ namespace Autis.Editor.Manipuladores {
             return;
         }
 
-        public override void Finalizar() {
+        protected override void FinalizarInterno() {
             objeto.tag = NomesTags.ObjetosInteracao;
             objeto.layer = LayersProjeto.Default.Index;
 

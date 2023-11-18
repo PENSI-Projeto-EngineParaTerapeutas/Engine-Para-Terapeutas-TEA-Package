@@ -29,9 +29,11 @@ namespace Autis.Runtime.ComponentesGameObjects {
         private void Start() {
             verificacaoGabaritoSelecao = transform.parent.GetComponent<VerificacaoGabaritoSelecao>();
 
-            if(tipoAcionamento == TipoAcionamentoApoioObjetoInteracao.Erro) {
-                eventoErroGeral.AdicionarCallback(HandleEventoErroPadrao);
+            if(tipoAcionamento == TipoAcionamentoApoioObjetoInteracao.Erro && verificacaoGabaritoSelecao.ordemImporta) {
                 eventoErroComOrdem.AdicionarCallback(HandleEventoErroComOrdem);
+            }
+            else if(tipoAcionamento == TipoAcionamentoApoioObjetoInteracao.Erro) {
+                eventoErroGeral.AdicionarCallback(HandleEventoErroPadrao);
             }
 
             tipoApoioObjetoInteracao.DesabilitarComponentes();

@@ -21,8 +21,8 @@ namespace Autis.Editor.Telas {
         protected static EventoJogo eventoFecharPopupAviso;
 
         protected virtual void CreateGUI() {
-            eventoAbrirPopupAviso = AssetDatabase.LoadAssetAtPath<EventoJogo>(Path.Combine(ConstantesEditor.CaminhoPastaEventosEditor, "EventoAbrirPopupAviso" + ExtensoesEditor.ScriptableObject));
-            eventoFecharPopupAviso = AssetDatabase.LoadAssetAtPath<EventoJogo>(Path.Combine(ConstantesEditor.CaminhoPastaEventosEditor, "EventoFecharPopupAviso" + ExtensoesEditor.ScriptableObject));
+            eventoAbrirPopupAviso = Importador.ImportarEvento("EventoAbrirPopupAviso");
+            eventoFecharPopupAviso = Importador.ImportarEvento("EventoFecharPopupAviso");
 
             eventoAbrirPopupAviso.AdicionarCallback(HandleAbrirPopupAviso);
             eventoFecharPopupAviso.AdicionarCallback(HandleFecharPopupAviso);

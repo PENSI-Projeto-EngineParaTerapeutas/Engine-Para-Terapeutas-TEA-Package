@@ -1,17 +1,30 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEditor;
 using Autis.Editor.UI;
 using Autis.Editor.Telas;
 using Autis.Editor.Manipuladores;
+using Autis.Editor.Constantes;
+using Autis.Editor.Excecoes;
+using Autis.Runtime.Eventos;
+using Autis.Editor.Utils;
 
 namespace Autis.Editor.Criadores {
     public class CriadorCenarioBehaviour : Tela, IReiniciavel {
         protected override string CaminhoTemplate => "Telas/Criador/CriadorCenario/CriadorCenarioTemplate.uxml";
         protected override string CaminhoStyle => "Telas/Criador/CriadorCenario/CriadorCenarioStyle.uss";
 
-        #region .: Mensagens :.
+        #region .: Mensagem :.
+
+        private const string MENSAGEM_ERRO_TIPO_CENARIO_NAO_SELECIONADO = "Escolha uma opção dentre as abaixo para o tipo de Cenário:\n";
+        private const string MENSAGEM_ERRO_CENARIO_IMAGEM_NAO_SELECIONADO = "Escolha uma imagem para o Cenário.\n";
 
         protected const string MENSAGEM_TOOLTIP_TITULO = "O cenário é o plano de fundo da fase do jogo.";
+        #endregion
+
+        #region .: Eventos :.
+
+        protected static EventoJogo eventoFinalizarCriacao;
 
         #endregion
 
@@ -50,6 +63,8 @@ namespace Autis.Editor.Criadores {
             manipulador = new ManipuladorCenario();
             manipulador.Criar();
 
+            eventoFinalizarCriacao = Importador.ImportarEvento("EventoFinalizarCriacao");
+
             ConfigurarTooltipTitulo();
             CarregarRegiaoInputImagem();
             CarregarRegiaoInputsCor();
@@ -68,6 +83,17 @@ namespace Autis.Editor.Criadores {
             return;
         }
 
+        public override void OnEditorUpdate() {
+            if(Tools.current != Tool.Rect) {
+                Tools.current = Tool.Rect;
+            }
+
+            if(Selection.activeObject != manipulador?.ObjetoAtual) {
+                Selection.activeObject = manipulador?.ObjetoAtual;
+            }
+
+            return;
+        }
 
         protected virtual void CarregarRegiaoInputImagem() {
             inputImagem = new InputImagem();
@@ -129,14 +155,48 @@ namespace Autis.Editor.Criadores {
         }
 
         protected virtual void HandleBotaoConfirmarClick() {
-            manipulador.Finalizar();
+            try {
+                VerificarCamposObrigatorios();
+            }
+            catch(ExcecaoCamposObrigatoriosVazios error) {
+                PopupAvisoBehaviour.ShowPopupAviso(error.Message);
+                return;
+            }
+
+            try {
+                manipulador.Finalizar();
+            }
+            catch(ExcecaoObjetoDuplicado excecao) {
+                PopupAvisoBehaviour.ShowPopupAviso(MensagensGerais.MENSAGEM_ATOR_DUPLICADO.Replace("{nome}", excecao.NomeObjetoDuplicado));
+                return;
+            }
+
+            eventoFinalizarCriacao.AcionarCallbacks();
             Navigator.Instance.Voltar();
             
             return;
         }
 
+        protected virtual void VerificarCamposObrigatorios() {
+            if(!radioButtonCorUnica.value && !radioButtonImagem.value) {
+                string mensagem = MENSAGEM_ERRO_TIPO_CENARIO_NAO_SELECIONADO;
+                mensagem += "\t" + radioButtonCorUnica.label + "\n";
+                mensagem += "\t" + radioButtonImagem.label + "\n";
+
+                throw new ExcecaoCamposObrigatoriosVazios(mensagem);
+            }
+
+            if(radioButtonImagem.value && inputImagem.EstaVazio()) {
+                throw new ExcecaoCamposObrigatoriosVazios(MENSAGEM_ERRO_CENARIO_IMAGEM_NAO_SELECIONADO);
+            }
+
+            return;
+        }
+
         protected virtual void HandleBotaoCancelarClick() {
             manipulador.Cancelar();
+
+            eventoFinalizarCriacao.AcionarCallbacks();
             Navigator.Instance.Voltar();
 
             return;

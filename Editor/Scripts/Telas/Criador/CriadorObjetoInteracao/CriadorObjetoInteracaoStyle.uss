@@ -36,3 +36,7 @@
 #input-desfazer-acao {
 	margin-top: 21px;
 }
+
+#regiao-input-desfazer-acao {
+	width: 70%;
+}

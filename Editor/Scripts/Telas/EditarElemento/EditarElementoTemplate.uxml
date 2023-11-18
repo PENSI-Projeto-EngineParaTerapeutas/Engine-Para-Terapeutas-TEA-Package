@@ -5,18 +5,20 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:Label name="titulo-editor" text="Editar elementos da Fase 1"/>
+    <engine:ScrollView name="regiao-conteudo-principal">
+        <engine:Label name="titulo-editor" text="Editar elementos da Fase" class="titulo-padrao"/>
 
-    <engine:VisualElement name="regiao-carregamento-lista-personagens"/>
-    <engine:VisualElement name="regiao-carregamento-lista-cenario"/>
-    <engine:VisualElement name="regiao-carregamento-lista-instrucoes"/>
-    <engine:VisualElement name="regiao-carregamento-lista-elementos-interacao"/>
-    <engine:VisualElement name="regiao-carregamento-lista-reforcos"/>
-    <engine:VisualElement name="regiao-carregamento-lista-apoios"/>
-    <engine:Foldout text="Estrutura Fase:" name="foldout-botao-estrutura-fase" value="true">
-        <engine:Button name="botao-estrutura-fase">
-            <engine:Image name="icone-botao-estrutura-fase"/>
-            <engine:Label name="label-nome-estrutura-fase"/>
-        </engine:Button>
-    </engine:Foldout>
+        <engine:VisualElement name="regiao-carregamento-lista-personagens" class="container-lista-elementos"/>
+        <engine:VisualElement name="regiao-carregamento-lista-cenario" class="container-lista-elementos"/>
+        <engine:VisualElement name="regiao-carregamento-lista-instrucoes" class="container-lista-elementos"/>
+        <engine:VisualElement name="regiao-carregamento-lista-elementos-interacao" class="container-lista-elementos"/>
+        <engine:VisualElement name="regiao-carregamento-lista-reforcos" class="container-lista-elementos"/>
+        <engine:VisualElement name="regiao-carregamento-lista-apoios" class="container-lista-elementos"/>
+        <engine:Foldout text="Estrutura Fase:" name="foldout-botao-estrutura-fase" value="true">
+            <engine:Button name="botao-estrutura-fase">
+                <engine:Image name="icone-botao-estrutura-fase"/>
+                <engine:Label name="label-nome-estrutura-fase"/>
+            </engine:Button>
+        </engine:Foldout>
+    </engine:ScrollView>
 </engine:UXML>

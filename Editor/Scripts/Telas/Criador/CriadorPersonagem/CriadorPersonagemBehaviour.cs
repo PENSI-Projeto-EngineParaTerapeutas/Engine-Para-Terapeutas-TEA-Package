@@ -1,5 +1,5 @@
-﻿using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Autis.Runtime.DTOs;
@@ -8,6 +8,8 @@ using Autis.Editor.Utils;
 using Autis.Editor.UI;
 using Autis.Editor.Telas;
 using Autis.Editor.Manipuladores;
+using Autis.Editor.Excecoes;
+using Autis.Runtime.Eventos;
 
 namespace Autis.Editor.Criadores {
     public class CriadorPersonagemBehaviour : Tela, IReiniciavel {
@@ -23,7 +25,15 @@ namespace Autis.Editor.Criadores {
         protected const string MENSAGEM_TOOLTIP_TITULO = "Cada fase poderá ter um único personagem.";
         private const string MENSAGEM_TOOLTIP_INPUT_NOME = "Digite um nome para o Personagem. Cada componente deve ter um nome exclusivo (que não se repete em outro componente)";
         protected const string TOOLTIP_TIPO_CONTROLE = "Forma como o personagem será controlado:\n\n1) Direto: os movimentos corporais do personagem serão controlados pelo usuário.\n\n2) Indireto: serão apresentadas animações com o personagem, quando o usuário selecionar determinados Elementos do jogo.";
-        protected const string TOOLTIP_TIPO_PERSONAGEM = "Forma do personagem.";
+        protected const string TOOLTIP_TIPO_PERSONAGEM = "Forma do personagem. Opções: avatar, boneco palito ou personagem lúdico.";
+
+        protected const string ERRO_TIPO_CONTROLE_NAO_SELECIONADO = "Selecione um tipo de controle para o Personagem.\n";
+
+        #endregion
+
+        #region .: Eventos :.
+
+        protected static EventoJogo eventoFinalizarCriacao;
 
         #endregion
 
@@ -87,6 +97,8 @@ namespace Autis.Editor.Criadores {
         protected ManipuladorPersonagens manipuladorPersonagem;
 
         public CriadorPersonagemBehaviour() {
+            eventoFinalizarCriacao = Importador.ImportarEvento("EventoFinalizarCriacao");
+
             CarregarPrefabs();
 
             ConfigurarTooltipTitulo();
@@ -108,6 +120,18 @@ namespace Autis.Editor.Criadores {
 
             regiaoCarregamentoTooltipTitulo = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
             regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);
+
+            return;
+        }
+
+        public override void OnEditorUpdate() {
+            if(Tools.current != Tool.Move) {
+                Tools.current = Tool.Move;
+            }
+
+            if(Selection.activeObject != manipuladorPersonagem?.ObjetoAtual) {
+                Selection.activeObject = manipuladorPersonagem?.ObjetoAtual;
+            }
 
             return;
         }
@@ -214,7 +238,7 @@ namespace Autis.Editor.Criadores {
             radioOpcaoControleIndireto.SetValueWithoutNotify(false);
 
             grupoInputsPosicao.ReiniciarCampos();
-            inputTamanho.ReiniciarCampos();
+            inputTamanho.CampoNumerico.SetValueWithoutNotify(100f);
 
             return;
         }
@@ -364,10 +388,11 @@ namespace Autis.Editor.Criadores {
         }
 
         protected virtual void ConfigurarCampoTamanho() {
-            inputTamanho = new InputNumerico("Tamanho:");
+            inputTamanho = new InputNumerico("Tamanho (%):", "A porcentagem se refere ao tamanho do personagem. Obs: Nos casos que o personagem for controlado por controle indireto, através de animações, o tamanho do personagem pode ser diminuído na animação.");
+            inputTamanho.CampoNumerico.SetValueWithoutNotify(100f);
 
             inputTamanho.CampoNumerico.RegisterCallback<ChangeEvent<float>>(evt => {
-                manipuladorPersonagem?.SetTamanho(evt.newValue);
+                manipuladorPersonagem?.SetTamanho(evt.newValue / 100);
             });
 
             regiaoCarregamentoInputsTamanho = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_TAMANHO);
@@ -390,8 +415,46 @@ namespace Autis.Editor.Criadores {
         }
 
         protected virtual void HandleBotaoConfirmarClick() {
-            manipuladorPersonagem.Finalizar();
+            try {
+                VerificarCamposObrigatorios();
+            }
+            catch(ExcecaoCamposObrigatoriosVazios excecao) {
+                PopupAvisoBehaviour.ShowPopupAviso(excecao.Message);
+                return;
+            }
+
+            try {
+                manipuladorPersonagem.Finalizar();
+            }
+            catch(ExcecaoObjetoDuplicado excecao) {
+                PopupAvisoBehaviour.ShowPopupAviso(MensagensGerais.MENSAGEM_ATOR_DUPLICADO.Replace("{nome}", excecao.NomeObjetoDuplicado));
+                return;
+            }
+
+            eventoFinalizarCriacao.AcionarCallbacks();
             Navigator.Instance.Voltar();
+
+            return;
+        }
+
+        protected virtual void VerificarCamposObrigatorios() {
+            string mensagem = string.Empty;
+
+            if(inputNome.EstaVazio()) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_NAO_PREENCHIDO.Replace("{nome_campo}", inputNome.LabelCampoTexto.text);
+            }
+
+            if(dropdownTipoPersonagem.EstaVazio()) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_NAO_PREENCHIDO.Replace("{nome_campo}", dropdownTipoPersonagem.Label.text);
+            }
+
+            if(!radioOpcaoControleDireto.value && !radioOpcaoControleIndireto.value) {
+                mensagem += ERRO_TIPO_CONTROLE_NAO_SELECIONADO;
+            }
+
+            if(mensagem != string.Empty) {
+                throw new ExcecaoCamposObrigatoriosVazios(mensagem);
+            }
 
             return;
         }
@@ -400,6 +463,7 @@ namespace Autis.Editor.Criadores {
             ReiniciarCampos();
 
             manipuladorPersonagem?.Cancelar();
+            eventoFinalizarCriacao.AcionarCallbacks();
             Navigator.Instance.Voltar();
 
             return;
@@ -413,7 +477,7 @@ namespace Autis.Editor.Criadores {
             radioOpcaoControleIndireto.SetValueWithoutNotify(false);
 
             grupoInputsPosicao.ReiniciarCampos();
-            inputTamanho.ReiniciarCampos();
+            inputTamanho.CampoNumerico.SetValueWithoutNotify(100f);
 
             AjustarEstadoDeselacaoPersonagem();
 

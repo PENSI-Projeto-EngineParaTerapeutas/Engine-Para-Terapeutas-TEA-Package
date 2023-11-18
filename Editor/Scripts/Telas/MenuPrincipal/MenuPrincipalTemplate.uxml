@@ -8,28 +8,28 @@
     <engine:VisualElement name="conteudo-principal">
         <engine:Label name="label-descricao-botoes-atores" class="label-padrao" text="Defina os componentes da fase. Todos os componentes são opcionais."/>
         <engine:VisualElement name="grupo-botoes-criadores">
-            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-cenario">
+            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-cenario" tooltip="Cenário é o plano de fundo da fase do jogo.">
                 <engine:Label text="Cenário"/>
             </engine:Button>
-            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-instrucao">
+            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-instrucao" tooltip="Instrução é um componente que pode ser usado para transmitir informações sobre a fase para o jogador.">
                 <engine:Label text="Instrução"/>
             </engine:Button>
-            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-objeto-interacao">
+            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-objeto-interacao" tooltip="Elementos (imagem ou texto) que podem ser adicionados na fase do jogo. Um elemento poderá ser estático OU o usuário poderá interagir com ele.">
                 <engine:Label text="Elemento"/>
             </engine:Button>
-            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-personagem">
+            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-personagem" tooltip="Cada fase poderá ter um único personagem. Opções: avatar, boneco palito ou personagem lúdico.">
                 <engine:Label text="Personagem"/>
             </engine:Button>
-            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-reforco">
-                <engine:Label text="Reforço"/>
-            </engine:Button>
-            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-apoio">
+            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-apoio" tooltip="Apoio é um elemento visual e/ou sonoro que pode instruir o jogador a interagir com o jogo.">
                 <engine:Label text="Apoio"/>
+            </engine:Button>
+            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-reforco" tooltip="Reforço é um feedback ou recompensa que será apresentado na fase do jogo.">
+                <engine:Label text="Reforço"/>
             </engine:Button>
         </engine:VisualElement>
 
-        <engine:Label name="label-descricao-botao-estrutura-fase" class="label-padrao" text="Estruture a fase, de acordo com os componentes definidos."/>
-        <engine:VisualElement name="grupo-botoes-informacoes-fase">
+        <engine:Label name="label-descricao-botao-estrutura-fase" class="label-padrao" text="Após criar todos os componentes da fase, defina alguns parâmetros gerais da fase."/>
+        <engine:VisualElement name="grupo-botoes-informacoes-fase" tooltip="Definição de configurações gerais da fase (nome, contexto, nível de dificuldade, faixa etária e ações esperadas).">
             <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-informacoes-fase" text="Estrutura da fase"/>
         </engine:VisualElement>
     </engine:VisualElement>

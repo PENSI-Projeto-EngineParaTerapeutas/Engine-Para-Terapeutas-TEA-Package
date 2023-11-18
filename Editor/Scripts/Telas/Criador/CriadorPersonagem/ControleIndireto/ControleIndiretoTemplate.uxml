@@ -5,18 +5,20 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:Label name="label-titulo" text="Configuração do Controle Indireto" class="titulo-padrao"/>
-    <engine:Label name="label-descricao" text="Você pode definir um conjunto de ações para interação indireta com o personagem." class="label-padrao"/>
-    <engine:Label name="label-descricao" text="Para cada ação que deseja adicionar, clique no botão Adicionar ação e configure a ação desejada." class="label-padrao"/>
+    <engine:ScrollView name="regiao-conteudo-principal">
+        <engine:Label name="label-titulo" text="Configuração do Controle Indireto" class="titulo-padrao"/>
+        <engine:Label name="label-descricao" text="Você pode definir um conjunto de ações para interação indireta com o personagem." class="label-padrao"/>
+        <engine:Label name="label-descricao" text="Para cada ação que deseja adicionar, clique no botão Adicionar ação e configure a ação desejada." class="label-padrao"/>
 
-    <engine:Button name="botao-adicionar-acao" text="Adicionar ação" class="botao-padrao"/>
+        <engine:Button name="botao-adicionar-acao" text="Adicionar ação" class="botao-padrao"/>
     
-    <engine:Label text="Ações criadas" name="label-lista-animacoes" class="label-input-padrao"/>
-
-    <engine:ScrollView name="regiao-lista-animacoes"/>
-    <engine:VisualElement name="regiao-lista-animacoes-vazia">
-        <engine:Label text="Você ainda não possui ações criadas" class="label-padrao"/>
-    </engine:VisualElement>
+        <engine:Foldout text="Ações criadas" name="foldout-lista-animacoes" value="true">
+            <engine:ScrollView name="regiao-lista-animacoes"/>
+            <engine:VisualElement name="regiao-lista-animacoes-vazia">
+                <engine:Label text="Você ainda não possui ações criadas" class="label-padrao"/>
+            </engine:VisualElement>
+        </engine:Foldout>
+    </engine:ScrollView>
 
     <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>
 </engine:UXML>

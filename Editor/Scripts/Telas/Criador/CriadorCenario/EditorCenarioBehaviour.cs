@@ -1,15 +1,27 @@
 using System;
 using UnityEngine;
 using Autis.Editor.Criadores;
+using Autis.Editor.Constantes;
+using Autis.Editor.Excecoes;
+using Autis.Runtime.Eventos;
+using Autis.Editor.Utils;
 
 namespace Autis.Editor.Telas {
     public class EditorCenarioBehaviour : CriadorCenarioBehaviour {
+
+        #region .: Eventos :.
+
         public Action<GameObject> OnConfirmarEdicao { get; set; }
+        protected static EventoJogo eventoFinalizarEdicao;
+
+        #endregion
 
         private readonly GameObject objetoOriginal;
         private readonly GameObject objetoEditado;
 
         public EditorCenarioBehaviour(GameObject cenarioEditado) {
+            eventoFinalizarEdicao = Importador.ImportarEvento("EventoFinalizarEdicao");
+
             objetoOriginal = cenarioEditado;
 
             objetoEditado = GameObject.Instantiate(objetoOriginal);
@@ -28,10 +40,12 @@ namespace Autis.Editor.Telas {
         private void CarregarDados() {
             if(manipulador.EhCorSolida()) {
                 radioButtonCorUnica.SetValueWithoutNotify(true);
+                inputCor.Root.SetEnabled(true);
                 inputCor.CampoCor.SetValueWithoutNotify(manipulador.GetCor());
             }
             else {
                 radioButtonImagem.SetValueWithoutNotify(true);
+                inputImagem.Root.SetEnabled(true);
                 inputImagem.CampoImagem.SetValueWithoutNotify(manipulador.GetImagem());
             }
 
@@ -39,10 +53,26 @@ namespace Autis.Editor.Telas {
         }
 
         protected override void HandleBotaoConfirmarClick() {
-            manipulador.Finalizar();
+            try {
+                VerificarCamposObrigatorios();
+            }
+            catch(ExcecaoCamposObrigatoriosVazios error) {
+                PopupAvisoBehaviour.ShowPopupAviso(error.Message);
+                return;
+            }
+
+            try {
+                manipulador.Finalizar();
+            }
+            catch(ExcecaoObjetoDuplicado excecao) {
+                PopupAvisoBehaviour.ShowPopupAviso(MensagensGerais.MENSAGEM_ATOR_DUPLICADO.Replace("{nome}", excecao.NomeObjetoDuplicado));
+                return;
+            }
+
             GameObject.DestroyImmediate(objetoOriginal);
 
             OnConfirmarEdicao?.Invoke(objetoEditado);
+            eventoFinalizarEdicao.AcionarCallbacks();
             Navigator.Instance.Voltar();
 
             return;
@@ -52,6 +82,7 @@ namespace Autis.Editor.Telas {
             manipulador.Cancelar();
             objetoOriginal.SetActive(true);
 
+            eventoFinalizarEdicao.AcionarCallbacks();
             Navigator.Instance.Voltar();
 
             return;

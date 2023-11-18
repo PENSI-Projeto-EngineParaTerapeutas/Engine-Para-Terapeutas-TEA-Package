@@ -2,12 +2,16 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Object = UnityEngine.Object;
+using UnityEditor;
 using Autis.Runtime.DTOs;
 using Autis.Editor.Constantes;
 using Autis.Editor.UI;
 using Autis.Editor.Telas;
 using Autis.Editor.Manipuladores;
-using Object = UnityEngine.Object;
+using Autis.Editor.Excecoes;
+using Autis.Runtime.Eventos;
+using Autis.Editor.Utils;
 
 namespace Autis.Editor.Criadores {
     public class CriadorObjetoInteracaoBehaviour : Tela, IReiniciavel {
@@ -22,7 +26,12 @@ namespace Autis.Editor.Criadores {
         protected const string MENSAGEM_TOOLTIP_INPUT_NOME = "Digite um nome para o Elemento. Cada componente deve ter um nome exclusivo (que não se repete em outro componente)";
         private const string MENSAGEM_TOOLTIP_DROPDOWN_TIPO_OBJETO_INTERACAO = "Forma que o Elemento será representado na fase.";
         private const string MENSAGEM_TOOLTIP_DROPDOWN_TIPO_ACOES = "Forma que o jogador poderá interagir com o Elemento durante o jogo.";
-        private const string MENSAGEM_TOOLTIP_DESFAZER_ACAO = "Permitir que o Elemento volte para sua posição inicial caso ele seja arrastado para um local incorreto.";
+
+        #endregion
+
+        #region .: Eventos :.
+
+        protected static EventoJogo eventoFinalizarCriacao;
 
         #endregion
 
@@ -42,9 +51,6 @@ namespace Autis.Editor.Criadores {
 
         protected const string NOME_REGIAO_CARREGAMENTO_TIPO_ACAO = "regiao-carregamento-tipo-acao";
         protected VisualElement regiaoCarregamentoTipoAcao;
-
-        protected const string NOME_CHECKBOX_DESFAZER_ACAO = "input-desfazer-acao";
-        protected Toggle checkboxDesfazerAcao;
 
         protected const string NOME_REGIAO_OPCOES_AVANCADAS = "foldout-opcoes-avancadas";
         protected Foldout foldoutOpcoesAvancadas;
@@ -70,15 +76,6 @@ namespace Autis.Editor.Criadores {
 
         protected InterrogacaoToolTip tooltipTitulo;
 
-        private const string NOME_REGIAO_DESFAZER_ACAO = "regiao-input-desfazer-acao";
-        private VisualElement regiaoDesfazerAcao;
-
-        private const string NOME_REGIAO_LABEL_DESFAZER_ACAO = "regiao-label-desfazer-acao";
-        private VisualElement regiaoLabelDesfazerAcao;
-        private VisualElement regiaoCarregamentoTooltipDesfazerAcao;
-        private InterrogacaoToolTip tooltipDesfazerAcao;
-        private const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_DESFAZER_ACAO = "regiao-tooltip-desfazer-acao";
-
         #endregion
 
         protected Dictionary<string, TiposAcoes> associacaoValoresDropdownTipoAcoes;
@@ -90,6 +87,8 @@ namespace Autis.Editor.Criadores {
             manipulador = new ManipuladorObjetoInteracao();
             manipulador.Criar();
 
+            eventoFinalizarCriacao = Importador.ImportarEvento("EventoFinalizarCriacao");
+
             ConfigurarTooltipTitulo();
             ConfigurarCampoNome();
             CarregarRegiaoInputsImagem();
@@ -97,12 +96,38 @@ namespace Autis.Editor.Criadores {
 
             ConfigurarCampoTipoObjetoInteracao();
             ConfigurarCampoTipoAcao();
-            ConfigurarCheckboxDesfazerAcao();
             ConfigurarRegiaoOpcoesAvancadas();
 
             ConfigurarBotoesConfirmacao();
 
             manipulador.AlterarTipo(tipoPadrao);
+
+            return;
+        }
+
+        public override void OnEditorUpdate() {
+            DefinirFerramenta();
+
+            if(Selection.activeObject != manipulador?.ObjetoAtual) {
+                Selection.activeObject = manipulador?.ObjetoAtual;
+            }
+
+            return;
+        }
+
+        private void DefinirFerramenta() {
+            if(manipulador?.ObjetoAtual && manipulador?.GetTipo() == TiposObjetosInteracao.Texto) {
+                if(Tools.current != Tool.Move) {
+                    Tools.current = Tool.Move;
+                }
+
+                return;
+            }
+
+            if (Tools.current != Tool.Rect) {
+                Tools.current = Tool.Rect;
+                return;
+            }
 
             return;
         }
@@ -246,48 +271,12 @@ namespace Autis.Editor.Criadores {
                 }
 
                 manipulador.SetTipoInteracao(associacaoValoresDropdownTipoAcoes[evt.newValue]);
-                AlterarVisibilidadeCamposComBaseTipoAcao(associacaoValoresDropdownTipoAcoes[evt.newValue]);
             });
 
             regiaoCarregamentoTipoAcao = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TIPO_ACAO);
             regiaoCarregamentoTipoAcao.Add(dropdownTiposAcoes.Root);
 
             return;
-        }
-
-        protected virtual void AlterarVisibilidadeCamposComBaseTipoAcao(TiposAcoes tipo) {
-            if(tipo == TiposAcoes.Arrastavel) {
-                checkboxDesfazerAcao.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-                return;
-            }
-
-            checkboxDesfazerAcao.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-            return;
-        }
-
-        protected virtual void ConfigurarCheckboxDesfazerAcao() {
-            regiaoDesfazerAcao = root.Query<VisualElement>(NOME_REGIAO_DESFAZER_ACAO);
-
-            checkboxDesfazerAcao = root.Query<Toggle>(NOME_CHECKBOX_DESFAZER_ACAO);
-
-            checkboxDesfazerAcao.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
-            checkboxDesfazerAcao.RegisterCallback<ChangeEvent<bool>>(evt => {
-                manipulador.SetDeveDesfazerAcao(evt.newValue);
-            });
-
-            regiaoDesfazerAcao.Add(checkboxDesfazerAcao);
-
-            return;
-        }
-
-        private void ConfigurarTooltipLabelConfiguracaoTexto() {
-            tooltipDesfazerAcao = new InterrogacaoToolTip();
-            tooltipDesfazerAcao.SetTexto(MENSAGEM_TOOLTIP_DESFAZER_ACAO);
-
-            regiaoCarregamentoTooltipDesfazerAcao = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_DESFAZER_ACAO);
-            regiaoCarregamentoTooltipDesfazerAcao.Add(tooltipDesfazerAcao.Root);
-
-            regiaoDesfazerAcao.Add(regiaoCarregamentoTooltipDesfazerAcao);
         }
 
         protected virtual void ConfigurarRegiaoOpcoesAvancadas() {
@@ -318,17 +307,71 @@ namespace Autis.Editor.Criadores {
         }
 
         protected virtual void HandleBotaoConfirmarClick() {
-            OnFinalizarCriacao?.Invoke(manipulador.ObjetoAtual);
-            manipulador.Finalizar();
+            try {
+                VerificarCamposObrigatorios();
+            }
+            catch(ExcecaoCamposObrigatoriosVazios excecao) {
+                PopupAvisoBehaviour.ShowPopupAviso(excecao.Message);
+                return;
+            }
 
+            GameObject objetoCriado;
+
+            try {
+                objetoCriado = manipulador.ObjetoAtual;
+                manipulador.Finalizar();
+            }
+            catch(ExcecaoObjetoDuplicado excecao) {
+                PopupAvisoBehaviour.ShowPopupAviso(MensagensGerais.MENSAGEM_ATOR_DUPLICADO.Replace("{nome}", excecao.NomeObjetoDuplicado));
+                return;
+            }
+
+            OnFinalizarCriacao?.Invoke(objetoCriado);
+            eventoFinalizarCriacao.AcionarCallbacks();
             Navigator.Instance.Voltar();
+
             return;
+        }
+
+        protected virtual void VerificarCamposObrigatorios() {
+            string mensagem = string.Empty;
+
+            if(campoNome.EstaVazio()) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_NAO_PREENCHIDO.Replace("{nome_campo}", campoNome.LabelCampoTexto.text);
+            }
+
+            if(dropdownTipo.EstaVazio()) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_NAO_PREENCHIDO.Replace("{nome_campo}", dropdownTipo.Label.text);
+                throw new ExcecaoCamposObrigatoriosVazios(mensagem);
+            }
+
+            if(manipulador.GetTipo() == TiposObjetosInteracao.Imagem) {
+                mensagem += VerificarCamposObrigatoriosImagem();
+            }
+
+            if(mensagem != string.Empty) {
+                throw new ExcecaoCamposObrigatoriosVazios(mensagem);
+            }
+
+            return;
+        }
+
+        protected virtual string VerificarCamposObrigatoriosImagem() {
+            string mensagem = string.Empty;
+            
+            if(inputsImagem.EstaVazio()) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_ARQUIVO_IMAGEM_NAO_PREENCHIDO;
+            }
+
+            return mensagem;
         }
 
         protected virtual void HandleBotaoCancelarClick() {
             manipulador.Cancelar();
 
+            eventoFinalizarCriacao.AcionarCallbacks();
             Navigator.Instance.Voltar();
+
             return;
         }
 

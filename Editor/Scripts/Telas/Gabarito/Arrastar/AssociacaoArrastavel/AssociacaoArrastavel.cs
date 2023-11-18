@@ -10,8 +10,8 @@ namespace Autis.Editor.UI {
 
         #region .: Mensagens :.
 
-        private const string MENSAGEM_TOOLTIP_ELEMENTO_ORIGEM = "[TODO]: Adicionar.";
-        private const string MENSAGEM_TOOLTIP_ELEMENTO_DESTINO = "[TODO]: Adicionar.";
+        private const string MENSAGEM_TOOLTIP_ELEMENTO_ORIGEM = "Elemento que o usuário poderá arrastar durante o jogo.";
+        private const string MENSAGEM_TOOLTIP_ELEMENTO_DESTINO = "Elemento para onde um outro Elemento poderá ser arrastado.";
 
         #endregion
 
