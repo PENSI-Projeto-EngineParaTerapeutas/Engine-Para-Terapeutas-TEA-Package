@@ -6,8 +6,20 @@
 #regiao-titulo {
 	flex-direction: row;
 	align-items: center;
+	flex-wrap: wrap;
 	margin-left: 6px;
 	margin-bottom: 9px;
+}
+
+#regiao-checkbox-desfazer-acao {
+	flex-direction: row;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+#titulo-gabarito {
+	white-space: normal;
+	font-size: 18px;
 }
 
 #descricao-funcionalidades {
@@ -37,7 +49,9 @@
 }
 
 #input-desfazer-acao {
-	flex: 0.05;
+	flex: 0.85;
+	min-height: 25px;
+	height: 100%;
 }
 
 #regiao-carregamento-botoes-confirmacao > TemplateContainer {
@@ -53,4 +67,9 @@
 #regiao-carregamento-botoes-confirmacao > TemplateContainer > #botao-cancelar {
 	border-width: 0px;
 	margin-top: 6px;
+}
+
+#regiao-carregamento-tooltip-titulo > TemplateContainer > Image {
+	height: 24px;
+	width: 24px;
 }

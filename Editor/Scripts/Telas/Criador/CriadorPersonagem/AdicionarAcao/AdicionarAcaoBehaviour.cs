@@ -10,6 +10,8 @@ using Autis.Editor.DTOs;
 using Autis.Editor.Criadores;
 using Autis.Runtime.Eventos;
 using Autis.Editor.Utils;
+using Autis.Editor.Excecoes;
+using Autis.Editor.Constantes;
 
 namespace Autis.Editor.Telas {
     public class AdicionarAcaoBehaviour : Tela {
@@ -18,10 +20,8 @@ namespace Autis.Editor.Telas {
 
         #region .: Mensagens :.
 
-        private const string MENSAGEM_TOOLTIP_DROPDOWN_ELEMENTOS_INTERACAO = "Elemento que ao ser selecionado far√° com que uma anima√ß√£o com o personagem seja exibida.";
-        private const string MENSAGEM_TOOLTIP_DROPDOWN_ANIMACOES = "Anima√ß√£o com o personagem que ser√° apresentada quando um determinado Elemento for selecionado.";
-
-        private const string MENSAGEM_AVISO_CONFIRMAR_SEM_SELECIONAR_CAMPOS_OBRIGATORIOS = "[AVISO]: √â necess√°rio que o campo {nome-campo} esteja preenchido antes de confirmar.";
+        private const string MENSAGEM_TOOLTIP_DROPDOWN_ELEMENTOS_INTERACAO = "Elemento que ao ser selecionado far· com que uma animaÁ„o com o personagem seja exibida.";
+        private const string MENSAGEM_TOOLTIP_DROPDOWN_ANIMACOES = "AnimaÁ„o com o personagem que ser· apresentada quando um determinado Elemento for selecionado.";
 
         #endregion
 
@@ -296,13 +296,11 @@ namespace Autis.Editor.Telas {
         }
 
         protected virtual void HandleBotaoConfirmarClick() {
-            if(elementoInteracaoSelecionado == null) {
-                Debug.Log(MENSAGEM_AVISO_CONFIRMAR_SEM_SELECIONAR_CAMPOS_OBRIGATORIOS.Replace("{nome-campo}", "Elemento Intera√ß√£o"));
-                return;
+            try {
+                VerificarCamposObrigatorios();
             }
-
-            if(animacaoSelecionada == null) {
-                Debug.Log(MENSAGEM_AVISO_CONFIRMAR_SEM_SELECIONAR_CAMPOS_OBRIGATORIOS.Replace("{nome-campo}", "Anima√ß√£o"));
+            catch(ExcecaoCamposObrigatoriosVazios excecao) {
+                PopupAvisoBehaviour.ShowPopupAviso(excecao.Message);
                 return;
             }
 
@@ -315,6 +313,24 @@ namespace Autis.Editor.Telas {
                 eventoFinalizarCriacao.RemoverCallback(HandleEventoFinalizarCriacaoObjetoIntercacao);
             }
             Navigator.Instance.Voltar();
+
+            return;
+        }
+
+        protected virtual void VerificarCamposObrigatorios() {
+            string mensagem = string.Empty;
+
+            if(elementoInteracaoSelecionado == null) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_NAO_PREENCHIDO.Replace("{nome_campo}", "Elemento que a aÁ„o ser· vinculada");
+            }
+
+            if(animacaoSelecionada == null) {
+                mensagem += MensagensGerais.MENSAGEM_ERRO_CAMPO_NAO_PREENCHIDO.Replace("{nome_campo}", "AnimaÁ„o");
+            }
+
+            if(mensagem != string.Empty) {
+                throw new ExcecaoCamposObrigatoriosVazios(mensagem);
+            }
 
             return;
         }

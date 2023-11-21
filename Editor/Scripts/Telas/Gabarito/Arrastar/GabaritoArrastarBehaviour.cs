@@ -11,6 +11,7 @@ namespace Autis.Editor.Telas {
         #region .: Mensagens :.
 
         protected const string MENSAGEM_TOOLTIP_TITULO = "Indicação do local que é esperado que cada Elemento arrastável seja posicionado.";
+        protected const string MENSAGEM_TOOLTIP_DESFAZER_ACAO = "Permitir que o Elemento volte para sua posição inicial caso ele seja arrastado para um local incorreto..";
 
         #endregion
 
@@ -22,6 +23,9 @@ namespace Autis.Editor.Telas {
         protected const string NOME_REIGAO_CARREGAMENTO_ASSOCIACOES = "regiao-carregamento-associacoes";
         protected ScrollView scrollviewAssociacoes;
 
+        protected const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_DESFAZER_ACAO = "regiao-carregamento-tooltip-desfazer-acao";
+        protected VisualElement regiaoCarregamentoTooltipDesfazerAcao;
+
         protected const string NOME_CHECKBOX_DESFAZER_ACAO = "input-desfazer-acao";
         protected Toggle checkboxDesfazerAcao;
 
@@ -29,6 +33,8 @@ namespace Autis.Editor.Telas {
         protected VisualElement regiaoCarregamentoBotoesConfirmacao;
 
         protected InterrogacaoToolTip tooltipTitulo;
+        protected InterrogacaoToolTip toolTipDesfazerAcao;
+
         protected readonly List<AssociacaoArrastavel> displaysAssociacoes = new();
         protected BotoesConfirmacao botoesConfirmacao;
 
@@ -43,6 +49,7 @@ namespace Autis.Editor.Telas {
             ConfigurarScrollviewAssociacoes();
             ConfigurarCheckboxDesfazerAcao();
             ConfigurarBotoesConfirmacao();
+            ConfigurarTooltipDesfazerAcao();
 
             return;
         }
@@ -79,6 +86,16 @@ namespace Autis.Editor.Telas {
                     manipuladorElemento.SetDeveDesfazerAcao(evt.newValue);
                 }
             });
+
+            return;
+        }
+
+        protected virtual void ConfigurarTooltipDesfazerAcao() {
+            toolTipDesfazerAcao = new InterrogacaoToolTip();
+            toolTipDesfazerAcao.SetTexto(MENSAGEM_TOOLTIP_DESFAZER_ACAO);
+
+            regiaoCarregamentoTooltipDesfazerAcao = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_DESFAZER_ACAO);
+            regiaoCarregamentoTooltipDesfazerAcao.Add(toolTipDesfazerAcao.Root);
 
             return;
         }

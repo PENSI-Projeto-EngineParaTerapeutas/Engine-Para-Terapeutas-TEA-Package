@@ -15,7 +15,10 @@
 
         <engine:ScrollView name="regiao-carregamento-associacoes"/>
 
-        <engine:Toggle name="input-desfazer-acao" class="checkbox-padrao" label="Desfazer ação em caso de erro"/>
+        <engine:VisualElement name="regiao-checkbox-desfazer-acao">
+            <engine:Toggle name="input-desfazer-acao" class="checkbox-padrao" label="Desfazer ação em caso de erro"/>
+            <engine:VisualElement name="regiao-carregamento-tooltip-desfazer-acao"/>
+        </engine:VisualElement>
     </engine:ScrollView>
 
     <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>

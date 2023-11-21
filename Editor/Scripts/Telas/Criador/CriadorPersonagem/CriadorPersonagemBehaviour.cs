@@ -23,9 +23,10 @@ namespace Autis.Editor.Criadores {
         #region .: Mensagens :.
 
         protected const string MENSAGEM_TOOLTIP_TITULO = "Cada fase poderá ter um único personagem.";
-        private const string MENSAGEM_TOOLTIP_INPUT_NOME = "Digite um nome para o Personagem. Cada componente deve ter um nome exclusivo (que não se repete em outro componente)";
-        protected const string TOOLTIP_TIPO_CONTROLE = "Forma como o personagem será controlado:\n\n1) Direto: os movimentos corporais do personagem serão controlados pelo usuário.\n\n2) Indireto: serão apresentadas animações com o personagem, quando o usuário selecionar determinados Elementos do jogo.";
-        protected const string TOOLTIP_TIPO_PERSONAGEM = "Forma do personagem. Opções: avatar, boneco palito ou personagem lúdico.";
+        protected const string MENSAGEM_TOOLTIP_INPUT_NOME = "Digite um nome para o Personagem. Cada componente deve ter um nome exclusivo (que não se repete em outro componente)";
+        protected const string MENSAGEM_TOOLTIP_TIPO_CONTROLE = "Forma como o personagem será controlado:\n\n1) Direto: os movimentos corporais do personagem serão controlados pelo usuário.\n\n2) Indireto: serão apresentadas animações com o personagem, quando o usuário selecionar determinados Elementos do jogo.";
+        protected const string MENSAGEM_TOOLTIP_TIPO_PERSONAGEM = "Forma do personagem. Opções: avatar, boneco palito ou personagem lúdico.";
+        protected const string MENSAGEM_TOOLTIP_TAMANHO = "A porcentagem se refere ao tamanho do personagem. Obs: Nos casos que o personagem for controlado por controle indireto, através de animações, o tamanho do personagem pode ser diminuído na animação.";
 
         protected const string ERRO_TIPO_CONTROLE_NAO_SELECIONADO = "Selecione um tipo de controle para o Personagem.\n";
 
@@ -164,7 +165,7 @@ namespace Autis.Editor.Criadores {
             regiaoCarregamentoTooltipTipoControle = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TIPO_CONTROLE);
             regiaoCarregamentoTooltipTipoControle.Add(tooltipTipoControle.Root);
 
-            tooltipTipoControle.SetTexto(TOOLTIP_TIPO_CONTROLE);
+            tooltipTipoControle.SetTexto(MENSAGEM_TOOLTIP_TIPO_CONTROLE);
 
             return;
         }
@@ -182,7 +183,7 @@ namespace Autis.Editor.Criadores {
                 tiposPersonagem.Add(associacao.Key);
             }
             
-            dropdownTipoPersonagem = new Dropdown("Tipo de personagem:", TOOLTIP_TIPO_PERSONAGEM, tiposPersonagem);
+            dropdownTipoPersonagem = new Dropdown("Tipo de personagem:", MENSAGEM_TOOLTIP_TIPO_PERSONAGEM, tiposPersonagem);
             dropdownTipoPersonagem.Campo.RegisterCallback<ChangeEvent<string>>(evt => {
                 ReinicarCamposAlterarTipoPersonagem();
 
@@ -388,7 +389,7 @@ namespace Autis.Editor.Criadores {
         }
 
         protected virtual void ConfigurarCampoTamanho() {
-            inputTamanho = new InputNumerico("Tamanho (%):", "A porcentagem se refere ao tamanho do personagem. Obs: Nos casos que o personagem for controlado por controle indireto, através de animações, o tamanho do personagem pode ser diminuído na animação.");
+            inputTamanho = new InputNumerico("Tamanho (%):", MENSAGEM_TOOLTIP_TAMANHO);
             inputTamanho.CampoNumerico.SetValueWithoutNotify(100f);
 
             inputTamanho.CampoNumerico.RegisterCallback<ChangeEvent<float>>(evt => {

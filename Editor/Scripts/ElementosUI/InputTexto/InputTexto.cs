@@ -9,7 +9,7 @@ namespace Autis.Editor.UI {
 
         #region .: Elementos :.
 
-        public Label LabelCampoTexto { get => campoTexto.labelElement; }
+        public Label LabelCampoTexto { get => labelTitulo; }
         public TextField CampoTexto { get => campoTexto; }
 
         private const string NOME_LABEL_INPUT_TEXTO = "label-input-texto";

@@ -129,6 +129,7 @@
 	margin-top: 3%;
 }
 
-#regiao-carregamento-inputs-tamanho > TemplateContainer > #input-numerico {
-	margin-right: 0;
+#regiao-carregamento-inputs-tamanho > TemplateContainer > VisualElement {
+	right: 160px;
+	top: 3px;
 }
