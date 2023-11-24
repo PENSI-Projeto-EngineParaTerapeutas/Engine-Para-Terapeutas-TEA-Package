@@ -20,7 +20,7 @@ namespace Autis.Editor.Telas {
         #region .: Mensagens :.
 
         protected const string MENSAGEM_TOOLTIP_TITULO = "A fase representa uma atividade do jogo. Defina as configurações da fase (nome, contexto, nível de dificuldade, faixa etária, ações esperadas)";
-        protected const string MENSAGEM_TOOLTIP_CAMPO_NOME = "[TODO]: Adicionar.";
+        protected const string MENSAGEM_TOOLTIP_CAMPO_NOME = "Digite um nome para a Fase. Cada Fase deve ter um nome exclusivo (que não se repete em outra Fase).";
         protected const string MENSAGEM_TOOLTIP_INPUT_VIDEO_CONTEXTO = "Vídeo para contextualizar a atividade abordada na fase. O vídeo será apresentado no início da fase.";
         protected const string MENSAGEM_TOOLTIP_DROPDOWN_DIFICULDADE = "Classificação do nível de dificuldade da fase do jogo.";
         protected const string MENSAGEM_TOOLTIP_INPUT_FAIXA_ETARIA = "Faixa etária que a fase do jogo é recomendada.";
@@ -120,7 +120,7 @@ namespace Autis.Editor.Telas {
         }
 
         protected virtual void ConfigurarCampoNome() {
-            campoNome = new InputTexto("Nome da fase");
+            campoNome = new InputTexto("Nome da fase", MENSAGEM_TOOLTIP_CAMPO_NOME);
             
             regiaoCarregamentoCampoNome = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_CAMPO_NOME);
             regiaoCarregamentoCampoNome.Add(campoNome.Root);

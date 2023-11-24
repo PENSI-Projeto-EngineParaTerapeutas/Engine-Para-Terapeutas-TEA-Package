@@ -18,8 +18,6 @@ namespace Autis.Editor.Criadores {
         protected override string CaminhoTemplate => "Telas/Criador/CriadorObjetoInteracao/CriadorObjetoInteracaoTemplate.uxml";
         protected override string CaminhoStyle => "Telas/Criador/CriadorObjetoInteracao/CriadorObjetoInteracaoStyle.uss";
 
-        public Action<GameObject> OnFinalizarCriacao { get; set; }
-
         #region .: Mensagens :.
 
         protected const string MENSAGEM_TOOLTIP_TITULO = "Elemento (imagem ou texto) que podem ser adicionados na fase do jogo. Um elemento poderá ser estático OU o usuário poderá interagir com ele.";
@@ -31,6 +29,7 @@ namespace Autis.Editor.Criadores {
 
         #region .: Eventos :.
 
+        public Action<GameObject> OnFinalizarCriacao { get; set; }
         protected static EventoJogo eventoFinalizarCriacao;
 
         #endregion
@@ -106,28 +105,28 @@ namespace Autis.Editor.Criadores {
         }
 
         public override void OnEditorUpdate() {
-            DefinirFerramenta();
-
             if(Selection.activeObject != manipulador?.ObjetoAtual) {
                 Selection.activeObject = manipulador?.ObjetoAtual;
+            }
+
+            DefinirFerramenta();
+            AtualizarCamposAssociadosScene();
+
+            return;
+        }
+
+        protected virtual void DefinirFerramenta() {
+            if(Tools.current != Tool.Rect) {
+                Tools.current = Tool.Rect;
+                return;
             }
 
             return;
         }
 
-        private void DefinirFerramenta() {
-            if(manipulador?.ObjetoAtual && manipulador?.GetTipo() == TiposObjetosInteracao.Texto) {
-                if(Tools.current != Tool.Move) {
-                    Tools.current = Tool.Move;
-                }
-
-                return;
-            }
-
-            if (Tools.current != Tool.Rect) {
-                Tools.current = Tool.Rect;
-                return;
-            }
+        protected virtual void AtualizarCamposAssociadosScene() {
+            grupoInputsPosicao.AtualizarCampos();
+            grupoInputsTamanho.AtualizarCampos();
 
             return;
         }

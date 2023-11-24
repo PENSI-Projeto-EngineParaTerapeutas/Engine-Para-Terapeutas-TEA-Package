@@ -231,6 +231,10 @@ namespace Autis.Editor.Telas {
 
             List<string> nomesClipsAnimacoes = new();
             foreach(AnimationClip clip in clipsAnimacoes) {
+                if(clip.name.Contains("Internal_")) {
+                    continue;
+                }
+
                 nomesClipsAnimacoes.Add(clip.name);
             }
 

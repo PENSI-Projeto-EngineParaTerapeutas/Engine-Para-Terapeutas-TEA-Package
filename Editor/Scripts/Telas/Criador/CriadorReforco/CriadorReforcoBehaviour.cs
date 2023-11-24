@@ -22,7 +22,7 @@ namespace Autis.Editor.Criadores {
         private const string MENSAGEM_TOOLTIP_INPUT_NOME = "Digite um nome para o Reforço. Cada componente deve ter um nome exclusivo (que não se repete em outro componente)";
         private const string MENSAGEM_TOOLTIP_DROPDOWN_TIPO_REFORCO = "Forma que o reforço será apresentado.";
         private const string MENSAGEM_TOOLTIP_DROPDOWN_TIPO_ACIONAMENTO = "Definição do que fará o reforço ser apresentado na fase do jogo.";
-        protected const string MENSAGEM_TOOLTIP_DROPDOWN_TEMPO_EXIBICAO = "[TODO]: Adicionar tooltip";
+        protected const string MENSAGEM_TOOLTIP_DROPDOWN_TEMPO_EXIBICAO = "Tempo que o reforço será mostrado no jogo.";
 
         #endregion
 
@@ -116,28 +116,28 @@ namespace Autis.Editor.Criadores {
         }
 
         public override void OnEditorUpdate() {
-            DefinirFerramenta();
-
             if(Selection.activeObject != manipulador?.ObjetoAtual) {
                 Selection.activeObject = manipulador?.ObjetoAtual;
+            }
+
+            DefinirFerramenta();
+            AtualizarCamposAssociadosScene();
+
+            return;
+        }
+
+        protected virtual void DefinirFerramenta() {
+            if(Tools.current != Tool.Rect) {
+                Tools.current = Tool.Rect;
+                return;
             }
 
             return;
         }
 
-        private void DefinirFerramenta() {
-            if(manipulador?.ObjetoAtual && manipulador?.GetTipo() == TiposReforcos.Texto) {
-                if (Tools.current != Tool.Move) {
-                    Tools.current = Tool.Move;
-                }
-
-                return;
-            }
-
-            if(Tools.current != Tool.Rect) {
-                Tools.current = Tool.Rect;
-                return;
-            }
+        protected virtual void AtualizarCamposAssociadosScene() {
+            grupoInputsPosicao.AtualizarCampos();
+            grupoInputsTamanho.AtualizarCampos();
 
             return;
         }

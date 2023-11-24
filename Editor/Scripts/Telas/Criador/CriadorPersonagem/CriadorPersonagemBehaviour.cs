@@ -28,7 +28,7 @@ namespace Autis.Editor.Criadores {
         protected const string MENSAGEM_TOOLTIP_TIPO_PERSONAGEM = "Forma do personagem. Opções: avatar, boneco palito ou personagem lúdico.";
         protected const string MENSAGEM_TOOLTIP_TAMANHO = "A porcentagem se refere ao tamanho do personagem. Obs: Nos casos que o personagem for controlado por controle indireto, através de animações, o tamanho do personagem pode ser diminuído na animação.";
 
-        protected const string ERRO_TIPO_CONTROLE_NAO_SELECIONADO = "Selecione um tipo de controle para o Personagem.\n";
+        protected const string MENSAGEM_ERRO_TIPO_CONTROLE_NAO_SELECIONADO = "Selecione um tipo de controle para o Personagem.\n";
 
         #endregion
 
@@ -126,12 +126,29 @@ namespace Autis.Editor.Criadores {
         }
 
         public override void OnEditorUpdate() {
+            if(Selection.activeObject != manipuladorPersonagem?.ObjetoAtual) {
+                Selection.activeObject = manipuladorPersonagem?.ObjetoAtual;
+            }
+
+            DefinirFerramenta();
+            AtualizarCamposAssociadosScene();
+
+            return;
+        }
+
+        protected virtual void DefinirFerramenta() {
             if(Tools.current != Tool.Move) {
                 Tools.current = Tool.Move;
             }
 
-            if(Selection.activeObject != manipuladorPersonagem?.ObjetoAtual) {
-                Selection.activeObject = manipuladorPersonagem?.ObjetoAtual;
+            return;
+        }
+
+        protected virtual void AtualizarCamposAssociadosScene() {
+            grupoInputsPosicao.AtualizarCampos();
+
+            if(manipuladorPersonagem != null && manipuladorPersonagem.ObjetoAtual != null) {
+                inputTamanho.CampoNumerico.SetValueWithoutNotify(manipuladorPersonagem.GetTamanho().x * 100f);
             }
 
             return;
@@ -450,7 +467,7 @@ namespace Autis.Editor.Criadores {
             }
 
             if(!radioOpcaoControleDireto.value && !radioOpcaoControleIndireto.value) {
-                mensagem += ERRO_TIPO_CONTROLE_NAO_SELECIONADO;
+                mensagem += MENSAGEM_ERRO_TIPO_CONTROLE_NAO_SELECIONADO;
             }
 
             if(mensagem != string.Empty) {

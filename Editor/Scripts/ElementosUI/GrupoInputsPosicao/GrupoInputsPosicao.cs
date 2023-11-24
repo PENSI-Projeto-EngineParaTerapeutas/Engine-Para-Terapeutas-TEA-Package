@@ -74,7 +74,7 @@ namespace Autis.Editor.UI {
         }
 
         public void AtualizarCampos() {
-            if(manipulador == null) {
+            if(manipulador == null || manipulador.ObjetoAtual == null) {
                 return;
             }
 

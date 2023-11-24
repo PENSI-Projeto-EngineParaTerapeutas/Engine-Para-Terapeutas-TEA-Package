@@ -104,11 +104,11 @@ namespace Autis.Editor.Telas {
             botoesConfirmacao = new();
 
             botoesConfirmacao.BotaoConfirmar.Clear();
-            botoesConfirmacao.BotaoConfirmar.text = "Salvar Gabarito\r\nArrastar";
+            botoesConfirmacao.BotaoConfirmar.text = "Salvar Ações\r\nEsperadas";
             botoesConfirmacao.BotaoConfirmar.clicked += HandleBotaoConfirmarClick;
 
             botoesConfirmacao.BotaoCancelar.Clear();
-            botoesConfirmacao.BotaoCancelar.text = "Cancelar Gabarito Arrastar";
+            botoesConfirmacao.BotaoCancelar.text = "Cancelar Ações Esperadas";
             botoesConfirmacao.BotaoCancelar.clicked += HandleBotaoCancelarClick;
 
             regiaoCarregamentoBotoesConfirmacao = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO);

@@ -87,24 +87,17 @@ namespace Autis.Editor.Criadores {
         }
 
         public override void OnEditorUpdate() {
-            DefinirFerramenta();
-
             if(Selection.activeObject != manipulador?.ObjetoAtual) {
                 Selection.activeObject = manipulador?.ObjetoAtual;
             }
 
+            DefinirFerramenta();
+            // TODO: Adicionar AtualizarCamposAssociadosScene();
+
             return;
         }
 
-        private void DefinirFerramenta() {
-            if(manipulador?.ObjetoAtual && manipulador?.GetTipo() == TiposIntrucoes.Texto) { 
-                if(Tools.current != Tool.Move) {
-                    Tools.current = Tool.Move;
-                }
-                
-                return;
-            }
-
+        protected virtual void DefinirFerramenta() {
             if(Tools.current != Tool.Rect) {
                 Tools.current = Tool.Rect;
                 return;
@@ -112,6 +105,14 @@ namespace Autis.Editor.Criadores {
 
             return;
         }
+
+        /* TODO: Adicionar:
+        protected virtual void AtualizarCamposAssociadosScene() {
+            grupoInputsPosicao.AtualizarCampos();
+            grupoInputsTamanho.AtualizarCampos();
+
+            return;
+        }*/
 
         protected virtual void ConfigurarTooltipTitulo() {
             tooltipTitulo = new InterrogacaoToolTip(MENSAGEM_TOOLTIP_TITULO);

@@ -1,20 +1,32 @@
 using System;
+using Autis.Editor.Excecoes;
 using Autis.Editor.Manipuladores;
 using Autis.Editor.UI;
+using Autis.Editor.Utils;
 using Autis.Runtime.DTOs;
+using Autis.Runtime.Eventos;
 
 namespace Autis.Editor.Telas {
     public class EditarInformacoesCenaBehaviour : InformacoesCenaBehaviour {
+
+        #region .: Eventos :.
+
         public Action<ManipuladorCena> OnConfirmarEdicao { get; set; }
+        protected static EventoJogo eventoFinalizarEdicao;
+
+        #endregion
 
         public EditarInformacoesCenaBehaviour() {
+            eventoFinalizarEdicao = Importador.ImportarEvento("EventoFinalizarEdicao");
             CarregarDados();
+
             return;
         }
 
         private void CarregarDados() {
-            campoNome.CampoTexto.SetValueWithoutNotify(manipuladorCena.GetNome());
-            campoVideoContexto.VincularDados(manipuladorCena.GetNome());
+            campoNome.CampoTexto.SetValueWithoutNotify("Fase atual"); // TODO: Remover mock
+            // TODO: campoNome.CampoTexto.SetValueWithoutNotify(manipuladorCena.GetNome());
+            campoVideoContexto.VincularDados(manipuladorContexto.GetNomeArquivoVideo());
 
             dropdownDificuldade.Campo.SetValueWithoutNotify(manipuladorCena.GetDificuldade().ToString());
             /* TODO: Implementar faixa
@@ -27,9 +39,17 @@ namespace Autis.Editor.Telas {
         }
 
         protected override void HandleBotaoConfirmarClick() {
-            base.HandleBotaoConfirmarClick();
+            try {
+                VerificarCamposObrigatorios();
+            } 
+            catch(ExcecaoCamposObrigatoriosVazios excecao) {
+                PopupAvisoBehaviour.ShowPopupAviso(excecao.Message);
+                return;
+            }
 
+            eventoFinalizarEdicao.AcionarCallbacks();
             OnConfirmarEdicao?.Invoke(manipuladorCena);
+            Navigator.Instance.Voltar();
 
             return;
         }
@@ -57,6 +77,13 @@ namespace Autis.Editor.Telas {
                 opcaoRadioArrastar.SetValueWithoutNotify(true);
                 botaoCriarGabarito.SetEnabled(true);
             }
+
+            return;
+        }
+
+        protected override void HandleBotaoCancelarClick() {
+            eventoFinalizarEdicao.AcionarCallbacks();
+            Navigator.Instance.Voltar();
 
             return;
         }

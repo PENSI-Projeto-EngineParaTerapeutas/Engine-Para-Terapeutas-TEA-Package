@@ -30,7 +30,7 @@
 
         <engine:Label name="label-descricao-botao-estrutura-fase" class="label-padrao" text="Após criar todos os componentes da fase, defina alguns parâmetros gerais da fase."/>
         <engine:VisualElement name="grupo-botoes-informacoes-fase" tooltip="Definição de configurações gerais da fase (nome, contexto, nível de dificuldade, faixa etária e ações esperadas).">
-            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-informacoes-fase" text="Estrutura da fase"/>
+            <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-informacoes-fase" text="Configuração da fase"/>
         </engine:VisualElement>
     </engine:VisualElement>
     <engine:VisualElement name="regiao-ajuda">
