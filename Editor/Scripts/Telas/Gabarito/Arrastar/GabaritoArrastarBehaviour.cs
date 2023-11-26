@@ -81,6 +81,8 @@ namespace Autis.Editor.Telas {
 
         protected virtual void ConfigurarCheckboxDesfazerAcao() {
             checkboxDesfazerAcao = root.Query<Toggle>(NOME_CHECKBOX_DESFAZER_ACAO);
+
+            checkboxDesfazerAcao.SetValueWithoutNotify(true);
             checkboxDesfazerAcao.RegisterCallback<ChangeEvent<bool>>(evt => {
                 foreach(ManipuladorObjetoInteracao manipuladorElemento in manipuladorGabaritoArrastar.ElementosInteracaoArrastaveis) {
                     manipuladorElemento.SetDeveDesfazerAcao(evt.newValue);

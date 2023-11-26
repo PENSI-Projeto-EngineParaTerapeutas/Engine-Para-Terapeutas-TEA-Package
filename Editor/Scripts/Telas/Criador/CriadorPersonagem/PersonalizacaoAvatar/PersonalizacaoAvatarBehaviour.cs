@@ -24,7 +24,6 @@ namespace Autis.Editor.Criadores {
 
         private const string MENSAGEM_ERRO_TIPO_PERSONAGEM_NAO_SELECIONADO = "Selecione o tipo de personagem.\n";
         private const string MENSAGEM_ERRO_TIPO_CABELO_NAO_SELECIONADO = "Selecione o tipo de cabelo do personagem.\n";
-        private const string MENSAGEM_ERRO_TIPO_ROUPA_NAO_SELECIONADO = "Selecione o tipo das roupas do personagem.\n";
 
         #endregion
 
@@ -174,6 +173,7 @@ namespace Autis.Editor.Criadores {
             dropdownCabelos.Campo.RegisterCallback<ChangeEvent<string>>(evt => {
                 manipuladorAvatar.SetCabelo(opcoesCabelos.FindIndex(opcao => opcao == evt.newValue) - 1);
             });
+            dropdownCabelos.Campo.SetValueWithoutNotify(opcoesCabelos[2]);
 
             regiaoCarregamentoDropdownCabelos = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_DROPDOWN_CABELOS);
             regiaoCarregamentoDropdownCabelos.Add(dropdownCabelos.Root);
@@ -230,6 +230,7 @@ namespace Autis.Editor.Criadores {
             dropdownRoupas.Campo.RegisterCallback<ChangeEvent<string>>(evt => {
                 manipuladorAvatar.SetConjuntoRoupas(dropdownRoupas.Campo.choices.FindIndex(opcao => opcao == evt.newValue) - 1);
             });
+            dropdownRoupas.Campo.SetValueWithoutNotify(opcoesRoupas[1]);
 
             regiaoCarregamentoDropdownRoupas = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_DROPDOWN_ROUPAS);
             regiaoCarregamentoDropdownRoupas.Add(dropdownRoupas.Root);
@@ -328,10 +329,6 @@ namespace Autis.Editor.Criadores {
                 mensagem += MENSAGEM_ERRO_TIPO_CABELO_NAO_SELECIONADO;
             }
 
-            if(dropdownRoupas.EstaVazio()) {
-                mensagem += MENSAGEM_ERRO_TIPO_ROUPA_NAO_SELECIONADO;
-            }
-
             if(mensagem != string.Empty) {
                 throw new ExcecaoCamposObrigatoriosVazios(mensagem);
             }
@@ -357,7 +354,6 @@ namespace Autis.Editor.Criadores {
             inputCorRoupaInferior.ReiniciarCampos();
             inputCorRoupaSuperior.ReiniciarCampos();
             //inputImagemRosto.ReiniciarCampos();
-            dropdownRoupas.ReiniciarCampos();
 
             return;
         }

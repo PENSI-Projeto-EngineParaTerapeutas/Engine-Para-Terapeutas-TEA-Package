@@ -116,10 +116,6 @@ namespace Autis.Editor.Criadores {
         }
 
         public override void OnEditorUpdate() {
-            if(Selection.activeObject != manipulador?.ObjetoAtual) {
-                Selection.activeObject = manipulador?.ObjetoAtual;
-            }
-
             DefinirFerramenta();
             AtualizarCamposAssociadosScene();
 

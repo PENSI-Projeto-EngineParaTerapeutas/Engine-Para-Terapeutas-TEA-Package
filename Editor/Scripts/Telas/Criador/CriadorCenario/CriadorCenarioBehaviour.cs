@@ -88,10 +88,6 @@ namespace Autis.Editor.Criadores {
                 Tools.current = Tool.Rect;
             }
 
-            if(Selection.activeObject != manipulador?.ObjetoAtual) {
-                Selection.activeObject = manipulador?.ObjetoAtual;
-            }
-
             return;
         }
 

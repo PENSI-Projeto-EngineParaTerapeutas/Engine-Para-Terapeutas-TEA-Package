@@ -6,7 +6,7 @@
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
     <engine:VisualElement name="conteudo-principal">
-        <engine:Label name="label-descricao-botoes-atores" class="label-padrao" text="Defina os componentes da fase. Todos os componentes são opcionais."/>
+        <engine:Label name="label-descricao-botoes-atores" class="label-padrao" text="Defina os componentes da fase. Adicione quais e quantos componentes quiser, e na ordem que preferir."/>
         <engine:VisualElement name="grupo-botoes-criadores">
             <engine:Button class="botao-padrao botao-lista" name="botao-carregar-secao-cenario" tooltip="Cenário é o plano de fundo da fase do jogo.">
                 <engine:Label text="Cenário"/>
