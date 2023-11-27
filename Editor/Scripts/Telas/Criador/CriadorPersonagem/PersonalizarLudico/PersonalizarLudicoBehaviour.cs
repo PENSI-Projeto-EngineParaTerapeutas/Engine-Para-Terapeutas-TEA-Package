@@ -90,6 +90,7 @@ namespace Autis.Editor.Criadores {
             }
 
             manipuladorPersonagemLudico.AlterarPrefab(prefabPersonagem);
+            manipuladorPersonagemLudico.SetPosicao(new Vector3(5.0f, 0.0f));
             botoesConfirmacao.BotaoConfirmar.SetEnabled(manipuladorPersonagemLudico.PossuiPersonagemSelecionado());
 
             return;

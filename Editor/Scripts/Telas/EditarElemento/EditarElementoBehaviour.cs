@@ -8,6 +8,7 @@ using Autis.Editor.Editores;
 using Autis.Editor.Manipuladores;
 using Autis.Editor.Utils;
 using Autis.Runtime.Eventos;
+using UnityEditor;
 
 namespace Autis.Editor.Telas {
     public class EditarElementoBehaviour : Tela {
@@ -100,7 +101,21 @@ namespace Autis.Editor.Telas {
 
             return;
         }
-        
+
+        public override void OnEditorUpdate() {
+            DefinirFerramenta();
+            return;
+        }
+
+        protected virtual void DefinirFerramenta() {
+            if(Tools.current != Tool.Rect) {
+                Tools.current = Tool.Rect;
+                return;
+            }
+
+            return;
+        }
+
         private void ConfigurarRegiaoConteudoPrincipal() {
             scrollViewConteudoPrincipal = root.Query<ScrollView>(NOME_REGIAO_CONTEUDO_PRINCIPAL);
             scrollViewConteudoPrincipal.mode = ScrollViewMode.Vertical;

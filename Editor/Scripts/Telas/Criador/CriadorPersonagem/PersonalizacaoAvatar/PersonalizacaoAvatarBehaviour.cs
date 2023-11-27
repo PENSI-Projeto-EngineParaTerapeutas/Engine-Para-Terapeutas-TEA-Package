@@ -17,7 +17,7 @@ namespace Autis.Editor.Criadores {
 
         #region .: Mensagens :.
 
-        private const string MENSAGEM_ERRO_CARREGAR_PREFAB_PERSONAGEM = "[ERROR]: NÃ£o foi possÃ­vel carregar o prefab para o Avatar {nome}. Certifique-se de que o prefab estÃ¡ localizado em: <Pacote>/Prefabs/Personagens/Ludico_{nome}.prefab. AlÃ©m disso, garanta que o nome do sprite completo para o Personagem LÃºdico equivale ao final do nome no prefab.";
+        private const string MENSAGEM_ERRO_CARREGAR_PREFAB_PERSONAGEM = "[ERROR]: Não foi possí­vel carregar o prefab para o Avatar {nome}. Certifique-se de que o prefab está localizado em: <Pacote>/Prefabs/Personagens/Ludico_{nome}.prefab. Além disso, garanta que o nome do sprite completo para o Personagem Lúdico equivale ao final do nome no prefab.";
 
         private const string MENSAGEM_TOOLTIP_DROPDOWN_CABELOS = "[TODO]: Adicionar mensagem.";
         private const string MENSAGEM_TOOLTIP_DROPDOWN_ROUPAS = "[TODO]: Adicionar mensagem.";
@@ -154,6 +154,7 @@ namespace Autis.Editor.Criadores {
             }
 
             manipuladorAvatar.AlterarPrefab(prefabPersonagem);
+            manipuladorAvatar.SetPosicao(new Vector3(5.0f, 0.0f));
             ReiniciarCampos();
 
             botoesConfirmacao.BotaoConfirmar.SetEnabled(manipuladorAvatar.PossuiPersonagemSelecionado());
@@ -169,7 +170,7 @@ namespace Autis.Editor.Criadores {
                 "Liso e curto",
             };
 
-            dropdownCabelos = new Dropdown("Cabelos:", MENSAGEM_TOOLTIP_DROPDOWN_CABELOS, opcoesCabelos);
+            dropdownCabelos = new Dropdown("Cabelos:", opcoesCabelos);
             dropdownCabelos.Campo.RegisterCallback<ChangeEvent<string>>(evt => {
                 manipuladorAvatar.SetCabelo(opcoesCabelos.FindIndex(opcao => opcao == evt.newValue) - 1);
             });
@@ -226,7 +227,7 @@ namespace Autis.Editor.Criadores {
                 "Vestido",
             };
 
-            dropdownRoupas = new Dropdown("Roupas:", MENSAGEM_TOOLTIP_DROPDOWN_ROUPAS, opcoesRoupas);
+            dropdownRoupas = new Dropdown("Roupas:", opcoesRoupas);
             dropdownRoupas.Campo.RegisterCallback<ChangeEvent<string>>(evt => {
                 manipuladorAvatar.SetConjuntoRoupas(dropdownRoupas.Campo.choices.FindIndex(opcao => opcao == evt.newValue) - 1);
             });

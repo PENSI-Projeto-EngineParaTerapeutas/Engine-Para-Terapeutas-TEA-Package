@@ -4,6 +4,7 @@ using Autis.Runtime.Constantes;
 using Autis.Editor.Criadores;
 using Autis.Editor.Utils;
 using Autis.Runtime.Eventos;
+using UnityEditor;
 
 namespace Autis.Editor.Telas {
     public class MenuPrincipalBehaviour : Tela {
@@ -65,6 +66,20 @@ namespace Autis.Editor.Telas {
             ConfigurarBotaoCarregarInformacoesFase();
 
             ConfigurarRegiaoAjuda();
+
+            return;
+        }
+
+        public override void OnEditorUpdate() {
+            DefinirFerramenta();
+            return;
+        }
+
+        protected virtual void DefinirFerramenta() {
+            if(Tools.current != Tool.Rect) {
+                Tools.current = Tool.Rect;
+                return;
+            }
 
             return;
         }

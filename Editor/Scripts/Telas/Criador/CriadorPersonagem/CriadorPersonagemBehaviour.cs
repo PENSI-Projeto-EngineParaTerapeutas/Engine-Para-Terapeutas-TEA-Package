@@ -242,6 +242,7 @@ namespace Autis.Editor.Criadores {
                 }
 
                 manipuladorPersonagem.Criar();
+                manipuladorPersonagem.SetPosicao(new Vector3(5.0f, 0.0f));
                 manipuladorPersonagem.SetNome(inputNome.CampoTexto.value);
             });
 
