@@ -87,18 +87,7 @@ namespace Autis.Editor.Criadores {
         }
 
         public override void OnEditorUpdate() {
-            DefinirFerramenta();
             // TODO: Adicionar AtualizarCamposAssociadosScene();
-
-            return;
-        }
-
-        protected virtual void DefinirFerramenta() {
-            if(Tools.current != Tool.Rect) {
-                Tools.current = Tool.Rect;
-                return;
-            }
-
             return;
         }
 

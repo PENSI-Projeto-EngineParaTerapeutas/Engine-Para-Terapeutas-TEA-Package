@@ -8,11 +8,18 @@
     <engine:ScrollView>
 
         <engine:VisualElement name="cabecalho">
-            <engine:Label name="titulo" text="AUTIS"/>
-            <engine:VisualElement name="nome-jogo">
-                <engine:Label name="label-nome-jogo" class="label-padrao" text="Nome do jogo"/>
-                <engine:TextField name="input-nome-jogo" class="input-padrao" tooltip="Escreva aqui o nome do seu jogo"/>
+            <engine:VisualElement name="regiao-nome-e-titulo">
+                <engine:Label name="titulo" text="AUTIS"/>
+                <engine:VisualElement name="regiao-input-nome-jogo">
+                    <engine:VisualElement name="regiao-label-nome-jogo">
+                        <engine:Label name="label-nome-jogo" class="label-padrao" text="Nome do jogo"/>
+                        <engine:VisualElement name="regiao-carregamento-tooltip-nome-jogo"/>
+                    </engine:VisualElement>
+
+                    <engine:TextField name="input-nome-jogo" class="input-padrao" tooltip="Escreva aqui o nome do seu jogo"/>
+                </engine:VisualElement>
             </engine:VisualElement>
+
             <engine:Button name="botao-baixar-jogo" text="Baixar jogo"/>
         </engine:VisualElement>
 
@@ -26,8 +33,11 @@
         </engine:VisualElement>
 
         <engine:VisualElement name="rodape">
-            <engine:Button name="botao-criar-cena" text="Adicionar Fase"/>
-            <engine:Label name="label-descricao" class="label-padrao" text="Se você terminou de criar todas as fases do seu jogo, clique no botão Baixar Jogo."/>
+            <engine:Button name="botao-criar-cena" class="botao">
+                <engine:Label text="Adicionar Fase" class="label-botao"/>
+            </engine:Button>
+
+            <engine:Label name="label-descricao" class="label-padrao" text="Se você terminou de criar todas as fases do seu jogo, clique no botão &lt;color=#008000&gt;Baixar Jogo."/>
         </engine:VisualElement> 
     </engine:ScrollView>
 </engine:UXML>

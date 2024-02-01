@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Autis.Editor.Constantes;
 
 namespace Autis.Editor.UI {
     public class ListaElementos : ElementoInterfaceEditor {
@@ -17,6 +18,9 @@ namespace Autis.Editor.UI {
 
         private const string NOME_LISTA = "lista-elementos";
         private ListView listView;
+
+        private const string NOME_LABEL_LISTA_VAZIA = "label-lista-vazia";
+        private Label labelListaVazia;
 
         #endregion
 
@@ -57,12 +61,26 @@ namespace Autis.Editor.UI {
             listView.itemsSource = objetos;
             listView.selectionType = SelectionType.Single;
 
+            labelListaVazia = root.Query<Label>(NOME_LABEL_LISTA_VAZIA);
+
+            if(listView.itemsSource.Count <= 0) {
+                listView.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            }
+            else {
+                labelListaVazia.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            }
+
             return;
         }
 
         public void RemoverItem(GameObject item) {
             listView.itemsSource.Remove(item);
             listView.Rebuild();
+
+            if(listView.itemsSource.Count <= 0) {
+                listView.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+                labelListaVazia.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            }
 
             return;
         }

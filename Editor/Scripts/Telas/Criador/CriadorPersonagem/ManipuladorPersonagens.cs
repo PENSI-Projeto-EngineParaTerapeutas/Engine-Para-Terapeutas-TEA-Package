@@ -80,12 +80,30 @@ namespace Autis.Editor.Manipuladores {
         }
 
         public void Excluir() {
+            DesvicularElementosControleIndireto();
             ExcluirInterno();
-            // TODO: Remover objetos de interação com ações do controle indireto
+
             return;
         }
 
         protected abstract void ExcluirInterno();
+
+        protected virtual void DesvicularElementosControleIndireto() {
+            List<GameObject> elementosVinculados = GameObject.FindGameObjectsWithTag(NomesTags.ObjetosInteracao).ToList();
+
+            foreach(GameObject elemento in elementosVinculados) {
+                ManipuladorObjetoInteracao manipuladorElemento = new();
+                manipuladorElemento.SetObjeto(elemento);
+
+                if(!manipuladorElemento.EhGatilhoAcaoPersonagem()) {
+                    continue;
+                }
+
+                manipuladorElemento.SetGatilhoAcaoPersonagem(null);
+            }
+
+            return;
+        }
 
         public override void Editar(GameObject objetoAlvo) {
             base.Editar(objetoAlvo);
@@ -103,10 +121,6 @@ namespace Autis.Editor.Manipuladores {
 
             sortingGroupComponente = objeto.GetComponent<SortingGroup>();
             sortingGroupComponente.sortingOrder = OrdemRenderizacao.EmCriacao;
-
-            foreach(Transform parte in objeto.transform) {
-                SceneVisibilityManager.instance.DisablePicking(parte.gameObject, true);
-            }
 
             return;
         }

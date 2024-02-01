@@ -3,6 +3,8 @@ using UnityEngine.UIElements;
 using Autis.Editor.Telas;
 using Autis.Editor.UI;
 using Autis.Editor.Manipuladores;
+using Autis.Runtime.Constantes;
+using UnityEditor;
 
 namespace Autis.Editor.Criadores {
     public class PersonalizacaoBonecoPalitoBehaviour : Tela, IReiniciavel {
@@ -34,6 +36,23 @@ namespace Autis.Editor.Criadores {
 
             ConfigurarInputCor();
             ConfigurarBotoesConfirmacao();
+
+            return;
+        }
+
+        public override void OnEditorUpdate() {
+            DefinirFerramenta();
+            return;
+        }
+
+        private void DefinirFerramenta() {
+            if(Selection.activeTransform == null || !Selection.activeTransform.CompareTag(NomesTags.EditorOnly)) {
+                return;
+            }
+
+            if(Tools.current != Tool.Move) {
+                Tools.current = Tool.Move;
+            }
 
             return;
         }

@@ -131,7 +131,7 @@ namespace Autis.Editor.Manipuladores {
         }
 
         public void SetConjuntoRoupas(int indexConjunto) {
-            if(!PossuiPersonagemSelecionado() || indexConjunto >= componentePersonalizacaoPartes.Roupas.Count) {
+            if(!PossuiPersonagemSelecionado() || indexConjunto >= componentePersonalizacaoPartes.Roupas.Count + 1) {
                 return;
             }
 

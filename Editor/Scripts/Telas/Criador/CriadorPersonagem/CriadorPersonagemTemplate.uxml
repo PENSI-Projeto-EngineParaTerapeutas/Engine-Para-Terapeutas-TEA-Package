@@ -5,30 +5,30 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:ScrollView name="regiao-conteudo-principal">
-        <engine:VisualElement name="regiao-titulo" class="regiao-titulo-padrao">
-            <engine:Label name="label-titulo" class="titulo-padrao" text="Defina o personagem"/>
-            <engine:VisualElement name="regiao-tooltip-titulo"/>
-        </engine:VisualElement>
+    <engine:VisualElement name="regiao-titulo" class="regiao-titulo-padrao">
+        <engine:Label name="label-titulo" class="titulo-padrao" text="Defina o personagem"/>
+        <engine:VisualElement name="regiao-tooltip-titulo"/>
+    </engine:VisualElement>
 
+    <engine:ScrollView name="regiao-conteudo-principal">
         <engine:VisualElement name="regiao-carregamento-nome"/>
         <engine:VisualElement name="regiao-carregamento-tipo-personagem"/>
 
         <engine:Image name="imagem-personagem"/>
-        <engine:Button name="botao-personalizar-personagem" text="Personalizar\npersonagem"/>
+        <engine:Button name="botao-personalizar-personagem" text="Personalizar\nPersonagem"/>
 
         <engine:VisualElement name="regiao-label-selecao-controle">
             <engine:Label name="label-selecao-controle" class="label-input-padrao" text="Forma de controle"/>
             <engine:VisualElement name="regiao-tooltip-forma-controle"/>
         </engine:VisualElement>
-        <engine:RadioButtonGroup name="grupo-radio-button">
+        <engine:VisualElement name="grupo-radio-button">
             <engine:RadioButton class="radio-button-padrao" label="Direto" name="radio-opcao-controle-direto"/>
 
             <engine:VisualElement name="regiao-opcao-controle-indireto">
                 <engine:RadioButton class="radio-button-padrao" label="Indireto" name="radio-opcao-controle-indireto"/>
                 <engine:Button name="botao-configurar-controle-indireto" class="botao-padrao" text="Configurar controle indireto"/>
             </engine:VisualElement>
-        </engine:RadioButtonGroup>
+        </engine:VisualElement>
 
         <engine:Foldout text="Opções Avançadas (Opcional)" name="foldout-opcoes-avancadas" value="false">
             <engine:VisualElement name="regiao-carregamento-inputs-posicao"/>

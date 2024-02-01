@@ -13,6 +13,15 @@ namespace Autis.Editor.Telas {
         protected override string CaminhoTemplate => "Janelas/JanelaInicial/JanelaInicialTemplate.uxml";
         protected override string CaminhoStyle => "Janelas/JanelaInicial/JanelaInicialStyle.uss";
 
+        #region .: Mensagens :.
+
+        protected const string NOME_REGIAO_LABEL_INPUT_NOME = "regiao-label-nome-jogo";
+        protected const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_CAMPO_NOME = "regiao-carregamento-tooltip-nome-jogo";
+        protected const string MENSAGEM_TOOLTIP_CAMPO_NOME = "Digite o nome do jogo.";
+
+
+        #endregion
+
         #region .: Elementos :.
 
         private const string NOME_REGIAO_AVISO_LISTA_CENAS_VAZIA = "aviso-lista-cenas-vazia";
@@ -41,10 +50,21 @@ namespace Autis.Editor.Telas {
         protected override void OnRenderizarInterface() {
             ConfigurarListaCenas();
             ConfigurarBotaoCriarCena();
+            ConfigurarTooltipCampoNome();
 
             AlterarVisibilidadeListaCenas();
 
             return;
+        }
+
+        private void ConfigurarTooltipCampoNome() {
+            InterrogacaoToolTip tooltipCampoNome = new InterrogacaoToolTip(MENSAGEM_TOOLTIP_CAMPO_NOME);
+
+            VisualElement regiaoCarregamentoTooltipCampoNome = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_CAMPO_NOME);
+            regiaoCarregamentoTooltipCampoNome.Add(tooltipCampoNome.Root);
+
+            VisualElement regiaoCarregamentoLabelCampoNome = root.Query<VisualElement>(NOME_REGIAO_LABEL_INPUT_NOME);
+            regiaoCarregamentoLabelCampoNome.Add(regiaoCarregamentoTooltipCampoNome);
         }
 
         private void ConfigurarListaCenas() {
@@ -100,9 +120,17 @@ namespace Autis.Editor.Telas {
             return;
         }
 
+        private Image CriarIconeMais() {
+            return new() {
+                image = Importador.ImportarImagem("mais.png"),
+            };
+        }
+
         private void ConfigurarBotaoCriarCena() {
             botaoCriarCena = root.Query<Button>(NOME_BOTAO_CRIAR_CENA);
             botaoCriarCena.clicked += HandleClickBotaoCriarCena;
+
+            botaoCriarCena.Insert(0, CriarIconeMais());
             
             return;
         }

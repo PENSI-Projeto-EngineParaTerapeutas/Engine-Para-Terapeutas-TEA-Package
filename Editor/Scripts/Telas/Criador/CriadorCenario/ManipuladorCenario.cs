@@ -43,6 +43,18 @@ namespace Autis.Editor.Manipuladores {
             manipuladorComponenteSpriteRenderer = new ManipuladorSpriteRenderer(componenteSpriteRenderer);
 
             componenteCenarioResize.Resize();
+            BloquearMovimentacao();
+
+            return;
+        }
+
+        private void BloquearMovimentacao() {
+            objeto.hideFlags = HideFlags.NotEditable;
+
+            SceneVisibilityManager.instance.DisablePicking(objeto, true);
+            foreach(Transform parte in objeto.transform) {
+                SceneVisibilityManager.instance.DisablePicking(parte.gameObject, true);
+            }
 
             return;
         }

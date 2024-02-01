@@ -6,6 +6,8 @@ using Autis.Runtime.Constantes;
 using Autis.Runtime.DTOs;
 using Autis.Editor.Constantes;
 using Autis.Editor.UI;
+using Autis.Editor.Telas;
+using System.Collections.Generic;
 
 namespace Autis {
     [InitializeOnLoad]
@@ -143,6 +145,39 @@ namespace Autis {
             }
 
             layerAlvo.stringValue = layer.Nome;
+            return;
+        }
+
+        [MenuItem("Desenvolvimento/Ocultar Todos Icones")]
+        private static void HideAllGizmos() {
+            GizmoUtility.use3dIcons = true;
+            List<GizmoInfo> gizmos = GizmoUtility.GetGizmoInfo().ToList();
+
+            foreach(GizmoInfo gizmo in gizmos) {
+                gizmo.iconEnabled = false;
+                gizmo.gizmoEnabled = false;
+
+                GizmoUtility.ApplyGizmoInfo(gizmo);
+            }
+
+            GizmoInfo gizmoCamera = gizmos.Find(gizmo => gizmo.name == "Camera");
+            gizmoCamera.gizmoEnabled = true;
+            GizmoUtility.ApplyGizmoInfo(gizmoCamera);
+
+            return;
+        }
+
+        [MenuItem("Desenvolvimento/Exibir Todos Icones")]
+        private static void ShowAllGizmos() {
+            GizmoUtility.use3dIcons = true;
+
+            foreach(GizmoInfo gizmo in GizmoUtility.GetGizmoInfo()) {
+                gizmo.iconEnabled = true;
+                gizmo.gizmoEnabled = true;
+
+                GizmoUtility.ApplyGizmoInfo(gizmo);
+            }
+
             return;
         }
     }

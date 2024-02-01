@@ -30,10 +30,10 @@ namespace Autis.Editor.UI {
         private readonly Label labelFaixaEtaria;
 
         private const string NOME_BOTAO_ABRIR_CENA = "botao-abrir-cena";
-        private readonly Button botaoAbrirCena;
+        private Button botaoAbrirCena;
 
         private const string NOME_BOTAO_EXCLUIR_CENA = "botao-excluir-cena";
-        private readonly Button botaoExcluirCena;
+        private Button botaoExcluirCena;
 
         public Action<DisplayInformacoesCena> CallbackExcluirCena { set; get; } = null;
 
@@ -47,8 +47,8 @@ namespace Autis.Editor.UI {
             informacoesCena = cena;
 
             labelNome = Root.Query<Label>(NOME_LABEL_NOME_CENA);
-            labelDificuldade = Root.Query<Label>(NOME_LABEL_DIFICULDADE_CENA);
-            labelFaixaEtaria = Root.Query<Label>(NOME_LABEL_FAIXA_ETARIA_CENA);
+            //labelDificuldade = Root.Query<Label>(NOME_LABEL_DIFICULDADE_CENA);
+            //labelFaixaEtaria = Root.Query<Label>(NOME_LABEL_FAIXA_ETARIA_CENA);
 
             botaoAbrirCena = Root.Query<Button>(NOME_BOTAO_ABRIR_CENA);
             botaoExcluirCena = Root.Query<Button>(NOME_BOTAO_EXCLUIR_CENA);
@@ -61,15 +61,30 @@ namespace Autis.Editor.UI {
 
         private void ConfigurarLabels() {
             labelNome.text = informacoesCena.nomeExibicao;
-            labelDificuldade.text = informacoesCena.nivelDificuldade.ToString();
-            labelFaixaEtaria.text = informacoesCena.faixaEtaria.ToString();
+            //labelDificuldade.text = informacoesCena.nivelDificuldade.ToString();
+            //labelFaixaEtaria.text = informacoesCena.faixaEtaria.ToString();
 
             return;
         }
 
+        private Image CriarIconeEditar() {
+            return new() {
+                image = Importador.ImportarImagem("icone-editar.png"),
+            };
+        }
+
+        private Image CriarIconeLixeira() {
+            return new() {
+                image = Importador.ImportarImagem("icone-lixeira.png"),
+            };
+        }
+
         private void ConfigurarBotoes() {
             botaoAbrirCena.clicked += HandleClickBotaoAbrirCena;
+            botaoAbrirCena.Insert(0, CriarIconeEditar());
+
             botaoExcluirCena.clicked += HandleClickBotaoExcluirCena;
+            botaoExcluirCena.Insert(0, CriarIconeLixeira());
 
             return;
         }

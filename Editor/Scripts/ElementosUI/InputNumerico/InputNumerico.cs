@@ -10,17 +10,24 @@ namespace Autis.Editor.UI {
 
         #region .: Elementos :.
 
-        public Label LabelCampoNumerico { get => campoNumerico.labelElement; }
+        public Label LabelCampoNumerico { get => labelTitulo; }
         public FloatField CampoNumerico { get => campoNumerico; }
 
         private readonly FloatField campoNumerico;
-        private readonly InterrogacaoToolTip tooltipTitulo;
-        private VisualElement regiaoCarregamentoTooltipTitulo;
 
         private const string NOME_LABEL_INPUT_NUMERICO = "label-input-numerico";
         private const string NOME_INPUT_NUMERICO = "input-numerico";
-        private const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO = "regiao-tooltip-titulo";
         private const string SEM_TOOLTIP = null;
+
+        private const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO = "regiao-tooltip-titulo";
+        private InterrogacaoToolTip tooltipTitulo;
+        private VisualElement regiaoCarregamentoTooltipTitulo;
+
+        private const string NOME_REGIAO_CARREGAMENTO_TITULO = "regiao-carregamento-titulo";
+        private VisualElement regiaoCarregamentoTitulo;
+
+        private const string NOME_LABEL = "label-input-numerico";
+        private Label labelTitulo;
 
         #endregion
 
@@ -36,10 +43,13 @@ namespace Autis.Editor.UI {
         }
 
         private void ConfigurarCampoNumerico(string label, float max, float min) {
+            labelTitulo = Root.Query<Label>(NOME_LABEL);
 
-            CampoNumerico.label = label;
-            CampoNumerico.labelElement.name = NOME_LABEL_INPUT_NUMERICO;
-            CampoNumerico.labelElement.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
+            labelTitulo.name = NOME_LABEL;
+            labelTitulo.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
+            labelTitulo.text = label;
+            EsconderTituloSeVazio(label);
+
             CampoNumerico.SetValueWithoutNotify(0);
 
             CampoNumerico.RegisterCallback<ChangeEvent<float>>(evt => {
@@ -57,6 +67,8 @@ namespace Autis.Editor.UI {
 
         private void CarregarTooltipTitulo(string tooltipTexto) {
             if (!String.IsNullOrEmpty(tooltipTexto)) {
+                tooltipTitulo = new InterrogacaoToolTip(tooltipTexto);
+
                 regiaoCarregamentoTooltipTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
                 regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);
 
@@ -69,6 +81,15 @@ namespace Autis.Editor.UI {
         public void ReiniciarCampos() {
             CampoNumerico.SetValueWithoutNotify(0);
             return;
+        }
+
+        private void EsconderTituloSeVazio(string label) {
+            if (String.IsNullOrEmpty(label)) {
+                regiaoCarregamentoTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TITULO);
+                regiaoCarregamentoTitulo.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+
+                labelTitulo.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            }
         }
     }
 }

@@ -8,7 +8,6 @@ using Autis.Editor.Editores;
 using Autis.Editor.Manipuladores;
 using Autis.Editor.Utils;
 using Autis.Runtime.Eventos;
-using UnityEditor;
 
 namespace Autis.Editor.Telas {
     public class EditarElementoBehaviour : Tela {
@@ -98,20 +97,6 @@ namespace Autis.Editor.Telas {
             ConfigurarListaInstrucoes();
             ConfigurarListaReforcos();
             ConfigurarBotaoEstruturaFase();
-
-            return;
-        }
-
-        public override void OnEditorUpdate() {
-            DefinirFerramenta();
-            return;
-        }
-
-        protected virtual void DefinirFerramenta() {
-            if(Tools.current != Tool.Rect) {
-                Tools.current = Tool.Rect;
-                return;
-            }
 
             return;
         }

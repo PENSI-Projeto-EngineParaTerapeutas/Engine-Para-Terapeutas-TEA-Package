@@ -175,6 +175,7 @@ namespace Autis.Editor.Telas {
         }
 
         private void OnInspectorUpdate() {
+            ControladorFoco.VerificarSelecao();
             telaAtual?.OnEditorUpdate();
 
             if(Navigator.Instance.TelaAtual == telaAtual) {

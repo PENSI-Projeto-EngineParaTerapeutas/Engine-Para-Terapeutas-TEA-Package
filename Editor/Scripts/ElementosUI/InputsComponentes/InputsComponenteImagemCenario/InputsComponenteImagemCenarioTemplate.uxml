@@ -6,7 +6,7 @@
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
 
-    <engine:RadioButtonGroup name="grupo-radio-button">
+    <engine:VisualElement name="grupo-radio-button">
         <engine:VisualElement name="regiao-radio-button-cor-unica">
             <engine:RadioButton class="input-padrao opcao-radio-button radio-button-padrao" label="Cor única" name="radio-opcao-cor-unica"/>
             <engine:VisualElement name="regiao-input-cor" tooltip="Cor que sobrepõe a imagem do babababab ator"/>
@@ -17,7 +17,7 @@
             <engine:VisualElement name="regiao-input-imagem"/>
         </engine:VisualElement>
 
-    </engine:RadioButtonGroup>
+    </engine:VisualElement>
     
 
 

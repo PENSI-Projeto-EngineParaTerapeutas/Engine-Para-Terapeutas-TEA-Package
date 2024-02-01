@@ -9,6 +9,7 @@
 	margin-bottom: 9px;
 	padding-left: 10px;
 	padding-right: 10px;
+	padding-top: 1%;
 	background-color: #F2F2F2;
 	max-width: 630px;
 	width:100%;
@@ -17,11 +18,13 @@
 
 #informacoes-cenas {
 	flex-direction: column;
+	color: black;
 }
 
 #nome-cena {
-	font-size: 12px;
+	font-size: 18px;
 	margin-bottom: 3px;
+	margin-left: 15%;
 	-unity-font-style: bold;
 }
 
@@ -41,4 +44,14 @@
 
 #botoes-controle-cena {
 	flex-direction: row;
+}
+
+#botoes-controle-cena > Button {
+	flex-direction: row;
+	background-color: rgba(1,1,1,0);
+
+	border-bottom-color: rgba(1,1,1,0);
+    border-top-color: rgba(1,1,1,0);
+    border-left-color: rgba(1,1,1,0);
+    border-right-color: rgba(1,1,1,0);
 }

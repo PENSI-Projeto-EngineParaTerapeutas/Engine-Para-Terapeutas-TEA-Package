@@ -10,6 +10,7 @@ using Autis.Editor.Telas;
 using Autis.Editor.Manipuladores;
 using Autis.Editor.Excecoes;
 using Autis.Runtime.Eventos;
+using Autis.Runtime.Constantes;
 
 namespace Autis.Editor.Criadores {
     public class CriadorPersonagemBehaviour : Tela, IReiniciavel {
@@ -28,7 +29,7 @@ namespace Autis.Editor.Criadores {
         protected const string MENSAGEM_TOOLTIP_TIPO_PERSONAGEM = "Forma do personagem. Opções: avatar, boneco palito ou personagem lúdico.";
         protected const string MENSAGEM_TOOLTIP_TAMANHO = "A porcentagem se refere ao tamanho do personagem. Obs: Nos casos que o personagem for controlado por controle indireto, através de animações, o tamanho do personagem pode ser diminuído na animação.";
 
-        protected const string MENSAGEM_ERRO_TIPO_CONTROLE_NAO_SELECIONADO = "Selecione um tipo de controle para o Personagem.\n";
+        protected const string MENSAGEM_ERRO_TIPO_CONTROLE_NAO_SELECIONADO = "Selecione uma Forma de Controle para o Personagem.\n";
 
         #endregion
 
@@ -97,6 +98,9 @@ namespace Autis.Editor.Criadores {
 
         protected ManipuladorPersonagens manipuladorPersonagem;
 
+        private bool subtipoSelecionado = false;
+        private bool isEditingTamanho = false;
+
         public CriadorPersonagemBehaviour() {
             eventoFinalizarCriacao = Importador.ImportarEvento("EventoFinalizarCriacao");
 
@@ -126,18 +130,20 @@ namespace Autis.Editor.Criadores {
         }
 
         public override void OnEditorUpdate() {
-            if(Selection.activeObject != manipuladorPersonagem?.ObjetoAtual) {
-                Selection.activeObject = manipuladorPersonagem?.ObjetoAtual;
-            }
-
-            DefinirFerramenta();
             AtualizarCamposAssociadosScene();
-
+            DefinirFerramenta();
             return;
         }
 
-        protected virtual void DefinirFerramenta() {
-            if(Tools.current != Tool.Move) {
+        private void DefinirFerramenta() {
+            if(Selection.activeTransform == null || !Selection.activeTransform.CompareTag(NomesTags.EditorOnly)) {
+                return;
+            }
+
+            if(!subtipoSelecionado) {
+                Tools.current = Tool.Rect;
+            }
+            else if(Tools.current != Tool.Move) {
                 Tools.current = Tool.Move;
             }
 
@@ -147,7 +153,7 @@ namespace Autis.Editor.Criadores {
         protected virtual void AtualizarCamposAssociadosScene() {
             grupoInputsPosicao.AtualizarCampos();
 
-            if(manipuladorPersonagem != null && manipuladorPersonagem.ObjetoAtual != null) {
+            if(!isEditingTamanho && manipuladorPersonagem != null && manipuladorPersonagem.ObjetoAtual != null) {
                 inputTamanho.CampoNumerico.SetValueWithoutNotify(manipuladorPersonagem.GetTamanho().x * 100f);
             }
 
@@ -224,18 +230,21 @@ namespace Autis.Editor.Criadores {
                     case(TiposPersonagem.Avatar): {
                         manipuladorPersonagem = new ManipuladorAvatar(prefabAvatar);
                         AlterarEstadoSelecaoPersonagemAvatar();
+                        subtipoSelecionado = false;
 
                         break;
                     }
                     case(TiposPersonagem.BonecoPalito): {
                         manipuladorPersonagem = new ManipuladorBonecoPalito(prefabBonecoPalito);
                         AlterarEstadoSelecaoPersonagemPalito();
+                        subtipoSelecionado = true;
 
                         break;
                     }
                     case(TiposPersonagem.Ludico): {
                         manipuladorPersonagem = new ManipuladorPersonagemLudico(prefabPersonagemLudico);
                         AlterarEstadoSelecaoPersonagemLudico();
+                        subtipoSelecionado = false;
 
                         break;
                     }
@@ -311,6 +320,7 @@ namespace Autis.Editor.Criadores {
 
         protected virtual void ConfigurarBotaoPersonalizarPersonagem() {
             botaoPersonalizarPersonagem = Root.Query<Button>(NOME_BOTAO_PERSONALIZAR_PERSONAGEM);
+            botaoPersonalizarPersonagem.text = "Personalizar\npersonagem";
 
             botaoPersonalizarPersonagem.clicked += HandleBotaoPersonalizarPersonagemClick;
             botaoPersonalizarPersonagem.SetEnabled(false);
@@ -346,6 +356,8 @@ namespace Autis.Editor.Criadores {
             radioOpcaoControleIndireto.SetEnabled(true);
             botaoConfigurarControleIndireto.SetEnabled(false);
             botoesConfirmacao.BotaoConfirmar.SetEnabled(true);
+
+            subtipoSelecionado = true;
 
             return;
         }
@@ -409,6 +421,14 @@ namespace Autis.Editor.Criadores {
         protected virtual void ConfigurarCampoTamanho() {
             inputTamanho = new InputNumerico("Tamanho (%):", MENSAGEM_TOOLTIP_TAMANHO);
             inputTamanho.CampoNumerico.SetValueWithoutNotify(100f);
+
+            inputTamanho.CampoNumerico.RegisterCallback<FocusInEvent>(evt => {
+                isEditingTamanho = true;
+            });
+
+            inputTamanho.CampoNumerico.RegisterCallback<FocusOutEvent>(evt => {
+                isEditingTamanho = false;
+            });
 
             inputTamanho.CampoNumerico.RegisterCallback<ChangeEvent<float>>(evt => {
                 manipuladorPersonagem?.SetTamanho(evt.newValue / 100);

@@ -8,14 +8,16 @@
     <engine:VisualElement name="informacoes-cenas">
         <engine:Label name="nome-cena"/>
 
+        <!--
         <engine:VisualElement name="informacoes-extras">
             <engine:Label name="nivel-dificuldade"/>
             <engine:Label name="faixa-etaria"/>
         </engine:VisualElement>
+        -->
     </engine:VisualElement>
 
     <engine:VisualElement name="botoes-controle-cena">
-        <engine:Button name="botao-abrir-cena" text="Abrir"/>
-        <engine:Button name="botao-excluir-cena" text="Excluir"/>
+        <engine:Button name="botao-abrir-cena"/>
+        <engine:Button name="botao-excluir-cena"/>
     </engine:VisualElement>
 </engine:UXML>

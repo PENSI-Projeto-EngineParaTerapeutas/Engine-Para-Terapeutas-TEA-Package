@@ -83,14 +83,6 @@ namespace Autis.Editor.Criadores {
             return;
         }
 
-        public override void OnEditorUpdate() {
-            if(Tools.current != Tool.Rect) {
-                Tools.current = Tool.Rect;
-            }
-
-            return;
-        }
-
         protected virtual void CarregarRegiaoInputImagem() {
             inputImagem = new InputImagem();
             inputImagem.Root.SetEnabled(false);
@@ -101,11 +93,20 @@ namespace Autis.Editor.Criadores {
                     return;
                 }
 
-                inputImagem.Root.SetEnabled(true);
                 inputCor.Root.SetEnabled(false);
+                inputImagem.Root.SetEnabled(true);
+
+                if(!inputImagem.EstaVazio()) {
+                    manipulador.SetImagem(inputImagem.CampoImagem.value as Sprite);
+                }
             });
 
             inputImagem.CampoImagem.RegisterCallback<ChangeEvent<Object>>(evt => {
+                if(evt.newValue == null) {
+                    manipulador.SetCorSolida(inputCor.CampoCor.value);
+                    return;
+                }
+
                 manipulador.SetImagem(evt.newValue as Sprite);
             });
 
@@ -127,6 +128,8 @@ namespace Autis.Editor.Criadores {
 
                 inputImagem.Root.SetEnabled(false);
                 inputCor.Root.SetEnabled(true);
+                
+                manipulador.SetCorSolida(inputCor.CampoCor.value);
             });
 
             inputCor.CampoCor.RegisterCallback<ChangeEvent<Color>>(evt => {

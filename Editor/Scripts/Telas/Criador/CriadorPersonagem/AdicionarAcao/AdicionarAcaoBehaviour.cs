@@ -12,6 +12,7 @@ using Autis.Runtime.Eventos;
 using Autis.Editor.Utils;
 using Autis.Editor.Excecoes;
 using Autis.Editor.Constantes;
+using UnityEditor;
 
 namespace Autis.Editor.Telas {
     public class AdicionarAcaoBehaviour : Tela {
@@ -111,6 +112,23 @@ namespace Autis.Editor.Telas {
             ConfigurarBotoesConfirmacao();
 
             CarregarDados(acaoEditada);
+
+            return;
+        }
+
+        public override void OnEditorUpdate() {
+            DefinirFerramenta();
+            return;
+        }
+
+        private void DefinirFerramenta() {
+            if(Selection.activeTransform == null || !Selection.activeTransform.CompareTag(NomesTags.EditorOnly)) {
+                return;
+            }
+
+            if(Tools.current != Tool.Move) {
+                Tools.current = Tool.Move;
+            }
 
             return;
         }

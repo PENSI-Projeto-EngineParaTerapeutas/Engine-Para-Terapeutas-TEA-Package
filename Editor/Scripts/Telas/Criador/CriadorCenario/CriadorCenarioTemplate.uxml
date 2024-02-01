@@ -5,13 +5,13 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
+    <engine:VisualElement name="regiao-titulo" class="regiao-titulo-padrao">
+        <engine:Label name="label-titulo" class="titulo-padrao" text="Defina o cenário:"/>
+        <engine:VisualElement name="regiao-tooltip-titulo"/>
+    </engine:VisualElement>
+    
     <engine:ScrollView name="regiao-conteudo-principal">
-        <engine:VisualElement name="regiao-titulo" class="regiao-titulo-padrao">
-            <engine:Label name="label-titulo" class="titulo-padrao" text="Defina o cenário:"/>
-            <engine:VisualElement name="regiao-tooltip-titulo"/>
-        </engine:VisualElement>
-
-        <engine:RadioButtonGroup name="grupo-radio-button">
+        <engine:VisualElement name="grupo-radio-button">
             <engine:VisualElement name="regiao-radio-button-cor-unica">
                 <engine:RadioButton class="input-padrao opcao-radio-button radio-button-padrao" label="Cor única" name="radio-opcao-cor-unica"/>
                 <engine:VisualElement name="regiao-input-cor" tooltip="Definir cor do plano de fundo"/>
@@ -21,7 +21,7 @@
                 <engine:RadioButton class="input-padrao opcao-radio-button radio-button-padrao" label="Imagem" name="radio-opcao-imagem"/>
                 <engine:VisualElement name="regiao-input-imagem"/>
             </engine:VisualElement>
-        </engine:RadioButtonGroup>
+        </engine:VisualElement>
     </engine:ScrollView>
 
     <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>

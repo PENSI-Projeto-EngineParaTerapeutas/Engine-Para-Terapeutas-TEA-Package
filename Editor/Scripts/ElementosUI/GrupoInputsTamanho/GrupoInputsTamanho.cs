@@ -11,7 +11,8 @@ namespace Autis.Editor.UI {
 
         #region .: Mensagens :.
 
-        private const string MENSAGEM_TOOLTIP_TITULO = "A porcentagem se refere ao tamanho do personagem. Obs: Nos casos que o personagem for controlado por controle indireto, através de animações, o tamanho do personagem pode ser diminuído na animação.";
+        private const string LABEL_TITULO = "Tamanho";
+        private const string MENSAGEM_TOOLTIP_TITULO = "Dimensões da imagem (comprimento e largura)";
 
         #endregion
 
@@ -30,12 +31,22 @@ namespace Autis.Editor.UI {
         private VisualElement regiaoConteudoPrincipal;
 
         private const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO = "regiao-tooltip-titulo";
+        private InterrogacaoToolTip tooltipTitulo;
+        private VisualElement regiaoCarregamentoTooltipTitulo;
+
+        private const string NOME_REGIAO_CARREGAMENTO_TITULO = "regiao-carregamento-titulo";
+        private VisualElement regiaoCarregamentoTitulo;
+
+        private const string NOME_LABEL = "label-inputs-tamanho";
+        private Label labelTitulo;
 
         #endregion
 
         private ManipuladorObjetos manipulador;
+        private bool isEditing = false;
 
         public GrupoInputsTamanho() {
+            ConfigurarLabel(LABEL_TITULO, MENSAGEM_TOOLTIP_TITULO);
             ConfigurarCamposTamanho();
             return;
         }
@@ -57,6 +68,35 @@ namespace Autis.Editor.UI {
 
             regiaoConteudoPrincipal.Add(campoTamanhoY.Root);
 
+            root.Add(regiaoConteudoPrincipal);
+
+            return;
+        }
+
+        private void ConfigurarLabel(string label, string tooltip) {
+            tooltipTitulo = new InterrogacaoToolTip();
+
+            CarregarTooltipTitulo(tooltip);
+
+            labelTitulo = Root.Query<Label>(NOME_LABEL);
+
+            labelTitulo.name = NOME_LABEL;
+            labelTitulo.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
+            labelTitulo.text = label;
+
+            regiaoCarregamentoTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TITULO);
+
+            root.Add(regiaoCarregamentoTitulo);
+        }
+
+        private void CarregarTooltipTitulo(string tooltipTexto) {
+            if (!String.IsNullOrEmpty(tooltipTexto)) {
+                regiaoCarregamentoTooltipTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
+                regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);
+
+                tooltipTitulo.SetTexto(tooltipTexto);
+            }
+
             return;
         }
 
@@ -72,8 +112,24 @@ namespace Autis.Editor.UI {
             campoTamanhoX.CampoNumerico.SetValueWithoutNotify(this.manipulador.GetTamanho().x * 100f);
             campoTamanhoY.CampoNumerico.SetValueWithoutNotify(this.manipulador.GetTamanho().y * 100f);
 
+            campoTamanhoX.CampoNumerico.RegisterCallback<FocusInEvent>(evt => {
+                isEditing = true;
+            });
+
+            campoTamanhoX.CampoNumerico.RegisterCallback<FocusOutEvent>(evt => {
+                isEditing = false;
+            });
+
             campoTamanhoX.CampoNumerico.RegisterCallback<ChangeEvent<float>>(evt => {
                 this.manipulador.SetTamanhoX(evt.newValue / 100f);
+            });
+
+            campoTamanhoY.CampoNumerico.RegisterCallback<FocusInEvent>(evt => {
+                isEditing = true;
+            });
+
+            campoTamanhoY.CampoNumerico.RegisterCallback<FocusOutEvent>(evt => {
+                isEditing = false;
             });
 
             campoTamanhoY.CampoNumerico.RegisterCallback<ChangeEvent<float>>(evt => {
@@ -84,7 +140,7 @@ namespace Autis.Editor.UI {
         }
 
         public void AtualizarCampos() {
-            if(manipulador == null || manipulador.ObjetoAtual == null) {
+            if(isEditing || manipulador == null || manipulador.ObjetoAtual == null) {
                 return;
             }
 

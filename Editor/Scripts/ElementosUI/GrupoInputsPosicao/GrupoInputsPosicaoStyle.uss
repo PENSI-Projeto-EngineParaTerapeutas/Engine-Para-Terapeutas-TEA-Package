@@ -8,10 +8,14 @@
 
 #label-inputs-posicao {
     -unity-font-style: bold;
-    margin-bottom: 6px;
     font-size: 15px;
 }
 
 #regiao-conteudo {
+    margin-top: 6px;
 	flex-direction: row;
+}
+
+#regiao-conteudo > TemplateContainer > VisualElement > Label {
+    font-size: 15px;
 }

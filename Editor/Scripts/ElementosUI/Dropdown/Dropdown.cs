@@ -14,9 +14,7 @@ namespace Autis.Editor.UI {
         #region .: Elementos :.
 
         public Label Label { get => labelTitulo; }
-        public DropdownField Campo { get => campo; }
-
-        private const string NOME_LABEL = "label-campo-dropdown";
+        public DropdownField Campo { get => campo; } 
 
         private const string NOME_DROPDOWN = "campo-dropdown";
         private readonly DropdownField campo;
@@ -28,6 +26,7 @@ namespace Autis.Editor.UI {
         private const string NOME_REGIAO_CARREGAMENTO_TITULO = "regiao-carregamento-titulo";
         private VisualElement regiaoCarregamentoTitulo;
 
+        private const string NOME_LABEL = "label-campo-dropdown";
         private Label labelTitulo;
 
         #endregion

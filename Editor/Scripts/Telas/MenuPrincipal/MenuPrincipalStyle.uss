@@ -60,3 +60,7 @@
 #label-ajuda, #imagem-icone-ajuda, .botao-lista, .botao-lista > Label, .botao-lista > Image {
 	cursor: link;
 }
+
+Image {
+	background-color: rgba(1,1,1,0);
+}

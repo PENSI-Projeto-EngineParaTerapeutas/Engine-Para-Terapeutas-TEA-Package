@@ -5,6 +5,9 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
+    <engine:VisualElement name="regiao-carregamento-titulo" class="regiao-label-input-padrao">
+        <engine:Label name="label-input-numerico"/>
+        <engine:VisualElement name="regiao-tooltip-titulo"/>
+    </engine:VisualElement>
     <editor:FloatField name="input-numerico" class="input-padrao"/>
-    <engine:VisualElement name="regiao-tooltip-titulo"/>
 </engine:UXML>

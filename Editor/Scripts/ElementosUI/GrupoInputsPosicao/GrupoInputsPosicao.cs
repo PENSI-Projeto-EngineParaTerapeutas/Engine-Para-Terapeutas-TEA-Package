@@ -1,11 +1,19 @@
 using UnityEngine.UIElements;
 using Autis.Editor.Constantes;
 using Autis.Editor.Manipuladores;
+using System;
 
 namespace Autis.Editor.UI {
     public class GrupoInputsPosicao : ElementoInterfaceEditor, IReiniciavel, ICamposAtualizaveis, IVinculavel<ManipuladorObjetos> {
         protected override string CaminhoTemplate => "ElementosUI/GrupoInputsPosicao/GrupoInputsPosicaoTemplate.uxml";
         protected override string CaminhoStyle => "ElementosUI/GrupoInputsPosicao/GrupoInputsPosicaoStyle.uss";
+
+        #region .: Mensagens :.
+
+        private const string LABEL_TITULO = "Posição";
+        private const string MENSAGEM_TOOLTIP_TITULO = "Posicionamento da imagem na tela (posição horizontal e vertical)";
+
+        #endregion
 
         #region .: Elementos :.
 
@@ -21,12 +29,51 @@ namespace Autis.Editor.UI {
         private const string NOME_REGIAO_CONTEUDO_PRINCIPAL = "regiao-conteudo";
         private VisualElement regiaoConteudoPrincipal;
 
+        private const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO = "regiao-tooltip-titulo";
+        private InterrogacaoToolTip tooltipTitulo;
+        private VisualElement regiaoCarregamentoTooltipTitulo;
+
+        private const string NOME_REGIAO_CARREGAMENTO_TITULO = "regiao-carregamento-titulo";
+        private VisualElement regiaoCarregamentoTitulo;
+
+        private const string NOME_LABEL = "label-inputs-posicao";
+        private Label labelTitulo;
+
         #endregion
 
         private ManipuladorObjetos manipulador;
+        private bool isEditing = false;
 
         public GrupoInputsPosicao() {
+            ConfigurarLabel(LABEL_TITULO, MENSAGEM_TOOLTIP_TITULO);
             ConfigurarCamposPosicao();
+            return;
+        }
+
+        private void ConfigurarLabel(string label, string tooltip) {
+            tooltipTitulo = new InterrogacaoToolTip();
+
+            CarregarTooltipTitulo(tooltip);
+
+            labelTitulo = Root.Query<Label>(NOME_LABEL);
+
+            labelTitulo.name = NOME_LABEL;
+            labelTitulo.AddToClassList(NomesClassesPadroesEditorStyle.LabelInputPadrao);
+            labelTitulo.text = label;
+
+            regiaoCarregamentoTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TITULO);
+
+            root.Add(regiaoCarregamentoTitulo);
+        }
+
+        private void CarregarTooltipTitulo(string tooltipTexto) {
+            if (!String.IsNullOrEmpty(tooltipTexto)) {
+                regiaoCarregamentoTooltipTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
+                regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);
+
+                tooltipTitulo.SetTexto(tooltipTexto);
+            }
+
             return;
         }
 
@@ -46,6 +93,7 @@ namespace Autis.Editor.UI {
             campoPosicaoY.CampoNumerico.SetValueWithoutNotify(0);
 
             regiaoConteudoPrincipal.Add(campoPosicaoY.Root);
+            root.Add(regiaoConteudoPrincipal);
 
             return;
         }
@@ -62,8 +110,24 @@ namespace Autis.Editor.UI {
             campoPosicaoX.CampoNumerico.SetValueWithoutNotify(this.manipulador.GetPosicao().x);
             campoPosicaoY.CampoNumerico.SetValueWithoutNotify(this.manipulador.GetPosicao().y);
 
+            campoPosicaoX.CampoNumerico.RegisterCallback<FocusInEvent>(evt => {
+                isEditing = true;
+            });
+
+            campoPosicaoX.CampoNumerico.RegisterCallback<FocusOutEvent>(evt => {
+                isEditing = false;
+            });
+
             campoPosicaoX.CampoNumerico.RegisterCallback<ChangeEvent<float>>(evt => {
                 manipulador.SetPosicaoX(evt.newValue);
+            });
+
+            campoPosicaoY.CampoNumerico.RegisterCallback<FocusInEvent>(evt => {
+                isEditing = true;
+            });
+
+            campoPosicaoY.CampoNumerico.RegisterCallback<FocusOutEvent>(evt => {
+                isEditing = false;
             });
 
             campoPosicaoY.CampoNumerico.RegisterCallback<ChangeEvent<float>>(evt => {
@@ -74,7 +138,7 @@ namespace Autis.Editor.UI {
         }
 
         public void AtualizarCampos() {
-            if(manipulador == null || manipulador.ObjetoAtual == null) {
+            if(isEditing || manipulador == null || manipulador.ObjetoAtual == null) {
                 return;
             }
 

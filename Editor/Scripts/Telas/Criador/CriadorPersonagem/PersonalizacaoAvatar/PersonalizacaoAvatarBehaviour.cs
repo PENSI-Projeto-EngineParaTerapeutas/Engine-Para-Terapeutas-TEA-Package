@@ -9,6 +9,8 @@ using Autis.Editor.Utils;
 using Autis.Editor.Constantes;
 using Autis.Editor.Manipuladores;
 using Autis.Editor.Excecoes;
+using Autis.Runtime.Constantes;
+using UnityEditor;
 
 namespace Autis.Editor.Criadores {
     public class PersonalizacaoAvatarBehaviour : Tela, IReiniciavel {
@@ -17,10 +19,16 @@ namespace Autis.Editor.Criadores {
 
         #region .: Mensagens :.
 
-        private const string MENSAGEM_ERRO_CARREGAR_PREFAB_PERSONAGEM = "[ERROR]: Não foi possí­vel carregar o prefab para o Avatar {nome}. Certifique-se de que o prefab está localizado em: <Pacote>/Prefabs/Personagens/Ludico_{nome}.prefab. Além disso, garanta que o nome do sprite completo para o Personagem Lúdico equivale ao final do nome no prefab.";
+        private const string MENSAGEM_ERRO_CARREGAR_PREFAB_PERSONAGEM = "[ERROR]: Nï¿½o foi possï¿½ï¿½vel carregar o prefab para o Avatar {nome}. Certifique-se de que o prefab estï¿½ localizado em: <Pacote>/Prefabs/Personagens/Ludico_{nome}.prefab. Alï¿½m disso, garanta que o nome do sprite completo para o Personagem Lï¿½dico equivale ao final do nome no prefab.";
 
-        private const string MENSAGEM_TOOLTIP_DROPDOWN_CABELOS = "[TODO]: Adicionar mensagem.";
-        private const string MENSAGEM_TOOLTIP_DROPDOWN_ROUPAS = "[TODO]: Adicionar mensagem.";
+        private const string MENSAGEM_TOOLTIP_DROPDOWN_CABELOS = "Tipo de cabelo do avatar.";
+        private const string MENSAGEM_TOOLTIP_DROPDOWN_ROUPAS = "Roupa que o avatar irï¿½ usar.";
+
+        private const string MENSAGEM_TOOLTIP_COR_CABELO = "Cor do cabelo do avatar.";
+        private const string MENSAGEM_TOOLTIP_COR_OLHOS = "Cor dos olhos do avatar.";
+        private const string MENSAGEM_TOOLTIP_COR_PELE = "Cor da pele do avatar.";
+        private const string MENSAGEM_TOOLTIP_COR_ROUPA_SUPERIOR = "Cor da parte superior da roupa do avatar.";
+        private const string MENSAGEM_TOOLTIP_COR_ROUPA_INFERIOR = "Cor da parte inferior da roupa do avatar (caso a roupa tenha duas peï¿½as).";
 
         private const string MENSAGEM_ERRO_TIPO_PERSONAGEM_NAO_SELECIONADO = "Selecione o tipo de personagem.\n";
         private const string MENSAGEM_ERRO_TIPO_CABELO_NAO_SELECIONADO = "Selecione o tipo de cabelo do personagem.\n";
@@ -80,6 +88,7 @@ namespace Autis.Editor.Criadores {
         private readonly ManipuladorAvatar manipuladorAvatar;
 
         private string nomePrefabAtual = string.Empty;
+        private bool subtipoSelecionado = false;
 
         public PersonalizacaoAvatarBehaviour(ManipuladorAvatar manipuladorAvatar) {
             this.manipuladorAvatar = manipuladorAvatar;
@@ -108,6 +117,36 @@ namespace Autis.Editor.Criadores {
             return;
         }
 
+        public override void OnEditorUpdate() {
+            DefinirFerramenta();
+            return;
+        }
+
+        private void DefinirFerramenta() {
+            if(Selection.activeTransform == null || !Selection.activeTransform.CompareTag(NomesTags.EditorOnly)) {
+                return;
+            }
+
+            if(!subtipoSelecionado) {
+                Tools.current = Tool.Rect;
+            }
+            else if(Tools.current != Tool.Move) {
+                Tools.current = Tool.Move;
+            }
+
+            return;
+        }
+        
+        private void ConfigurarTooltipInput(VisualElement regiaoPrincipal, string mensagem) {
+            InterrogacaoToolTip novaTooltip = new InterrogacaoToolTip();
+            VisualElement regiaoCarregamentoNovaTooltip = new VisualElement();
+            regiaoCarregamentoNovaTooltip.Add(novaTooltip.Root);
+
+            novaTooltip.SetTexto(mensagem);
+
+            regiaoPrincipal.Add(regiaoCarregamentoNovaTooltip);
+        }
+
         private void CarregarValoresJaDefinidos() {
             inputCorCabelo.CampoCor.SetValueWithoutNotify(manipuladorAvatar.GetCorCabelo());
             inputCorPele.CampoCor.SetValueWithoutNotify(manipuladorAvatar.GetCorPele());
@@ -132,6 +171,7 @@ namespace Autis.Editor.Criadores {
 
                 botaoSelecaoPersonagem.clicked += (() => {
                     AlterarPesonagem(imagemPersonagem.name);
+                    subtipoSelecionado = true;
                 });
 
                 regiaoCarregamentoTiposPersonagens.Add(botaoSelecaoPersonagem);
@@ -192,6 +232,8 @@ namespace Autis.Editor.Criadores {
             regiaoCarregamentoInputCorCabelo = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUT_COR_CABELO);
             regiaoCarregamentoInputCorCabelo.Add(inputCorCabelo.Root);
 
+            ConfigurarTooltipInput(regiaoCarregamentoInputCorCabelo, MENSAGEM_TOOLTIP_COR_CABELO);
+
             return;
         }
 
@@ -204,6 +246,8 @@ namespace Autis.Editor.Criadores {
 
             regiaoCarregamentoInputCorOlhos = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUT_COR_OLHOS);
             regiaoCarregamentoInputCorOlhos.Add(inputCorOlhos.Root);
+
+            ConfigurarTooltipInput(regiaoCarregamentoInputCorOlhos, MENSAGEM_TOOLTIP_COR_OLHOS);
 
             return;
         }
@@ -218,6 +262,8 @@ namespace Autis.Editor.Criadores {
             regiaoCarregamentoInputCorPele = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUT_COR_PELE);
             regiaoCarregamentoInputCorPele.Add(inputCorPele.Root);
 
+            ConfigurarTooltipInput(regiaoCarregamentoInputCorPele, MENSAGEM_TOOLTIP_COR_PELE);
+
             return;
         }
 
@@ -225,6 +271,7 @@ namespace Autis.Editor.Criadores {
             List<string> opcoesRoupas = new() {
                 "Camisa e bermuda",
                 "Vestido",
+                "Sem roupas",
             };
 
             dropdownRoupas = new Dropdown("Roupas:", opcoesRoupas);
@@ -249,6 +296,8 @@ namespace Autis.Editor.Criadores {
             regiaoCarregamentoInputCorRoupaSuperior = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUT_COR_ROUPA_SUPERIOR);
             regiaoCarregamentoInputCorRoupaSuperior.Add(inputCorRoupaSuperior.Root);
 
+            ConfigurarTooltipInput(regiaoCarregamentoInputCorRoupaSuperior, MENSAGEM_TOOLTIP_COR_ROUPA_SUPERIOR);
+
             return;
         }
 
@@ -261,6 +310,8 @@ namespace Autis.Editor.Criadores {
 
             regiaoCarregamentoInputCorRoupaInferior = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUT_COR_ROUPA_INFERIOR);
             regiaoCarregamentoInputCorRoupaInferior.Add(inputCorRoupaInferior.Root);
+
+            ConfigurarTooltipInput(regiaoCarregamentoInputCorRoupaInferior, MENSAGEM_TOOLTIP_COR_ROUPA_INFERIOR);
 
             return;
         }
@@ -288,11 +339,11 @@ namespace Autis.Editor.Criadores {
         private void ConfigurarBotoesConfirmacao() {
             botoesConfirmacao = new();
             botoesConfirmacao.BotaoConfirmar.Clear();
-            botoesConfirmacao.BotaoConfirmar.text = "Salvar\r\nPersonalização";
+            botoesConfirmacao.BotaoConfirmar.text = "Salvar\r\nPersonalizaÃ§Ã£o";
             botoesConfirmacao.BotaoConfirmar.clicked += HandleBotaoConfirmarClick;
 
             botoesConfirmacao.BotaoCancelar.Clear();
-            botoesConfirmacao.BotaoCancelar.text = "Cancelar Personalização";
+            botoesConfirmacao.BotaoCancelar.text = "Cancelar PersonalizaÃ§Ã£o";
             botoesConfirmacao.BotaoCancelar.clicked += HandleBotaoCancelarClick;
 
             regiaoCarregamentoBotoesConfirmacao = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO);

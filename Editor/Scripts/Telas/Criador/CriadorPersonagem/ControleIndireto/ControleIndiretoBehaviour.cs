@@ -4,6 +4,8 @@ using Autis.Editor.UI;
 using Autis.Editor.DTOs;
 using Autis.Editor.Constantes;
 using Autis.Editor.Manipuladores;
+using Autis.Runtime.Constantes;
+using UnityEditor;
 
 namespace Autis.Editor.Telas {
     public class ControleIndiretoBehaviour : Tela {
@@ -42,6 +44,23 @@ namespace Autis.Editor.Telas {
             ConfigurarBotoesConfirmacao();
 
             CarregarAssociacoesJaEstabelecidas();
+
+            return;
+        }
+
+        public override void OnEditorUpdate() {
+            DefinirFerramenta();
+            return;
+        }
+
+        private void DefinirFerramenta() {
+            if(Selection.activeTransform == null || !Selection.activeTransform.CompareTag(NomesTags.EditorOnly)) {
+                return;
+            }
+
+            if(Tools.current != Tool.Move) {
+                Tools.current = Tool.Move;
+            }
 
             return;
         }

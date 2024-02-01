@@ -5,6 +5,10 @@ using UnityEditor.UIElements;
 using Autis.Editor.Telas;
 using Autis.Editor.UI;
 using Autis.Editor.Constantes;
+using Autis.Runtime.Constantes;
+using Autis.Editor.Criadores;
+using Autis.Editor.Utils;
+using Autis.Runtime.Eventos;
 
 public class TelaBemVindoBehaviour : JanelaEditor
 {
@@ -30,9 +34,17 @@ public class TelaBemVindoBehaviour : JanelaEditor
         ConfigurarBotaoCriarElementos();
     }
 
+    private Image CriarIconeSeta() {
+        return new() {
+            image = Importador.ImportarImagem("seta-frente.png"),
+        };
+    }
+
     private void ConfigurarBotaoCriarElementos() {
         botaoComecar = root.Query<Button>(NOME_BOTAO_COMECAR);
         botaoComecar.RegisterCallback<ClickEvent>(AbreJanelaCriarFase);
+
+        botaoComecar.Insert(1, CriarIconeSeta());
 
         return;
     }

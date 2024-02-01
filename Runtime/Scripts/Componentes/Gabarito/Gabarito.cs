@@ -1,5 +1,9 @@
+using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 using Autis.Runtime.Eventos;
+using Autis.Runtime.Constantes;
+using Autis.Runtime.DTOs;
 
 namespace Autis.Runtime.ComponentesGameObjects {
     public class Gabarito : MonoBehaviour {
@@ -36,7 +40,15 @@ namespace Autis.Runtime.ComponentesGameObjects {
             } 
 
             if(contadorAcertos >= maximoAcertos && possuiLimiteAcertos) {
-                eventoFimJogo.AcionarCallbacks();
+                List<GameObject> reforcos = GameObject.FindGameObjectsWithTag(NomesTags.Reforcos).ToList();
+
+                bool possuiReforcoFimJogo = reforcos.Any(objeto => objeto.GetComponent<ListenerEventosReforco>().TipoAcionamento == TipoAcionamentoReforco.FimJogo);
+                if(possuiReforcoFimJogo) {
+                    eventoFimJogo.AcionarCallbacks();
+                }
+                else {
+                    eventoAcionarReforcosAcerto.AcionarCallbacks();
+                }
             }
 
             return;

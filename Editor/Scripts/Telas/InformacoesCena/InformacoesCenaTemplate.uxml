@@ -5,12 +5,12 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
+    <engine:VisualElement name="regiao-titulo">
+        <engine:Label name="label-titulo" class="label-padrao" text="Configuração da fase"/>
+        <engine:VisualElement name="regiao-tooltip-titulo"/>
+    </engine:VisualElement>
+    
     <engine:ScrollView name="regiao-conteudo-principal">
-        <engine:VisualElement name="regiao-titulo">
-            <engine:Label name="label-titulo" class="label-padrao" text="Configuração da fase"/>
-            <engine:VisualElement name="regiao-tooltip-titulo"/>
-        </engine:VisualElement>
-
         <engine:VisualElement name="regiao-carregamento-input-nome"/>
 
         <engine:VisualElement name="regiao-contexto">

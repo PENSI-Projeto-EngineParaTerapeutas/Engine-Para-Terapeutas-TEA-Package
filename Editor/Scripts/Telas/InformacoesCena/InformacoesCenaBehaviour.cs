@@ -334,6 +334,8 @@ namespace Autis.Editor.Telas {
 
         protected virtual void ConfigurarBotaoCriarGabarito() {
             botaoCriarGabarito = root.Query<Button>(NOME_BOTAO_CRIAR_GABARITO);
+            botaoCriarGabarito.text = "Configurar ações\nesperadas";
+
             botaoCriarGabarito.clicked += HandleBotaoCriarGabaritoClick;
             botaoCriarGabarito.SetEnabled(false);
 

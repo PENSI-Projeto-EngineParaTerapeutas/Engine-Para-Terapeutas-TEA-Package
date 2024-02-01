@@ -1,23 +1,23 @@
 {
-    "name": "com.pensi.engine-para-terapeutas-tea",
-    "version": "1.0.0",
-    "displayName": "Engine Para Terapeutas TEA",
-    "description": "Motor para criação de jogos voltados ao atendimento de crianças com TEA",
-    "unity": "2021.3",
-    "dependencies": {
-        "com.unity.ugui": "1.0.0",
-        "com.unity.modules.imgui": "1.0.0",
-        "com.unity.modules.ui": "1.0.0",
-        "com.unity.modules.uielements": "1.0.0"
-    },
-    "keywords": [
-        "Terapeutas TEA",
-        "Jogos sérios",
-        "UFMG",
-        "PENSI"
-    ],
-    "author": {
-        "name": "Ana Paula Carvalho",
-        "url": "http://www.pensi.dcc.ufmg.br/"
-    }
+  "name": "com.pensi.engine-para-terapeutas-tea",
+  "version": "1.0.0",
+  "displayName": "Engine Para Terapeutas TEA",
+  "description": "Motor para cria\u00e7\u00e3o de jogos voltados ao atendimento de crian\u00e7as com TEA",
+  "unity": "2022.3",
+  "dependencies": {
+    "com.unity.ugui": "1.0.0",
+    "com.unity.modules.imgui": "1.0.0",
+    "com.unity.modules.ui": "1.0.0",
+    "com.unity.modules.uielements": "1.0.0"
+  },
+  "keywords": [
+    "Terapeutas TEA",
+    "Jogos s\u00e9rios",
+    "UFMG",
+    "PENSI"
+  ],
+  "author": {
+    "name": "Ana Paula Carvalho, Raquel Oliveira Prates, Rubia Alice Moreira de Souza,",
+    "url": "http://www.pensi.dcc.ufmg.br/"
+  }
 }

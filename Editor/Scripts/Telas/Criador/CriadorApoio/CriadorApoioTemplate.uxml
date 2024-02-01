@@ -5,20 +5,20 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
 >
-    <engine:ScrollView name="regiao-conteudo-principal">
-        <engine:VisualElement name="regiao-titulo" class="regiao-titulo-padrao">
-            <engine:Label name="titulo-criador" class="titulo-padrao" text="Defina o apoio" />
-            <engine:VisualElement name="regiao-carregamento-tooltip-titulo"/>
-        </engine:VisualElement>
-        <engine:Label name="descricao-criador" class="label-padrao" text="Defina um apoio para instruir a criança a interagir com um Elemento do jogo."/>
+    <engine:VisualElement name="regiao-titulo" class="regiao-titulo-padrao">
+        <engine:Label name="titulo-criador" class="titulo-padrao" text="Defina o apoio" />
+        <engine:VisualElement name="regiao-carregamento-tooltip-titulo"/>
+    </engine:VisualElement>
+    <engine:Label name="descricao-criador" class="label-padrao" text="Defina um apoio para instruir a criança a interagir com um Elemento do jogo."/>
 
+    <engine:ScrollView name="regiao-conteudo-principal">
         <engine:VisualElement name="regiao-input-nome"/>
 
         <engine:VisualElement name="regiao-label-selecao-objeto-pai">
             <engine:Label name="label-selecao-objeto-pai" class="label-padrao" text="Elemento que o apoio será vinculado:"/>
             <engine:VisualElement name="regiao-carregamento-tooltip-label-selecao-objeto-pai"/>
         </engine:VisualElement>
-        <engine:RadioButtonGroup name="grupo-radio-button">
+        <engine:VisualElement name="grupo-radio-button">
             <engine:VisualElement name="regiao-radio-button-vincular-elemento-existente">
                 <engine:RadioButton class="input-padrao opcao-radio-button radio-button-padrao" label="Vincular a elemento existente:" name="radio-opcao-selecionar-objeto-existente"/>
                 <engine:VisualElement name="regiao-carregamento-selecao-objeto-pai"/>
@@ -28,7 +28,7 @@
                 <engine:RadioButton class="input-padrao opcao-radio-button radio-button-padrao" label="Vincular a novo elemento:" name="radio-opcao-criar-novo-objeto"/>
                 <engine:Button name="botao-criar-elemento" text="Criar Elemento" class="botao-padrao"/>
             </engine:VisualElement>
-        </engine:RadioButtonGroup>
+        </engine:VisualElement>
 
         <engine:VisualElement name="regiao-carregamento-tipo-apoio"/>
 

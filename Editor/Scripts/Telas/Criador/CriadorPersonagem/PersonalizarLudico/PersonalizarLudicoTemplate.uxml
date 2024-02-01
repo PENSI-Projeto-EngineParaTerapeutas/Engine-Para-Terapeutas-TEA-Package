@@ -5,8 +5,9 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd"
 >
+    <engine:Label name="label-titulo" class="label-padrao" text="Personalização do Personagem Lúdico"/>
+    
     <engine:ScrollView name="regiao-conteudo-principal">
-        <engine:Label name="label-titulo" class="label-padrao" text="Personalização do Personagem Lúdico"/>
         <engine:Label name="label-selecao" class="label-padrao" text="Selecione um personagem:"/>
 
         <engine:VisualElement name="regiao-tipos-personagens"/>

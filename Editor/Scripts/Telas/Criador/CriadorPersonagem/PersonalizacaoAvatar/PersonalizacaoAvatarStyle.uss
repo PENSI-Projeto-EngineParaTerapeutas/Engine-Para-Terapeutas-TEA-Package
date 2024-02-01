@@ -85,3 +85,12 @@
 	border-width: 0px;
 	margin-top: 6px;
 }
+
+.regiao-carregamento-input {
+	flex-direction: row;
+}
+
+.regiao-carregamento-input > VisualElement {
+	justify-content: center;
+	margin-left: 6px;
+}

@@ -1,3 +1,5 @@
+
+
 * {
     background-color: #FFFFFF;
     justify-content: space-around;
@@ -12,7 +14,7 @@ Label {
     -unity-font-style: bold;
     align-self: center;
     font-size: 400%;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 
 .subtitulo {
@@ -21,16 +23,32 @@ Label {
     font-size: 170%;
 }
 
+.label-explicacao {
+    font-size: 190%;
+    background-color: rgba(1,1,1,0);
+    margin: 20px;
+    margin-left: 30px;
+    margin-top: 45px;
+}
+
 .botao {
     font-size: 200%;
     color: #DAE4EA;
     background-color: #1976D2;
-    border-radius: 20px;
-    width: 40%;
-    height: 10%;
+    border-radius: 15px;
+    width: 30%;
+    height: 7%;
     min-width: 150px;
     align-self: center;
     margin-top: 70px;
+
+    flex-direction: row;
+    justify-content: center;
+
+    border-top-color: rgba(1,1,1,0);
+    border-bottom-color: rgba(1,1,1,0);
+    border-left-color: rgba(1,1,1,0);
+    border-right-color: rgba(1,1,1,0);
 }
 
 .botao:hover {
@@ -39,6 +57,10 @@ Label {
 
 .botao:active {
     background-color: #23597a;
+}
+
+.botao > Label {
+    color: white;
 }
 
 .caixa-feature {
@@ -55,8 +77,25 @@ Label {
     white-space: normal;
 }
 
+.label-botao {
+    background-color: rgba(1,1,1,0);
+    color: #DAE4EA;
+    font-size: 25px;
+}
+
+Image {
+    background-color: rgba(1,1,1,0);
+    height: 30px;
+    width: 50px;
+    align-self: center;
+}
+
 #container-caixas {
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: space-around;
+    background-color: #F4F6F9;
+    border-radius: 13px;
+    margin-left: 5%;
+    margin-right: 5%;
 }

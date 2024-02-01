@@ -7,5 +7,6 @@
 >
     <engine:Foldout text="label-foldout" name="foldout-lista" value="true" class="foldout-lista-elementos-interno">
         <engine:ListView name="lista-elementos" class="lista-elementos"/>
+        <engine:Label name="label-lista-vazia" text="Lista vazia" class="label-padrao"/>
     </engine:Foldout>
 </engine:UXML>

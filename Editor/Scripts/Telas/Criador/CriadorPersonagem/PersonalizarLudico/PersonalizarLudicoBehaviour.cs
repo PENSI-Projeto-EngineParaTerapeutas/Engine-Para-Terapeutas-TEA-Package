@@ -9,6 +9,8 @@ using Autis.Editor.Utils;
 using Autis.Editor.Manipuladores;
 using Autis.Editor.UI;
 using Autis.Editor.Excecoes;
+using Autis.Runtime.Constantes;
+using UnityEditor;
 
 namespace Autis.Editor.Criadores {
     public class PersonalizarLudicoBehaviour : Tela {
@@ -41,6 +43,7 @@ namespace Autis.Editor.Criadores {
         private readonly ManipuladorPersonagemLudico manipuladorPersonagemLudico;
 
         private string nomePrefabAtual = string.Empty;
+        private bool subtipoSelecionado = false;
 
         public PersonalizarLudicoBehaviour(ManipuladorPersonagemLudico manipuladorPersonagemLudico) {
             this.manipuladorPersonagemLudico = manipuladorPersonagemLudico;
@@ -51,6 +54,26 @@ namespace Autis.Editor.Criadores {
 
             CarregarTiposPersonagem();
             ConfigurarBotoesConfirmacao();
+
+            return;
+        }
+
+        public override void OnEditorUpdate() {
+            DefinirFerramenta();
+            return;
+        }
+
+        private void DefinirFerramenta() {
+            if(Selection.activeTransform == null || !Selection.activeTransform.CompareTag(NomesTags.EditorOnly)) {
+                return;
+            }
+
+            if(!subtipoSelecionado) {
+                Tools.current = Tool.Rect;
+            }
+            else if(Tools.current != Tool.Move) {
+                Tools.current = Tool.Move;
+            }
 
             return;
         }
@@ -68,6 +91,7 @@ namespace Autis.Editor.Criadores {
 
                 botaoSelecaoPersonagem.RegisterCallback<ClickEvent>(evt => {
                     AlterarPersonagem(imagemPersonagem.name);
+                    subtipoSelecionado = true;
                 });
 
                 regiaoTiposPersonagem.Add(botaoSelecaoPersonagem);

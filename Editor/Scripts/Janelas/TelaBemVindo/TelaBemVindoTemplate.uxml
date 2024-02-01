@@ -13,22 +13,26 @@
     <engine:Label name="titulo-autis" text="Bem-vindo ao &lt;color=#005BB5&gt;AUTIS" class="titulo"/> 
 
     <engine:VisualElement name="container-caixas">
-        <engine:Box name="caixa-gerenciamento" class="caixa-feature">
-            <engine:Label text="Gerencie várias fases do seu jogo" class="subtitulo"/>
-            <engine:Label text="Seu jogo pode ter apenas uma fase ou várias, gerencie cada uma delas na tela inicial de forma simples e independente."/>
-        </engine:Box>
+        <engine:Label text="O que você pode fazer no Autis:" class="label-explicacao"/>
 
         <engine:Box name="caixa-criacao" class="caixa-feature">
-            <engine:Label text="Criação do início ao fim" class="subtitulo"/>
-            <engine:Label text="Crie um jogo desde a adição do cenário até a ação do personagem, na aba criar elemento."/>
+            <engine:Label text="Crie um jogo do início ao fim" class="subtitulo"/>
+            <engine:Label text="Crie um jogo desde a adição do cenário até a ação do personagem, na aba Criação."/>
+        </engine:Box>
+
+        <engine:Box name="caixa-gerenciamento" class="caixa-feature">
+            <engine:Label text="Gerenciamento" class="subtitulo"/>
+            <engine:Label text="Seu jogo pode ter apenas uma fase ou várias, gerencie cada uma delas na tela inicial de forma simples e independente."/>
         </engine:Box>
     
         <engine:Box name="caixa-personalizacao" class="caixa-feature">
-            <engine:Label text="Personalize do seu jeito" class="subtitulo"/>
-            <engine:Label text="Mude o personagem, o cenário, os objetos e muito mais, a qualquer momento na aba de editar elemento."/>
+            <engine:Label text="Personalização" class="subtitulo"/>
+            <engine:Label text="Mude o personagem, o cenário, os elementos e muito mais, a qualquer momento na aba Edição."/>
         </engine:Box>
     </engine:VisualElement>
 
-    <engine:Button name="botao-comecar" text="COMEÇAR" class="botao"/>
+    <engine:Button name="botao-comecar" class="botao">
+        <engine:Label text="COMEÇAR" class="label-botao"/>
+    </engine:Button>
 
 </engine:UXML>                          

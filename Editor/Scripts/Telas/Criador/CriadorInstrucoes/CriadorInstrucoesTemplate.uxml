@@ -5,12 +5,12 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd"
 >
+    <engine:VisualElement name="regiao-titulo" class="regiao-titulo-padrao">
+        <engine:Label name="label-titulo" class="titulo-padrao" text="Defina a instrução"/>
+        <engine:VisualElement name="regiao-tooltip-titulo"/>
+    </engine:VisualElement>
+    
     <engine:ScrollView name="regiao-conteudo-principal">
-        <engine:VisualElement name="regiao-titulo" class="regiao-titulo-padrao">
-            <engine:Label name="label-titulo" class="titulo-padrao" text="Defina a instrução"/>
-            <engine:VisualElement name="regiao-tooltip-titulo"/>
-        </engine:VisualElement>
-
         <engine:VisualElement name="regiao-input-nome"/>
 
         <engine:VisualElement name="regiao-carregamento-input-tipo-instrucao"/>

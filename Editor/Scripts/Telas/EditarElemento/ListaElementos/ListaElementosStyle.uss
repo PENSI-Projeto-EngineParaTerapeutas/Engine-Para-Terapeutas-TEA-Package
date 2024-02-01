@@ -34,3 +34,13 @@
 .foldout-lista-elementos-interno > Toggle > VisualElement > Label {
 	font-size: 15px;
 }
+
+#label-lista-vazia {
+	font-size: 12px;
+	padding-left: 6px;
+	padding-right: 2px;
+	background-color: #F0F3F4;
+	border-radius: 6px;
+	padding-top: 9px;
+	padding-bottom: 9px;
+}

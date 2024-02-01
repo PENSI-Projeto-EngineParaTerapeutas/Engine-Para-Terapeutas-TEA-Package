@@ -28,7 +28,7 @@
 }
 
 #titulo {
-    font-size: 30px;
+    font-size: 47px;
     -unity-font-style: bold;
     color: #005BB5;
     align-self: center;
@@ -37,22 +37,27 @@
     -unity-text-align: middle-center;
 }
 
-#nome-jogo {
+#regiao-input-nome-jogo {
     font-size: 16px;
     -unity-font-style: bold;
     align-self: center;
     width: 300px;
+    margin-left: 40px;
 }
 
-#unity-text-input {
+#input-nome-jogo > #unity-text-input {
     border-radius: 20px;
     background-color: white;
     height: 36px;
-}
+    padding-left: 10px;
 
-#input-nome-jogo {
     max-width: 300px;
     min-width: 150px;
+
+    border-top-color: #C4C4C4;
+    border-bottom-color: #C4C4C4;
+    border-left-color: #C4C4C4;
+    border-right-color: #C4C4C4;
 }
 
 #botao-baixar-jogo {
@@ -75,11 +80,12 @@
 #label-descricao {
     white-space: normal;
     -unity-text-align: middle-center;
-    margin-top: 12px;
+    margin-top: 2%;
+    margin-bottom: 1%;
     margin-left: 10px;
     margin-right: 10px;
     color: #554D56; 
-    font-size: 14px;
+    font-size: 16px;
 }
 
 #lista-cenas {
@@ -137,4 +143,37 @@
     border-top-color: #1976D2;
     border-left-color: #1976D2;
     border-right-color: #1976D2;
+
+    flex-direction: row;
+    justify-content: center;
+}
+
+#regiao-nome-e-titulo {
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#regiao-label-nome-jogo {
+    flex-direction: row;
+}
+
+#imagem-interrogacao {
+    background-color: #E9F1FB;
+}
+
+#label-nome-jogo {
+    margin-right: 7px;
+}
+
+#regiao-carregamento-tooltip-nome-jogo {
+    justify-content: flex-end;
+    background-color: #E9F1FB;
+}
+
+#regiao-carregamento-tooltip-nome-jogo > TemplateContainer {
+    background-color: rgba(1,1,1,0);
+}
+
+.label-botao {
+    margin-left: 5px;
 }

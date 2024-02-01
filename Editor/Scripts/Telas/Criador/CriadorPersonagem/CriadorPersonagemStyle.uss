@@ -96,7 +96,6 @@
 	align-self: center;
 }
 
-
 #botao-personalizar-personagem {
 	font-size: 15px;
 	-unity-font-style: bold;
@@ -129,7 +128,14 @@
 	margin-top: 3%;
 }
 
-#regiao-carregamento-inputs-tamanho > TemplateContainer > VisualElement {
-	right: 160px;
-	top: 3px;
+#regiao-carregamento-inputs-tamanho {
+	margin-left: 10px;
+}
+
+#regiao-carregamento-inputs-tamanho > TemplateContainer > VisualElement > Label {
+	font-size: 15px;
+}
+
+#regiao-carregamento-inputs-tamanho > TemplateContainer > FloatField {
+	margin-right: 0px;
 }
