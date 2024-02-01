@@ -36,7 +36,7 @@ namespace Autis {
         private static void ConfigurarPacote() {
             CriarPastasProjeto();
             ConfigurarProjectSettings();
-
+            OcultarTodosIcones();
             LayoutLoader.CarregarTelaBoasVindas();
             return;
         }
@@ -149,7 +149,7 @@ namespace Autis {
         }
 
         [MenuItem("Desenvolvimento/Ocultar Todos Icones")]
-        private static void HideAllGizmos() {
+        private static void OcultarTodosIcones() {
             GizmoUtility.use3dIcons = true;
             List<GizmoInfo> gizmos = GizmoUtility.GetGizmoInfo().ToList();
 
@@ -168,7 +168,7 @@ namespace Autis {
         }
 
         [MenuItem("Desenvolvimento/Exibir Todos Icones")]
-        private static void ShowAllGizmos() {
+        private static void ExibirTodosIcones() {
             GizmoUtility.use3dIcons = true;
 
             foreach(GizmoInfo gizmo in GizmoUtility.GetGizmoInfo()) {
