@@ -18,6 +18,11 @@
         <engine:VisualElement name="regiao-carregamento-inputs-video"/>
         <engine:VisualElement name="regiao-carregamento-inputs-audio"/>
         <engine:VisualElement name="regiao-carregamento-inputs-texto"/>
+
+        <engine:Foldout text="Opções Avançadas (Opcional)" name="foldout-opcoes-avancadas" value="false">
+            <engine:VisualElement name="regiao-carregamento-inputs-posicao"/>
+            <engine:VisualElement name="regiao-carregamento-inputs-tamanho"/>
+        </engine:Foldout>
     </engine:ScrollView>
 
     <engine:VisualElement name="regiao-carregamento-botoes-confirmacao"/>

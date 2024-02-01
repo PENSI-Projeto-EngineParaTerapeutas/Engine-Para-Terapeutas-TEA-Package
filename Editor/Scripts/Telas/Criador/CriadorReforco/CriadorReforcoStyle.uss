@@ -8,8 +8,12 @@
 	flex-direction: row;
 }
 
-#regiao-carregamento-inputs-imagem, #regiao-carregamento-inputs-audio, #regiao-carregamento-inputs-video {
-	margin-top: 9%;
+#regiao-carregamento-inputs-imagem, #regiao-carregamento-inputs-audio {
+	margin-top: 6%;
+}
+
+#regiao-carregamento-inputs-video {
+    margin-top: 1.5%;
 }
 
 #campo-dropdown {

@@ -23,7 +23,7 @@
             <engine:Button name="botao-baixar-jogo" text="Baixar jogo"/>
         </engine:VisualElement>
 
-        <engine:Label name="label-descricao" class="label-padrao" text="Esta é a tela inicial para criação de seu jogo. Aqui você também pode gerenciar todas as fases do jogo."/>
+        <engine:Label name="label-descricao-tela" class="label-padrao" text="Esta é a tela inicial para criação de seu jogo. Aqui você também pode gerenciar todas as fases do jogo."/>
         
         <engine:VisualElement name="lista-cenas"/>
 
@@ -37,7 +37,7 @@
                 <engine:Label text="Adicionar Fase" class="label-botao"/>
             </engine:Button>
 
-            <engine:Label name="label-descricao" class="label-padrao" text="Se você terminou de criar todas as fases do seu jogo, clique no botão &lt;color=#008000&gt;Baixar Jogo."/>
+            <engine:Label name="label-descricao-compilar" class="label-padrao" text="Se você terminou de criar todas as fases do seu jogo, clique no botão &lt;color=#008000&gt;Baixar Jogo."/>
         </engine:VisualElement> 
     </engine:ScrollView>
 </engine:UXML>

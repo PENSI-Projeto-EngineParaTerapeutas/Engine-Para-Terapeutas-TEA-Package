@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEditor;
 using Autis.Editor.UI;
 using Autis.Editor.Telas;
 using Autis.Editor.Manipuladores;
@@ -53,7 +52,7 @@ namespace Autis.Editor.Criadores {
         protected const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO = "regiao-tooltip-titulo";
         protected VisualElement regiaoCarregamentoTooltipTitulo;
 
-        protected InterrogacaoToolTip tooltipTitulo;
+        protected Tooltip tooltipTitulo;
 
         #endregion
 
@@ -75,7 +74,7 @@ namespace Autis.Editor.Criadores {
         }
 
         protected virtual void ConfigurarTooltipTitulo() {
-            tooltipTitulo = new InterrogacaoToolTip(MENSAGEM_TOOLTIP_TITULO);
+            tooltipTitulo = new Tooltip(MENSAGEM_TOOLTIP_TITULO);
 
             regiaoCarregamentoTooltipTitulo = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
             regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);

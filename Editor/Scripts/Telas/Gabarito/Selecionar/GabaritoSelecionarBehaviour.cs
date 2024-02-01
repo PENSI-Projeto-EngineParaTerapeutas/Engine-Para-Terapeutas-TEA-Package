@@ -41,8 +41,8 @@ namespace Autis.Editor.Telas {
         protected VisualElement regiaoCarregamentoBotoesConfirmacao;
 
         protected Dropdown dropdownObjetos;
-        protected InterrogacaoToolTip tooltipTitulo;
-        protected InterrogacaoToolTip tooltipToogleOrdem;
+        protected Tooltip tooltipTitulo;
+        protected Tooltip tooltipToogleOrdem;
         protected BotoesConfirmacao botoesConfirmacao;
 
         #endregion
@@ -67,7 +67,7 @@ namespace Autis.Editor.Telas {
         protected virtual void ConfigurarTooltipTitulo() {
             regiaoCarregamentoTooltipTitulo = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
 
-            tooltipTitulo = new InterrogacaoToolTip();
+            tooltipTitulo = new Tooltip();
             tooltipTitulo.SetTexto(MENSAGEM_TOOLTIP_TITULO);
             regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);
 
@@ -84,7 +84,7 @@ namespace Autis.Editor.Telas {
                 manipuladorGabarito.OrdemEhRelevante = evt.newValue;
             });
 
-            tooltipToogleOrdem = new InterrogacaoToolTip();
+            tooltipToogleOrdem = new Tooltip();
             tooltipToogleOrdem.SetTexto(MENSAGEM_TOOLTIP_TOGGLE_ORDEM);
 
             regiaoCarregamentoTooltipToggleOrdem = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TOGGLE_ORDEM);

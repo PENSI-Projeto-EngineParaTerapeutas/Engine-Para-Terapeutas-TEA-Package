@@ -1,13 +1,12 @@
 using System.IO;
 using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using Autis.Runtime.Constantes;
 using Autis.Runtime.DTOs;
 using Autis.Editor.Constantes;
 using Autis.Editor.UI;
-using Autis.Editor.Telas;
-using System.Collections.Generic;
 
 namespace Autis {
     [InitializeOnLoad]

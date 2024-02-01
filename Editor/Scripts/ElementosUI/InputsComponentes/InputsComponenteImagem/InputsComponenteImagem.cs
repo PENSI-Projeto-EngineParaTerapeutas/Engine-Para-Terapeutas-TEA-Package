@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEditor.UIElements;
-using Autis.Editor.Constantes;
 
 namespace Autis.Editor.UI {
     public class InputsComponenteImagem : ElementoInterfaceEditor, IVinculavel<SpriteRenderer>, IReiniciavel {

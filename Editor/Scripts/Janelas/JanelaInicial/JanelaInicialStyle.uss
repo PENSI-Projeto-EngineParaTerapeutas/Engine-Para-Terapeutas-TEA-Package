@@ -77,7 +77,7 @@
     border-right-color: #16C77C;
 }
 
-#label-descricao {
+#label-descricao-compilar, #label-descricao-tela {
     white-space: normal;
     -unity-text-align: middle-center;
     margin-top: 2%;

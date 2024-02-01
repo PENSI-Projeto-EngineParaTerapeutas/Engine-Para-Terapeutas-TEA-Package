@@ -46,7 +46,7 @@ namespace Autis.Editor.Telas {
             else {
                 radioButtonImagem.SetValueWithoutNotify(true);
                 inputImagem.Root.SetEnabled(true);
-                inputImagem.CampoImagem.SetValueWithoutNotify(manipulador.GetImagem());
+                inputImagem.VincularDados(manipulador.GetImagem());
             }
 
             return;

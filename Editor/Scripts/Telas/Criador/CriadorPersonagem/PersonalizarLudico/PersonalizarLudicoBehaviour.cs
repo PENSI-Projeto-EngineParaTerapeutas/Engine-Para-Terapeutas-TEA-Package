@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Autis.Editor.Constantes;
@@ -10,7 +11,6 @@ using Autis.Editor.Manipuladores;
 using Autis.Editor.UI;
 using Autis.Editor.Excecoes;
 using Autis.Runtime.Constantes;
-using UnityEditor;
 
 namespace Autis.Editor.Criadores {
     public class PersonalizarLudicoBehaviour : Tela {

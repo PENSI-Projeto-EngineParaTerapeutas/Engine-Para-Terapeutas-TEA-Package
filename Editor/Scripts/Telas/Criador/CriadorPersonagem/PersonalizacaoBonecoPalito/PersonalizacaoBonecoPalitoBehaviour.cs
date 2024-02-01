@@ -1,10 +1,10 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Autis.Editor.Telas;
 using Autis.Editor.UI;
 using Autis.Editor.Manipuladores;
 using Autis.Runtime.Constantes;
-using UnityEditor;
 
 namespace Autis.Editor.Criadores {
     public class PersonalizacaoBonecoPalitoBehaviour : Tela, IReiniciavel {

@@ -63,11 +63,48 @@ namespace Autis.Editor.Telas {
         }
 
         private void HandlePlayModeIniciado(PlayModeStateChange state) {
+            if(state == PlayModeStateChange.EnteredPlayMode) {
+                MaximizarTelaJogo();
+            }
+            else if(state == PlayModeStateChange.ExitingPlayMode) {
+                MinimizarTelaJogo();
+            }
+
             if(state != PlayModeStateChange.ExitingEditMode || telaAtual == null) {
                 return;
             }
 
             telaAtual.OnEditorPlay();
+            return;
+        }
+
+        [MenuItem("Desenvolvimento/Maximizar Tela Jogo")]
+        private static void MaximizarTelaJogo() {
+            EditorWindow[] windows = (UnityEditor.EditorWindow[]) Resources.FindObjectsOfTypeAll(typeof(UnityEditor.EditorWindow));
+            foreach (EditorWindow window in windows) {
+                if (window != null && window.GetType().FullName == "UnityEditor.GameView") {
+                    window.maximized = true;
+                    break;
+                }
+            }
+
+            UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
+
+            return;
+        }
+
+        [MenuItem("Desenvolvimento/Minimizar Tela Jogo")]
+        private static void MinimizarTelaJogo() {
+            EditorWindow[] windows = (UnityEditor.EditorWindow[]) Resources.FindObjectsOfTypeAll(typeof(UnityEditor.EditorWindow));
+            foreach (EditorWindow window in windows) {
+                if (window != null && window.GetType().FullName == "UnityEditor.GameView") {
+                    window.maximized = false;
+                    break;
+                }
+            }
+
+            UnityEditorInternal.InternalEditorUtility.RepaintAllViews();
+
             return;
         }
 

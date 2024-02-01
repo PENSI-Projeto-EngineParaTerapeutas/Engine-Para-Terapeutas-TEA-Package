@@ -74,7 +74,7 @@ namespace Autis.Editor.Criadores {
         protected const string NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO = "regiao-carregamento-botoes-confirmacao";
         protected VisualElement regiaoCarregamentoBotoesConfirmacao;
 
-        protected InterrogacaoToolTip tooltipTipoControle;
+        protected Tooltip tooltipTipoControle;
 
         protected InputTexto inputNome;
         protected Dropdown dropdownTipoPersonagem;
@@ -86,7 +86,7 @@ namespace Autis.Editor.Criadores {
         protected const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO = "regiao-tooltip-titulo";
         protected VisualElement regiaoCarregamentoTooltipTitulo;
 
-        protected InterrogacaoToolTip tooltipTitulo;
+        protected Tooltip tooltipTitulo;
 
         #endregion
 
@@ -121,7 +121,7 @@ namespace Autis.Editor.Criadores {
         }
 
         protected virtual void ConfigurarTooltipTitulo() {
-            tooltipTitulo = new InterrogacaoToolTip(MENSAGEM_TOOLTIP_TITULO);
+            tooltipTitulo = new Tooltip(MENSAGEM_TOOLTIP_TITULO);
 
             regiaoCarregamentoTooltipTitulo = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
             regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);
@@ -183,7 +183,7 @@ namespace Autis.Editor.Criadores {
         }
 
         protected virtual void CarregarTooltipTipoControle() {
-            tooltipTipoControle = new InterrogacaoToolTip();
+            tooltipTipoControle = new Tooltip();
 
             regiaoCarregamentoTooltipTipoControle = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TIPO_CONTROLE);
             regiaoCarregamentoTooltipTipoControle.Add(tooltipTipoControle.Root);

@@ -1,11 +1,11 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine.UIElements;
 using Autis.Editor.UI;
 using Autis.Editor.DTOs;
 using Autis.Editor.Constantes;
 using Autis.Editor.Manipuladores;
 using Autis.Runtime.Constantes;
-using UnityEditor;
 
 namespace Autis.Editor.Telas {
     public class ControleIndiretoBehaviour : Tela {

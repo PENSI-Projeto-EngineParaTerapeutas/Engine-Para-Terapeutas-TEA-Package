@@ -2,10 +2,9 @@ using UnityEngine.UIElements;
 using Autis.Editor.Utils;
 
 namespace Autis.Editor.UI {
-
-    public class InterrogacaoToolTip : ElementoInterfaceEditor {
-        protected override string CaminhoTemplate => "ElementosUI/InterrogacaoToolTip/InterrogacaoToolTipTemplate.uxml";
-        protected override string CaminhoStyle => "ElementosUI/InterrogacaoToolTip/InterrogacaoToolTipStyle.uss";
+    public class Tooltip : ElementoInterfaceEditor {
+        protected override string CaminhoTemplate => "ElementosUI/ToolTip/ToolTipTemplate.uxml";
+        protected override string CaminhoStyle => "ElementosUI/ToolTip/ToolTipStyle.uss";
 
         #region .: Elementos :.
 
@@ -16,12 +15,12 @@ namespace Autis.Editor.UI {
 
         #endregion
 
-        public InterrogacaoToolTip() {
+        public Tooltip() {
             ConfigurarImagemToolTip();
             return;
         }
 
-        public InterrogacaoToolTip(string conteudo) {
+        public Tooltip(string conteudo) {
             ConfigurarImagemToolTip();
             SetTexto(conteudo);
 

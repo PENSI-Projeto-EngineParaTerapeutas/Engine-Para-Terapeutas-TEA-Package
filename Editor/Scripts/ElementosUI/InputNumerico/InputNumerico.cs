@@ -1,6 +1,5 @@
 using System;
 using UnityEngine.UIElements;
-using UnityEditor.UIElements;
 using Autis.Editor.Constantes;
 
 namespace Autis.Editor.UI {
@@ -20,7 +19,7 @@ namespace Autis.Editor.UI {
         private const string SEM_TOOLTIP = null;
 
         private const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO = "regiao-tooltip-titulo";
-        private InterrogacaoToolTip tooltipTitulo;
+        private Tooltip tooltipTitulo;
         private VisualElement regiaoCarregamentoTooltipTitulo;
 
         private const string NOME_REGIAO_CARREGAMENTO_TITULO = "regiao-carregamento-titulo";
@@ -34,7 +33,7 @@ namespace Autis.Editor.UI {
         public InputNumerico(string label, string tooltipTexto = SEM_TOOLTIP, float max = float.MaxValue, float min = float.MinValue) {
 
             campoNumerico = Root.Query<FloatField>(NOME_INPUT_NUMERICO);
-            tooltipTitulo = new InterrogacaoToolTip();
+            tooltipTitulo = new Tooltip();
             
             ConfigurarCampoNumerico(label, max, min);
             CarregarTooltipTitulo(tooltipTexto);
@@ -67,7 +66,7 @@ namespace Autis.Editor.UI {
 
         private void CarregarTooltipTitulo(string tooltipTexto) {
             if (!String.IsNullOrEmpty(tooltipTexto)) {
-                tooltipTitulo = new InterrogacaoToolTip(tooltipTexto);
+                tooltipTitulo = new Tooltip(tooltipTexto);
 
                 regiaoCarregamentoTooltipTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
                 regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);

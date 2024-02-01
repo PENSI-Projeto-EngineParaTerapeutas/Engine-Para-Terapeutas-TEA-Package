@@ -27,7 +27,7 @@ public class TesteEstilizacaoBehaviour : JanelaEditor
         Botao botao = new Botao("TesteBotao");
         root.Add(botao.Root);
 
-        InterrogacaoToolTip toolTip = new InterrogacaoToolTip();
+        Tooltip toolTip = new Tooltip();
         root.Add(toolTip.Root);
 
         Toggle toggle = new Toggle();

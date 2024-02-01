@@ -1,3 +1,5 @@
+using Autis.Editor.UI;
+using Autis.Editor.Utils;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -37,7 +39,9 @@ namespace Autis.Editor.Telas {
         }
 
         private void HandleBotaoSalvarJogoClick() {
-            Debug.Log("[TODO]: Implementar");
+            Salvamento.SalvarProjeto();
+            LayoutLoader.CarregarTelaInicial();
+
             return;
         }
     }

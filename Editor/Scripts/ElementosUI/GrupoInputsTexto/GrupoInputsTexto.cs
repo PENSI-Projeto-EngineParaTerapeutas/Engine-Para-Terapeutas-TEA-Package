@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEditor.UIElements;
 using TMPro;
 using Autis.Editor.Constantes;
 using Autis.Editor.Manipuladores;
@@ -62,7 +61,7 @@ namespace Autis.Editor.UI {
         private const string NOME_REGIAO_LABEL_CONFIGURACAO_TEXTO = "regiao-label-configuracao-texto";
         private VisualElement regiaoLabelConfiguracaoTexto;
         private VisualElement regiaoCarregamentoTooltipConfiguracaoTexto;
-        private InterrogacaoToolTip tooltipConfiguracaoTexto;
+        private Tooltip tooltipConfiguracaoTexto;
         private const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_CONFIGURACAO_TEXTO = "regiao-tooltip-configuracao-texto";
 
         #endregion
@@ -82,7 +81,7 @@ namespace Autis.Editor.UI {
         }
 
         private void ConfigurarTooltipLabelConfiguracaoTexto() {
-            tooltipConfiguracaoTexto = new InterrogacaoToolTip();
+            tooltipConfiguracaoTexto = new Tooltip();
             tooltipConfiguracaoTexto.SetTexto(MENSAGEM_TOOLTIP_CONFIGURACAO_TEXTO);
 
             regiaoCarregamentoTooltipConfiguracaoTexto = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_CONFIGURACAO_TEXTO);

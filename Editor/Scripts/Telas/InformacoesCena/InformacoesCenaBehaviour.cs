@@ -84,10 +84,10 @@ namespace Autis.Editor.Telas {
         protected InputNumerico faixaEtariaInferior;
         protected InputNumerico faixaEtariaSuperior;
 
-        protected InterrogacaoToolTip tooltipTitulo;
-        protected InterrogacaoToolTip tooltipInputVideoContexto;
-        protected InterrogacaoToolTip tooltipFaixaEtaria;
-        protected InterrogacaoToolTip tooltipAcaoEsperada;
+        protected Tooltip tooltipTitulo;
+        protected Tooltip tooltipInputVideoContexto;
+        protected Tooltip tooltipFaixaEtaria;
+        protected Tooltip tooltipAcaoEsperada;
         protected BotoesConfirmacao botoesConfirmacao;
 
         #endregion
@@ -172,7 +172,7 @@ namespace Autis.Editor.Telas {
         }
 
         protected virtual void ConfigurarTooltipTitulo() {
-            tooltipTitulo = new InterrogacaoToolTip();
+            tooltipTitulo = new Tooltip();
             tooltipTitulo.SetTexto(MENSAGEM_TOOLTIP_TITULO);
 
             regiaoTooltipTitulo = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
@@ -182,7 +182,7 @@ namespace Autis.Editor.Telas {
         }
 
         protected virtual void ConfigurarTooltipAcoesEsperadas() {
-            tooltipAcaoEsperada = new InterrogacaoToolTip();
+            tooltipAcaoEsperada = new Tooltip();
             tooltipAcaoEsperada.SetTexto(MENSAGEM_TOOLTIP_ACAO_ESPERADA);
 
             regiaoTooltipAcaoEsperada = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_ACAO_ESPERADA);
@@ -192,7 +192,7 @@ namespace Autis.Editor.Telas {
         }
 
         protected virtual void ConfigurarTooltipInputVideo() {
-            tooltipInputVideoContexto = new InterrogacaoToolTip();
+            tooltipInputVideoContexto = new Tooltip();
             tooltipInputVideoContexto.SetTexto(MENSAGEM_TOOLTIP_INPUT_VIDEO_CONTEXTO);
 
             regiaoTooltipInputVideo = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_INPUT_VIDEO);
@@ -202,7 +202,7 @@ namespace Autis.Editor.Telas {
         }
 
         protected virtual void ConfigurarTooltipFaixaEtaria() {
-            tooltipFaixaEtaria = new InterrogacaoToolTip();
+            tooltipFaixaEtaria = new Tooltip();
             tooltipFaixaEtaria.SetTexto(MENSAGEM_TOOLTIP_INPUT_FAIXA_ETARIA);
 
             regiaoTooltipFaixaEtaria = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_FAIXA_ETARIA);

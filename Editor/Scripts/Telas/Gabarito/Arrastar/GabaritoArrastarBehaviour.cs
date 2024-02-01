@@ -11,7 +11,8 @@ namespace Autis.Editor.Telas {
         #region .: Mensagens :.
 
         protected const string MENSAGEM_TOOLTIP_TITULO = "Indicação do local que é esperado que cada Elemento arrastável seja posicionado.";
-        protected const string MENSAGEM_TOOLTIP_DESFAZER_ACAO = "Permitir que o Elemento volte para sua posição inicial caso ele seja arrastado para um local incorreto..";
+        protected const string MENSAGEM_TOOLTIP_DESFAZER_ACAO = "Permitir que o Elemento volte para sua posição inicial caso ele seja arrastado para um local incorreto.";
+        protected const string MENSAGEM_SEM_ELEMENTOS_ARRASTAVEIS = "Nenhum Elemento de Interação que pode ser arrastado foi criado.";
 
         #endregion
 
@@ -32,8 +33,8 @@ namespace Autis.Editor.Telas {
         protected const string NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO = "regiao-carregamento-botoes-confirmacao";
         protected VisualElement regiaoCarregamentoBotoesConfirmacao;
 
-        protected InterrogacaoToolTip tooltipTitulo;
-        protected InterrogacaoToolTip toolTipDesfazerAcao;
+        protected Tooltip tooltipTitulo;
+        protected Tooltip toolTipDesfazerAcao;
 
         protected readonly List<AssociacaoArrastavel> displaysAssociacoes = new();
         protected BotoesConfirmacao botoesConfirmacao;
@@ -51,11 +52,15 @@ namespace Autis.Editor.Telas {
             ConfigurarBotoesConfirmacao();
             ConfigurarTooltipDesfazerAcao();
 
+            if(manipuladorGabaritoArrastar.ElementosInteracaoArrastaveis.Count <= 0) {
+                PopupAvisoBehaviour.ShowPopupAviso(MENSAGEM_SEM_ELEMENTOS_ARRASTAVEIS);
+            }
+
             return;
         }
 
         protected virtual void ConfigurarTooltipTitulo() {
-            tooltipTitulo = new InterrogacaoToolTip();
+            tooltipTitulo = new Tooltip();
             tooltipTitulo.SetTexto(MENSAGEM_TOOLTIP_TITULO);
 
             regiaoCarregamentoTooltipTitulo = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
@@ -93,7 +98,7 @@ namespace Autis.Editor.Telas {
         }
 
         protected virtual void ConfigurarTooltipDesfazerAcao() {
-            toolTipDesfazerAcao = new InterrogacaoToolTip();
+            toolTipDesfazerAcao = new Tooltip();
             toolTipDesfazerAcao.SetTexto(MENSAGEM_TOOLTIP_DESFAZER_ACAO);
 
             regiaoCarregamentoTooltipDesfazerAcao = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_DESFAZER_ACAO);

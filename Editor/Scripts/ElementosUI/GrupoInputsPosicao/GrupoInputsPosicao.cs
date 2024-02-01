@@ -1,7 +1,7 @@
+using System;
 using UnityEngine.UIElements;
 using Autis.Editor.Constantes;
 using Autis.Editor.Manipuladores;
-using System;
 
 namespace Autis.Editor.UI {
     public class GrupoInputsPosicao : ElementoInterfaceEditor, IReiniciavel, ICamposAtualizaveis, IVinculavel<ManipuladorObjetos> {
@@ -30,7 +30,7 @@ namespace Autis.Editor.UI {
         private VisualElement regiaoConteudoPrincipal;
 
         private const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO = "regiao-tooltip-titulo";
-        private InterrogacaoToolTip tooltipTitulo;
+        private Tooltip tooltipTitulo;
         private VisualElement regiaoCarregamentoTooltipTitulo;
 
         private const string NOME_REGIAO_CARREGAMENTO_TITULO = "regiao-carregamento-titulo";
@@ -51,7 +51,7 @@ namespace Autis.Editor.UI {
         }
 
         private void ConfigurarLabel(string label, string tooltip) {
-            tooltipTitulo = new InterrogacaoToolTip();
+            tooltipTitulo = new Tooltip();
 
             CarregarTooltipTitulo(tooltip);
 

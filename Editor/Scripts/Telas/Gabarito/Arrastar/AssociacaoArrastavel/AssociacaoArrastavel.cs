@@ -26,7 +26,7 @@ namespace Autis.Editor.UI {
         private const string NOME_REGIAO_CARREGAMENTO_DROPDOWN_ELEMENTO_DESTINO = "regiao-carregamento-dropdown-elemento-destino";
         private VisualElement regiaoCarregamentoDropdownElementoDestino;
 
-        private InterrogacaoToolTip tooltipElementoOrigem;
+        private Tooltip tooltipElementoOrigem;
         private Dropdown dropdownElementoDestino;
 
         #endregion
@@ -56,7 +56,7 @@ namespace Autis.Editor.UI {
         }
 
         private void ConfigurarTooltipElementoOrigem() {
-            tooltipElementoOrigem = new InterrogacaoToolTip();
+            tooltipElementoOrigem = new Tooltip();
             tooltipElementoOrigem.SetTexto(MENSAGEM_TOOLTIP_ELEMENTO_ORIGEM);
 
             regiaoTootipElementoOrigem = root.Query<VisualElement>(NOME_REGIAO_TOOLTIP_ELEMENTO_ORIGEM);

@@ -1,7 +1,7 @@
 using System;
-using Autis.Editor.Constantes;
-using UnityEngine.UIElements;
 using System.Collections.Generic;
+using UnityEngine.UIElements;
+using Autis.Editor.Constantes;
 
 namespace Autis.Editor.UI {
     public class Dropdown : ElementoInterfaceEditor, IReiniciavel, IEstaVazio {
@@ -20,7 +20,7 @@ namespace Autis.Editor.UI {
         private readonly DropdownField campo;
 
         private const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO = "regiao-tooltip-titulo";
-        private readonly InterrogacaoToolTip tooltipTitulo;
+        private readonly Tooltip tooltipTitulo;
         private VisualElement regiaoCarregamentoTooltipTitulo;
 
         private const string NOME_REGIAO_CARREGAMENTO_TITULO = "regiao-carregamento-titulo";
@@ -91,7 +91,7 @@ namespace Autis.Editor.UI {
                 tooltip = tooltip,
             };
 
-            tooltipTitulo = new InterrogacaoToolTip();
+            tooltipTitulo = new Tooltip();
 
             CarregarTooltipTitulo(tooltip);
 

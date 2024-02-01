@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEditor;
 using Autis.Editor.Telas;
 using Autis.Editor.UI;
 using Autis.Editor.Utils;
@@ -10,7 +11,6 @@ using Autis.Editor.Constantes;
 using Autis.Editor.Manipuladores;
 using Autis.Editor.Excecoes;
 using Autis.Runtime.Constantes;
-using UnityEditor;
 
 namespace Autis.Editor.Criadores {
     public class PersonalizacaoAvatarBehaviour : Tela, IReiniciavel {
@@ -138,7 +138,7 @@ namespace Autis.Editor.Criadores {
         }
         
         private void ConfigurarTooltipInput(VisualElement regiaoPrincipal, string mensagem) {
-            InterrogacaoToolTip novaTooltip = new InterrogacaoToolTip();
+            Tooltip novaTooltip = new Tooltip();
             VisualElement regiaoCarregamentoNovaTooltip = new VisualElement();
             regiaoCarregamentoNovaTooltip.Add(novaTooltip.Root);
 

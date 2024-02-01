@@ -1,15 +1,14 @@
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEditor;
 using Autis.Runtime.Constantes;
 using Autis.Runtime.DTOs;
 using Autis.Editor.Constantes;
 using Autis.Editor.UI;
 using Autis.Editor.Telas;
 using Autis.Editor.Manipuladores;
-using System;
 using Autis.Editor.Excecoes;
 using Autis.Runtime.Eventos;
 using Autis.Editor.Utils;
@@ -97,7 +96,7 @@ namespace Autis.Editor.Criadores {
         
         protected BotoesConfirmacao botoesConfirmacao;
 
-        protected InterrogacaoToolTip tooltipTitulo;
+        protected Tooltip tooltipTitulo;
 
         #endregion
 
@@ -160,7 +159,7 @@ namespace Autis.Editor.Criadores {
         }
 
         protected virtual void ConfigurarTooltipTitulo() {
-            tooltipTitulo = new InterrogacaoToolTip(MENSAGEM_TOOLTIP_TITULO);
+            tooltipTitulo = new Tooltip(MENSAGEM_TOOLTIP_TITULO);
 
             regiaoCarregamentoTooltipTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
             regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);
@@ -171,7 +170,7 @@ namespace Autis.Editor.Criadores {
         private void CarregarTooltipSelecaoObjetoPai(string tooltipTexto) {
             if (!String.IsNullOrEmpty(tooltipTexto)) {
                 VisualElement regiaoCarregamentoTooltipSelecaoObjetoPai = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_SELECAO_OBJETO_PAI); ;
-                InterrogacaoToolTip tooltipSelecaoObjetoPai = new InterrogacaoToolTip();
+                Tooltip tooltipSelecaoObjetoPai = new Tooltip();
                 regiaoCarregamentoTooltipSelecaoObjetoPai.Add(tooltipSelecaoObjetoPai.Root);
 
                 tooltipSelecaoObjetoPai.SetTexto(tooltipTexto);

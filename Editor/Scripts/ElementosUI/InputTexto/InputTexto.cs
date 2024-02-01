@@ -21,7 +21,7 @@ namespace Autis.Editor.UI {
         private const string SEM_TOOLTIP = null;
 
         private readonly TextField campoTexto;
-        private readonly InterrogacaoToolTip tooltipTitulo;
+        private readonly Tooltip tooltipTitulo;
         private VisualElement regiaoCarregamentoTooltipTitulo;
 
         private const string NOME_REGIAO_CARREGAMENTO_TITULO = "regiao-carregamento-titulo";
@@ -40,7 +40,7 @@ namespace Autis.Editor.UI {
 
             regiaoCarregamentoTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TITULO); 
 
-            tooltipTitulo = new InterrogacaoToolTip();
+            tooltipTitulo = new Tooltip();
             CarregarTooltipTitulo(tooltipTexto);
 
             campoTexto = Root.Query<TextField>(NOME_INPUT_TEXTO);

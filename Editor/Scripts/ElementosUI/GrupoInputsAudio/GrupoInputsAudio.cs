@@ -1,7 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Autis.Editor.Manipuladores;
-using System;
 
 namespace Autis.Editor.UI {
     public class GrupoInputsAudio : ElementoInterfaceEditor, IReiniciavel, IVinculavel<ManipuladorAudioSource> {
@@ -44,7 +44,7 @@ namespace Autis.Editor.UI {
         private void CarregarTooltipTitulo(string tooltipTexto) {
             if (!String.IsNullOrEmpty(tooltipTexto)) {
                 VisualElement regiaoCarregamentoTooltipTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_VOLUME); ;
-                InterrogacaoToolTip tooltipTitulo = new InterrogacaoToolTip();
+                Tooltip tooltipTitulo = new Tooltip();
                 regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);
 
                 tooltipTitulo.SetTexto(tooltipTexto);

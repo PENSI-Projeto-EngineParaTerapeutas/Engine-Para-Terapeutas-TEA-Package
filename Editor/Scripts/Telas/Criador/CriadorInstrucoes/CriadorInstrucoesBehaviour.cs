@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
-using UnityEditor;
 using Autis.Runtime.DTOs;
 using Autis.Editor.UI;
 using Autis.Editor.Constantes;
@@ -47,20 +46,28 @@ namespace Autis.Editor.Criadores {
         protected const string NOME_REGIAO_CARREGAMENTO_INPUTS_TEXTO = "regiao-carregamento-inputs-texto";
         protected VisualElement regiaoCarregamentoInputsTexto;
 
+        protected const string NOME_REGIAO_OPCOES_AVANCADAS = "foldout-opcoes-avancadas";
+        protected Foldout foldoutOpcoesAvancadas;
+
         protected const string NOME_REGIAO_CARREGAMENTO_BOTOES_CONFIRMACAO = "regiao-carregamento-botoes-confirmacao";
         protected VisualElement regiaoCarregamentoBotoesConfirmacao;
 
         protected InputTexto campoNome;
         protected Dropdown dropdownTipoInstrucao;
+
         protected GrupoInputsVideo grupoInputsVideo;
         protected GrupoInputsAudio grupoInputsAudio;
         protected GrupoInputsTexto grupoInputsTexto;
+
+        protected GrupoInputsPosicao grupoInputsPosicao;
+        protected GrupoInputsTamanho grupoInputsTamanho;
+
         protected BotoesConfirmacao botoesConfirmacao;
 
         protected const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO = "regiao-tooltip-titulo";
         protected VisualElement regiaoCarregamentoTooltipTitulo;
 
-        protected InterrogacaoToolTip tooltipTitulo;
+        protected Tooltip tooltipTitulo;
 
         #endregion
 
@@ -78,6 +85,7 @@ namespace Autis.Editor.Criadores {
             CarregarRegiaoInputsAudio();
             CarregarRegiaoInputsTexto();
             ConfigurarCampoTipoInstrucao();
+            ConfigurarRegiaoOpcoesAvancadas();
 
             ConfigurarBotoesConfirmacao();
 
@@ -87,20 +95,19 @@ namespace Autis.Editor.Criadores {
         }
 
         public override void OnEditorUpdate() {
-            // TODO: Adicionar AtualizarCamposAssociadosScene();
+            AtualizarCamposAssociadosScene();
             return;
         }
 
-        /* TODO: Adicionar:
         protected virtual void AtualizarCamposAssociadosScene() {
             grupoInputsPosicao.AtualizarCampos();
             grupoInputsTamanho.AtualizarCampos();
 
             return;
-        }*/
+        }
 
         protected virtual void ConfigurarTooltipTitulo() {
-            tooltipTitulo = new InterrogacaoToolTip(MENSAGEM_TOOLTIP_TITULO);
+            tooltipTitulo = new Tooltip(MENSAGEM_TOOLTIP_TITULO);
 
             regiaoCarregamentoTooltipTitulo = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_TITULO);
             regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);
@@ -125,7 +132,7 @@ namespace Autis.Editor.Criadores {
 
         protected virtual void CarregarRegiaoInputsVideo() {
             grupoInputsVideo = new GrupoInputsVideo();
-            //grupoInputsVideo.VincularDados(manipulador.ComponenteVideo);
+            grupoInputsVideo.VincularDados(manipulador.ManipuladorVideo);
 
             regiaoCarregamentoInputsVideo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_VIDEO);
             regiaoCarregamentoInputsVideo.Add(grupoInputsVideo.Root);
@@ -135,7 +142,7 @@ namespace Autis.Editor.Criadores {
 
         protected virtual void CarregarRegiaoInputsAudio() {
             grupoInputsAudio = new GrupoInputsAudio();
-            //grupoInputsAudio.VincularDados(manipulador.ComponenteAudioSource);
+            grupoInputsAudio.VincularDados(manipulador.ManipuladorAudioSource);
 
             regiaoCarregamentoInputsAudio = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUTS_AUDIO);
             regiaoCarregamentoInputsAudio.Add(grupoInputsAudio.Root);
@@ -154,8 +161,7 @@ namespace Autis.Editor.Criadores {
         }
 
         protected virtual void ConfigurarCampoTipoInstrucao() {
-            List<string> opcoes = new()
-            {
+            List<string> opcoes = new() {
                 TiposIntrucoes.Audio.ToString(),
                 TiposIntrucoes.Texto.ToString(),
                 TiposIntrucoes.Video.ToString(),
@@ -163,7 +169,7 @@ namespace Autis.Editor.Criadores {
 
             dropdownTipoInstrucao = new Dropdown("Tipo de instrução:", MENSAGEM_TOOLTIP_DROPDOWN_TIPO_INSTRUCAO, opcoes);
             dropdownTipoInstrucao.Campo.RegisterCallback<ChangeEvent<string>>(evt => {
-                if (evt.newValue == Dropdown.VALOR_PADRAO_DROPDOWN) {
+                if(evt.newValue == Dropdown.VALOR_PADRAO_DROPDOWN) {
                     manipulador.DesabilitarComponentes();
                     OcultarCampos();
                     return;
@@ -207,6 +213,10 @@ namespace Autis.Editor.Criadores {
             regiaoCarregamentoInputsTexto.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
             regiaoCarregamentoInputsVideo.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
 
+            foldoutOpcoesAvancadas.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            grupoInputsPosicao.Root.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            grupoInputsTamanho.Root.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+
             return;
         }
 
@@ -222,6 +232,8 @@ namespace Autis.Editor.Criadores {
             OcultarCampos();
 
             regiaoCarregamentoInputsTexto.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            foldoutOpcoesAvancadas.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            grupoInputsPosicao.Root.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
 
             return;
         }
@@ -230,6 +242,28 @@ namespace Autis.Editor.Criadores {
             OcultarCampos();
 
             regiaoCarregamentoInputsVideo.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            foldoutOpcoesAvancadas.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            grupoInputsPosicao.Root.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            grupoInputsTamanho.Root.RemoveFromClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+
+            return;
+        }
+
+        protected virtual void ConfigurarRegiaoOpcoesAvancadas() {
+            grupoInputsPosicao = new GrupoInputsPosicao();
+            grupoInputsPosicao.VincularDados(manipulador);
+
+            grupoInputsTamanho = new GrupoInputsTamanho();
+            grupoInputsTamanho.VincularDados(manipulador);
+
+            foldoutOpcoesAvancadas = root.Query<Foldout>(NOME_REGIAO_OPCOES_AVANCADAS);
+
+            foldoutOpcoesAvancadas.Add(grupoInputsPosicao.Root);
+            foldoutOpcoesAvancadas.Add(grupoInputsTamanho.Root);
+
+            foldoutOpcoesAvancadas.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            grupoInputsPosicao.Root.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
+            grupoInputsTamanho.Root.AddToClassList(NomesClassesPadroesEditorStyle.DisplayNone);
 
             return;
         }
@@ -333,6 +367,9 @@ namespace Autis.Editor.Criadores {
             grupoInputsVideo.ReiniciarCampos();
             grupoInputsAudio.ReiniciarCampos();
             grupoInputsTexto.ReiniciarCampos();
+
+            grupoInputsPosicao.ReiniciarCampos();
+            grupoInputsTamanho.ReiniciarCampos();
 
             OcultarCampos();
 

@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Autis.Editor.UI;
@@ -12,7 +13,6 @@ using Autis.Runtime.Eventos;
 using Autis.Editor.Utils;
 using Autis.Editor.Excecoes;
 using Autis.Editor.Constantes;
-using UnityEditor;
 
 namespace Autis.Editor.Telas {
     public class AdicionarAcaoBehaviour : Tela {
@@ -62,13 +62,13 @@ namespace Autis.Editor.Telas {
         private const string NOME_REGIAO_LABEL_DEFINICAO_ACAO = "regiao-label-definicao-acao";
         private VisualElement regiaoLabelDefinicaoAcao;
         private VisualElement regiaoCarregamentoTooltipDefinicaoAcao;
-        private InterrogacaoToolTip tooltipDefinicaoAcao;
+        private Tooltip tooltipDefinicaoAcao;
         private const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_DEFINICAO_ACAO = "regiao-tooltip-definicao-acao";
 
         private const string NOME_REGIAO_LABEL_DEFINICAO_ANIMACAO = "regiao-label-definicao-animacao";
         private VisualElement regiaoLabelDefinicaoAnimacao;
         private VisualElement regiaoCarregamentoTooltipDefinicaoAnimacao;
-        private InterrogacaoToolTip tooltipDefinicaoAnimacao;
+        private Tooltip tooltipDefinicaoAnimacao;
         private const string NOME_REGIAO_CARREGAMENTO_TOOLTIP_DEFINICAO_ANIMACAO = "regiao-tooltip-definicao-animacao";
 
         #endregion
@@ -193,7 +193,7 @@ namespace Autis.Editor.Telas {
         }
 
         private void ConfigurarTooltipDefinicaoAcao() {
-            tooltipDefinicaoAcao = new InterrogacaoToolTip();
+            tooltipDefinicaoAcao = new Tooltip();
             tooltipDefinicaoAcao.SetTexto(MENSAGEM_TOOLTIP_DROPDOWN_ELEMENTOS_INTERACAO);
 
             regiaoCarregamentoTooltipDefinicaoAcao = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_DEFINICAO_ACAO);
@@ -275,7 +275,7 @@ namespace Autis.Editor.Telas {
         }
 
         private void ConfigurarTooltipDefinicaoAnimacao() {
-            tooltipDefinicaoAnimacao = new InterrogacaoToolTip();
+            tooltipDefinicaoAnimacao = new Tooltip();
             tooltipDefinicaoAnimacao.SetTexto(MENSAGEM_TOOLTIP_DROPDOWN_ANIMACOES);
 
             regiaoCarregamentoTooltipDefinicaoAnimacao = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_DEFINICAO_ANIMACAO);

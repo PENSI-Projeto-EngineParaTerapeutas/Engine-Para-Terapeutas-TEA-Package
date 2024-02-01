@@ -1,6 +1,6 @@
+using System;
 using UnityEngine.UIElements;
 using Autis.Editor.Manipuladores;
-using System;
 
 namespace Autis.Editor.UI {
     public class GrupoInputsVideo : ElementoInterfaceEditor, IReiniciavel, IVinculavel<ManipuladorVideo> {
@@ -41,9 +41,9 @@ namespace Autis.Editor.UI {
         }
 
         private void CarregarTooltipTitulo(string tooltipTexto) {
-            if (!String.IsNullOrEmpty(tooltipTexto)) {
+            if(!String.IsNullOrEmpty(tooltipTexto)) {
                 VisualElement regiaoCarregamentoTooltipTitulo = Root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_TOOLTIP_VOLUME); ;
-                InterrogacaoToolTip tooltipTitulo = new InterrogacaoToolTip();
+                Tooltip tooltipTitulo = new Tooltip();
                 regiaoCarregamentoTooltipTitulo.Add(tooltipTitulo.Root);
 
                 tooltipTitulo.SetTexto(tooltipTexto);
@@ -55,13 +55,16 @@ namespace Autis.Editor.UI {
         private void ConfigurarCampoVideo() {
             inputVideo = new InputVideo();
 
-            inputVideo.BotaoCancelarVideo.clicked += (() => {
-                manipulador.SetVideo(null);
-            });
+            inputVideo.BotaoCancelarVideo.clicked += HandleBotaoCancelarVideoClick;
 
             regiaoCarregamentoInputVideo = root.Query<VisualElement>(NOME_REGIAO_CARREGAMENTO_INPUT_VIDEO);
             regiaoCarregamentoInputVideo.Add(inputVideo.Root);
 
+            return;
+        }
+
+        private void HandleBotaoCancelarVideoClick() {
+            manipulador?.SetVideo(string.Empty);
             return;
         }
 
