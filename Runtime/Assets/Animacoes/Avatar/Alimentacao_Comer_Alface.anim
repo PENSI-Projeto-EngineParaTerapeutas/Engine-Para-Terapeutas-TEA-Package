@@ -514,6 +514,15 @@ AnimationClip:
         weightedMode: 0
         inWeight: 0
         outWeight: 0
+      - serializedVersion: 3
+        time: 8.533334
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -549,7 +558,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 45
+        value: 43
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -682,6 +691,15 @@ AnimationClip:
         weightedMode: 0
         inWeight: 0
         outWeight: 0
+      - serializedVersion: 3
+        time: 8.533334
+        value: 40
+        inSlope: -0
+        outSlope: 0
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -738,7 +756,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 41
+        value: 0
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -789,6 +807,126 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_SortingOrder
     path: Animacoes/Personagem/Corpo/Bracos/Braco_Esquerdo
+    classID: 212
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1.2833333
+        value: 15.803857
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Size.x
+    path: Animacoes/Personagem/Corpo/Pernas
+    classID: 212
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1.2833333
+        value: 24.099998
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Size.y
+    path: Animacoes/Personagem/Corpo/Pernas
+    classID: 212
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 29
+        inSlope: 0
+        outSlope: -2.3376625
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1.2833333
+        value: 26
+        inSlope: -2.3376625
+        outSlope: 0
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_SortingOrder
+    path: Animacoes/Personagem/Corpo/Pernas
+    classID: 212
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 41
+        inSlope: 0
+        outSlope: 0.23437499
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 8.533334
+        value: 43
+        inSlope: 0.23437499
+        outSlope: 0
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_SortingOrder
+    path: Animacoes/Props/Objeto4
     classID: 212
     script: {fileID: 0}
     flags: 0
@@ -1563,6 +1701,66 @@ AnimationClip:
     - time: 0
       value: {fileID: 0}
     - time: 1.2833333
+      value: {fileID: 0}
+    - time: 1.35
+      value: {fileID: 0}
+    - time: 2.75
+      value: {fileID: 21300000, guid: c003844784a9a834fa3a3580858d785c, type: 3}
+    - time: 2.85
+      value: {fileID: 0}
+    - time: 4.2
+      value: {fileID: 0}
+    - time: 4.3166666
+      value: {fileID: 0}
+    - time: 5.7166667
+      value: {fileID: 0}
+    - time: 5.8333335
+      value: {fileID: 0}
+    - time: 7.1666665
+      value: {fileID: 0}
+    - time: 7.233333
+      value: {fileID: 0}
+    attribute: m_Sprite
+    path: Animacoes/Props/Objeto7
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: 21300000, guid: 2df284537c22a44468ef8967e677c931, type: 3}
+    - time: 8.533334
+      value: {fileID: 21300000, guid: 2df284537c22a44468ef8967e677c931, type: 3}
+    attribute: m_Sprite
+    path: Animacoes/Props/Objeto4
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: 21300000, guid: 8cb018282c3fd2842b8fd753d2662d44, type: 3}
+    - time: 8.533334
+      value: {fileID: 21300000, guid: 8cb018282c3fd2842b8fd753d2662d44, type: 3}
+    attribute: m_Sprite
+    path: Animacoes/Props/Objeto5
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: 21300000, guid: 6ee6a1faf59332c42ad9c1aa7952355a, type: 3}
+    attribute: m_Sprite
+    path: Animacoes/Props/Objeto6
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: 0}
+    - time: 1.2833333
       value: {fileID: 21300000, guid: c003844784a9a834fa3a3580858d785c, type: 3}
     - time: 1.35
       value: {fileID: 0}
@@ -1583,34 +1781,7 @@ AnimationClip:
     - time: 7.233333
       value: {fileID: 0}
     attribute: m_Sprite
-    path: Animacoes/Props/Objeto7
-    classID: 212
-    script: {fileID: 0}
-    flags: 2
-  - serializedVersion: 2
-    curve:
-    - time: 0
-      value: {fileID: 21300000, guid: 6ee6a1faf59332c42ad9c1aa7952355a, type: 3}
-    attribute: m_Sprite
-    path: Animacoes/Props/Objeto4
-    classID: 212
-    script: {fileID: 0}
-    flags: 2
-  - serializedVersion: 2
-    curve:
-    - time: 0
-      value: {fileID: 21300000, guid: 8cb018282c3fd2842b8fd753d2662d44, type: 3}
-    attribute: m_Sprite
-    path: Animacoes/Props/Objeto5
-    classID: 212
-    script: {fileID: 0}
-    flags: 2
-  - serializedVersion: 2
-    curve:
-    - time: 0
-      value: {fileID: 21300000, guid: 2df284537c22a44468ef8967e677c931, type: 3}
-    attribute: m_Sprite
-    path: Animacoes/Props/Objeto6
+    path: Animacoes/Personagem/Corpo/Pernas
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -1883,6 +2054,42 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
+      path: 683721932
+      attribute: 4197328169
+      script: {fileID: 0}
+      typeID: 212
+      customType: 0
+      isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 683721932
+      attribute: 2368279999
+      script: {fileID: 0}
+      typeID: 212
+      customType: 0
+      isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 683721932
+      attribute: 3762991556
+      script: {fileID: 0}
+      typeID: 212
+      customType: 26
+      isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 1265207657
+      attribute: 3762991556
+      script: {fileID: 0}
+      typeID: 212
+      customType: 26
+      isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
       path: 2718575708
       attribute: 0
       script: {fileID: 0}
@@ -1974,6 +2181,15 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 2775050309
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 683721932
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -2341,19 +2557,32 @@ AnimationClip:
     - {fileID: 21300000, guid: 5972fc577690a504ead304559d7ff39b, type: 3}
     - {fileID: 21300000, guid: 5972fc577690a504ead304559d7ff39b, type: 3}
     - {fileID: 0}
-    - {fileID: 21300000, guid: c003844784a9a834fa3a3580858d785c, type: 3}
+    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 21300000, guid: c003844784a9a834fa3a3580858d785c, type: 3}
     - {fileID: 0}
-    - {fileID: 21300000, guid: c003844784a9a834fa3a3580858d785c, type: 3}
     - {fileID: 0}
-    - {fileID: 21300000, guid: c003844784a9a834fa3a3580858d785c, type: 3}
     - {fileID: 0}
-    - {fileID: 21300000, guid: c003844784a9a834fa3a3580858d785c, type: 3}
     - {fileID: 0}
-    - {fileID: 21300000, guid: 6ee6a1faf59332c42ad9c1aa7952355a, type: 3}
-    - {fileID: 21300000, guid: 8cb018282c3fd2842b8fd753d2662d44, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 21300000, guid: 2df284537c22a44468ef8967e677c931, type: 3}
+    - {fileID: 21300000, guid: 2df284537c22a44468ef8967e677c931, type: 3}
+    - {fileID: 21300000, guid: 8cb018282c3fd2842b8fd753d2662d44, type: 3}
+    - {fileID: 21300000, guid: 8cb018282c3fd2842b8fd753d2662d44, type: 3}
+    - {fileID: 21300000, guid: 6ee6a1faf59332c42ad9c1aa7952355a, type: 3}
+    - {fileID: 0}
+    - {fileID: 21300000, guid: c003844784a9a834fa3a3580858d785c, type: 3}
+    - {fileID: 0}
+    - {fileID: 21300000, guid: c003844784a9a834fa3a3580858d785c, type: 3}
+    - {fileID: 0}
+    - {fileID: 21300000, guid: c003844784a9a834fa3a3580858d785c, type: 3}
+    - {fileID: 0}
+    - {fileID: 21300000, guid: c003844784a9a834fa3a3580858d785c, type: 3}
+    - {fileID: 0}
+    - {fileID: 21300000, guid: c003844784a9a834fa3a3580858d785c, type: 3}
+    - {fileID: 0}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -2919,6 +3148,15 @@ AnimationClip:
         weightedMode: 0
         inWeight: 0
         outWeight: 0
+      - serializedVersion: 3
+        time: 8.533334
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -2954,7 +3192,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 45
+        value: 43
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -3087,6 +3325,15 @@ AnimationClip:
         weightedMode: 0
         inWeight: 0
         outWeight: 0
+      - serializedVersion: 3
+        time: 8.533334
+        value: 40
+        inSlope: -0
+        outSlope: 0
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -3143,7 +3390,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 41
+        value: 0
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -3194,6 +3441,126 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_SortingOrder
     path: Animacoes/Personagem/Corpo/Bracos/Braco_Esquerdo
+    classID: 212
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1.2833333
+        value: 15.803857
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Size.x
+    path: Animacoes/Personagem/Corpo/Pernas
+    classID: 212
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1.2833333
+        value: 24.099998
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Size.y
+    path: Animacoes/Personagem/Corpo/Pernas
+    classID: 212
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 29
+        inSlope: 0
+        outSlope: -2.3376625
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1.2833333
+        value: 26
+        inSlope: -2.3376625
+        outSlope: 0
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_SortingOrder
+    path: Animacoes/Personagem/Corpo/Pernas
+    classID: 212
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 41
+        inSlope: 0
+        outSlope: 0.23437499
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 8.533334
+        value: 43
+        inSlope: 0.23437499
+        outSlope: 0
+        tangentMode: 69
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_SortingOrder
+    path: Animacoes/Props/Objeto4
     classID: 212
     script: {fileID: 0}
     flags: 0

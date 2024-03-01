@@ -6109,10 +6109,13 @@ PrefabInstance:
       addedObject: {fileID: 2300895249739046033}
     - targetCorrespondingSourceObject: {fileID: 5238693539030694353, guid: 6348472175b37134a961ba436d406d2f, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4436781659836931675}
+    - targetCorrespondingSourceObject: {fileID: 5238693539030694353, guid: 6348472175b37134a961ba436d406d2f, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 3718673005238589324}
     - targetCorrespondingSourceObject: {fileID: 5238693539030694353, guid: 6348472175b37134a961ba436d406d2f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4436781659836931675}
+      addedObject: {fileID: 9059643783458406170}
   m_SourcePrefab: {fileID: 100100000, guid: 6348472175b37134a961ba436d406d2f, type: 3}
 --- !u!1 &4481526416724133807 stripped
 GameObject:
@@ -6229,13 +6232,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   olhos:
   - {fileID: 4657836474697559258}
-  - {fileID: 0}
+  - {fileID: 2683522534408256424}
   corOlhos: {r: 1, g: 1, b: 1, a: 1}
   cabelos:
   - {fileID: 8389290513697992187}
   - {fileID: 3933375571483677946}
   - {fileID: 7855501199483119023}
-  - {fileID: 0}
+  - {fileID: 229205316010213216}
   corCabelo: {r: 1, g: 1, b: 1, a: 1}
   partesCorpo:
   - {fileID: 1998465694393769700}
@@ -6250,32 +6253,35 @@ MonoBehaviour:
   - {fileID: 2931322487064087421}
   - {fileID: 5202320809479784288}
   - {fileID: 2251155620122787212}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1812390615092783998}
+  - {fileID: 4512697571043949293}
+  - {fileID: 3661761205801628158}
+  - {fileID: 3323596510894447162}
+  - {fileID: 4438616072440769755}
+  - {fileID: 7712011241283153387}
+  - {fileID: 4428959075429485923}
+  - {fileID: 3747782347431954090}
+  - {fileID: 3878620856737953546}
+  - {fileID: 3815254729389345454}
+  - {fileID: 6853678096132226036}
+  - {fileID: 2633453122049781100}
+  - {fileID: 5116079267998039116}
   corPele: {r: 1, g: 1, b: 1, a: 1}
   roupasSuperiores:
   - {fileID: 8294604690841865563}
   - {fileID: 3890251129793032029}
   - {fileID: 5662733959371460464}
   - {fileID: 4651437317512775855}
+  - {fileID: 9181263506695288176}
+  - {fileID: 4628290705434270705}
   corRoupaSuperior: {r: 1, g: 1, b: 1, a: 1}
   roupasInferiores:
   - {fileID: 2462591288542436722}
   - {fileID: 5729855322476907329}
   - {fileID: 5927226877149236653}
+  - {fileID: 2064475816573129975}
+  - {fileID: 2070214597847507673}
   corRoupaInferior: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &3718673005238589324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4481526416724133807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e22d69abf1e12146ab8ad6a9cb91c65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4436781659836931675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6292,6 +6298,7 @@ MonoBehaviour:
   - {fileID: 8389290513697992187}
   - {fileID: 3933375571483677946}
   - {fileID: 7855501199483119023}
+  cabeloAnimacao: {fileID: 229205316010213216}
   roupas:
   - roupas:
     - {fileID: 8294604690841865563}
@@ -6302,6 +6309,39 @@ MonoBehaviour:
     - {fileID: 5927226877149236653}
   - roupas:
     - {fileID: 4651437317512775855}
+  roupaAnimacao:
+  - {fileID: 9181263506695288176}
+  - {fileID: 2064475816573129975}
+--- !u!114 &3718673005238589324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4481526416724133807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e22d69abf1e12146ab8ad6a9cb91c65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9059643783458406170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4481526416724133807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ff9468bafa4c64680a7d34afc5da85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roupasAnimacoes:
+  - {fileID: 8437969868190682242}
+  - {fileID: 3674062682078887717}
+  - {fileID: 2412121387360957035}
+  - {fileID: 7266311423289517766}
+  - {fileID: 4841427319426104026}
 --- !u!4 &8735164853220533251 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1133652200472320637, guid: 6348472175b37134a961ba436d406d2f, type: 3}

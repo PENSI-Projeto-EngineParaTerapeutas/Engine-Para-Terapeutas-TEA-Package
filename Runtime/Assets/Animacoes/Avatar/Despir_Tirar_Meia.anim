@@ -298,6 +298,8 @@ AnimationClip:
       value: {fileID: 21300000, guid: 14462aed40430024983303b5380fe249, type: 3}
     - time: 2.25
       value: {fileID: 21300000, guid: e363d9c080340894781329a1a8d2cc53, type: 3}
+    - time: 2.5
+      value: {fileID: 21300000, guid: e363d9c080340894781329a1a8d2cc53, type: 3}
     attribute: m_Sprite
     path: Animacoes/Personagem/Corpo
     classID: 212
@@ -420,6 +422,15 @@ AnimationClip:
       value: {fileID: 21300000, guid: c036c7e04f05c8b4f9ebdaee2401f630, type: 3}
     attribute: m_Sprite
     path: Animacoes/Personagem/Corpo/Bracos/Braco_Esquerdo/Mao_Esquerda
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: 21300000, guid: 7123cc656e41666488ccbb348329703f, type: 3}
+    attribute: m_Sprite
+    path: Animacoes/Roupas/Intima
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -548,6 +559,15 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
+      path: 3008698609
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
       path: 1502120674
       attribute: 3762991556
       script: {fileID: 0}
@@ -597,6 +617,7 @@ AnimationClip:
     - {fileID: 21300000, guid: 284a1aa586d5fc740baa9611b74d588d, type: 3}
     - {fileID: 21300000, guid: 14462aed40430024983303b5380fe249, type: 3}
     - {fileID: 21300000, guid: e363d9c080340894781329a1a8d2cc53, type: 3}
+    - {fileID: 21300000, guid: e363d9c080340894781329a1a8d2cc53, type: 3}
     - {fileID: 21300000, guid: 556782db0b6d49048b3879618a9c50b6, type: 3}
     - {fileID: 21300000, guid: f85f09f2752466d45aea71a3e8e0306f, type: 3}
     - {fileID: 21300000, guid: 0551ba024e468034b90df8631f120d1d, type: 3}
@@ -643,12 +664,13 @@ AnimationClip:
     - {fileID: 21300000, guid: 87fe305d46dcb1049a21ea1d946a58ab, type: 3}
     - {fileID: 21300000, guid: 4cbf1e4b04887a547bf1901262ecce4a, type: 3}
     - {fileID: 21300000, guid: c036c7e04f05c8b4f9ebdaee2401f630, type: 3}
+    - {fileID: 21300000, guid: 7123cc656e41666488ccbb348329703f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 2.2666667
+    m_StopTime: 2.5166667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -919,4 +941,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: EnableClothing
+    data: meias
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.25
+    functionName: DisableClothing
+    data: meias
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
